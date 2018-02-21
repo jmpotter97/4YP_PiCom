@@ -96,8 +96,8 @@ try:
             
 except KeyboardInterrupt:
     LOGS = LOGS + "\nExiting on keyboard interrupt!\n"
-except:
-    LOGS = LOGS + "\nExiting on unexpected error!\n"
+except Exception as e:
+    LOGS = LOGS + "\nExiting on unexpected error!\nError is: {}".format(e)
 
 finally:
     with open('LOGS.txt','w') as f:
