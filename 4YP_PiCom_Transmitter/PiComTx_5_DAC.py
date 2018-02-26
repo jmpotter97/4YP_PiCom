@@ -1,6 +1,7 @@
  # Using GPIO library for Raspberry Pi
 import RPi.GPIO as GPIO
 from time import sleep
+from subprocess import call
 import threading
 import paramiko
 
@@ -59,17 +60,15 @@ def Prep_Binary_Data(data_list):
         print("SIZE OF PADDED INPUT = {}".format(len(data_list)))
         return data_list
 
-def Transmit_Binary_Data(data_list):
+def Transmit_Data(data_list, transmission_type):
         print("Transmitting data")
         ############################# STILL NEED TIMING#############
-        i = 0
-        for b in data_list:
-            i = i+1
-            GPIO.output(clock_pin,i%2)
-            GPIO.output(data_pin, b)
-            sleep(1/transmit_freq)
-        GPIO.output(data_pin, GPIO.LOW)
-        print("Data transmission complete!")
+        if transmission_type == "4PAM":
+            return_code = call(["./PiTransmit_2", "arg1", "arg2", "arg3"])
+            if return_code == 0:
+                print("Data transmission complete!")
+            elif return_code == 1:
+                print("
 
 try:
     # Use BCM numbering standard
@@ -83,7 +82,7 @@ try:
         input_stream = ([1,0]*5 + [1]*10)*20
         Prep_Binary_Data(input_stream)
         sleep(2)
-        Transmit_Binary_Data(input_stream)
+        Transmit_Data(input_stream,"4PAM")
 
     print("Finishing program")
         

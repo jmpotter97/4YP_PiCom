@@ -15,10 +15,17 @@ int main(int argc, char *argv[]) {
 	// gpioCfgClock()
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 1;}
 	printf("Hello World\n");
+
+	// argv should have values:
+	// argv[1] = size_of_input
+	// argv[2] = transmit_data - This is a bit mask for gpioWrite_Bits_0_31_Set
+	// argv[3] = 
 	
 	int transmit_freq = 50000;
 	// Receive actual transmit frequency from main arguments
 	if(argc>1) transmit_freq = atoi(argv[1]);
+	else { printf("GPIO INIT FAIL\n"); return 1;}
+	if(argc>2) transmit_freq = atoi(argv[2]);
 	
 	uint clock_pin = 4;
 	uint data0_pin = 17;
