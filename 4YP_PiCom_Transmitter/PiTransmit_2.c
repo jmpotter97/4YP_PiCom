@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
 			sscanf(transmit_data[i+j-4],"%x",&mask_convert[j]);
 			// data_mask[i] = mask_convert[0]<<12 + mask_convert[1]<<8 + mask_convert[2]<<4 + mask_convert[3];
 			data_mask[i] += mask_convert[j]<<((3-j)*3);
+
 		}
 		
 	}
