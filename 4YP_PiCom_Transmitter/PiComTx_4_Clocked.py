@@ -5,9 +5,9 @@ import threading
 import paramiko
 
 # Transmission frequency in Hz
-transmit_freq = 100
-clock_pin = 18
-data_pin = 4
+transmit_freq = 100000
+clock_pin = 19
+data_pin = 26
 
 def Ssh_Start_Receiver():
     print("\n---SSH lock---")
@@ -76,11 +76,11 @@ try:
     GPIO.setmode(GPIO.BCM);
     # Set BCM pin 4 as an output
     GPIO.setup(data_pin, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(clock_pin, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(clock_pin, GPIO.OUT, initial=GPIO.LOW)
 
-    receiver_started = Ssh_Start_Receiver()
+    receiver_started=1# = Ssh_Start_Receiver()
     if receiver_started:
-        input_stream = ([1,0]*5 + [1]*10)*20
+        input_stream = [1,0]*50000#([1,0]*5 + [1]*10)*20
         Prep_Binary_Data(input_stream)
         sleep(2)
         Transmit_Binary_Data(input_stream)

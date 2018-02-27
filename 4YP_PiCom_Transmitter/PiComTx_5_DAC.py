@@ -1,5 +1,4 @@
  # Using GPIO library for Raspberry Pi
-import RPi.GPIO as GPIO
 from time import sleep
 from subprocess import call
 import threading
@@ -62,20 +61,22 @@ def Prep_Binary_Data(data_list):
 
 def Transmit_Data(data_list, transmission_type):
         print("Transmitting data")
-        ############################# STILL NEED TIMING#############
+
         if transmission_type == "4PAM":
             return_code = call(["./PiTransmit_2", "arg1", "arg2", "arg3"])
-            if return_code == 0:
-                print("Data transmission complete!")
-            elif return_code == 1:
-                print("
+        elif transmission_type == "4QAM":
+            #return_code = call(["./PiTransmit_2", "arg1", "arg2", "arg3"])
+        else:
+            return_code = -1
+
+        if return_code == 0:
+            print("Data transmission complete!")
+        elif return_code == -1:
+            print("Invalid transmission type!")
+        elif return_code == 1:
+            print("Data transmission failed!") # Add more failure codes
 
 try:
-    # Use BCM numbering standard
-    GPIO.setmode(GPIO.BCM);
-    # Set BCM pin 4 as an output
-    GPIO.setup(data_pin, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(clock_pin, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
 
     receiver_started = Ssh_Start_Receiver()
     if receiver_started:
@@ -90,5 +91,3 @@ except KeyboardInterrupt:
     print("\nExiting program on keyboard interrupt")
 except Exception as e:
     print("\nExiting program on unexpected error\nError is: {}".format(e))
-finally:
-    GPIO.cleanup()
