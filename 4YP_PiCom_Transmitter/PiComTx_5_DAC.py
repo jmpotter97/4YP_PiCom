@@ -5,15 +5,17 @@ import threading
 import paramiko
 
 # Transmission frequency in Hz
-transmit_freq = 100
+transmit_freq = 5000
 clock_pin = 18
 data_pin = 4
+transmission_type = "4PAM"
 
 def Ssh_Start_Receiver():
     print("\n---SSH lock---")
     host = "raspberrypi2.local"
     uname = "pi"
     pword = "rasPass2"
+    # Update command for new file name
     command = "sudo python3 /home/pi/Documents/PiComRx_3_Clocked.py"
     try:
         ssh = paramiko.SSHClient()
@@ -59,13 +61,31 @@ def Prep_Binary_Data(data_list):
         print("SIZE OF PADDED INPUT = {}".format(len(data_list)))
         return data_list
 
-def Transmit_Data(data_list, transmission_type):
+def Encode_Error_Correction(data_list):
+    ''' TO BE ADDED '''
+
+def Convert_To_Data_Mask(data_list):
+    ''' TO BE ADDED '''
+    '''
+        data_string = ""
+        if transmission_type == "4PAM":
+            CHANGE EACH SET OF 2 BITS TO A LEVEL,
+            EACH LEVEL TO A DAC VALUE BETWEEN 0 AND 255 (8-BIT DAC),
+            EACH DAC VALUE TO A BIT-MASK FOR 8 PINS AS 2-SYM HEX
+            data_string += %sub-mask for each level%
+            return data_string
+        else:
+            print("Invalid transmission type!")
+    '''
+    
+def Transmit_Data(data_string):
         print("Transmitting data")
 
         if transmission_type == "4PAM":
-            return_code = call(["./PiTransmit_2", "arg1", "arg2", "arg3"])
+            return_code = call(["./PiTransmit_2", data_string, str(transmit_freq)])
         elif transmission_type == "4QAM":
-            #return_code = call(["./PiTransmit_2", "arg1", "arg2", "arg3"])
+            # Doesn't exist yet
+            # return_code = call(["./PiTransmit_2_QAM", "arg1", "arg2", "arg3"])
         else:
             return_code = -1
 
@@ -81,9 +101,13 @@ try:
     receiver_started = Ssh_Start_Receiver()
     if receiver_started:
         input_stream = ([1,0]*5 + [1]*10)*20
+        #input_stream will be from an image
         Prep_Binary_Data(input_stream)
+        # Encode_Error_Correction(input_stream)
+        
+        # string input_mask = Convert_To_Data_Mask(input_stream)
         sleep(2)
-        Transmit_Data(input_stream,"4PAM")
+        Transmit_Data(input_mask)
 
     print("Finishing program")
         
