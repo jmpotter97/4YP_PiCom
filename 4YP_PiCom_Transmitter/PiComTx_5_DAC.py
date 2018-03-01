@@ -2,7 +2,7 @@
 from time import sleep
 from subprocess import call
 import threading
-import paramiko
+#import paramiko
 
 # Transmission frequency in Hz
 transmit_freq = 5000
@@ -84,6 +84,7 @@ def Transmit_Data(data_string):
         if transmission_type == "4PAM":
             return_code = call(["./PiTransmit_2", data_string, str(transmit_freq)])
         elif transmission_type == "4QAM":
+            print("4QAM NO EXIST")
             # Doesn't exist yet
             # return_code = call(["./PiTransmit_2_QAM", "arg1", "arg2", "arg3"])
         else:
@@ -98,8 +99,8 @@ def Transmit_Data(data_string):
 
 try:
 
-    receiver_started = Ssh_Start_Receiver()
-    if receiver_started:
+    #receiver_started = Ssh_Start_Receiver()
+    if 1:# receiver_started:
         input_stream = ([1,0]*5 + [1]*10)*20
         #input_stream will be from an image
         Prep_Binary_Data(input_stream)
