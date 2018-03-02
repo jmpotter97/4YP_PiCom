@@ -1,0 +1,5 @@
+********** RECEIVER LOG FILE **********
+
+
+Exiting on unexpected error!
+Error is: type object 'GPIO' has no attribute 'wait_for_edge'
