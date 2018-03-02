@@ -1,5 +1,5 @@
-#import RPi.GPIO as GPIO
-from RPiSim.GPIO import GPIO
+import RPi.GPIO as GPIO
+#from RPiSim.GPIO import GPIO
 
 GPIO_STATE = [0, 0, 0, 0, 0, 0, 0, 0]
 GPIO_PINS = [5, 6, 13, 19, 26, 21, 20, 16]
