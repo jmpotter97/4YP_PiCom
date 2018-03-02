@@ -37,8 +37,9 @@ void newState(int gpio, int level, uint32_t tick) {
 }
 
 int main(int argc, char *argv[]) {
-	// REMEMBER TO CHANGE SAMPLE RATE OF GPIO's, STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
-	// gpioCfgClock()
+	// CHANGE SAMPLE RATE OF GPIO's (1,2,4,5,8,10),
+	// STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
+	gpioCfgClock(2,1);
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 1;}
 
 	/*  argv should have values:
@@ -67,9 +68,16 @@ int main(int argc, char *argv[]) {
 		// Move each sub-mask into an int in transmit_data_mask array
 		sscanf((transmit_data + sub_mask_size*i),format,&transmit_data_mask[i]);
 		// Expand sub-mask into 32-bit mask
-		// TODO NEXT
 		// transmit_data_mask[i] = F(transmit_data_mask[i]);
 		// WHERE F() MAPS THE 8-BIT SUB-MASK TO THE 32-BIT MASK
+		int mask32 = 0;
+		for(int j = 0; j<8; j++) {	// TODO: ADD ANOTHER FOR SECOND DAC
+			// If each bit in binary exists, include it in 32-bit mask
+			if((1<<(7-j)) & transmit_data_mask[i]) {
+				mask32 |= (1<<DAC_1_bits[j]);
+			}
+		}
+		transmit_data_mask[i] = mask32;
 	}
 	
 	for(int i=0;i<8;i++) {
