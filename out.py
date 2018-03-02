@@ -8,9 +8,8 @@ GPIO_PINS = [5, 6, 13, 19, 26, 21, 20, 16]
 CLK_PIN = 4
 
 def getDummyData():
-
-    arr = ([1,0] * 4 + [0]*8)*1000
-
+    print("Full transition")
+    arr = ([1,0] * 4 + [0,1]*4 )*1000
     return arr
 
 def chunks(l, n):
@@ -70,13 +69,18 @@ if __name__ == '__main__':
     GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
 
     transforms = convertToTransform(a)
-    print(transforms)
+    #print(transforms)
 
     t0 = time()
     for transform in transforms:
         setGPIOHeaders(transform)
     t1 = time()-t0
+    print("Bit rate")
     print(str(t1/16000))
+    print("Byte rate")
+    print(str(t1/2000))
+    print("Bit frequency")
+    print(str(1/(t1/16000)))
 
     GPIO.cleanup()
     print('fin')
