@@ -1,5 +1,6 @@
 #import RPi.GPIO as GPIO
 from RPiSim.GPIO import GPIO
+from time import time
 
 GPIO_STATE = [0, 0, 0, 0, 0, 0, 0, 0]
 GPIO_PINS = [5, 6, 13, 19, 26, 21, 20, 16]
@@ -70,8 +71,11 @@ if __name__ == '__main__':
     transforms = convertToTransform(a)
     print(transforms)
 
+    t0 = time()
     for transform in transforms:
         setGPIOHeaders(transform)
+    t1 = time()-t0
+    print(str(t1/16000))
 
     GPIO.cleanup()
     print('fin')
