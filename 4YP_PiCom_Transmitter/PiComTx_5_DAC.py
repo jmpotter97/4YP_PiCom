@@ -1,8 +1,7 @@
  # Using GPIO library for Raspberry Pi
 from time import sleep
 from subprocess import call
-import threading
-#import paramiko
+import paramiko
 
 # Transmission frequency in Hz
 transmit_freq = 5000
@@ -10,8 +9,20 @@ clock_pin = 18
 data_pin = 4
 transmission_type = "4PAM"
 
+ 
+def getDummyData():
+    print("No transition")
+    arr = ([1,0]*8 )*1000
+    return arr
+
+def chunks(l, n):
+
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+
+
 def Ssh_Start_Receiver():
-    print("\n---SSH lock---")
     host = "raspberrypi2.local"
     uname = "pi"
     pword = "rasPass2"
@@ -65,24 +76,23 @@ def Encode_Error_Correction(data_list):
     ''' TO BE ADDED '''
 
 def Convert_To_Data_Mask(data_list):
-    ''' TO BE ADDED '''
-    '''
         data_string = ""
         if transmission_type == "4PAM":
-            CHANGE EACH SET OF 2 BITS TO A LEVEL,
+            subdata = chunks(data_list,8)
+            for b in chunks
+            '''CHANGE EACH SET OF 2 BITS TO A LEVEL,
             EACH LEVEL TO A DAC VALUE BETWEEN 0 AND 255 (8-BIT DAC),
             EACH DAC VALUE TO A BIT-MASK FOR 8 PINS AS 2-SYM HEX
-            data_string += %sub-mask for each level%
+            data_string += %sub-mask for each level%'''
             return data_string
         else:
             print("Invalid transmission type!")
-    '''
     
 def Transmit_Data(data_string):
         print("Transmitting data")
 
         if transmission_type == "4PAM":
-            return_code = call(["./PiTransmit_2", data_string, str(transmit_freq)])
+            return_code = call(["./PiTransmit_2", data_string])
         elif transmission_type == "4QAM":
             print("4QAM NO EXIST")
             # Doesn't exist yet
@@ -96,17 +106,19 @@ def Transmit_Data(data_string):
             print("Invalid transmission type!")
         elif return_code == 1:
             print("Data transmission failed!") # Add more failure codes
+        else:
+            print(16000/return_code)
 
 try:
 
     #receiver_started = Ssh_Start_Receiver()
     if 1:# receiver_started:
-        input_stream = ([1,0]*5 + [1]*10)*20
+        input_stream = getDummyData()
         #input_stream will be from an image
-        Prep_Binary_Data(input_stream)
+        #Prep_Binary_Data(input_stream)
         # Encode_Error_Correction(input_stream)
         
-        # string input_mask = Convert_To_Data_Mask(input_stream)
+        input_mask = Convert_To_Data_Mask(input_stream)
         sleep(2)
         Transmit_Data(input_mask)
 
