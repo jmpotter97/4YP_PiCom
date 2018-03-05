@@ -2,6 +2,7 @@
 #include <stdlib.h> // for int = atoi(char), malloc
 #include <pigpio.h> // for gpio access
 #include <unistd.h> // for sleep(seconds)
+#include <string.h> // for strlen(string)
 
 const int num_of_DAC = 1;	// CHANGE THIS TO 2 WHEN SECOND DAC IMPLEMENTED (QAM)
 const uint clock_pin = 4;
@@ -36,8 +37,8 @@ void newState(uint32_t* mask) {
 int main(int argc, char *argv[]) {
 	// CHANGE SAMPLE RATE OF GPIO's (1,2,4,5,8,10),
 	// STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
-	gpioCfgClock(2,1,0);
-	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 1;}
+	//gpioCfgClock(2,1,0);
+	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
 	/*  argv should have values:
 	    argv[1] = transmit_data - This is a sub-bit-mask of DAC pins only,
@@ -51,14 +52,14 @@ int main(int argc, char *argv[]) {
 		transmit_data = argv[1];
 	} else {
 		printf("PiTransmit_2\n\n");
-		printf("Usage: ./PiTransmit_2 transmit_data transmit_freq\n");
-		return 1;
+		printf("Usage: ./PiTransmit_2 transmit_data \n");
+		return 3;
 	}
 	//if(argc>2) transmit_freq = atoi(argv[2]);
 	
 
 	const int sub_mask_size = 2 * num_of_DAC;
-	const int mask_size = ( sizeof(transmit_data)-1 ) / sub_mask_size;
+	const int mask_size = strlen(transmit_data) / sub_mask_size;
     char format[] = "%_x";			// %2x for one DAC, %4x for two DAC's
     format[1] = sub_mask_size + 48;	// +48 for ASCII value of number
 
@@ -87,6 +88,7 @@ int main(int argc, char *argv[]) {
 	for(int i=0; i<mask_size; i++) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask[i] ^ DAC_1_mask);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
+		//usleep(1000000);
 	}
 	uint32_t t1 = gpioTick();
 	return t1-t0;

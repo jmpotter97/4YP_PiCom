@@ -8,8 +8,16 @@ GPIO_PINS = [5, 6, 13, 19, 26, 21, 20, 16]
 CLK_PIN = 4
 
 def getDummyData():
+    '''
+    print("No transition")
+    arr = ([1,0]*8)*1000
+    
+    print("Half transition")
+    arr = ([1,0]*4+[0]*8)*1000
+    '''
     print("Full transition")
-    arr = ([1,0] * 4 + [0,1]*4 )*1000
+    arr = ([1,0]*4+[0,1]*4)*1000
+    
     return arr
 
 def chunks(l, n):

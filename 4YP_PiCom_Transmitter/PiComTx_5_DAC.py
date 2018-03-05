@@ -9,11 +9,24 @@ clock_pin = 18
 data_pin = 4
 transmission_type = "4PAM"
 
- 
+
+def pause():
+	prPause = input("Pause, press <ENTER> to continue...")
+
+	
 def getDummyData():
+    '''
     print("No transition")
-    arr = ([1,0]*8 )*1000
+    arr = ([1,0]*8)*1000
+    
+    print("Half transition")
+    arr = ([1,0]*4+[0]*8)*1000
+    '''
+    print("Full transition WITH USLEEP(100)")
+    arr = ([1,0]*4+[0,1]*4)*1000
+    
     return arr
+
 
 def chunks(l, n):
 
@@ -52,6 +65,7 @@ def Ssh_Start_Receiver():
         ssh.close()
         return False
 
+
 def Prep_Binary_Data(data_list):
     if not all(b == 0 or b == 1 for b in data_list):
         print("Data to transmit is not binary, stopping transmission")
@@ -72,14 +86,23 @@ def Prep_Binary_Data(data_list):
         print("SIZE OF PADDED INPUT = {}".format(len(data_list)))
         return data_list
 
+
 def Encode_Error_Correction(data_list):
     ''' TO BE ADDED '''
+
 
 def Convert_To_Data_Mask(data_list):
         data_string = ""
         if transmission_type == "4PAM":
             subdata = chunks(data_list,8)
-            for b in chunks
+            for byte in subdata:
+                bin_str = ""
+                for bit in byte:
+                    bin_str += str(bit)
+                if int(bin_str,2)<16:
+                    data_string += '0' + hex(int(bin_str,2))[2:]
+                else:
+                    data_string += hex(int(bin_str,2))[2:]
             '''CHANGE EACH SET OF 2 BITS TO A LEVEL,
             EACH LEVEL TO A DAC VALUE BETWEEN 0 AND 255 (8-BIT DAC),
             EACH DAC VALUE TO A BIT-MASK FOR 8 PINS AS 2-SYM HEX
@@ -87,12 +110,13 @@ def Convert_To_Data_Mask(data_list):
             return data_string
         else:
             print("Invalid transmission type!")
+
     
 def Transmit_Data(data_string):
-        print("Transmitting data")
+        #print("Transmitting data")
 
         if transmission_type == "4PAM":
-            return_code = call(["./PiTransmit_2", data_string])
+            return_code = call(["sudo","./PiTransmit_2", data_string])
         elif transmission_type == "4QAM":
             print("4QAM NO EXIST")
             # Doesn't exist yet
@@ -100,17 +124,31 @@ def Transmit_Data(data_string):
         else:
             return_code = -1
 
-        if return_code == 0:
-            print("Data transmission complete!")
-        elif return_code == -1:
+        if return_code == -1:
             print("Invalid transmission type!")
+        elif return_code == 0:
+            print("Data transmission complete!")
         elif return_code == 1:
             print("Data transmission failed!") # Add more failure codes
+        elif return_code == 2:
+            print("GPIO INIT FAIL")
+        elif return_code == 3:
+            print("PiTransmit_2 ... Incorrect usage\n\n")
+            print("Usage: ./PiTransmit_2 transmit_data transmit_freq\n")
         else:
-            print(16000/return_code)
+            print("Return code (time to execute)")
+            print(return_code)
+            t1 = return_code * (10**-6)
+            print("Bit rate")
+            print(str(t1/16000))
+            print("Byte rate")
+            print(str(t1/2000))
+            print("Bit frequency")
+            print(str(1/(t1/16000)))
+            
 
+#if __name__ == '__main__':
 try:
-
     #receiver_started = Ssh_Start_Receiver()
     if 1:# receiver_started:
         input_stream = getDummyData()
@@ -123,8 +161,10 @@ try:
         Transmit_Data(input_mask)
 
     print("Finishing program")
-        
+
+
 except KeyboardInterrupt:
     print("\nExiting program on keyboard interrupt")
 except Exception as e:
     print("\nExiting program on unexpected error\nError is: {}".format(e))
+
