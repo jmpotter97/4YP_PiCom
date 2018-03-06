@@ -1,5 +1,5 @@
-#import RPi.GPIO as GPIO
-from RPiSim.GPIO import GPIO
+import RPi.GPIO as GPIO
+#from RPiSim.GPIO import GPIO
 
 clock_pin = 18
 data_pin = 4
@@ -20,6 +20,7 @@ def Receive_Data(output, LOGS):
                 output.append(GPIO.input(data_pin))
             else:
                 still_receiving = False
+                LOGS.append("Data transfer complete, stopping receiver\n")
     else:
         LOGS.append("Data interrput not received, stopping receiver\n")
 

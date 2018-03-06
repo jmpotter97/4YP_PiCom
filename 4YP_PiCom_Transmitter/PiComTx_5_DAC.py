@@ -113,7 +113,7 @@ def Convert_To_Data_Mask(data_list):
 
     
 def Transmit_Data(data_string):
-        #print("Transmitting data")
+        print("Transmitting data")
 
         if transmission_type == "4PAM":
             return_code = call(["sudo","./PiTransmit_2", data_string])
