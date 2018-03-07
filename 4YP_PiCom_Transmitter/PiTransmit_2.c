@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 								  passed as a char*
 		argv[2] = transmit_freq - Frequency of clock signal, or take default:
 	*/
-	//int transmit_freq = 5000;
+	//int transmit_freq = 5000; -- DEPRECATED FOR NOW
 	char* transmit_data;
 	
 	if(argc>1) {
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 		printf("Usage: ./PiTransmit_2 transmit_data \n");
 		return 3;
 	}
-	//if(argc>2) transmit_freq = atoi(argv[2]);
+	//if(argc>2) transmit_freq = atoi(argv[2]); -- DEPRECATED FOR NOW
 	
 
 	const int sub_mask_size = 2 * num_of_DAC;
@@ -64,6 +64,7 @@ int main(int argc, char *argv[]) {
     format[1] = sub_mask_size + 48;	// +48 for ASCII value of number
 
 	uint32_t* transmit_data_mask = calloc(mask_size, sizeof(uint32_t));
+	uint32_t* transmit_data_inv_mask = calloc(mask_size, sizeof(uint32_t));
 	for(int i = 0; i<mask_size; i++) {
 		// Move each sub-mask into an int in transmit_data_mask array
 		sscanf((transmit_data + sub_mask_size*i),format,&transmit_data_mask[i]);
@@ -78,6 +79,7 @@ int main(int argc, char *argv[]) {
 			}
 		}
 		transmit_data_mask[i] = mask32;
+		transmit_data_inv_mask[i] = mask32 ^ DAC_1_mask;
 	}
 	
 	for(int i=0;i<8;i++) {
@@ -86,7 +88,7 @@ int main(int argc, char *argv[]) {
 	
 	uint32_t t0 = gpioTick();
 	for(int i=0; i<mask_size; i++) {
-		gpioWrite_Bits_0_31_Clear(transmit_data_mask[i] ^ DAC_1_mask);
+		gpioWrite_Bits_0_31_Clear(transmit_data_inv_mask[i]);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
 		//usleep(1000000);
 	}
