@@ -19,25 +19,19 @@ int DAC_1_mask = (1<<5)|(1<<6)|(1<<13)|(1<<19)|(1<<26)|(1<<21)|(1<<20)|(1<<16);
 // Callback function is automatically passed gpio (will be clock_pin),
 // level (0_falling, 1_rising,2_watchdog) and tick (to compare times)
 // gpioTick() (uint32_t) gets tick at any time in code, microseconds since boot
-void newState(uint32_t* mask) {
-	/*	TEST VERSION
-	if(z++%2<1){
-		gpioWrite_Bits_0_31_Clear(DAC_1_mask);
-		gpioWrite_Bits_0_31_Set(0);
-	} else {
-		gpioWrite_Bits_0_31_Clear(0);
-		gpioWrite_Bits_0_31_Set(DAC_1_mask);
-	}*/
-
-	//	REAL VERSION
-	//  Removed from function
+void newState(uint gpio, int level, int tick, void* mask) {
+	//	TEST VERSION
+	if(!level){
+		uint32_t i = gpioRead_Bits_0_31();
+		printf("%i\n",i);
+	}
 	
 }
 
 int main(int argc, char *argv[]) {
 	// CHANGE SAMPLE RATE OF GPIO's (1,2,4,5,8,10),
 	// STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
-	//gpioCfgClock(2,1,0);
+	gpioCfgClock(2,1,0);
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
 	/*  argv should have values:
@@ -91,7 +85,7 @@ int main(int argc, char *argv[]) {
 		//usleep(1000000);
 	}
 	uint32_t t1 = gpioTick();
-	return t1-t0;
+	
 	/* Hardware clocking requires interrupt capability not possible
 		Use ISR maybe, still 50us latency
 	  gpioHardwareClock(clock_pin, transmit_freq);
@@ -99,4 +93,5 @@ int main(int argc, char *argv[]) {
 	  sleep(60);
 	  gpioHardwareClock(clock_pin, 0);*/
 	gpioTerminate();
+	return t1-t0;
 }
