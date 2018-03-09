@@ -28,6 +28,12 @@ def getDummyData():
     return arr
 
 
+def getImageBytes(path):
+        with open(path, 'rb') as f:
+                out = f.read()
+        return out
+
+
 def chunks(l, n):
 
     """Yield successive n-sized chunks from l."""
@@ -66,32 +72,12 @@ def Ssh_Start_Receiver():
         return False
 
 
-def Prep_Binary_Data(data_list):
-    if not all(b == 0 or b == 1 for b in data_list):
-        print("Data to transmit is not binary, stopping transmission")
-    else:
-        # Add excess continuous value padding
-        print("SIZE OF INPUT = {}".format(len(data_list)))
-        pad_bits=0
-        for i in range(5,len(data_list)):
-            if data_list[i+pad_bits-5:i+pad_bits] == [0]*5:
-                data_list.insert(i+pad_bits,1)
-                pad_bits = pad_bits + 1
-            elif data_list[i+pad_bits-5:i+pad_bits] == [1]*5:
-                data_list.insert(i+pad_bits,0)
-                pad_bits = pad_bits + 1
-        # Adding end start and end of transmission padding to data
-        data_list[:0] = [1]*7+[0]
-        data_list[-1:] = [0]+[1]*7
-        print("SIZE OF PADDED INPUT = {}".format(len(data_list)))
-        return data_list
-
-
 def Encode_Error_Correction(data_list):
     ''' TO BE ADDED '''
 
 
 def Convert_To_Data_Mask(data_list):
+        # TODO: Change back to 2 bits for 4PAM not 256PAM
         data_string = ""
         if transmission_type == "4PAM":
             subdata = chunks(data_list,8)
@@ -113,7 +99,7 @@ def Convert_To_Data_Mask(data_list):
 
     
 def Transmit_Data(data_string):
-        #print("Transmitting data")
+        print("Transmitting data")
 
         if transmission_type == "4PAM":
             return_code = call(["sudo","./PiTransmit_2", data_string])
@@ -152,8 +138,8 @@ try:
     #receiver_started = Ssh_Start_Receiver()
     if 1:# receiver_started:
         input_stream = getDummyData()
-        #input_stream will be from an image
-        #Prep_Binary_Data(input_stream)
+        #input_stream  = getImageBytes('cat.png')
+        
         # Encode_Error_Correction(input_stream)
         
         input_mask = Convert_To_Data_Mask(input_stream)
