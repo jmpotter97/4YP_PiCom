@@ -7,7 +7,7 @@ const uint clock_pin = 4;
 
 int main(int argc, char *argv[]) {
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 1;}
-    int mask = (1<<27)|(1<<5)|(1<<6)|(1<<12);
+    int mask = (1<<13)|(1<<5)|(1<<6)|(1<<19);
     int t0=gpioTick();
 	for(int i=0; i<1000; i++) {
         gpioWrite_Bits_0_31_Clear(mask);
