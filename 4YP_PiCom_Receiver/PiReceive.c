@@ -21,12 +21,12 @@ int ADC_1_mask = (1<<5)|(1<<6)|(1<<13)|(1<<19)|(1<<26)|(1<<21)|(1<<20)|(1<<16);
 // level (0_falling, 1_rising,2_watchdog) and tick (to compare times)
 // gpioTick() (uint32_t) gets tick at any time in code, microseconds since boot
 void readPins(int gpio, int level, uint tick, void* data) {
-	static count = 0;
+	static int count = 0;
     int* new_data = (int*)data;
 	if(!level){
-		*(new_data+count++) = gpioRead_Bits_0_31();
+		*(new_data+count++) = gpioRead(5);//_Bits_0_31();
 	} else {
-        if(count>=mask_size) {
+        if(count == mask_size-1) {
             gpioSetAlertFuncEx(clock_pin, 0, NULL);
         }
     }
@@ -41,11 +41,14 @@ int main(int argc, char *argv[]) {
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
     for(int i=0;i<8;i++) {
         gpioSetMode(ADC_1_bits[i], PI_INPUT);
+        gpioSetPullUpDown(ADC_1_bits[i], PI_PUD_DOWN);
     }
 
 
-    const int sub_mask_size = 2 * num_of_ADC;
+    //const int sub_mask_size = 2 * num_of_ADC;
     int* receive_data_mask = calloc(mask_size, sizeof(uint32_t));
+    // TODO: REMEMBER TO FREE
+    //int receive_data_mask[10];
 
 	if(argc>1) {
 		mask_size = atoi(argv[1]);
@@ -56,13 +59,25 @@ int main(int argc, char *argv[]) {
 	}
 
 	/******************************************************************/
-	// Using a self-generated clock FOR TESTING
+	/*/ Using a self-generated clock FOR TESTING
 	gpioHardwareClock(clock_pin, 5000);
 	gpioSetAlertFuncEx(clock_pin, readPins, (void*)receive_data_mask);
 	// When testing on scope, sleep for 60s to have enough time to check
-	sleep(60);
+	sleep(10);
 	gpioHardwareClock(clock_pin, 0);
-	/******************************************************************/
+	******************************************************************/
+	for(int i = 0; i < mask_size; i++) {
+		receive_data_mask[i] = gpioRead(5);
+	}
+	
+	
+	FILE* out_f;
+	out_f = fopen("OUT.txt","w");
+	for(int i = 0; i < mask_size; i++) {
+		fprintf(out_f, "%i,", receive_data_mask[i]);
+	}
+	fclose(out_f);
+	free(receive_data_mask);
 	
 	gpioTerminate();
 	return 0;
