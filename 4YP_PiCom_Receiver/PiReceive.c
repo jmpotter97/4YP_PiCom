@@ -24,9 +24,9 @@ void readPins(int gpio, int level, uint tick, void* data) {
 	static int count = 0;
     int* new_data = (int*)data;
 	if(!level){
-		*(new_data+count++) = gpioRead(5);//_Bits_0_31();
+		*(new_data+count++) = gpioRead_Bits_0_31();
 	} else {
-        if(count == mask_size-1) {
+        if(count == 5){//mask_size-1) {
             gpioSetAlertFuncEx(clock_pin, 0, NULL);
         }
     }
@@ -34,6 +34,7 @@ void readPins(int gpio, int level, uint tick, void* data) {
 }
 
 int main(int argc, char *argv[]) {
+	printf("Hello world");
 	// CHANGE SAMPLE RATE OF GPIO's (1,2,4,5,8,10),
 	// STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
     // 2us chosen for now
@@ -47,6 +48,7 @@ int main(int argc, char *argv[]) {
 
     //const int sub_mask_size = 2 * num_of_ADC;
     int* receive_data_mask = calloc(mask_size, sizeof(uint32_t));
+    printf("Yay");
     // TODO: REMEMBER TO FREE
     //int receive_data_mask[10];
 
@@ -59,16 +61,14 @@ int main(int argc, char *argv[]) {
 	}
 
 	/******************************************************************/
-	/*/ Using a self-generated clock FOR TESTING
+	// Using a self-generated clock FOR TESTING
 	gpioHardwareClock(clock_pin, 5000);
 	gpioSetAlertFuncEx(clock_pin, readPins, (void*)receive_data_mask);
 	// When testing on scope, sleep for 60s to have enough time to check
 	sleep(10);
 	gpioHardwareClock(clock_pin, 0);
-	******************************************************************/
-	for(int i = 0; i < mask_size; i++) {
-		receive_data_mask[i] = gpioRead(5);
-	}
+	/******************************************************************/
+	
 	
 	
 	FILE* out_f;
