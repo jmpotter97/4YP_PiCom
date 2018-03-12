@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
 		//usleep(1000000);
 	}
 	uint32_t t1 = gpioTick();
-	return t1-t0;
+	
 	/* Hardware clocking requires interrupt capability not possible
 		Use ISR maybe, still 50us latency
 	  gpioHardwareClock(clock_pin, transmit_freq);
@@ -101,4 +101,5 @@ int main(int argc, char *argv[]) {
 	  sleep(60);
 	  gpioHardwareClock(clock_pin, 0);*/
 	gpioTerminate();
+	return t1-t0;
 }

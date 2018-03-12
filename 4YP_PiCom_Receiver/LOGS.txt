@@ -1,0 +1,5 @@
+********** RECEIVER LOG FILE **********
+
+Receiving data
+Data receive complete!
+Saving output to file
