@@ -1,0 +1,34 @@
+\documentclass[../main.tex]{subfiles}
+\rhead{Cameron Eadie}
+\begin{document}
+	% Conclusion
+A serious concern for the operation of the Large Hadron Collider is the problem of Unidentified Falling Objects (UFOs) causing beam losses and magnet quenches. 
+UFOs are thought to be \SIrange{1}{100}{\micro\metre} macroparticles which fall into, or are attracted into the proton beam.
+A summary of the current literature was provided to demonstrate what has been done already to attempt to understand and mitigate this problem.
+The way in which the particles adhere to the beam screen wall, and the ways in which they may be attracted to the proton beam were then investigated.
+This highlighted a disparity between current understanding of adhesion mechanisms and experimental evidence which clearly disagrees with the theory, and some explanations of possible reasons were given.\\
+
+Two mechanisms were identified as possible solutions to the problem, both using electromagnetic mechanisms to remove the UFOs from the beam screen surface.
+The first was an application of the dielectrophoretic force, which was deemed too difficult to implement.
+The second was an electrostatic mechanism by which the UFOs would be attracted to a positive plate covered in a dielectric surface.
+The electrostatic mechanism was chosen, with an implementation using a capacitively charged plate.
+Two methods of deploying this mechanism were then discussed, an autonomous device and a ball based on the RF Ball already used in the LHC.
+From a feasibility study of the automated device, it was decided that the design of such a device was possible; however it would be complicated, and raise unnecessary risks.
+The "Magic Ball" solution is preferred because of its simplicity and its use of existing procedures in the LHC.\\
+
+The ball was designed fitting closely to the specifications of the RF Ball, with potential modifications such as a stronger material with a higher resistivity.
+The ball would be charged via a pin connecting to the internal metal surface, while an external ground plate formed a spherical capacitor.
+It would then hold this charge on the inner surface and use it to attract UFOs to its surface.
+
+Finally, electrostatic modelling was performed in 2D and 3D, using the Partial Differential Equation Toolbox in MATLAB.
+Various techniques were used to visualise and interpret the results, and two design applications were created for ease of use.
+Both of the design applications, as well as the source code for many of the simulations and figures can be found at \url{https://github.com/saadhamid96/3yp}.
+Modelling suggested that the ball would successfully attract particles from the surfaces of the beam screen, and that it would maintain sufficient charge to be effective for the entirety of its use.
+At the speed of the current RF Ball tests, UFOs from the top and bottom surfaces would have time to become attracted to the surface of the ball if it were centered in the beam screen.
+At slower speeds, or with the ball closer to one of the sides, UFOs would also be attracted from the side walls.
+It was also shown using CFD that the particles would not be blown off the surface of the ball by the air moving past it.
+Based on the results of the simulations, various parameters of the ball were optimised to improve performance.
+
+\rhead{Cameron Eadie}
+
+\end{document}
