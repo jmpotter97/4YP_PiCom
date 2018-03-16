@@ -25,17 +25,16 @@ def Receive_Data(out, LOGS):
         with open('OUT.txt', 'r') as f:
             for data in f.read().split(','):
                 out.append(data)
-    else:
-        if return_code == -1:
-            LOGS.append("Invalid transmission type!\n")
-        elif return_code == 1:
-            LOGS.append("Data receive failed!\n")
-            # TODO: Add more failure codes
-        elif return_code == 2:
-            LOGS.append("GPIO INIT FAIL")
-        elif return_code == 3:
-            LOGS.append("\n--- PiReceive ---\n")
-            LOGS.append("Usage: sudo ./PiReceive mask_size \n")
+		
+    return_options = {-1 : "Invalid transmission type!\n",
+		       0 : "Data transmission complete!\n",
+		       1 : "Data receive failed!\n",
+		       2 : "GPIO INIT FAIL\n",	 # Add more failure codes
+		       3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n"}
+			
+    if return_code in return_options:
+	LOGS.append(return_options[return_code])
+	
     for i in out:
         print(i)
 
