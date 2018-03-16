@@ -1,12 +1,7 @@
- # Using GPIO library for Raspberry Pi
 from time import sleep
 from subprocess import call
 import paramiko
 
-# Transmission frequency in Hz
-transmit_freq = 5000
-clock_pin = 18
-data_pin = 4
 transmission_type = "4PAM"
 
 
@@ -22,7 +17,7 @@ def getDummyData():
     print("Half transition")
     arr = ([1,0]*4+[0]*8)*1000
     '''
-    print("Full transition WITH USLEEP(100)")
+    print("Full transition")
     arr = ([1,0]*4+[0,1]*4)*1000
     
     return arr
@@ -46,7 +41,7 @@ def Ssh_Start_Receiver():
     uname = "pi"
     pword = "rasPass2"
     # Update command for new file name
-    command = "sudo python3 /home/pi/Documents/PiComRx_3_Clocked.py"
+    command = "sudo python3 /home/pi/Documents/PiComRx_5_DAC.py"
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -77,7 +72,7 @@ def Encode_Error_Correction(data_list):
 
 
 def Convert_To_Data_Mask(data_list):
-        # TODO: Change back to 2 bits for 4PAM not 256PAM
+        # TODO: Change back to 2 bits for 4PAM when not 256PAM
         data_string = ""
         if transmission_type == "4PAM":
             subdata = chunks(data_list,8)
@@ -89,9 +84,9 @@ def Convert_To_Data_Mask(data_list):
                     data_string += '0' + hex(int(bin_str,2))[2:]
                 else:
                     data_string += hex(int(bin_str,2))[2:]
-            '''CHANGE EACH SET OF 2 BITS TO A LEVEL,
+            '''CHANGE EACH BYTE TO A LEVEL (0,1,2,3 for 4PAM),
             EACH LEVEL TO A DAC VALUE BETWEEN 0 AND 255 (8-BIT DAC),
-            EACH DAC VALUE TO A BIT-MASK FOR 8 PINS AS 2-SYM HEX
+            EACH DAC VALUE TO A BIT-MASK FOR 8 PINS AS 2-SYM HEX,
             data_string += %sub-mask for each level%'''
             return data_string
         else:
@@ -115,10 +110,12 @@ def Transmit_Data(data_string):
 			   0 : "Data transmission complete!",
 			   1 : "Data transmission failed!",
 			   2 : "GPIO INIT FAIL",	 # Add more failure codes
-			   3 : "PiTransmit_2 ... Incorrect usage\n\nUsage: ./PiTransmit_2 transmit_data transmit_freq\n"}
+			   3 : "PiTransmit_2 ... Incorrect usage\n\nUsage: ./PiTransmit_2 transmit_data\n"}
 			
 	if return_code in return_options:
 		print(return_options[return_code])
+	'''
+        TEST CODE WHEN RETURNING 'TIME TO EXECUTE TRANSMITTER'
         else:
             print("Return code (time to execute)")
             print(return_code)
@@ -129,16 +126,16 @@ def Transmit_Data(data_string):
             print(str(t1/2000))
             print("Bit frequency")
             print(str(1/(t1/16000)))
-            
+        '''
 
-#if __name__ == '__main__':
+            
 try:
-    #receiver_started = Ssh_Start_Receiver()
-    if 1:# receiver_started:
+    receiver_started = Ssh_Start_Receiver()
+    if  receiver_started:
         input_stream = getDummyData()
-        #input_stream  = getImageBytes('cat.png')
+        # TODO: input_stream  = getImageBytes('cat.png')
         
-        # Encode_Error_Correction(input_stream)
+        # TODO: Encode_Error_Correction(input_stream)
         
         input_mask = Convert_To_Data_Mask(input_stream)
         sleep(2)

@@ -30,14 +30,15 @@ void newState(uint32_t* mask) {
 	}*/
 
 	//	REAL VERSION
-	//  Removed from function
+	//  Removed from function as for loop works better than callback function,
+	//  left in to use layout for potential similar callback on receiver side
 	
 }
 
 int main(int argc, char *argv[]) {
 	// CHANGE SAMPLE RATE OF GPIO's (1,2,4,5,8,10),
 	// STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
-	//gpioCfgClock(2,1,0);
+	// gpioCfgClock(2,1,0);
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
 	/*  argv should have values:
@@ -93,13 +94,17 @@ int main(int argc, char *argv[]) {
 		//usleep(1000000);
 	}
 	uint32_t t1 = gpioTick();
+	printf("Total transmission time: %i\n", t1 - t0);
 	
 	/* Hardware clocking requires interrupt capability not possible
 		Use ISR maybe, still 50us latency
 	  gpioHardwareClock(clock_pin, transmit_freq);
+	  ***CALLBACK OR ISR TO newState(transmit_data_mask[i])***
 		When testing on scope, sleep for 60s to have enough time to check
 	  sleep(60);
 	  gpioHardwareClock(clock_pin, 0);*/
 	gpioTerminate();
-	return t1-t0;
+	return 0;
+	// To test speed of transmission from Python code:
+	// return t1-t0;
 }
