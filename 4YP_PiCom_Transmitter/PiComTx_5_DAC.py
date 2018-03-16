@@ -107,20 +107,18 @@ def Transmit_Data(data_string):
             print("4QAM NO EXIST")
             # Doesn't exist yet
             # return_code = call(["./PiTransmit_2_QAM", "arg1", "arg2", "arg3"])
+	    return_code = -1
         else:
             return_code = -1
-
-        if return_code == -1:
-            print("Invalid transmission type!")
-        elif return_code == 0:
-            print("Data transmission complete!")
-        elif return_code == 1:
-            print("Data transmission failed!") # Add more failure codes
-        elif return_code == 2:
-            print("GPIO INIT FAIL")
-        elif return_code == 3:
-            print("PiTransmit_2 ... Incorrect usage\n\n")
-            print("Usage: ./PiTransmit_2 transmit_data transmit_freq\n")
+	
+	return_options = {-1 : "Invalid transmission type!",
+			   0 : "Data transmission complete!",
+			   1 : "Data transmission failed!",
+			   2 : "GPIO INIT FAIL",	 # Add more failure codes
+			   3 : "PiTransmit_2 ... Incorrect usage\n\nUsage: ./PiTransmit_2 transmit_data transmit_freq\n"}
+			
+	if return_code in return_options:
+		print(return_options[return_code])
         else:
             print("Return code (time to execute)")
             print(return_code)
