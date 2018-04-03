@@ -1,18 +1,20 @@
 from subprocess import call
 LOGS = ["********** RECEIVER LOG FILE **********\n\n"]
-transmission_type = "4PAM"
+TRANSMISSION_TYPE = "4PAM"
 
 
-def pause():
-	prPause = input("Pause, press <ENTER> to continue...")
+def pause(string = ""):
+        if string != "":
+                string += "\n"
+        prPause = input(string+"Pause, press <ENTER> to continue...")
 
 
 def Receive_Data(out, LOGS):
     LOGS.append("Receiving data\n")
-    
-    if transmission_type == "4PAM":
+
+    if TRANSMISSION_TYPE == "4PAM":
         return_code = call(["sudo", "./PiReceive","5"])
-    elif transmission_type == "4QAM":
+    elif TRANSMISSION_TYPE == "4QAM":
         LOGS.append("4QAM NO EXIST")
         # Doesn't exist yet
         # return_code = call(["./PiReceive_2_QAM", "arg1", "arg2", "arg3"])

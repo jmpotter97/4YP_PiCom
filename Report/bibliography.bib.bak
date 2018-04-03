@@ -6,7 +6,7 @@
   booktitle = {NIPS Timeseries Workshop},
   year      = {2017},
   month     = December,
-  file      = {2017NIPS_dhir.pdf:http\://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf:PDF},
+  pdf       = {http://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

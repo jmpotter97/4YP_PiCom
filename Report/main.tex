@@ -14,8 +14,9 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{subcaption}
-\usepackage{hyperref}	% allows links
-% Package that allows us to properly format SI units, and write standard form.
+% Package for links
+\usepackage{hyperref}
+% Package that allows properly formating SI units, and to write standard form.
 \usepackage{siunitx}
 \sisetup{range-phrase = \text{ -- }}
 % Package that allows us to work with graphics.
@@ -30,12 +31,8 @@
 \usepackage[backend=biber,style=numeric,citestyle=numeric,sorting=none]{biblatex}
 \addbibresource{./bibliography.bib}
 
-%% keep figures in correct sections
+% Keep figures in correct sections
 \usepackage{placeins}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-%% allows for headers and footers: https://tex.stackexchange.com/questions/87768/headers-and-footers
 
 \let\Oldsection\section
 \renewcommand{\section}{\FloatBarrier\Oldsection}
@@ -45,40 +42,20 @@
 
 \let\Oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
-%%
 
-% package to allow images to be on left or right side with text wrapped
+% Package to allow images to be on left or right side with text wrapped
 \usepackage{wrapfig}
-
-%% Alex packages
-%\usepackage{chemmacros}
+% To do Package
 \usepackage[colorinlistoftodos]{todonotes}
-%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-%\usepackage{setspace}
-% Citation package
-%\usepackage[authoryear]{natbib}
-%\bibliographystyle{abbrvnat}
-%\setcitestyle{authoryear,open={(},close={)}}
-%%
-
-% number the subsubsections
+% Number the subsubsections
 \setcounter{secnumdepth}{3}
 
-% DIagram drawing package
+% Diagram drawing package -- NOT SURE IF I'LL USE
 \usepackage{tikz}
 \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings,shadings,arrows}
 
-
-% The cover page.
-%\title{B3 Group Design Project\\UFO Busting in the Large Hadron Collider at CERN\\Team AEther}
-%\author{Cameron Eadie\\Saad Hamid\\Alexander Mitchell\\Thomas O'Connor}
-%\date{May 17, 2017}
-
 % Start document.
 \begin{document}
-
-% Generate the title.
-%\maketitle
 
 %Title Page
 \begin{titlepage}
@@ -88,90 +65,61 @@
 \Large{\textbf{Engineering Science}}\\
 \vfill
 \noindent\rule{5in}{0.6pt}\\[1mm]
-\huge{\textbf{B3 Group Design Project}}\\[3mm]
-\Large{\textbf{UFO Busting in the Large Hadron Collider at CERN}}\\[3mm]
+\huge{\textbf{Fourth Year Project}}\\[3mm]
+\Large{\textbf{PiCom: A Digital Communication Test Bed Based on Raspberry Pi}}\\[3mm]
 \noindent\rule{5in}{0.6pt}\\[1mm]
-\textbf{Team AEther}\\
-Cameron Eadie\\Saad Hamid\\Alexander Mitchell\\Thomas O'Connor\\
-\noindent\rule{5in}{0.6pt}\\[1mm]
-\textbf{Supervisors - Oxford}\\
-Felix Hofmann, Alexander Korsunsky\\
-\textbf{Supervisors - CERN}\\
-Raymon Veness, Rudiger Schmidt, Alexander Lunt\\
-Laura Grob, Anton Lechner\\
+Candidate Number:\\
+\todo[inline]{CANDIDATE NUMBER - ??PAGE COUNT??}
+\textbf{Supervisor}\\
+Justin Coon\\
+\todo[inline,color=green!40]{Layout of title page}
 \noindent\rule{5in}{0.6pt}\\[1mm]
 \vfill
-\today\\
+%\today\\
+Trinity Term, 2018\\
 \end{center}
 \end{titlepage}
 
 % Abstract
 %\textbf{\huge{Abstract}}\\
 \begin{abstract}
-\graphicspath{{./TomReport/}}
-\subfile{./TomReport/Abstract.tex}
+\graphicspath{{./Sections/Images/}}
+\subfile{./Sections/Abstract.tex}
 \end{abstract}
 
 % Generate the contents page(s).
 \thispagestyle{empty}
-\rhead{C. Eadie, S. Hamid, A. Mitchell, T. O'Connor}
 \tableofcontents
 
-% Introduction and Literature Review.
-\chapter{The UFO Problem in the LHC}
+\listoftodos
 
-\graphicspath{{./TomReport/}}
-\subfile{./TomReport/LHCoverview.tex}
- 
-\graphicspath{{./saad/}}
-\subfile{./saad/introduction.tex}
+% Introduction and Literature Review Chapter.
+\chapter{Introduction}
+\graphicspath{{./Sections/Images/}}
+\subfile{./Sections/Intro.tex}
 
-\graphicspath{{./CamEadieReport/Images/}}
-\subfile{./CamEadieReport/LitReviewUFO.tex}
+% Raspberry Pi Chapter.
+\chapter{The Raspberry Pi}
+\graphicspath{{./Sections/Images/}}
+\subfile{./Sections/RPi.tex}
 
-\graphicspath{{./TomReport/}}
-\subfile{./TomReport/DefenderBunchSection.tex}
+% Electronic Testing Chapter.
+\chapter{Electronic Testing}
+\graphicspath{{./Sections/Images/}}
+\subfile{./Sections/Electro_Testing.tex}
 
-% Macroparticle Adhesion and Release Mechanism Chapter.
-\chapter{Macroparticle Release Mechanism Hypothesis}
-\graphicspath{{./saad/}}
-\subfile{./saad/adhesionReleaseMech.tex}
+% Communications Testing Chapter.
+\chapter{Communications Testing}
+\graphicspath{{./Sections/Images/}}
+\subfile{./Sections/Comms_Testing.tex}
 
-% Electrostatics Dust Removal Mechanisms Chapter.
-\chapter{Electrostatic Dust Removal}\label{dust_removal}
-\graphicspath{{./CamEadieReport/Images/}}
-\subfile{./CamEadieReport/electrostaticDustRemoval.tex}
-
-% Feasibility Study of automated device
-\chapter{Feasibility Study of Automated Device within the LHC} \label{sec: Feasibility}
-\graphicspath{{./Alexander/feasibility-study-automated/}}
-\subfile{./Alexander/feasibility-study-automated/AutomatedFeasibility.tex}
-
-% Alex Magic Ball Chapter.
-\chapter{Magic Ball}\label{sec: Magic Ball - Alex}
-\graphicspath{{./Alexander/magic-ball/}}
-\subfile{./Alexander/magic-ball/MagicBall.tex}
-
-% Electrostatic Modelling Chapter
-\chapter{Electrostatic Modelling}
-\graphicspath{{./TomReport/}}
-\subfile{./TomReport/ElectrostaticModelling.tex}
-
-% Saad Magic Ball Chapter.
-\chapter{Magic Ball Interactions with UFOs}
-\graphicspath{{./saad/}}
-\subfile{./saad/magicBallSup.tex}
-
-% Summary/Overview Chapter.
+% Summary/Overview, Future Directions Chapter.
 \chapter{Conclusion}
-\graphicspath{{./CamEadieReport/Images/}}
-\subfile{./CamEadieReport/Conclusion.tex}
+\graphicspath{{./Sections/Images/}}
+\subfile{./Sections/Conclusion.tex}
 
 % Print the bibliography and add it to the table of contents.
 \clearpage
-\rhead{C. Eadie, S. Hamid, A. Mitchell, T. O'Connor}
-\printbibliography
-%[heading=bibintoc]
+\printbibliography[heading=bibintoc]
 
-% End document.
 \end{document}

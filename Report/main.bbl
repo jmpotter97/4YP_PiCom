@@ -1,0 +1,60 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{DhirNIPS2017}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=d4d235cd7b46bf2c8e98959e64daeccd}{%
+           family={Dhir},
+           familyi={D\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=9299bb30e45c272278a56811f48bec0c}{%
+           family={Kosiorek},
+           familyi={K\bibinitperiod},
+           given={Adam\bibnamedelima Roman},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=8b1ac4e074945df8dd16455dcc68886c}{%
+           family={Posner},
+           familyi={P\bibinitperiod},
+           given={Ingmar},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{8959e3dce1617894261c565b455b9931}
+      \strng{fullhash}{8959e3dce1617894261c565b455b9931}
+      \strng{bibnamehash}{8959e3dce1617894261c565b455b9931}
+      \strng{authorbibnamehash}{8959e3dce1617894261c565b455b9931}
+      \strng{authornamehash}{8959e3dce1617894261c565b455b9931}
+      \strng{authorfullhash}{8959e3dce1617894261c565b455b9931}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{NIPS Timeseries Workshop}
+      \field{title}{{Bayesian Delay Embeddings for Dynamical Systems}}
+      \field{year}{2017}
+      \verb{file}
+      \verb 2017NIPS_dhir.pdf:http\://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf:PDF
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
