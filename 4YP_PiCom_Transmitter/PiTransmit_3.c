@@ -4,108 +4,90 @@
 #include <unistd.h> // for sleep(seconds)
 #include <string.h> // for strlen(string)
 
-const int num_of_DAC = 1;	// CHANGE THIS TO 2 WHEN SECOND DAC IMPLEMENTED (QAM)
-const uint clock_pin = 4;
+/* PiTransmit now works independent of the choice of DAC pins.
+ * It reads in the bit-mask (bits to set) from a binary file for speed,
+ * which is calculated and saved in the Python before transmission,
+ * and it also reads in inversion mask (bits to clear) so the calculation
+ * isn't done during transmission.
+ * This also means the Transmit program doesn't need to know how many
+ * DAC's there are so works for all transmission schemes.
+ */
 
-// TODO: REMOVE MAJORITY
-// DAC_bits is a bit mask of the GPIO pins which that DAC uses, expressed here
-// in the form b7,...,b0. This is XOR'd with the gpioWrite_Bits_0_31_Set bit mask
-// (which is passed to this program to get the bit mask for gpioWrite_Bits_0_31_Clear
-const uint DAC_1_bits[8] = {5,6,13,19,26,21,20,16};
-//const uint DAC_2_bits[8];
-int DAC_1_mask = (1<<5)|(1<<6)|(1<<13)|(1<<19)|(1<<26)|(1<<21)|(1<<20)|(1<<16);
-//int DAC_2_mask;
-
-
-// Callback function is automatically passed gpio (will be clock_pin),
-// level (0_falling, 1_rising,2_watchdog) and tick (to compare times)
-// gpioTick() (uint32_t) gets tick at any time in code, microseconds since boot
-void newState(uint32_t* mask) {
-	/*	TEST VERSION
-	if(z++%2<1){
-		gpioWrite_Bits_0_31_Clear(DAC_1_mask);
-		gpioWrite_Bits_0_31_Set(0);
-	} else {
-		gpioWrite_Bits_0_31_Clear(0);
-		gpioWrite_Bits_0_31_Set(DAC_1_mask);
-	}*/
-
-	//	REAL VERSION
-	//  Removed from function as for loop works better than callback function,
-	//  left in to use layout for potential similar callback on receiver side
-
-} // TODO: REMOVE MAJORITY
+const uint CLK_PIN = 4;
 
 int main(int argc, char *argv[]) {
-	// CHANGE SAMPLE RATE OF GPIO's (1,2,4,5,8,10),
-	// STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
-	// gpioCfgClock(2,1,0);
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
 	/*  argv should have values:
-	    argv[1] = transmit_data - This is a sub-bit-mask of DAC pins only,
-								  passed as a char*
-		argv[2] = transmit_freq - Frequency of clock signal, or take default:
-	*/
+		argv[1] = transmit_freq - Frequency of clock signal, or take default:
+
 	//int transmit_freq = 5000; -- DEPRECATED FOR NOW
-	char* transmit_data;
-	
-	if(argc>1) {
-		transmit_data = argv[1];
+	if(argc>2) {
+		transmit_freq = atoi(argv[2]); -- DEPRECATED FOR NOW
 	} else {
 		printf("PiTransmit_2\n\n");
-		printf("Usage: ./PiTransmit_2 transmit_data \n");
+		printf("Usage: ./PiTransmit_3 transmit_freq \n");
 		return 3;
-	}
-	//if(argc>2) transmit_freq = atoi(argv[2]); -- DEPRECATED FOR NOW
+	}*/
 	
-// TODO: REMOVE MAJORITY
-	const int sub_mask_size = 2 * num_of_DAC;
-	const int mask_size = strlen(transmit_data) / sub_mask_size;
-    char format[] = "%_x";			// %2x for one DAC, %4x for two DAC's
-    format[1] = sub_mask_size + 48;	// +48 for ASCII value of number
-
-	uint32_t* transmit_data_mask = calloc(mask_size, sizeof(uint32_t));
-	uint32_t* transmit_data_inv_mask = calloc(mask_size, sizeof(uint32_t));
-	for(int i = 0; i<mask_size; i++) {
-		// Move each sub-mask into an int in transmit_data_mask array
-		sscanf((transmit_data + sub_mask_size*i),format,&transmit_data_mask[i]);
-		// Expand sub-mask into 32-bit mask
-		// transmit_data_mask[i] = F(transmit_data_mask[i]);
-		// WHERE F() MAPS THE 8-BIT SUB-MASK TO THE 32-BIT MASK
-		int mask32 = 0;
-		for(int j = 0; j<8; j++) {	// TODO: ADD ANOTHER FOR SECOND DAC
-			// If each bit in binary exists, include it in 32-bit mask
-			if((1<<(7-j)) & transmit_data_mask[i]) {
-				mask32 |= (1<<DAC_1_bits[j]);
-			}
-		}
-		transmit_data_mask[i] = mask32;
-		transmit_data_inv_mask[i] = mask32 ^ DAC_1_mask;
-	} // TODO: REMOVE MAJORITY
 	
+	const uint DAC_1_bits[8] = {5,6,13,19,26,21,20,16};
+	//TODO: const uint DAC_2_bits[8]; WHEN I CHOOSE PINS FOR DAC2
 	for(int i=0;i<8;i++) {
+		// It will work without this (knowing DAC pins) but good practice
 		gpioSetMode(DAC_1_bits[i], PI_OUTPUT);
+		gpioSetMode(DAC_2_bits[i], PI_OUTPUT);
 	}
+	gpioSetMode(CLK_PIN, PI_OUTPUT);
 	
-	uint32_t t0 = gpioTick();
-	for(int i=0; i<mask_size; i++) {
-		gpioWrite_Bits_0_31_Clear(transmit_data_inv_mask[i]);
+	/////////////////////////////////////////////////////////////////////
+	
+	FILE* mask_file, mask_inv_file;
+    long size, size_inv;
+    size_t size_32int = sizeof(uint32_t);
+    char* path = "data_masks.bin";
+    char* path_inv = "data_masks_inv.bin";
+
+    mask_file = fopen(path, "rb");
+    fseek(mask_file , 0 , SEEK_END);
+    size = ftell(mask_file);
+    rewind(mask_file);
+    mask_file_inv = fopen(path_inv, "rb");
+    fseek(mask_file_inv , 0 , SEEK_END);
+    size_inv = ftell(mask_file_inv);
+    rewind(mask_file_inv);
+	
+	if(size == size_inv) {
+		uint32_t* transmit_data_mask = calloc(size/size_32int, size_32int);
+		fread(transmit_data_mask, size_32int, size/size_32int, mask_file);
+		fclose(mask_file);
+		uint32_t* transmit_data_mask_inv = calloc(size/size_32int, size_32int);
+		fread(transmit_data_mask_inv, size_32int, size/size_32int, mask_file_inv);
+		fclose(mask_file_inv);
+	} else {
+		// MASK AND MASK_INV FILES DIFFERENT LENGTHS
+		fclose(mask_file);
+		fclose(mask_file_inv);
+		return 4;
+	}
+
+    for(int i = 0; i<256; i++) {
+        printf("%i\n", transmit_data[i]);
+    }
+    
+    /////////////////////////////////////////////////////////////////
+	
+	for(int i=0; i<size; i++) {
+		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
-		//usleep(1000000);
+		// Low-going CS signal loads data (min low CS 10ns, min high CS 7ns)
+		gpioWrite(CLK_PIN, 0);
+		usleep(100);
+		gpioWrite(CLK_PIN,1);
+		usleep(100);
 	}
-	uint32_t t1 = gpioTick();
-	printf("Total transmission time: %i\n", t1 - t0);
 	
-	/* Hardware clocking requires interrupt capability not possible
-		Use ISR maybe, still 50us latency
-	  gpioHardwareClock(clock_pin, transmit_freq);
-	  ***CALLBACK OR ISR TO newState(transmit_data_mask[i])***
-		When testing on scope, sleep for 60s to have enough time to check
-	  sleep(60);
-	  gpioHardwareClock(clock_pin, 0);*/
+	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
 	gpioTerminate();
 	return 0;
-	// To test speed of transmission from Python code:
-	// return t1-t0;
 }
