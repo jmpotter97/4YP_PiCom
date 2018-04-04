@@ -6,7 +6,7 @@ import paramiko
 
 TRANSMISSION_TYPE = "4PAM"
 DATA_PATH = "data_masks.bin"
-DATA_INV_PATH = "data_masks.bin"
+DATA_INV_PATH = "data_masks_inv.bin"
 
 DAC_PINS_1, DAC_PINS_2 = [5, 6, 13, 19, 26, 21, 20, 16], \
                          []
@@ -170,6 +170,13 @@ def Convert_To_Data_Mask(data_list):
         print("Invalid transmission type!")
 
 
+def Invert_Mask(mask):
+    if "PAM" in TRANSMISSION_TYPE:
+        return mask ^ DAC_MASK_1
+    else:
+        return mask ^ (DAC_MASK_1 | DAC_MASK_2)
+
+
 def Save_To_File(mask, path):
     mask.astype('uint32').tofile(path)
 
@@ -223,7 +230,10 @@ if 1:  # receiver_started:
     # TODO: Encode_Error_Correction(input_stream)
 
     input_mask = Convert_To_Data_Mask(input_stream)
+    input_mask_inv = Invert_Mask(input_mask)
+
     Save_To_File(input_mask, DATA_PATH)
+    Save_To_File(input_mask_inv, DATA_INV_PATH)
     sleep(2)
     #Transmit_Data(DATA_PATH)
 

@@ -6,8 +6,11 @@ int main(int argc, char* argv[]) {
     FILE *file;
     long size;
     size_t size_32int = sizeof(uint32_t);
+    char* path;
+    if(argc>1) path = argv[1];
+    else path = "data.bin";
 
-    file = fopen("data.bin", "rb");
+    file = fopen(path, "rb");
     fseek (file , 0 , SEEK_END);
     size = ftell(file);
     printf("Size of file: %i\n",size);
