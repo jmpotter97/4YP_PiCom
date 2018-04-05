@@ -10,7 +10,7 @@ def timer():
 	print("Time per operation")
 	print(t1/2000)
 	print("Frequency")
-	print(2000/t1)
+	print(1000/t1)
 
 G.setmode(G.BCM)
 G.setup(6,G.OUT)

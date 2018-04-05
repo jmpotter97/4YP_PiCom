@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <pigpio.h>
 
 int main(int argc, char* argv[]) {
 
@@ -13,7 +14,7 @@ int main(int argc, char* argv[]) {
     file = fopen(path, "rb");
     fseek (file , 0 , SEEK_END);
     size = ftell(file);
-    printf("Size of file: %i\n",size);
+    printf("Size of file: %i\n",(int)size);
     rewind (file);
 
     uint32_t* transmit_data = calloc(size/size_32int, size_32int);

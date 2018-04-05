@@ -14,7 +14,19 @@ int main(int argc, char *argv[]) {
         gpioWrite_Bits_0_31_Set(mask);
     }
     int t1 = gpioTick()-t0;
-    printf("Time per transition: %d\nFrequency: %d\n",t1/2000,2000/t1);
+    printf("BANK TRANSITION\n");
+    printf("Time per transition: %fus\nFrequency: %fHz\n",
+				(float)t1/(2000),(float)(1000*1000000)/t1);
+    
+    t0=gpioTick();
+	for(int i=0; i<1000; i++) {
+        gpioWrite(clock_pin,0);
+        gpioWrite(clock_pin,1);
+    }
+    t1 = gpioTick()-t0;
+    printf("SINGLE TRANSITION\n");
+    printf("Time per transition: %fus\nFrequency: %fHz\n",
+				(float)t1/(2000),(float)(1000*1000000)/t1);
 
 	gpioTerminate();
 }
