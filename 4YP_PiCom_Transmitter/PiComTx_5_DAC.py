@@ -45,6 +45,8 @@ def getDummyData():
 
 
 def getStepBytes():
+    return np.arange(256)
+    
     # This outputs steps so you can check DAC works with 256PAM
     step = np.array([0,1,2,3])*85
     multiple = np.tile(step,5)
@@ -206,6 +208,34 @@ def Transmit_Data():
         print(str(1/(t1/16000)))
     '''
 
+
+def Check_Input_Masks(input_vals, mask, mask_inv):
+    '''
+    Use this with RPiSim.GPIO in Windows to make sure mask for each number
+    is what you expect in terms of the pins it changes - don't do for too
+    many itterations just to check values
+    '''
+    print("Starting MASK test")
+    #from RPiSim.GPIO import GPIO
+    if TRANSMISSION_TYPE == "256PAM":
+        GPIO.setmode(GPIO.BCM)
+        for pin in DAC_PINS_1:
+            GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
+        pause("setup")
+        for i, m in enumerate(mask):
+            # This is slow but exhaustively checks all possibilities
+            for pin in DAC_PINS_1:
+                if 1<<pin & m:
+                    GPIO.output(pin, GPIO.HIGH)
+                if 1<<pin & mask_inv[i]:
+                    GPIO.output(pin, GPIO.LOW)
+            pause("Input value {} = {}, mask displayed".format(input_vals[i], bin(input_vals[i])))
+    else:
+        pause("This test only written for 256 PAM for now")
+                
+    
+
+
 # try when debugging to catch errors, not necessary for use
 try:
     pause("Start")
@@ -222,13 +252,15 @@ try:
     print("Saving data as masks...")
     Save_To_File(input_mask, DATA_PATH)
     Save_To_File(input_mask_inv, DATA_INV_PATH)
-
+    Check_Input_Masks(input_stream, input_mask, input_mask_inv)
+    '''
     # receiver_started = Ssh_Start_Receiver()
     if 1:  # receiver_started:
+        pause("About to transmit")
         Transmit_Data()
     else:
         print("Receiver never started")
-
+    '''
     print("Finishing program")
 
 

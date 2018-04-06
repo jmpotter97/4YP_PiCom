@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
 	fclose(mask_file_inv);
     
     /*********************   TRANSMIT DATA   *********************/
-	printf("TRANSMIT DATA\n");
+	/*printf("TRANSMIT DATA\n");
 	uint32_t t0 = gpioTick();
 	for(int i=0; i<num_of_masks; i++) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
 	}
 	uint32_t t1 = gpioTick();
 	printf("Total transmission time: %fs\n", (t1 - t0)/1000000.0);
-	
+	*/
 	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
 	gpioTerminate();
 	return 0;
