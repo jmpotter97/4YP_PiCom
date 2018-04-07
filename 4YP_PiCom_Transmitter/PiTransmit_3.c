@@ -42,14 +42,14 @@ int main(int argc, char *argv[]) {
 			symbol_freq,symbol_time/1000.0); 
 	
 	
-	const uint DAC_1_bits[8] = {5,6,13,19,26,21,20,16};
-	//TODO: const uint DAC_2_bits[8]; WHEN I CHOOSE PINS FOR DAC2
-	for(int i=0;i<8;i++) {
+	const uint DAC_1_bits[8] = {5, 6, 13, 19, 26, 21, 20, 16}; // MSB to LSB
+	const uint DAC_2_bits[8] = {14, 15, 18, 23, 24, 25, 8, 7};
+    for(int i=0;i<8;i++) {
 		// It will work without this (setting DAC pins) but good practice
 		gpioSetMode(DAC_1_bits[i], PI_OUTPUT);
 		gpioSetPullUpDown(DAC_1_bits[i],PI_PUD_DOWN);
-		//TODO: gpioSetMode(DAC_2_bits[i], PI_OUTPUT);
-		//TODO: gpioSetPullUpDown(DAC_2_bits[i],PI_PUD_DOWN);
+		gpioSetMode(DAC_2_bits[i], PI_OUTPUT);
+		gpioSetPullUpDown(DAC_2_bits[i],PI_PUD_DOWN);
 	}
 	gpioSetMode(CLK_PIN, PI_OUTPUT);
 	gpioSetPullUpDown(CLK_PIN,PI_PUD_DOWN);
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
 	fclose(mask_file_inv);
     
     /*********************   TRANSMIT DATA   *********************/
-	/*printf("TRANSMIT DATA\n");
+	printf("TRANSMIT DATA\n");
 	uint32_t t0 = gpioTick();
 	for(int i=0; i<num_of_masks; i++) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
 	}
 	uint32_t t1 = gpioTick();
 	printf("Total transmission time: %fs\n", (t1 - t0)/1000000.0);
-	*/
+
 	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
 	gpioTerminate();
 	return 0;
