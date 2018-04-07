@@ -42,8 +42,8 @@ int main(int argc, char *argv[]) {
 			symbol_freq,symbol_time/1000.0); 
 	
 	
-	const uint DAC_1_bits[8] = {5, 6, 13, 19, 26, 21, 20, 16}; // MSB to LSB
-	const uint DAC_2_bits[8] = {14, 15, 18, 23, 24, 25, 8, 7};
+	const uint DAC_1_bits[8] = {10, 9, 11, 5, 6, 13, 19, 26}; // MSB to LSB
+	const uint DAC_2_bits[8] = {2, 3, 4, 17, 27, 22, 23, 24};
     for(int i=0;i<8;i++) {
 		// It will work without this (setting DAC pins) but good practice
 		gpioSetMode(DAC_1_bits[i], PI_OUTPUT);

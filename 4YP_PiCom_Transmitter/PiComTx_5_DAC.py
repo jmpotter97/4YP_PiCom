@@ -72,12 +72,15 @@ def getImageBytes(path):
     return img.reshape(size)
 
 
-def Ssh_Start_Receiver():
+def Ssh_Start_Receiver(mask_length):
+    print("Starting Receiver")
+    
     host = "raspberrypi2.local"
     uname = "pi"
     pword = "rasPass2"
     # Update command for new file name
-    command = "sudo python3 /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py"
+    command = "sudo python3 /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" \
+                  + " " +str(mask_length)
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -216,7 +219,7 @@ def Transmit_Data():
     print("Transmitting data")
 
     if TRANSMISSION_TYPE in TRANSMISSION_TYPES:
-        transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)],stdout=PIPE)
+        transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)], stdout=PIPE)
         
         for line in transmitter.stdout.decode('utf-8').split('\n'):
             print("... {}".format(line))
@@ -317,6 +320,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
 # Use try when debugging to catch errors, not necessary for use
 try:
     pause("Start")
+    
     # input_stream = getDummyData()  --- NEED TO FIX FOR BYTES
     input_stream = getStepBytes()
     #input_stream = getImageBytes('cat.png')
@@ -330,17 +334,18 @@ try:
     print("Saving data as masks...")
     Save_To_File(input_mask, DATA_PATH)
     Save_To_File(input_mask_inv, DATA_INV_PATH)
+
+    # In Windows to check masks are being generated correctly for pins
+    # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
     
-    Check_Input_Masks(input_stream, input_mask, input_mask_inv)
-    
-    '''
-    # receiver_started = Ssh_Start_Receiver()
-    if 1:  # receiver_started:
-        pause("About to transmit")
-        Transmit_Data()
+    receiver_started = Ssh_Start_Receiver(input_mask.size)
+    if receiver_started:
+        pause("About to transmit...")
+        #sleep(10)
+        Transmit_Data(input_mask)
     else:
         print("Receiver never started")
-    '''
+    
     print("Finishing program")
 
 
