@@ -4,14 +4,25 @@ from time import sleep
 from subprocess import run, PIPE
 import paramiko
 
-TRANSMISSION_TYPES = ["4PAM", "256PAM"] #, "16QAM", "OFDM"] to be added
+
+TRANSMISSION_TYPES = ["256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
+'''
+256PAM is too finely spaced to use successfully but is nice for setup
+The Pi is not able to output negative voltages. Thus, Pulse Amplitude Modulation
+uses the range 0 to Vmax not -Vmax to Vmax. Similarly, QAM uses a grid all in
+the positive quadrant (0,1,2,3 not -3,-1,1,3). The same effect is still
+achieved by using the "GROUND" of the multipliers (which are fully differential
+as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
+for the values 0 and 1 in the same way they would be for -3 and -1 and the
+transmitted signal
+'''
 TRANSMISSION_TYPE = "4PAM"
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 1                        # Symbol rate (Hz)
+SYMB_RATE = 4                        # Symbol rate (Hz)
 
-DAC_PINS_1, DAC_PINS_2 = [5, 6, 13, 19, 26, 21, 20, 16], \
-                         []
+DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
+                         [2, 3, 4, 17, 27, 22, 23, 24]
 DAC_MASK_1, DAC_MASK_2 = 0, 0
 for pin1 in DAC_PINS_1:
 	DAC_MASK_1 |= (1<<pin1)
@@ -49,7 +60,10 @@ def getStepBytes():
 
     # SYMB_RATE = 1 - 256PAM
     step = np.arange(4,dtype='uint8')*85
-    multiple = np.tile(step,5)
+    
+    # This outputs steps so you can check actual DAC works with 256PAM
+    step_m = np.arange(256)
+    multiple = np.tile(step_m,10)
 
     #SYMB_RATE = 25 - 256PAM
     step_fine = np.arange(256,dtype='uint8')
@@ -58,7 +72,7 @@ def getStepBytes():
     # SYMB_RATE = 4 - 4PAM (27 == 0b00011011 ie a ramp)
     pam4 = np.ones(50,dtype='uint8')*27
 
-    return multiple
+    return pam4
     
 
 
@@ -70,12 +84,15 @@ def getImageBytes(path):
     return img.reshape(size)
 
 
-def Ssh_Start_Receiver():
+def Ssh_Start_Receiver(mask_length):
+    print("Starting Receiver")
+    
     host = "raspberrypi2.local"
     uname = "pi"
     pword = "rasPass2"
     # Update command for new file name
-    command = "sudo python3 /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py"
+    command = "sudo python3 /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" \
+                  + " " +str(mask_length)
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -119,12 +136,12 @@ def Convert_To_Data_Mask(data_list):
     '''
 
     if TRANSMISSION_TYPE == "256PAM":
-        # 1 SYMB/byte
+        # 1 SYMB/byte --> 0, 1, ..., 255
         # DAC = INPUT
         # MASK
         mask = np.zeros(data_list.size, dtype='uint32')
         for i, DAC_level in enumerate(data_list):
-            if i%25000 == 0 and i != 0:  #Stats
+            if i % 25000 == 0 and i != 0:  #Stats
                 print("Symbol - {}".format(i))
             mask32 = 0
             for j, pin in enumerate(DAC_PINS_1):
@@ -136,21 +153,21 @@ def Convert_To_Data_Mask(data_list):
         return mask
 
     elif TRANSMISSION_TYPE == "4PAM":
-        # 4 SYMB/byte
+        # 4 SYMB/byte --> 0, 1, 2, 3
         symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
             for s in range(4):
-                if i%100000 == 0 and i != 0:  #Stats
-                    print("Symbol - {}".format(i))
-                    symb[4*i+3-s] = (((1<<(2*s+1)) | (1<<(2*s))) & byte) \
-                               // (2**(2*s))
+                if i % 25000 == 0 and i != 0:  #Stats
+                    print("Symbol - {}".format(4*i))
+                symb[4*i+3-s] = ((1<<(2*s+1) | 1<<(2*s)) & byte) \
+                                                   // (2**(2*s))
         # DAC
         symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
         # MASK
         mask = np.zeros_like(symb)
         for i, DAC_level in enumerate(symb):
-            if i%100000 == 0 and i != 0:  #Stats
-                print("Mask - {}".format(i))
+            if i % 25000 == 0 and i != 0:  #Stats
+                print("Mask - {}".format(4*i))
             mask32 = 0
             for j, pin in enumerate(DAC_PINS_1):
                 # If each bit in binary exists, include it in 32-bit mask
@@ -160,9 +177,41 @@ def Convert_To_Data_Mask(data_list):
         print("Num of masks: {}".format(mask.size))
         return mask
     elif TRANSMISSION_TYPE == "16QAM":
-        # TODO: ADD ANOTHER FOR SECOND DAC
-        # enumerate(DAC_PINS_1+DAC_PINS_2)
-        print("TODO: QAM")
+        # 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
+        # Expressing I as col 1, Q as col 2 of N x 2 matrix
+        symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
+        # Each value pair (indexed 0 to 15) gives I, Q for that
+        # 4-bit value (grey coded)
+        qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
+                              [2,1],[2,0],[3,1],[3,0],\
+                              [1,2],[1,3],[0,2],[0,3],\
+                              [1,1],[0,1],[1,0],[0,0]])
+
+        for i, byte in enumerate(data_list):
+            if i % 25000 == 0 and i != 0:  #Stats
+                    print("Symbol - {}".format(2*i))
+            symb[2*i] = qam_const[byte // 16]
+            symb[2*i+1] = qam_const[byte % 16]
+        # DAC
+        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        # MASK
+        mask = np.zeros(symb.shape[0], dtype=np.uint32)
+        for i, DAC_levels in enumerate(symb):
+            if i % 25000 == 0 and i != 0:  #Stats
+                print("Mask - {}".format(2*i))
+            mask32 = 0
+            # Assign level[0] to I DAC and level[1] to Q DAC
+            for j, pin in enumerate(DAC_PINS_1):
+                # If each bit in binary exists, include it in 32-bit mask
+                if (1<<(7-j)) & DAC_levels[0]:
+                    mask32 |= (1<<pin)
+            for j, pin in enumerate(DAC_PINS_2):
+                # If each bit in binary exists, include it in 32-bit mask
+                if (1<<(7-j)) & DAC_levels[1]:
+                    mask32 |= (1<<pin)
+            mask[i] = mask32
+        print("Num of masks: {}".format(mask.size))
+        return mask
     else:
         print("Invalid transmission type!")
 
@@ -182,7 +231,7 @@ def Transmit_Data():
     print("Transmitting data")
 
     if TRANSMISSION_TYPE in TRANSMISSION_TYPES:
-        transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)],stdout=PIPE)
+        transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)], stdout=PIPE)
         
         for line in transmitter.stdout.decode('utf-8').split('\n'):
             print("... {}".format(line))
@@ -217,9 +266,73 @@ def Transmit_Data():
         print(str(1/(t1/16000)))
     '''
 
-# try when debugging to catch errors, not necessary for use
+
+def Check_Input_Masks(input_vals, mask, mask_inv):
+    '''
+    Use this with RPiSim.GPIO in Windows to make sure mask for each number
+    is what you expect in terms of the pins it changes - don't do for too
+    many itterations just to check values
+    '''
+    print("Starting MASK test")
+    from RPiSim.GPIO import GPIO
+    GPIO.setmode(GPIO.BCM)
+    if "PAM" in TRANSMISSION_TYPE:
+        for pin in DAC_PINS_1:
+            GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
+    else:
+        for pin in DAC_PINS_1 + DAC_PINS_2:
+            GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
+            
+    if TRANSMISSION_TYPE == "256PAM":
+        for i, m in enumerate(mask):
+            # This is slow but exhaustively checks all possibilities
+            for pin in DAC_PINS_1:
+                if 1<<pin & m:
+                    GPIO.output(pin, GPIO.HIGH)
+                if 1<<pin & mask_inv[i]:
+                    GPIO.output(pin, GPIO.LOW)
+            pause("Input value {} = {}, mask displayed"\
+                  .format(input_vals[i], bin(input_vals[i])))
+            
+    elif TRANSMISSION_TYPE == "4PAM":
+        for i, inp in enumerate(input_vals):
+            for j in range(4):
+                # This is slow but exhaustively checks all possibilities
+                for pin in DAC_PINS_1:
+                    if 1<<pin & mask[4*i+j]:
+                        GPIO.output(pin, GPIO.HIGH)
+                    if 1<<pin & mask_inv[4*i+j]:
+                        GPIO.output(pin, GPIO.LOW)
+                pause("Input value {} = {}, mask {}/4 displayed"\
+                      .format(inp, bin(inp), j+1))
+                
+    elif TRANSMISSION_TYPE == "16QAM":
+        qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
+                              [2,1],[2,0],[3,1],[3,0],\
+                              [1,2],[1,3],[0,2],[0,3],\
+                              [1,1],[0,1],[1,0],[0,0]])
+        for i, inp in enumerate(input_vals):
+            for j in range(2):
+                # This is slow but exhaustively checks all possibilities
+                for pin in DAC_PINS_1 + DAC_PINS_2:
+                    if 1<<pin & mask[2*i+j]:
+                        GPIO.output(pin, GPIO.HIGH)
+                    if 1<<pin & mask_inv[2*i+j]:
+                        GPIO.output(pin, GPIO.LOW)
+                if inp < 16:
+                    print("Second mask should be: [{}]")
+                pause("Input value {} = {}, mask {}/2 displayed\n{}, {}"\
+                      .format(inp, bin(inp), j+1, \
+                              qam_const[inp//16], qam_const[inp%16]))
+        
+    else:
+        pause("Test doesn't exist yet for other modulation schemes")            
+    
+
+# Use try when debugging to catch errors, not necessary for use
 try:
     pause("Start")
+    
     # input_stream = getDummyData()  --- NEED TO FIX FOR BYTES
     input_stream = getStepBytes()
     #input_stream = getImageBytes('cat.png')
@@ -234,12 +347,17 @@ try:
     Save_To_File(input_mask, DATA_PATH)
     Save_To_File(input_mask_inv, DATA_INV_PATH)
 
-    # receiver_started = Ssh_Start_Receiver()
-    if 1:  # receiver_started:
-        Transmit_Data()
+    # In Windows to check masks are being generated correctly for pins
+    # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
+    
+    receiver_started = Ssh_Start_Receiver(input_mask.size)
+    if receiver_started:
+        pause("About to transmit...")
+        #sleep(10)
+        Transmit_Data(input_mask)
     else:
         print("Receiver never started")
-
+    
     print("Finishing program")
 
 

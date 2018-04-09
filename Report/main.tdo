@@ -1,8 +1,18 @@
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ CANDIDATE NUMBER - ??PAGE COUNT??}{1}{section*.1}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ CANDIDATE NUMBER OR NAME - ??PAGE COUNT??}{1}{section*.1}
 \contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Layout of title page}{1}{section*.2}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Abstract}{1}{section*.3}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Figure out how the Intro Chapter will be formatted}{3}{section*.6}
-\contentsline {todo}{Figure: Figure to go here}{5}{subsection.2.1.1}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Electro Testing}{6}{section*.8}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Comms Testing}{7}{section*.9}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Conclusion}{8}{section*.10}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ RED - Important information to check/change}{1}{section*.3}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ BLUE - Sections and parts that still need writing/editing}{1}{section*.4}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ GREEN - Formatting of sections and layout of images/figures}{1}{section*.5}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Abstract - Do I need an abstract? If so, write this last.}{1}{section*.6}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Figure out how the Intro Chapter will be formatted}{4}{section*.9}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Still need to write this whole section}{4}{section*.10}
+\contentsline {todo}{Figure: Test Bed Set-up For On-Off Keying}{7}{section.2.2}
+\contentsline {todo}{Figure: Layout of Analogue Digital Converter}{7}{subsection.2.2.1}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Continue to add to this list as you write the Architecture section - remove redundant information already discussed in earlier sections}{8}{section*.12}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Make sure I am consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}{9}{section*.13}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Fact check this}{9}{section*.14}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Add bib reference to RPi.GPIO https://pypi.python.org/pypi/RPi.GPIO}{9}{section*.15}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Paramiko}{9}{section*.16}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Electro Testing}{11}{section*.17}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Comms Testing}{12}{section*.18}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Conclusion}{13}{section*.19}

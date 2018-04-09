@@ -15,6 +15,11 @@
 
 const uint CLK_PIN = 4;
 
+void pause(char* s) {
+	printf(s + "\nPause, press <ENTER> to continue...\n");
+	getchar();
+}
+
 int main(int argc, char *argv[]) {
 	
 	/************************   SETUP   ************************/
@@ -42,14 +47,14 @@ int main(int argc, char *argv[]) {
 			symbol_freq,symbol_time/1000.0); 
 	
 	
-	const uint DAC_1_bits[8] = {5,6,13,19,26,21,20,16};
-	//TODO: const uint DAC_2_bits[8]; WHEN I CHOOSE PINS FOR DAC2
-	for(int i=0;i<8;i++) {
+	const uint DAC_1_bits[8] = {10, 9, 11, 5, 6, 13, 19, 26}; // MSB to LSB
+	const uint DAC_2_bits[8] = {2, 3, 4, 17, 27, 22, 23, 24};
+    for(int i=0;i<8;i++) {
 		// It will work without this (setting DAC pins) but good practice
 		gpioSetMode(DAC_1_bits[i], PI_OUTPUT);
 		gpioSetPullUpDown(DAC_1_bits[i],PI_PUD_DOWN);
-		//TODO: gpioSetMode(DAC_2_bits[i], PI_OUTPUT);
-		//TODO: gpioSetPullUpDown(DAC_2_bits[i],PI_PUD_DOWN);
+		gpioSetMode(DAC_2_bits[i], PI_OUTPUT);
+		gpioSetPullUpDown(DAC_2_bits[i],PI_PUD_DOWN);
 	}
 	gpioSetMode(CLK_PIN, PI_OUTPUT);
 	gpioSetPullUpDown(CLK_PIN,PI_PUD_DOWN);
@@ -101,12 +106,11 @@ int main(int argc, char *argv[]) {
 		usleep(symbol_time);
 		gpioWrite(CLK_PIN,1);
 		usleep(symbol_time);
+		pause(""+i);
 		
 	}
 	uint32_t t1 = gpioTick();
 	printf("Total transmission time: %fs\n", (t1 - t0)/1000000.0);
-	gpioWrite_Bits_0_31_Clear(70852704);
-	gpioWrite(CLK_PIN, 0);
 	
 	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
 	gpioTerminate();

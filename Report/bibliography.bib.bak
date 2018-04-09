@@ -5,8 +5,23 @@
   title     = {{Bayesian Delay Embeddings for Dynamical Systems}},
   booktitle = {NIPS Timeseries Workshop},
   year      = {2017},
-  month     = December,
-  pdf       = {http://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf},
+  file      = {2017NIPS_dhir.pdf:http\://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf:PDF},
+}
+
+@WWW{web_Rasp,
+  author = {The Raspberry Pi Foundation},
+  title  = {Raspbian Operating System},
+  year   = {2017},
+  url    = {https://www.raspberrypi.org/downloads/raspbian/},
+}
+
+@Misc{web_Raspbian,
+  author = {Wikipedia},
+  editor = {bbb},
+  title  = {Electrical breakdown --- Wikipedia{,} The Free Encyclopedia},
+  year   = {2017},
+  note   = {[Online; accessed 9-May-2017]},
+  url    = {https://en.wikipedia.org/w/index.php?title=Electrical_breakdown&oldid=773026083},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
