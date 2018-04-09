@@ -105,6 +105,8 @@ int main(int argc, char *argv[]) {
 	}
 	uint32_t t1 = gpioTick();
 	printf("Total transmission time: %fs\n", (t1 - t0)/1000000.0);
+	gpioWrite_Bits_0_31_Clear(70852704);
+	gpioWrite(CLK_PIN, 0);
 	
 	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
 	gpioTerminate();

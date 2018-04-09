@@ -5,7 +5,7 @@ from subprocess import run, PIPE
 import paramiko
 
 TRANSMISSION_TYPES = ["4PAM", "256PAM"] #, "16QAM", "OFDM"] to be added
-TRANSMISSION_TYPE = "256PAM"
+TRANSMISSION_TYPE = "4PAM"
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
@@ -41,14 +41,25 @@ def getDummyData():
     print("Full transition")
     arr = ([1, 0]*4+[0, 1]*4)*1000
 
-    return np.array(arr, dtype=np.int)
+    return np.array(arr, dtype='int')
 
 
 def getStepBytes():
-    # This outputs steps so you can check DAC works with 256PAM
-    step = np.array([0,1,2,3])*85
+    # This outputs steps so you can check DAC works
+
+    # SYMB_RATE = 1 - 256PAM
+    step = np.arange(4,dtype='uint8')*85
     multiple = np.tile(step,5)
+
+    #SYMB_RATE = 25 - 256PAM
+    step_fine = np.arange(256,dtype='uint8')
+    multiple_fine = np.tile(step_fine,5)
+
+    # SYMB_RATE = 4 - 4PAM (27 == 0b00011011 ie a ramp)
+    pam4 = np.ones(50,dtype='uint8')*27
+
     return multiple
+    
 
 
 def getImageBytes(path):
@@ -126,7 +137,7 @@ def Convert_To_Data_Mask(data_list):
 
     elif TRANSMISSION_TYPE == "4PAM":
         # 4 SYMB/byte
-        symb = np.zeros(4*data_list.size, dtype=np.uint32)
+        symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
             for s in range(4):
                 if i%100000 == 0 and i != 0:  #Stats
