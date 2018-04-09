@@ -2,7 +2,7 @@
 	% THE RASPBERRY PI AND THE TEST BED
 \begin{document}
 
-Talk about the RPi.
+Talk about the RPi and test bed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -10,7 +10,7 @@ Talk about the RPi.
 
 The Raspberry Pi is a simple, affordable ARM-based computing module. It has, which can interface\\
 
-It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \ref{web_Raspbian}.\\
+It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \ref{web_Raspbian} \ref{web_Rasp}.\\
 
 \subsection{Blablabla}
 Talky talk talk
@@ -40,11 +40,18 @@ This arrangement is used for Quadrature Amplitude Modulation as well as Orthogon
 
 \subsection{Digital Analogue Converter}
 
-The Digital Analogue Converter used is the AD5424, 
+The Digital Analogue Converter used is the AD5424, an 8-bit CMOS current output DAC with an easy interface to microcontrollers.
+It has a \SI{17}{\nano\second} write cycle and a maximum update rate of \SI{20.4}{MSPS}. % Mega Samples Per Second
+The converter is set up with a non-inverting operational amplifier to produce a full-range voltage output.
+The Read/Write ($R/\overline{W}$) pin is pulled low permanently so the chip is in write mode; read back of the parallel digital outputs is not required.
+The Chip Select pin ($\overline{CS}$) needs a falling edge and a rising edge to complete a write cycle, where the rising edge loads new parallel data, so this is connected to the clock pin of the Raspberry Pi.
+Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
+
+\missingfigure{Layout of Analogue Digital Converter} \label{fig_DAC Layout}
 
 \subsection{Analogue Digital Converter}
 
-The Digital Analogue Converter used is the AD5424, 
+The Analogue Digital Converter used is the ZN448, 
 
 \subsection{Parts Used}
 

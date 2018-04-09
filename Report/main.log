@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  8 APR 2018 18:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  9 APR 2018 11:58
 entering extended mode
 **./main.tex
 (main.tex
@@ -1926,7 +1926,7 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
 e.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.30 ...{\numberline {5}Conclusion}{12}{chapter.5}
+l.30 ...{\numberline {5}Conclusion}{13}{chapter.5}
                                                    [1
 
 ])
@@ -2012,6 +2012,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 LaTeX Warning: Reference `web_Raspbian' on page 6 undefined on input line 13.
 
 
+LaTeX Warning: Reference `web_Rasp' on page 6 undefined on input line 13.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
@@ -2026,37 +2029,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--31
 [6
 
 ]
-<./Sections/Images/UFO_Falling.png, id=235, 494.19926pt x 361.35pt>
+<./Sections/Images/UFO_Falling.png, id=236, 494.19926pt x 361.35pt>
 File: ./Sections/Images/UFO_Falling.png Graphic file (type png)
 <use ./Sections/Images/UFO_Falling.png>
 Package pdftex.def Info: ./Sections/Images/UFO_Falling.png  used on input line 
 36.
 (pdftex.def)             Requested size: 290.22107pt x 212.20769pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--55
+Underfull \hbox (badness 10000) in paragraph at lines 43--49
 
  []
 
 [7 <./Sections/Images/UFO_Falling.png>]
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 60.
+Underfull \hbox (badness 10000) in paragraph at lines 58--62
 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 67.
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
-
-
-LaTeX Warning: Reference `web_RPi.GPIO' on page 8 undefined on input line 76.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 78--82
+
+LaTeX Warning: Reference `web_RPi.GPIO' on page 9 undefined on input line 83.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--89
 
  []
 
-) [9]
+) [9] [10]
 Chapter 3.
-(Sections/Electro_Testing.tex) [10
+(Sections/Electro_Testing.tex) [11
 
 ]
 Chapter 4.
@@ -2070,16 +2077,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--13
 
  []
 
-) [11
+) [12
 
 ]
 Chapter 5.
-(Sections/Conclusion.tex) [12
+(Sections/Conclusion.tex) [13
 
 ]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 163.
- [13
+ [14
 
 
 ]
@@ -2100,10 +2107,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
  ) 
 Here is how much of TeX's memory you used:
- 39427 strings out of 493305
- 783413 string characters out of 3130672
+ 39430 strings out of 493305
+ 783446 string characters out of 3130672
  1146585 words of memory out of 3000000
- 42357 multiletter control sequences out of 15000+200000
+ 42359 multiletter control sequences out of 15000+200000
  557573 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,7n,96p,10393b,1624s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2120,9 +2127,9 @@ rs/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.p
 fb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhv
 ro8a.pfb>
-Output written on main.pdf (15 pages, 177570 bytes).
+Output written on main.pdf (16 pages, 182063 bytes).
 PDF statistics:
- 327 PDF objects out of 1000 (max. 8388607)
- 71 named destinations out of 1000 (max. 500000)
+ 333 PDF objects out of 1000 (max. 8388607)
+ 72 named destinations out of 1000 (max. 500000)
  274 words of extra memory for PDF output out of 10000 (max. 10000000)
 
