@@ -13,12 +13,8 @@
  * DAC's there are so works for all transmission schemes.
  */
 
-const uint CLK_PIN = 4;
+const uint CLK_PIN = 21;
 
-void pause(char* s) {
-	printf(s + "\nPause, press <ENTER> to continue...\n");
-	getchar();
-}
 
 int main(int argc, char *argv[]) {
 	
@@ -96,21 +92,27 @@ int main(int argc, char *argv[]) {
 	fclose(mask_file_inv);
     
     /*********************   TRANSMIT DATA   *********************/
+    //For Testing:
+    //gpioHardwareClock(4, symbol_freq);
 	printf("TRANSMIT DATA\n");
 	uint32_t t0 = gpioTick();
 	for(int i=0; i<num_of_masks; i++) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
 		// Low-going CS signal loads data (min low CS 10ns, min high CS 7ns)
+		/*usleep(1);
 		gpioWrite(CLK_PIN, 0);
-		usleep(symbol_time);
+		usleep(symbol_time-1);
 		gpioWrite(CLK_PIN,1);
-		usleep(symbol_time);
-		pause(""+i);
+		usleep(symbol_time);*/
+		printf("%i\nPause, press <ENTER> to continue...\n", i);
+		getchar();
 		
 	}
 	uint32_t t1 = gpioTick();
 	printf("Total transmission time: %fs\n", (t1 - t0)/1000000.0);
+	//For Testing:
+	//gpioHardwareClock(4, 0);
 	
 	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
 	gpioTerminate();

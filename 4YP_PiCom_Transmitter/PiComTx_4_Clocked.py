@@ -6,8 +6,8 @@ import paramiko
 
 # Transmission frequency in Hz
 transmit_freq = 100000
-clock_pin = 19
-data_pin = 26
+CLK_PIN = 3
+DATA_PIN = 2
 
 def Ssh_Start_Receiver():
     print("\n---SSH lock---")
@@ -25,6 +25,7 @@ def Ssh_Start_Receiver():
     except Exception as e:
         print("Exception raised attempting to connect to ssh host",
               "\nError is: {}".format(e))
+        return False
 
     if ssh.get_transport().is_active():
         print("Executing command to start comReceiver")
@@ -65,20 +66,20 @@ def Transmit_Binary_Data(data_list):
         i = 0
         for b in data_list:
             i = i+1
-            GPIO.output(clock_pin,i%2)
-            GPIO.output(data_pin, b)
+            GPIO.output(CLK_PIN,i%2)
+            GPIO.output(DATA_PIN, b)
             sleep(1/transmit_freq)
-        GPIO.output(data_pin, GPIO.LOW)
+        GPIO.output(DATA_PIN, GPIO.LOW)
         print("Data transmission complete!")
 
 try:
     # Use BCM numbering standard
     GPIO.setmode(GPIO.BCM);
     # Set BCM pin 4 as an output
-    GPIO.setup(data_pin, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(clock_pin, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
 
-    receiver_started=1# = Ssh_Start_Receiver()
+    receiver_started = 1 # Ssh_Start_Receiver()
     if receiver_started:
         input_stream = [1,0]*50000#([1,0]*5 + [1]*10)*20
         Prep_Binary_Data(input_stream)
