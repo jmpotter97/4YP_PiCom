@@ -58,6 +58,11 @@ Any dependencies not in this list give clear instructions how to be downloaded w
 	git clone https://github.com/CamEadie/4YP\_PiCom
 	
 	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+
+	# Used in Transmit_Binary_Data(): import RPi.GPIO as GPIO
+	# ... Only for OOK transmission which uses Python not C
+	# Used in Check_Input_Masks(): from RPiSim.GPIO import GPIO
+	# ... Only works in Windows to check masks work
 \end{lstlisting}
 \todo[inline]{Do I need to change GitHub to an anonymous account if only candidate number is on cover page}
 
@@ -149,6 +154,34 @@ The code is separated into the initial On-Off Keying (Section \ref{sec_On-Off Ke
 The Advanced section improves the data manipulation and implements a separate compiled module for the actual transmitting and receiving of data.
 
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
+
+DOC LINE FROM TRANSMITTER
+
+\begin{lstlisting}[caption=Transmitter Comment]
+	'''
+	OOK has been integrated from the previous versions, uses different pins and runs
+	using RPi.GPIO and python arrays instead of a C executable (pigpio) and NumPy arrays
+	
+	256PAM is too finely spaced to use successfully but is nice for setup
+	
+	The Pi is not able to output negative voltages. Thus, Pulse Amplitude Modulation
+	uses the range 0 to Vmax not -Vmax to Vmax. Similarly, QAM uses a grid all in
+	the positive quadrant (0,1,2,3 not -3,-1,1,3). The same "negative" effect is still
+	achieved by using the "GROUND" of the multipliers (which are fully differential)
+	as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
+	for the values 0 and 1 in the same way they would be for -3 and -1 and the
+	transmitted signal
+	'''
+
+	/* PiTransmit now works independent of the choice of DAC pins.
+	 * It reads in the bit-mask (bits to set) from a binary file for speed,
+	 * which is calculated and saved in the Python before transmission,
+	 * and it also reads in inversion mask (bits to clear) so the calculation
+	 * isn't done during transmission.
+	 * This also means the Transmit program doesn't need to know how many
+	 * DAC's there are so works for all transmission schemes.
+	 */
+\end{lstlisting}
 
 \subsubsection{Starting the Receiver}
 \todo[inline]{Paramiko}
