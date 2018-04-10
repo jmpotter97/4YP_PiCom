@@ -12,9 +12,6 @@ The Raspberry Pi is a simple, affordable ARM-based computing module. It has, whi
 
 It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \ref{web_Raspbian} \ref{web_Rasp}.\\
 
-\subsection{Blablabla}
-Talky talk talk
-
 \subsection{Setting up the Raspberry Pi}
 
 The Raspberry Pi can be interfaced with in a number of ways, but first it needs to be set up with its operating system on the SD card \ref{web_Setup Raspbian}.
@@ -54,8 +51,8 @@ Any dependencies not in this list give clear instructions how to be downloaded w
 	sudo apt-get install pigpio
 	
 	sudo apt-get install git
-	cd "<Path where code to be held e.g. /pi/home/Documents/>"
-	git clone https://github.com/CamEadie/4YP\_PiCom
+	cd "<Path for the code e.g. /pi/home/Documents/>"
+	git clone https://github.com/CamEadie/4YP_PiCom
 	
 	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 
@@ -71,11 +68,13 @@ Included are the following:
 \begin{itemize}
 	\item VPNC - VPN software used to access the Oxford VPN to use the OWL Wi-Fi network
 	\item Paramiko - Python library used for SSH to start the receiver program, and its dependencies
-	\item NumPy - Python library used for easier array manipulation and control as well as interface with images
+	\item NumPy - Python library used for easier array manipulation as well as interface with images
 	\item imageio - Python library used to read and save an image file as a NumPy array
 	\item pigpio - C library used to interface with the GPIO pins
 	\item Git - Version control software which also allows for the cloning of the project code to any device
 \end{itemize}
+
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
@@ -136,24 +135,36 @@ Changes which would be made with hindsight, if components with the required qual
 	\item Low Pass Filters
 \end{itemize}
 
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Programming}
 
 The Raspberry Pi is used for its low cost, ease of use, and the fact that it has programmable Input/Output (I/O) pins.
 The I/O pins can be programmed using different libraries in Python and C.
-The standard library which comes installed with Raspbian is the RPi.GPIO Python library \ref{web_RPi.GPIO}.
+The standard GPIO library which comes installed with Raspbian is RPi.GPIO for Python \ref{web_RPi.GPIO}.
 \todo[inline,color=green!40]{Add bib reference to RPi.GPIO https://pypi.python.org/pypi/RPi.GPIO}
-This is used for the On-Off Keying part of the communications test bed, and then a C library is used for the pin-level manipulation for all modulation schemes requiring multi-level outputs through Digital Analogue Converters.
-This is for the improved speed performance of the C library and for the capability of this library to output to multiple pins at once.
+This is used for the On-Off Keying part of the communications test bed.
+The Python library is slow however, and so a C library is used for the pin-level manipulation for all modulation schemes requiring multi-level outputs through Digital Analogue Converters.
+This is done both for the improved speed performance of the C library, and the capability of this library to output to multiple pins at once.
 Section \ref{sec_Comparing Python and C} goes into a detailed  investigation of the differences between these options.
 \todo[inline]{CHECK - Do I need to change this from my name to an anonymous account if only candidate number is on cover page}
 All of the code and the report for the project are maintained on GitHub, and may be found at \url{https://github.com/CamEadie/4YP_PiCom}.\\
 
-The code is separated into the initial On-Off Keying (Section \ref{sec_On-Off Keying}) which acts as a proof of concept for the Raspberry Pis as a test bed, and the Advanced Modulation Schemes (Section \ref{sec_Advanced Modulation Schemes}) which are all implemented in the same code.
-The Advanced section improves the data manipulation and implements a separate compiled module for the actual transmitting and receiving of data.
+The transmitter and receiver code for all modulation schemes considered works from a single final version of the test bed.
+This consists of the Python transmitter \textit{PiComTx\textunderscore 5\textunderscore DAC.py} and receiver \textit{PiComRx\textunderscore 5\textunderscore DAC.py} files, and the executables compiled from C code for the transmitter \textit{PiTransmit\textunderscore 3} and receiver \textit{PiReceive}.
+The body of the main Python codes for each the transmitter and receiver is split into OOK and Advanced Modulation Schemes.
+On-Off Keying (Section \ref{sec_On-Off Keying}) is the simplest form of clocked communication possible, and acts as a proof of concept for the Raspberry Pis as a test bed.
+It is implemented using a native Python list which stores '1's and '0's to represent the binary stream, and these are output using the native RPi.GPIO library.
+The OOK was added into the final code of the Advanced Modulation Schemes (Section \ref{sec_Advanced Modulation Schemes})  from previous versions retrospectively, as all of the Advances Schemes are implemented in the same code.
+This was done both to make it easier to conduct all tests through one program, and to adhere to the idea of Software Defined Radio being as change-independent as possible (Section \ref{sec_Lit Review}).
+\todo[inline,color=green!40]{Rephrase this and make sure the section referenced is as consistent with this comment as possible}
+The Advanced Schemes considered are 4-level Pulse Amplitude Modulation, 256-level Pulse Amplitude Modulation (used more for setting up the DAC and ADC, as differentiating between levels this precisely is not viable), 16-Quadrature Amplitude Modulation and Orthogonal Frequency Division Multiplexing.
+The code also improves the data manipulation, includes image handling so images can be transmitted allowing for visualisation of the error rate etc. of the transmission, and implements a separate compiled C module for the actual transmitting and receiving of data.
 
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
+and \textit{GPIO.wait\textunderscore for\textunderscore edge()} on the clock pin to trigger reading of the
 
 DOC LINE FROM TRANSMITTER
 
@@ -187,6 +198,8 @@ DOC LINE FROM TRANSMITTER
 \todo[inline]{Paramiko}
 
 \subsection{Advanced Modulation Schemes} \label{sec_Advanced Modulation Schemes}
+
+\todo[inline,color=blue!20]{Definitely have a full page flow chart for the transmitter and receiver code}
 
 \subsubsection{Data and Image Handling}
 \subsubsection{C Transmitter and Receiver}

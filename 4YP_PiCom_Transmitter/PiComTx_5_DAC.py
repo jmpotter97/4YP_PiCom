@@ -3,6 +3,7 @@ import imageio as io
 from time import sleep
 from subprocess import run, PIPE
 import paramiko
+from sys import argv
 
 # Used in Transmit_Binary_Data(): import RPi.GPIO as GPIO
 # ... Only for OOK transmission which uses Python not C
@@ -24,12 +25,22 @@ for the values 0 and 1 in the same way they would be for -3 and -1 and the
 transmitted signal
 '''
 
-TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "OOK"
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 1000
+TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
+TRANSMISSION_TYPE = "OOK"
+
+if len(argv) > 1:
+        TRANSMISSION_TYPE = argv[1]
+
+if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
+    print("INVALID TRANSMISSION TYPE, EXITING")
+    import sys
+    sys.exit(1)
+else:
+    print("TRANSMISSION TYPE: {}".format(TRANSMISSION_TYPE))
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
                          [2, 3, 4, 17, 27, 22, 23, 24]
@@ -51,46 +62,7 @@ def pause(string = ""):
         input(string+"Pause, press <ENTER> to continue...")
 
 
-def getDummyOOKData():
-    '''
-    print("No transition")
-    arr = ([1,0]*8)*1000
-
-    print("Half transition")
-    arr = ([1,0]*4+[0]*8)*1000
-    '''
-    print("Full transition")
-    arr = ([1, 0]*4+[0, 1]*4)*1000
-
-    return arr
-
-
-def getStepBytes():
-    # This outputs steps so you can check DAC works
-
-    # SYMB_RATE = 1 - 256PAM
-    step = np.arange(4,dtype='uint8')*85
-    multiple = np.tile(step, 10)
-
-    #SYMB_RATE = 25 - 256PAM
-    step_fine = np.arange(256,dtype='uint8')
-    multiple_fine = np.tile(step_fine, 5)
-
-    # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
-    pam4 = np.ones(50, dtype='uint8')*27
-
-    return step
-    
-
-
-def getImageBytes(path):
-    # PIL modes - RGB, L (greyscale)
-    img = io.imread(path, pilmode = 'RGB')
-    size = img.size
-
-    return img.reshape(size)
-
-
+'''--------------------------------   SSH   --------------------------------'''
 def Ssh_Start_Receiver(mask_length):
     print("Starting Receiver")
     
@@ -125,6 +97,81 @@ def Ssh_Start_Receiver(mask_length):
         print("Closing unsuccessful ssh connection\n")
         ssh.close()
         return False
+
+
+'''---------------------------   On-Off Keying   ---------------------------'''
+def getDummyOOKData():
+    '''
+    print("No transition")
+    arr = ([1,0]*8)*1000
+
+    print("Half transition")
+    arr = ([1,0]*4+[0]*8)*1000
+    '''
+    print("Full transition")
+    arr = ([1, 0]*4+[0, 1]*4)*1000
+
+    return arr
+
+
+def Transmit_Binary_Data(data_list):
+    import RPi.GPIO as GPIO
+    
+    try:
+        # Use BCM numbering standard
+        GPIO.setmode(GPIO.BCM);
+        CLK_PIN = 2
+        DATA_PIN = 3
+        # Set BCM pin 4 as an output
+        GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
+
+        half_clock = 1 / (2 * OOK_TRANS_FREQ)
+        
+        print("Transmitting data")
+        for b in data_list:
+            GPIO.output(DATA_PIN, b)
+            GPIO.output(CLK_PIN, GPIO.HIGH)            
+            sleep(half_clock)
+            GPIO.output(CLK_PIN, GPIO.LOW)
+            sleep(half_clock)
+        GPIO.output(DATA_PIN, GPIO.LOW)
+        print("Data transmission complete!")
+        
+    except KeyboardInterrupt:
+        print("\nExiting program on keyboard interrupt")
+    except Exception as e:
+        print("\nExiting program on unexpected error\nError is: {}".format(e))
+    finally:
+        print("Cleaning up GPIOs")
+        GPIO.cleanup()
+
+
+'''---------------------- Advanced Modulation Schemes ----------------------'''
+def getStepBytes():
+    # This outputs steps so you can check DAC works
+
+    # SYMB_RATE = 1 - 256PAM
+    step = np.arange(4,dtype='uint8')*85
+    multiple = np.tile(step, 10)
+
+    #SYMB_RATE = 25 - 256PAM
+    step_fine = np.arange(256,dtype='uint8')
+    multiple_fine = np.tile(step_fine, 5)
+
+    # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
+    pam4 = np.ones(50, dtype='uint8')*27
+
+    return step
+    
+
+
+def getImageBytes(path):
+    # PIL modes - RGB, L (greyscale)
+    img = io.imread(path, pilmode = 'RGB')
+    size = img.size
+
+    return img.reshape(size)
 
 
 def Encode_Error_Correction(data_list):
@@ -236,39 +283,6 @@ def Save_To_File(mask, path):
     mask.astype('uint32').tofile(path)
 
 
-def Transmit_Binary_Data(data_list):
-    import RPi.GPIO as GPIO
-    
-    try:
-        # Use BCM numbering standard
-        GPIO.setmode(GPIO.BCM);
-        CLK_PIN = 2
-        DATA_PIN = 3
-        # Set BCM pin 4 as an output
-        GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
-
-        half_clock = 1 / (2 * OOK_TRANS_FREQ)
-        
-        print("Transmitting data")
-        for b in data_list:
-            GPIO.output(DATA_PIN, b)
-            GPIO.output(CLK_PIN, GPIO.HIGH)            
-            sleep(half_clock)
-            GPIO.output(CLK_PIN, GPIO.LOW)
-            sleep(half_clock)
-        GPIO.output(DATA_PIN, GPIO.LOW)
-        print("Data transmission complete!")
-        
-    except KeyboardInterrupt:
-        print("\nExiting program on keyboard interrupt")
-    except Exception as e:
-        print("\nExiting program on unexpected error\nError is: {}".format(e))
-    finally:
-        print("Cleaning up GPIOs")
-        GPIO.cleanup()
-
-
 def Transmit_Data():
     print("Transmitting data")
     
@@ -289,6 +303,7 @@ def Transmit_Data():
         print("Unrecognised return code: {}".format(return_code))
 
 
+'''---------------------   Check Input Masks Correct   ---------------------'''
 def Check_Input_Masks(input_vals, mask, mask_inv):
     '''
     Use this with RPiSim.GPIO in Windows to make sure mask for each number
@@ -348,17 +363,12 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
                               qam_const[inp//16], qam_const[inp%16]))
         
     else:
-        pause("Test doesn't exist yet for other modulation schemes")            
-    
+        pause("Test doesn't exist yet for other modulation schemes")                
 
-# Use try when debugging to catch errors, not necessary for use
-try:
+
+'''--------------------------------   Main   --------------------------------'''
+def main():
     pause("Start")
-
-    if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
-        print("INVALID TRANSMISSION TYPE, EXITING")
-        import sys
-        sys.exit(1)
         
     if TRANSMISSION_TYPE is "OOK":
         input_stream = getDummyOOKData()
@@ -390,7 +400,7 @@ try:
         # In Windows to check masks are being generated correctly for pins
         # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
         
-        receiver_started = Ssh_Start_Receiver(input_mask.size)
+        receiver_started = 1#Ssh_Start_Receiver(input_mask.size)
         if receiver_started:
             pause("About to transmit...")
             #sleep(10)
@@ -401,6 +411,9 @@ try:
     print("Finishing program")
 
 
+# Use try when debugging to catch errors, not necessary for use
+try:
+    main()
 except KeyboardInterrupt:
     print("\nExiting program on keyboard interrupt")
 except Exception as e:

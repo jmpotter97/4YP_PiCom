@@ -1,5 +1,5 @@
 ********** RECEIVER LOG FILE **********
 
-Receiving data
-Data receive complete!
-Saving output to file
+TRANSMISSION TYPE: OOK
+Exiting on unexpected error!
+Error is: No module named 'RPi'
