@@ -15,6 +15,63 @@ It is run using a Linux-based operating system called Raspbian which is availabl
 \subsection{Blablabla}
 Talky talk talk
 
+\subsection{Setting up the Raspberry Pi}
+
+The Raspberry Pi can be interfaced with in a number of ways, but first it needs to be set up with its operating system on the SD card \ref{web_Setup Raspbian}.
+\todo[inline,color=blue!20]{MISSING REFERENCE - How to setup Raspbian https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0}
+Raspbian can be accessed via the command line - typing in commands - or through an X Window similar to Windows OS.
+Either of these options can be used by connecting a screen, keyboard and mouse to the Pi, but this is not always available, so it is useful to have Secure Shell (SSH) set up for the command line, and Virtual Network Computing (VNC) for the X Window.
+When actually using both Raspberry Pis in the test bed, both of them will be running in command line mode as this saves resources, although during development, VNC or a screen using the X Window is much easier.
+In the test bed the Transmitter Pi will be connected to a screen and peripherals in command line, and then it will start the Receiver via SSH, which will run headless (without a screen or control peripherals) and receive the data, process and output it, and store information about the run in a log file which can be accessed later or again through SSH.\\
+
+Once the operating system is written to the SD card, SSH can be enabled by creating an empty file 'ssh' in the main portion of the card before putting it in the Raspberry Pi.
+Now an Ethernet cable can be connected from a computer to the Pi and it can be logged into.
+A program such as PuTTY for Windows can be used, with "pi@raspberrypi.local" as the host name so the IP address isn't needed.
+The standard login is "username: pi" and "password: raspberry".
+\todo[inline,color=green!40]{Inline code reference should look like inline code}
+The command "sudo raspi-config" accesses the configuration settings where the file system can be expanded to the whole SD card, and other utilities such as Wi-Fi and VNC can be turned on.
+Again, these can be turned off when using the final test bed to improve performance of the devices.
+Once the Pi is connected to Wi-Fi and the IP address is known, it can be accessed remotely via the free RealVNC VNC Viewer \ref{web_RealVNC Viewer} and the X Window can be started with the command "startx" if it isn't already set to open the X Window on startup in the configuration settings.
+\todo[inline,color=blue!20]{MISSING REFERENCE - https://www.realvnc.com/en/connect/download/viewer/}
+This access can be made permanent by setting the Pi to have a static IP address or with a free RealVNC account which lets it be accessed independent of the IP address.\\
+
+With full control of the Pi, all that is needed is to download all of the libraries and software used by the test bed and clone the GitHub repository with its code.
+The Python version used is 3.x.x.
+\todo[inline]{Find python version of Pis}
+and as the Raspberry Pi has Python 2 and 3, pip - the Python package manager - is called as pip3 for python3.
+Any dependencies not in this list give clear instructions how to be downloaded when this is run line by line.\\
+
+\todo[inline,color=green!40]{Create new format (and inline for above) called "shell"}
+\todo[inline]{Include matplotlib if used in the end}
+\lstset{style=python}
+\begin{lstlisting}[caption=Libraries and Packages Required for the Test Bed]
+	sudo apt-get update
+	
+	sudo apt-get install vpnc
+	sudo apt-get install libffi6 libffi-dev python-dev
+	sudo pip3 install cryptography paramiko
+	sudo pip3 install numpy imageio
+	sudo apt-get install pigpio
+	
+	sudo apt-get install git
+	cd "<Path where code to be held e.g. /pi/home/Documents/>"
+	git clone https://github.com/CamEadie/4YP\_PiCom
+	
+	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+\end{lstlisting}
+\todo[inline]{Do I need to change GitHub to an anonymous account if only candidate number is on cover page}
+
+Included are the following:
+
+\begin{itemize}
+	\item VPNC - VPN software used to access the Oxford VPN to use the OWL Wi-Fi network
+	\item Paramiko - Python library used for SSH to start the receiver program, and its dependencies
+	\item NumPy - Python library used for easier array manipulation and control as well as interface with images
+	\item imageio - Python library used to read and save an image file as a NumPy array
+	\item pigpio - C library used to interface with the GPIO pins
+	\item Git - Version control software which also allows for the cloning of the project code to any device
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 \section{Test Bed Architecture}
@@ -85,6 +142,7 @@ The standard library which comes installed with Raspbian is the RPi.GPIO Python 
 This is used for the On-Off Keying part of the communications test bed, and then a C library is used for the pin-level manipulation for all modulation schemes requiring multi-level outputs through Digital Analogue Converters.
 This is for the improved speed performance of the C library and for the capability of this library to output to multiple pins at once.
 Section \ref{sec_Comparing Python and C} goes into a detailed  investigation of the differences between these options.
+\todo[inline]{CHECK - Do I need to change this from my name to an anonymous account if only candidate number is on cover page}
 All of the code and the report for the project are maintained on GitHub, and may be found at \url{https://github.com/CamEadie/4YP_PiCom}.\\
 
 The code is separated into the initial On-Off Keying (Section \ref{sec_On-Off Keying}) which acts as a proof of concept for the Raspberry Pis as a test bed, and the Advanced Modulation Schemes (Section \ref{sec_Advanced Modulation Schemes}) which are all implemented in the same code.
