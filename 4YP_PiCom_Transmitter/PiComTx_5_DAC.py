@@ -41,7 +41,7 @@ for pin2 in DAC_PINS_2:
 
 ''' DAC_MASK_# is a bit mask of the GPIO pins which that DAC uses,
     expressed here in the form b7,...,b0. This is XOR'd with the
-    gpioWrite_Bits_0_31_Set bit-mask (to invert for gpioWrite_Bits_0_31_Clear)
+    gpioWrite_Bits_0_31_Set bit-mask (inverts for gpioWrite_Bits_0_31_Clear)
 '''
 
 # Nice to use for debugging
@@ -100,7 +100,7 @@ def Ssh_Start_Receiver(mask_length):
     # Update command for new file name
     command = "sudo python3 " + \
               "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" + \
-              " " +str(TRANSMISSION_TYPE) + " " +str(mask_length)
+              " " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())

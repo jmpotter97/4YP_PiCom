@@ -4,11 +4,12 @@ from time import sleep
 from subprocess import run, PIPE
 from sys import argv
 from os import remove
+from numbers import Number
 
 os.remove('LOGS.txt')
 LOGS = ["********** RECEIVER LOG FILE **********\n\n"]
-TRANSMISSION_TYPES = ["256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "4PAM"
+TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
+TRANSMISSION_TYPE = "OOK"
 DATA_PATH = "data_masks.bin"
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
@@ -63,7 +64,7 @@ def Decode_Masks(masks, LOGS):
                     val |= (1<<(7-j))
             out[i] = val
         return out
-
+'''-------------------------   FIX THIS   ---------------------------'''
     elif TRANSMISSION_TYPE == "4PAM":
         # Will use maximum likelihood reconstruction and account for attenuation
         out = np.zeros(masks.size//4, dtype='float)
@@ -128,6 +129,7 @@ def Decode_Masks(masks, LOGS):
             mask[i] = mask32
         print("Num of masks: {}".format(mask.size))
         return mask
+'''-------------------------   FIX THIS   ---------------------------'''
     else:
         print("Invalid transmission type!")
 
@@ -138,21 +140,30 @@ def Decode_Error_Correction(out, LOGS):
 
 def Save_As_Image(out, path, LOGS):
         if out.size == 160000:
-            io.imwrite(path, out.reshape(400,400), pilmode = 'L')
+            io.imwrite(path, out.reshape(400,400))
         elif out.size < 160000
             img = np.ones(160000, dtype='uint8') * 255
             for i, o in enumerate(out):
                 img[i] = o
-            io.imwrite(path, img.reshape(400,400), pilmode = 'L')
+            io.imwrite(path, img.reshape(400,400))
         else:
-            io.imwrite(path, out[:160000].reshape(400,400), pilmode = 'L')
+            io.imwrite(path, out[:160000].reshape(400,400))
 
-
+# Try necessary to save LOGS if error in code,
+# won't slow down C part of receiver
 try:
-    if len[argv] == 2:
-        mask_size = argv[1]
-        output_masks = Receive_Data(mask_size, LOGS)
+    if len(argv) > 2:
+        TRANSMISSION_TYPE = argv[2]
 
+    if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
+        print("INVALID TRANSMISSION TYPE, EXITING")
+        import sys
+        sys.exit(1)
+                       
+    if len(argv) > 1 and isinstance(argv[1], Number):
+        input_length = argv[1]
+# HERE IS WHERE I LEFT OFF - NEED TO INTRODUCE OOK
+        output_masks = Receive_Data(mask_size, LOGS)
         if output_masks.size != 0:
             output = Decode_Masks(output_masks, LOGS)
             
@@ -162,7 +173,7 @@ try:
         else:
             LOGS.append("No data was received\n")
     else:
-        LOGS.append("\n--- PiComRx_5_DAC ---\nUsage: sudo python3 PiComRx_5_DAC mask_size\n")
+        LOGS.append("\n--- PiComRx_5_DAC ---\nUsage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]\n")
 
 except KeyboardInterrupt:
     LOGS.append("\nExiting on keyboard interrupt!\n")
@@ -173,7 +184,5 @@ finally:
     with open('LOGS.txt', 'w') as f:
         for l in LOGS:
             f.write(l)
-
-if __name__ == '__main__':
-    with open('LOGS.txt', 'r') as f:
-        print(f.read())
+            # Print to output while working on receiver file
+            print(l)
