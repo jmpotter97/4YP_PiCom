@@ -8,20 +8,21 @@
 \BOOKMARK [1][-]{section.2.2}{Test Bed Architecture}{chapter.2}% 8
 \BOOKMARK [2][-]{subsection.2.2.1}{Digital Analogue Converter}{section.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.2.2}{Analogue Digital Converter}{section.2.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.3}{Parts Used}{section.2.2}% 11
-\BOOKMARK [1][-]{section.2.3}{Programming}{chapter.2}% 12
-\BOOKMARK [2][-]{subsection.2.3.1}{On-Off Keying}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.2}{Advanced Modulation Schemes}{section.2.3}% 14
-\BOOKMARK [0][-]{chapter.3}{Electronic Testing}{}% 15
-\BOOKMARK [1][-]{section.3.1}{Electrical Characteristics of the Raspberry Pi}{chapter.3}% 16
-\BOOKMARK [2][-]{subsection.3.1.1}{Maximum Frequency}{section.3.1}% 17
-\BOOKMARK [2][-]{subsection.3.1.2}{Impedance}{section.3.1}% 18
-\BOOKMARK [1][-]{section.3.2}{Comparing Python and C}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.3}{Characterising Components of the Test Bed}{chapter.3}% 20
-\BOOKMARK [2][-]{subsection.3.3.1}{Overclocking Components}{section.3.3}% 21
-\BOOKMARK [0][-]{chapter.4}{Communications Testing}{}% 22
-\BOOKMARK [1][-]{section.4.1}{SNR for Different Modulation Schemes}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.2}{Error Rate}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.3}{Channel Coding}{chapter.4}% 25
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 26
-\BOOKMARK [0][-]{chapter*.31}{Bibliography}{}% 27
+\BOOKMARK [2][-]{subsection.2.2.3}{Multiplier}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.4}{Parts Used}{section.2.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Programming}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.3.1}{On-Off Keying}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.2}{Advanced Modulation Schemes}{section.2.3}% 15
+\BOOKMARK [0][-]{chapter.3}{Electronic Testing}{}% 16
+\BOOKMARK [1][-]{section.3.1}{Electrical Characteristics of the Raspberry Pi}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.1.1}{Maximum Frequency}{section.3.1}% 18
+\BOOKMARK [2][-]{subsection.3.1.2}{Impedance}{section.3.1}% 19
+\BOOKMARK [1][-]{section.3.2}{Comparing Python and C}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.3}{Characterising Components of the Test Bed}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.3.1}{Overclocking Components}{section.3.3}% 22
+\BOOKMARK [0][-]{chapter.4}{Communications Testing}{}% 23
+\BOOKMARK [1][-]{section.4.1}{SNR for Different Modulation Schemes}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.2}{Error Rate}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.3}{Channel Coding}{chapter.4}% 26
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 27
+\BOOKMARK [0][-]{chapter*.35}{Bibliography}{}% 28

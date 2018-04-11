@@ -114,19 +114,31 @@ Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 The Analogue Digital Converter used is the ZN448, 
 
+\missingfigure{Layout of Digital Analogue Converter}
+
+\subsection{Multiplier} \label{sec_Multiplier}
+The Pi is not able to output negative voltages. Thus, Pulse Amplitude Modulation
+uses the range 0 to Vmax not -Vmax to Vmax. Similarly, QAM uses a grid all in
+the positive quadrant (0,1,2,3 not -3,-1,1,3). The same "negative" effect is still
+achieved by using the "GROUND" of the multipliers (which are fully differential)
+as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
+for the values 0 and 1 in the same way they would be for -3 and -1 and the
+transmitted signal
+
 \subsection{Parts Used}
 
 It is worth noting that there is a large variety of available options for each component of the test bed.
 Each possibility has certain advantages and disadvantages, and a lot of the options are not suitable due to the power requirements or ease of interfacing with the Raspberry Pi.
 As a result of this, the parts used in this project were the most suitable parts which could be found and successfully sourced.
-However, there may be more suitable chips available given more time or experience, and being aware of this would be useful if this project were to be extended and/or replicated.\\
+However, there may be more suitable chips available given more time or experience, and being aware of this would be useful if this project were to be extended and/or replicated.
+All parts could be replaced with minimal adjustment to the set-up and code.\\
 
 Changes which would be made with hindsight, if components with the required qualities could be found, are as follows:
 
 \todo[inline,color=blue!20]{Continue to add to this list as you write the Architecture section - remove redundant information already discussed in earlier sections}
 \begin{itemize}
 	\item A number of chips used are surface mounted, requiring difficult soldering to solder pads, This would be useful if they were to be used on a printed circuit board for a final design, but on a prototyping breadboard, dual in-line packages would have been easier to use where available
-	\item The Digital Analogue Converter was chosen for its easy interfacing with a microcontroller, but a voltage-output device would remove the need to use additional operational amplifiers at the output
+	\item The Digital Analogue Converter was chosen for its easy interfacing with a microcontroller, but a voltage-output device would remove the need to use additional operational amplifiers at the output. It also had some issues with correct values and it is unclear if it was the implementation or the chip itself.
 	\item Analogue Digital Converter
 	\item The Quadrature Sinusoid Generator uses an oscillator chip which outputs $90^o$ out-of-phase square waves, and the used chip was the only simple one which did this. Ideally the outputs would already be sinusoidal (one quadrature chip or a sine generator and phase shifter) so that low pass filters with fixed frequency response could be omitted to make changing the carrier frequency purely software-dependent.
 	\todo[inline]{Make sure I am consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}	
@@ -164,44 +176,64 @@ The Advanced Schemes considered are 4-level Pulse Amplitude Modulation, 256-leve
 The code also improves the data manipulation, includes image handling so images can be transmitted allowing for visualisation of the error rate etc. of the transmission, and implements a separate compiled C module for the actual transmitting and receiving of data.
 
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
-and \textit{GPIO.wait\textunderscore for\textunderscore edge()} on the clock pin to trigger reading of the
 
-DOC LINE FROM TRANSMITTER
+On-Off Keying is a modulation scheme based on using $V_{max}$ as '1' and \SI{0}{\volt} as '0'.
+The transmit section of the test bed loops through the data list, outputting each value followed by a clock pulse using the sleep function.
+The speed and accuracy of the \textit{GPIO.output()} and \textit{sleep()} functions is covered in Section \ref{sec_Electro Testing}.
+The receiver uses the function \textit{GPIO.wait\textunderscore for\textunderscore edge()} on rising edges of the clock pin to trigger reading of the data pin, and .\\
 
-\begin{lstlisting}[caption=Transmitter Comment]
-	'''
-	OOK has been integrated from the previous versions, uses different pins and runs
-	using RPi.GPIO and python arrays instead of a C executable (pigpio) and NumPy arrays
-	
-	256PAM is too finely spaced to use successfully but is nice for setup
-	
-	The Pi is not able to output negative voltages. Thus, Pulse Amplitude Modulation
-	uses the range 0 to Vmax not -Vmax to Vmax. Similarly, QAM uses a grid all in
-	the positive quadrant (0,1,2,3 not -3,-1,1,3). The same "negative" effect is still
-	achieved by using the "GROUND" of the multipliers (which are fully differential)
-	as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
-	for the values 0 and 1 in the same way they would be for -3 and -1 and the
-	transmitted signal
-	'''
+Earlier versions of this modulation scheme included a function \textit{Prep\textunderscore Binary\textunderscore Data()} which added initial and final padding to the data of '1's to prevent missing timing of the beginning and end of transmission.
+The function also added a padding bit to the data when either value had been repeated a certain number of times (for example a '1' if '0' had been repeated 5 times in a row).
+This function was removed when \textit{Encode\textunderscore Error\textunderscore Correction()} was included, as forward error correction was seen as a better way of avoiding these and other errors without including padding bits which could be difficult to remove if errors did occur in the code transmission.
+The channel coding used is syndrome decoding and is discussed more in Section \ref{sec_Channel Coding}.
 
-	/* PiTransmit now works independent of the choice of DAC pins.
-	 * It reads in the bit-mask (bits to set) from a binary file for speed,
-	 * which is calculated and saved in the Python before transmission,
-	 * and it also reads in inversion mask (bits to clear) so the calculation
-	 * isn't done during transmission.
-	 * This also means the Transmit program doesn't need to know how many
-	 * DAC's there are so works for all transmission schemes.
-	 */
-\end{lstlisting}
+
+
 
 \subsubsection{Starting the Receiver}
 \todo[inline]{Paramiko}
 
 \subsection{Advanced Modulation Schemes} \label{sec_Advanced Modulation Schemes}
 
-\todo[inline,color=blue!20]{Definitely have a full page flow chart for the transmitter and receiver code}
+PAM - as mentioned in section \ref{sec_Multiplier} 0-3
+
+256 PAM is similar to 4PAM and is not included for space and because it's not viable in this setup especially with the problem mentioned in Section \ref{sec_Components}.
+\todo[inline,color=green!40]{Make sure the right section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
+
+Here we will definitely talk about the transmitter generally.\\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{Transmitter_Flow.png}
+	\caption{Flow Chart for Transmitter Code}
+	\label{fig_Transmitter_Flow}
+\end{figure}
+
+Here we will definitely talk about the receiver generally enough to separate the flow charts by a page.\\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{Receiver_Flow.png}
+	\caption{Flow Chart for Receiver Code}
+	\label{fig_Receiver_Flow}
+\end{figure}
 
 \subsubsection{Data and Image Handling}
+
+NumPy and imageio.\\
+
 \subsubsection{C Transmitter and Receiver}
+
+Receiver: in Section \ref{sec_Electro Testing} the options of data mask in on trigger vs read data then in on clock were compared and BLA was chosen as the more effective method.
+\todo[inline]{Which method is more effective}
+
+/* PiTransmit now works independent of the choice of DAC pins.
+* It reads in the bit-mask (bits to set) from a binary file for speed,
+* which is calculated and saved in the Python before transmission,
+* and it also reads in inversion mask (bits to clear) so the calculation
+* isn't done during transmission.
+* This also means the Transmit program doesn't need to know how many
+* DAC's there are so works for all transmission schemes.
+*/
 
 \end{document}
