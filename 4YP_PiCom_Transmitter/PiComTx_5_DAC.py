@@ -371,8 +371,10 @@ def main():
     pause("Start")
         
     if TRANSMISSION_TYPE is "OOK":
+        # Data stored as bits in Python lists
+        # Transmitted using RPi.GPIO Python library
+        
         input_stream = getDummyOOKData()
-
         # TODO: Encode_Error_Correction(input_stream)
 
         receiver_started = 1#Ssh_Start_Receiver(len(input_stream))
@@ -384,11 +386,12 @@ def main():
             print("Receiver never started")
         
     else:
+        # Data stored as bytes/masks in NumPy arrays
+        # Transmitted using compiled C code
+        
         input_stream = getStepBytes()
         #input_stream = getImageBytes('cat.png')
         print("Input stream length (bytes): {}".format(input_stream.size))
-
-        # TODO: Encode_Error_Correction(input_stream)
 
         print("Converting data to masks...")
         input_mask = Convert_To_Data_Mask(input_stream)

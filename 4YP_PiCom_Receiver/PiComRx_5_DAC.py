@@ -67,18 +67,13 @@ def Receive_Binary_Data(out, LOGS):
 '''---------------------- Advanced Modulation Schemes ----------------------'''
 def Receive_Data(size, LOGS):
     LOGS.append("Receiving data\n")
-
-    if TRANSMISSION_TYPE in TRANSMISSION_TYPES:
-        receiver = run(["sudo", "./PiReceive", str(size)], stdout=PIPE)
+    receiver = run(["sudo", "./PiReceive", str(size)], stdout=PIPE)
         
-        for line in transmitter.stdout.decode('utf-8').split('\n'):
-            LOGS.append("... {}".format(line))
-        return_code = receiver.returncode
-    else:
-        return_code = -1
+    for line in transmitter.stdout.decode('utf-8').split('\n'):
+        LOGS.append("... {}".format(line))
+    return_code = receiver.returncode
 		
-    return_options = {-1 : "Invalid transmission type!\n",
-		       0 : "Data transmission complete!\n",
+    return_options = { 0 : "Data transmission complete!\n",
 		       1 : "Data receive failed!\n",
 		       2 : "GPIO INIT FAIL\n",	 # Add more failure codes
 		       3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n"}
@@ -96,6 +91,21 @@ def Receive_Data(size, LOGS):
 
 def Decode_Masks(masks, LOGS):
     LOGS.append("Decoding masks...")
+    ''' Prototyping
+    if "PAM" in TRANSMISSION_TYPE:
+        
+    '''
+
+    '''
+    MASK goes through a number of stages:
+    DAC  - FOR EACH PIN ON THE DAC, INCLUDE IF IN THE MASK
+            I AND Q DAC FOR QAM
+    SYMB - CHECK ATTENUATION (MAX), ADJUST, MAX LIKELIHOOD ESTIMATION
+            TO REGAIN EACH SYMBOL VALUE
+    OUT  - CHANGE EACH SET OF SYMBOL/LEVELS INTO OUTPUT BYTES
+    '''
+
+    
     if TRANSMISSION_TYPE == "256PAM":
         out = np.zeros(masks.size, dtype='uint8')
         for i, mask in enumerate(masks):
@@ -198,20 +208,21 @@ def main():
     
     if 1:#len(argv) > 1 and isinstance(argv[1], int):
         mask_size = 100#argv[1]
-# HERE IS WHERE I LEFT OFF - NEED TO INTRODUCE OOK
+
         if TRANSMISSION_TYPE is "OOK":
             output = []
             Receive_Binary_Data(output, LOGS)
+
+            # TODO: Decode_Error_Correction(output)
+            
             LOGS.append("Size of data: {}\nExpected size: {}".format(len(output), mask_size))
             with open('OUTPUT.txt','w') as f:
                 f.write("".join(str(i) for i in output))
         else:
             output_masks = Receive_Data(mask_size, LOGS)
+            
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
-                
-                # TODO: Decode_Error_Correction(output)
-                
                 Save_As_Image(output, 'cat_out.png', LOGS)
             else:
                 LOGS.append("No data was received\n")
