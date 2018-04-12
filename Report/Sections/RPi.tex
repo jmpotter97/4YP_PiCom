@@ -51,20 +51,18 @@ Any dependencies not in this list give clear instructions how to be downloaded w
 \todo[inline]{Include matplotlib if used in the end - ALSO INCLUDE REFERENCES TO ALL LIBRARIES MENTIONED}
 \lstset{style=python}
 \begin{lstlisting}[caption=Libraries and Packages Required for the Test Bed]
-	sudo apt-get update
+	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 	
 	sudo apt-get install vpnc
 	sudo apt-get install libffi6 libffi-dev python-dev
-	sudo pip3 install cryptography paramiko
+	pip3 install cryptography paramiko
 	sudo apt-get install libatlas-base-dev
-	sudo pip3 install numpy imageio
+	pip3 install numpy imageio
 	sudo apt-get install pigpio
 	
 	sudo apt-get install git
 	cd "<Path for the code e.g. /pi/home/Documents/>"
 	git clone https://github.com/CamEadie/4YP_PiCom
-	
-	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 
 	# Used in Transmit_Binary_Data(): import RPi.GPIO as GPIO
 	# ... Only for OOK transmission which uses Python not C
