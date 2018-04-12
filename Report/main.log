@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  11 APR 2018 22:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  12 APR 2018 12:48
 entering extended mode
 **./main.tex
 (main.tex
@@ -1926,7 +1926,7 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
 e.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.30 ...line {4.3}Channel Coding}{20}{section.4.3}
+l.30 ...mberline {4.2}Error Rate}{27}{section.4.2}
                                                    [1
 
 ])
@@ -2020,146 +2020,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
+<./Sections/Images/Raspberry_Pi.jpg, id=299, 3276.24pt x 2457.18pt>
+File: ./Sections/Images/Raspberry_Pi.jpg Graphic file (type jpg)
+<use ./Sections/Images/Raspberry_Pi.jpg>
+Package pdftex.def Info: ./Sections/Images/Raspberry_Pi.jpg  used on input line
+ 19.
+(pdftex.def)             Requested size: 290.22107pt x 217.64977pt.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 15.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 24.
 
 LaTeX Warning: Reference `web_Setup Raspbian' on page 7 undefined on input line
- 17.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--23
-
- []
+ 26.
 
 [7
 
-]
+ <./Sections/Images/Raspberry_Pi.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 28--32
+
+ []
+
 
 LaTeX Warning: Reference `web_RealVNC Viewer' on page 8 undefined on input line
- 31.
+ 40.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 38--40
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
-
-
-Package xcolor Warning: Incompatible color definition on input line 44.
-
-
-Package xcolor Warning: Incompatible color definition on input line 44.
-
-
-Package xcolor Warning: Incompatible color definition on input line 44.
-
-
-Package xcolor Warning: Incompatible color definition on input line 45.
-
-
-Package xcolor Warning: Incompatible color definition on input line 46.
-
-
-Package xcolor Warning: Incompatible color definition on input line 47.
-
-
-Package xcolor Warning: Incompatible color definition on input line 48.
-
-
-Package xcolor Warning: Incompatible color definition on input line 49.
-
-
-Package xcolor Warning: Incompatible color definition on input line 50.
-
-
-Package xcolor Warning: Incompatible color definition on input line 51.
 
 [8]
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
 
-Package xcolor Warning: Incompatible color definition on input line 52.
+ []
 
 
 Package xcolor Warning: Incompatible color definition on input line 53.
 
 
-Package xcolor Warning: Incompatible color definition on input line 54.
+Package xcolor Warning: Incompatible color definition on input line 53.
 
 
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-LaTeX Font Info:    Try loading font information for OML+phv on input line 54.
-("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omlphv.fd"
-File: omlphv.fd 
-)
-LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
-
-
-Package xcolor Warning: Incompatible color definition on input line 54.
+Package xcolor Warning: Incompatible color definition on input line 53.
 
 
 Package xcolor Warning: Incompatible color definition on input line 54.
@@ -2174,7 +2075,7 @@ Package xcolor Warning: Incompatible color definition on input line 56.
 Package xcolor Warning: Incompatible color definition on input line 57.
 
 
-Package xcolor Warning: Incompatible color definition on input line 59.
+Package xcolor Warning: Incompatible color definition on input line 58.
 
 
 Package xcolor Warning: Incompatible color definition on input line 59.
@@ -2188,88 +2089,290 @@ Package xcolor Warning: Incompatible color definition on input line 61.
 
 Package xcolor Warning: Incompatible color definition on input line 62.
 
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 69.
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+LaTeX Font Info:    Try loading font information for OML+phv on input line 63.
+("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omlphv.fd"
+File: omlphv.fd 
+)
+LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 64.
+
+
+Package xcolor Warning: Incompatible color definition on input line 65.
+
+
+Package xcolor Warning: Incompatible color definition on input line 66.
+
+
+Package xcolor Warning: Incompatible color definition on input line 68.
+
+
+Package xcolor Warning: Incompatible color definition on input line 68.
+
+
+Package xcolor Warning: Incompatible color definition on input line 69.
+
+
+Package xcolor Warning: Incompatible color definition on input line 70.
+
+
+Package xcolor Warning: Incompatible color definition on input line 71.
+
+
+Package xcolor Warning: Incompatible color definition on input line 72.
+
+
+Package xcolor Warning: Incompatible color definition on input line 73.
+
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 80.
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 83--92
-
- []
-
-<./Sections/Images/UFO_Falling.png, id=306, 494.19926pt x 361.35pt>
-File: ./Sections/Images/UFO_Falling.png Graphic file (type png)
-<use ./Sections/Images/UFO_Falling.png>
-Package pdftex.def Info: ./Sections/Images/UFO_Falling.png  used on input line 
-97.
-(pdftex.def)             Requested size: 290.22107pt x 212.20769pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--110
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 94--103
 
  []
 
-[10
+<./Sections/Images/OOK_Architecture.jpg, id=341, 3276.24pt x 2457.18pt>
+File: ./Sections/Images/OOK_Architecture.jpg Graphic file (type jpg)
+<use ./Sections/Images/OOK_Architecture.jpg>
+Package pdftex.def Info: ./Sections/Images/OOK_Architecture.jpg  used on input 
+line 106.
+(pdftex.def)             Requested size: 290.22107pt x 217.64977pt.
 
- <./Sections/Images/UFO_Falling.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 130--135
+Underfull \hbox (badness 10000) in paragraph at lines 113--119
 
  []
 
-[11] [12] [13]
+[11
 
-LaTeX Warning: Reference `web_RPi.GPIO' on page 14 undefined on input line 158.
+ <./Sections/Images/OOK_Architecture.jpg>]
+<./Sections/Images/DAC_Layout.jpg, id=350, 3106.60625pt x 1991.44pt>
+File: ./Sections/Images/DAC_Layout.jpg Graphic file (type jpg)
+<use ./Sections/Images/DAC_Layout.jpg>
+Package pdftex.def Info: ./Sections/Images/DAC_Layout.jpg  used on input line 1
+22.
+(pdftex.def)             Requested size: 290.22107pt x 186.02853pt.
+<./Sections/Images/PAM_Architecture.jpg, id=351, 3276.24pt x 2457.18pt>
+File: ./Sections/Images/PAM_Architecture.jpg Graphic file (type jpg)
+<use ./Sections/Images/PAM_Architecture.jpg>
+Package pdftex.def Info: ./Sections/Images/PAM_Architecture.jpg  used on input 
+line 135.
+(pdftex.def)             Requested size: 290.22107pt x 217.64977pt.
+ [12 <./Sections/Images/DAC_Layout.jpg>]
+<./Sections/Images/DAC_Modulation.jpg, id=357, 2305.61375pt x 1153.30875pt>
+File: ./Sections/Images/DAC_Modulation.jpg Graphic file (type jpg)
+<use ./Sections/Images/DAC_Modulation.jpg>
+Package pdftex.def Info: ./Sections/Images/DAC_Modulation.jpg  used on input li
+ne 146.
+(pdftex.def)             Requested size: 290.22107pt x 145.16632pt.
+<./Sections/Images/QAM_OFDM_Architecture.jpg, id=358, 3276.24pt x 2457.18pt>
+File: ./Sections/Images/QAM_OFDM_Architecture.jpg Graphic file (type jpg)
+<use ./Sections/Images/QAM_OFDM_Architecture.jpg>
+Package pdftex.def Info: ./Sections/Images/QAM_OFDM_Architecture.jpg  used on i
+nput line 161.
+(pdftex.def)             Requested size: 290.22107pt x 217.64977pt.
+ [13 <./Sections/Images/PAM_Architecture.jpg> <./Sections/Images/DAC_Modulation
+.jpg>]
+<./Sections/Images/Live_Test_Bed.jpg, id=365, 2954.03625pt x 1638.12pt>
+File: ./Sections/Images/Live_Test_Bed.jpg Graphic file (type jpg)
+<use ./Sections/Images/Live_Test_Bed.jpg>
+Package pdftex.def Info: ./Sections/Images/Live_Test_Bed.jpg  used on input lin
+e 171.
+(pdftex.def)             Requested size: 290.22107pt x 160.92209pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--183
+
+ []
+
+[14 <./Sections/Images/QAM_OFDM_Architecture.jpg> <./Sections/Images/Live_Test_
+Bed.jpg>] [15]
+
+LaTeX Warning: Reference `web_RPi.GPIO' on page 16 undefined on input line 206.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
 
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 168.
-[14
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 216.
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
+
+ []
+
+[16
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 180--184
+<./Sections/Images/Pi_Pin_Connections.jpg, id=388, 2882.77pt x 1992.44376pt>
+File: ./Sections/Images/Pi_Pin_Connections.jpg Graphic file (type jpg)
+<use ./Sections/Images/Pi_Pin_Connections.jpg>
+Package pdftex.def Info: ./Sections/Images/Pi_Pin_Connections.jpg  used on inpu
+t line 228.
+(pdftex.def)             Requested size: 290.22107pt x 200.56334pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 235--239
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 240--244
 
  []
 
-<./Sections/Images/Transmitter_Flow.png, id=345, 542.025pt x 741.0084pt>
+[17 <./Sections/Images/Pi_Pin_Connections.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
+
+ []
+
+<./Sections/Images/Transmitter_Flow.png, id=399, 542.025pt x 741.0084pt>
 File: ./Sections/Images/Transmitter_Flow.png Graphic file (type png)
 <use ./Sections/Images/Transmitter_Flow.png>
 Package pdftex.def Info: ./Sections/Images/Transmitter_Flow.png  used on input 
-line 207.
+line 261.
 (pdftex.def)             Requested size: 483.69687pt x 661.2932pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
 
  []
 
-<./Sections/Images/Receiver_Flow.png, id=346, 546.843pt x 764.1348pt>
+<./Sections/Images/Receiver_Flow.png, id=401, 546.843pt x 764.1348pt>
 File: ./Sections/Images/Receiver_Flow.png Graphic file (type png)
 <use ./Sections/Images/Receiver_Flow.png>
 Package pdftex.def Info: ./Sections/Images/Receiver_Flow.png  used on input lin
-e 216.
+e 270.
 (pdftex.def)             Requested size: 483.69687pt x 675.92696pt.
-[15] [16 <./Sections/Images/Transmitter_Flow.png>] [17 <./Sections/Images/Recei
+[18] [19 <./Sections/Images/Transmitter_Flow.png>] [20 <./Sections/Images/Recei
 ver_Flow.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
-) [18
+<./Sections/Images/Mask_Expansion.jpg, id=421, 601.24625pt x 211.79124pt>
+File: ./Sections/Images/Mask_Expansion.jpg Graphic file (type jpg)
+<use ./Sections/Images/Mask_Expansion.jpg>
+Package pdftex.def Info: ./Sections/Images/Mask_Expansion.jpg  used on input li
+ne 298.
+(pdftex.def)             Requested size: 290.22107pt x 102.23387pt.
+) [21
 
-]
+ <./Sections/Images/Mask_Expansion.jpg>]
 Chapter 3.
-(Sections/Electro_Testing.tex) [19
+(Sections/Electro_Testing.tex
+<./Sections/Images/Benchmarking_Data.jpg, id=429, 2999.205pt x 2216.28pt>
+File: ./Sections/Images/Benchmarking_Data.jpg Graphic file (type jpg)
+<use ./Sections/Images/Benchmarking_Data.jpg>
+Package pdftex.def Info: ./Sections/Images/Benchmarking_Data.jpg  used on input
+ line 16.
+(pdftex.def)             Requested size: 290.22107pt x 214.43782pt.
+ [22
+
+ <./Sections/Images/Benchmarking_Data.jpg>]
+<./Sections/Images/Clock_Analyse.jpg, id=435, 3276.24pt x 1014.79124pt>
+File: ./Sections/Images/Clock_Analyse.jpg Graphic file (type jpg)
+<use ./Sections/Images/Clock_Analyse.jpg>
+Package pdftex.def Info: ./Sections/Images/Clock_Analyse.jpg  used on input lin
+e 47.
+(pdftex.def)             Requested size: 290.22107pt x 89.8872pt.
+<./Sections/Images/DAC_Output.jpg, id=436, 3048.38875pt x 2287.54625pt>
+File: ./Sections/Images/DAC_Output.jpg Graphic file (type jpg)
+<use ./Sections/Images/DAC_Output.jpg>
+Package pdftex.def Info: ./Sections/Images/DAC_Output.jpg  used on input line 6
+0.
+(pdftex.def)             Requested size: 290.22107pt x 217.77292pt.
+<./Sections/Images/Pulse_Output.jpg, id=437, 2304.61pt x 1145.27875pt>
+File: ./Sections/Images/Pulse_Output.jpg Graphic file (type jpg)
+<use ./Sections/Images/Pulse_Output.jpg>
+Package pdftex.def Info: ./Sections/Images/Pulse_Output.jpg  used on input line
+ 67.
+(pdftex.def)             Requested size: 290.22107pt x 144.2255pt.
+File: ./Sections/Images/Pulse_Output.jpg Graphic file (type jpg)
+<use ./Sections/Images/Pulse_Output.jpg>
+Package pdftex.def Info: ./Sections/Images/Pulse_Output.jpg  used on input line
+ 74.
+(pdftex.def)             Requested size: 290.22107pt x 144.2255pt.
+
+[23 <./Sections/Images/Clock_Analyse.jpg>] [24 <./Sections/Images/DAC_Output.jp
+g> <./Sections/Images/Pulse_Output.jpg>]) [25
 
 ]
 Chapter 4.
@@ -2283,13 +2386,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--15
 
  []
 
-) [20
+) [26
 
-]
+] [27]
 Chapter 5.
-(Sections/Conclusion.tex) [21
+(Sections/Conclusion.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
-] [22
+ []
+
+) [28
+
+] [29
 
 
 ]
@@ -2299,7 +2407,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 165.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 165.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 165.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CD4164C192ADE10A2B5A56BE79A7C858;1909.
+(rerunfilecheck)             Checksum: 3C5B1AB36D805C1F1FDA95B821DCE081;2012.
 
 
 LaTeX Warning: There were undefined references.
@@ -2310,13 +2418,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
  ) 
 Here is how much of TeX's memory you used:
- 39608 strings out of 493305
- 786172 string characters out of 3130672
- 1184869 words of memory out of 3000000
- 42481 multiletter control sequences out of 15000+200000
+ 39725 strings out of 493305
+ 789297 string characters out of 3130672
+ 1218655 words of memory out of 3000000
+ 42552 multiletter control sequences out of 15000+200000
  560704 words of font info for 87 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,7n,96p,10393b,2650s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,7n,96p,10393b,1787s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<
 C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mmi10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
@@ -2332,9 +2440,9 @@ m/cmtt10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/he
 lvetic/uhvb8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/u
 rw/helvetic/uhvr8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (24 pages, 516519 bytes).
+Output written on main.pdf (31 pages, 15923933 bytes).
 PDF statistics:
- 454 PDF objects out of 1000 (max. 8388607)
- 115 named destinations out of 1000 (max. 500000)
- 292 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 544 PDF objects out of 1000 (max. 8388607)
+ 148 named destinations out of 1000 (max. 500000)
+ 360 words of extra memory for PDF output out of 10000 (max. 10000000)
 

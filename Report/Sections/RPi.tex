@@ -12,6 +12,15 @@ The Raspberry Pi is a simple, affordable ARM-based computing module. It has, whi
 
 It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \ref{web_Raspbian} \ref{web_Rasp}.\\
 
+\todo[inline,color=blue!20]{Raspberry Pi Fundamentals}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Raspberry_Pi.jpg}
+	\caption{The Raspberry Pi}
+	%\label{fig_}
+\end{figure}
+
 \subsection{Setting up the Raspberry Pi}
 
 The Raspberry Pi can be interfaced with in a number of ways, but first it needs to be set up with its operating system on the SD card \ref{web_Setup Raspbian}.
@@ -39,7 +48,7 @@ and as the Raspberry Pi has Python 2 and 3, pip - the Python package manager - i
 Any dependencies not in this list give clear instructions how to be downloaded when this is run line by line.\\
 
 \todo[inline,color=green!40]{Create new format (and inline for above) called "shell"}
-\todo[inline]{Include matplotlib if used in the end}
+\todo[inline]{Include matplotlib if used in the end - ALSO INCLUDE REFERENCES TO ALL LIBRARIES MENTIONED}
 \lstset{style=python}
 \begin{lstlisting}[caption=Libraries and Packages Required for the Test Bed]
 	sudo apt-get update
@@ -58,8 +67,10 @@ Any dependencies not in this list give clear instructions how to be downloaded w
 
 	# Used in Transmit_Binary_Data(): import RPi.GPIO as GPIO
 	# ... Only for OOK transmission which uses Python not C
+	# ... This library is already included in the Raspberry Pi
 	# Used in Check_Input_Masks(): from RPiSim.GPIO import GPIO
-	# ... Only works in Windows to check masks work
+	# ... Only works in Windows, simulates Raspberry Pi pins (use like RPi.GPIO commands)
+	# ... pip GPIOSimulator (or pip3 if necessary)  
 \end{lstlisting}
 \todo[inline]{Do I need to change GitHub to an anonymous account if only candidate number is on cover page}
 
@@ -90,11 +101,9 @@ The final arrangement extends the set-up to two DACs and two ADCs.
 These signals are then multiplied by a sine wave and a cosine wave respectively, and can be separated due to the orthogonality of the two signals at the receiver.
 This arrangement is used for Quadrature Amplitude Modulation as well as Orthogonal Frequency Division Multiplexing.\\
 
-\missingfigure{Test Bed Set-up For On-Off Keying}
-
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{UFO_Falling.png}
+	\includegraphics[width=0.6\textwidth]{OOK_Architecture.jpg}
 	\caption{Test Bed Set-up For On-Off Keying}
 	\label{fig_OOK Architecture}
 \end{figure}
@@ -108,7 +117,12 @@ The Read/Write ($R/\overline{W}$) pin is pulled low permanently so the chip is i
 The Chip Select pin ($\overline{CS}$) needs a falling edge and a rising edge to complete a write cycle, where the rising edge loads new parallel data, so this is connected to the clock pin of the Raspberry Pi.
 Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
-\missingfigure{Layout of Analogue Digital Converter} \label{fig_DAC Layout}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{DAC_Layout.jpg}
+	\caption{Layout of the Digital Analogue Converter}
+	\label{fig_DAC Layout}
+\end{figure}
 
 \subsection{Analogue Digital Converter}
 
@@ -116,7 +130,24 @@ The Analogue Digital Converter used is the ZN448,
 
 \missingfigure{Layout of Digital Analogue Converter}
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{PAM_Architecture.jpg}
+	\caption{Layout for Pulse Amplitude Modulation}
+	%\label{fig_}
+\end{figure}
+
 \subsection{Multiplier} \label{sec_Multiplier}
+
+\todo[inline]{Depending whether it's doable, include  this section without multipliers on transmitter, pseudo ground on output}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{DAC_Modulation.jpg}
+	\caption{Four Quadrant Multiplication of input sinusoid using DAC}
+	%\label{fig_}
+\end{figure}
+
 The Pi is not able to output negative voltages. Thus, Pulse Amplitude Modulation
 uses the range 0 to Vmax not -Vmax to Vmax. Similarly, QAM uses a grid all in
 the positive quadrant (0,1,2,3 not -3,-1,1,3). The same "negative" effect is still
@@ -125,7 +156,24 @@ as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
 for the values 0 and 1 in the same way they would be for -3 and -1 and the
 transmitted signal
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{QAM_OFDM_Architecture.jpg}
+	\caption{Layout for Quadrature Amplitude Modulation and Potentially Orthogonal Frequency Division Multiplexing}
+	%\label{fig_}
+\end{figure}
+
 \subsection{Parts Used}
+
+\todo[inline,color=green!40]{Need a diagramatic representation as well as an actual picture}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Live_Test_Bed.jpg}
+	\caption{What the Test Bed Actually Looks Like in its Final Configuration}
+	%\label{fig_}
+\end{figure}
+
+\todo[inline,color=blue!20]{Include a section on pricing of the parts and comparison to actually used test beds}
 
 It is worth noting that there is a large variety of available options for each component of the test bed.
 Each possibility has certain advantages and disadvantages, and a lot of the options are not suitable due to the power requirements or ease of interfacing with the Raspberry Pi.
@@ -170,10 +218,17 @@ The body of the main Python codes for each the transmitter and receiver is split
 On-Off Keying (Section \ref{sec_On-Off Keying}) is the simplest form of clocked communication possible, and acts as a proof of concept for the Raspberry Pis as a test bed.
 It is implemented using a native Python list which stores '1's and '0's to represent the binary stream, and these are output using the native RPi.GPIO library.
 The OOK was added into the final code of the Advanced Modulation Schemes (Section \ref{sec_Advanced Modulation Schemes})  from previous versions retrospectively, as all of the Advances Schemes are implemented in the same code.
-This was done both to make it easier to conduct all tests through one program, and to adhere to the idea of Software Defined Radio being as change-independent as possible (Section \ref{sec_Lit Review}).
+This was done both to make it easier to conduct all tests through one program, and to adhere to the idea of Software Defined Radio being as change-independent as possible (Section \ref{sec_Lit Review}).\\
 \todo[inline,color=green!40]{Rephrase this and make sure the section referenced is as consistent with this comment as possible}
 The Advanced Schemes considered are 4-level Pulse Amplitude Modulation, 256-level Pulse Amplitude Modulation (used more for setting up the DAC and ADC, as differentiating between levels this precisely is not viable), 16-Quadrature Amplitude Modulation and Orthogonal Frequency Division Multiplexing.
-The code also improves the data manipulation, includes image handling so images can be transmitted allowing for visualisation of the error rate etc. of the transmission, and implements a separate compiled C module for the actual transmitting and receiving of data.
+The code also improves the data manipulation, includes image handling so images can be transmitted allowing for visualisation of the error rate etc. of the transmission, and implements a separate compiled C module for the actual transmitting and receiving of data.\\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Pi_Pin_Connections.jpg}
+	\caption{Pin Diagram of Connections to Raspberry Pi (reference to image source) - These are alterable fairly easily in the code so changes can be made with little overhead}
+	\label{fig_Pin Connections}
+\end{figure}
 
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
 
@@ -185,9 +240,7 @@ The receiver uses the function \textit{GPIO.wait\textunderscore for\textundersco
 Earlier versions of this modulation scheme included a function \textit{Prep\textunderscore Binary\textunderscore Data()} which added initial and final padding to the data of '1's to prevent missing timing of the beginning and end of transmission.
 The function also added a padding bit to the data when either value had been repeated a certain number of times (for example a '1' if '0' had been repeated 5 times in a row).
 This function was removed when \textit{Encode\textunderscore Error\textunderscore Correction()} was included, as forward error correction was seen as a better way of avoiding these and other errors without including padding bits which could be difficult to remove if errors did occur in the code transmission.
-The channel coding used is syndrome decoding and is discussed more in Section \ref{sec_Channel Coding}.
-
-
+The channel coding used is syndrome decoding and is discussed more in Section \ref{sec_Channel Coding}.\\
 
 
 \subsubsection{Starting the Receiver}
@@ -199,6 +252,7 @@ PAM - as mentioned in section \ref{sec_Multiplier} 0-3
 
 256 PAM is similar to 4PAM and is not included for space and because it's not viable in this setup especially with the problem mentioned in Section \ref{sec_Components}.
 \todo[inline,color=green!40]{Make sure the right section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
+OFDM is also conceptualised here but due to the same problem, the continuous value issue mentioned above would need to be fixed before it could be implemented.
 
 Here we will definitely talk about the transmitter generally.\\
 
@@ -224,7 +278,7 @@ NumPy and imageio.\\
 
 \subsubsection{C Transmitter and Receiver}
 
-Receiver: in Section \ref{sec_Electro Testing} the options of data mask in on trigger vs read data then in on clock were compared and BLA was chosen as the more effective method.
+Receiver: in Section \ref{sec_Computation} the options of data mask in on trigger vs read data then in on clock were compared and BLA was chosen as the more effective method.
 \todo[inline]{Which method is more effective}
 
 /* PiTransmit now works independent of the choice of DAC pins.
@@ -235,5 +289,15 @@ Receiver: in Section \ref{sec_Electro Testing} the options of data mask in on tr
 * This also means the Transmit program doesn't need to know how many
 * DAC's there are so works for all transmission schemes.
 */
+
+The pins selected are based on the DAC1 choice from Figure \ref{fig_Pin Connections} but could be used for any set of possible output pins.
+\todo[inline,color=blue!20]{Add a comment about the range of 2 to 28 not 0 to 32 in bank writing}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Mask_Expansion.jpg}
+	\caption{Explanation of the concept of mask expansion}
+	%\label{fig_}
+\end{figure}
 
 \end{document}

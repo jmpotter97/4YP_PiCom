@@ -5,28 +5,29 @@
 \contentsline {section}{\numberline {1.3}(My) Contributions}{6}{section.1.3}
 \contentsline {chapter}{\numberline {2}The Raspberry Pi and the Test Bed}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Fundamentals}{7}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Setting up the Raspberry Pi}{7}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}Test Bed Architecture}{10}{section.2.2}
+\contentsline {subsection}{\numberline {2.1.1}Setting up the Raspberry Pi}{8}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Test Bed Architecture}{11}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Digital Analogue Converter}{11}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Analogue Digital Converter}{11}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Multiplier}{11}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Parts Used}{12}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Programming}{14}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}On-Off Keying}{15}{subsection.2.3.1}
-\contentsline {subsubsection}{\numberline {2.3.1.1}Starting the Receiver}{15}{subsubsection.2.3.1.1}
-\contentsline {subsection}{\numberline {2.3.2}Advanced Modulation Schemes}{15}{subsection.2.3.2}
-\contentsline {subsubsection}{\numberline {2.3.2.1}Data and Image Handling}{18}{subsubsection.2.3.2.1}
-\contentsline {subsubsection}{\numberline {2.3.2.2}C Transmitter and Receiver}{18}{subsubsection.2.3.2.2}
-\contentsline {chapter}{\numberline {3}Electronic Testing}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Electrical Characteristics of the Raspberry Pi}{19}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Maximum Frequency}{19}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Impedance}{19}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Comparing Python and C}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Characterising Components of the Test Bed}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Overclocking Components}{19}{subsection.3.3.1}
-\contentsline {chapter}{\numberline {4}Communications Testing}{20}{chapter.4}
-\contentsline {section}{\numberline {4.1}SNR for Different Modulation Schemes}{20}{section.4.1}
-\contentsline {section}{\numberline {4.2}Error Rate}{20}{section.4.2}
-\contentsline {section}{\numberline {4.3}Channel Coding}{20}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
-\contentsline {chapter}{Bibliography}{22}{chapter*.35}
+\contentsline {subsection}{\numberline {2.2.2}Analogue Digital Converter}{12}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Multiplier}{13}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Parts Used}{14}{subsection.2.2.4}
+\contentsline {section}{\numberline {2.3}Programming}{16}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}On-Off Keying}{17}{subsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.1.1}Starting the Receiver}{18}{subsubsection.2.3.1.1}
+\contentsline {subsection}{\numberline {2.3.2}Advanced Modulation Schemes}{18}{subsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Data and Image Handling}{21}{subsubsection.2.3.2.1}
+\contentsline {subsubsection}{\numberline {2.3.2.2}C Transmitter and Receiver}{21}{subsubsection.2.3.2.2}
+\contentsline {chapter}{\numberline {3}Electronic Testing}{22}{chapter.3}
+\contentsline {section}{\numberline {3.1}Electrical Characteristics of the Raspberry Pi}{22}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Impedance}{23}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Compuational Characteristics of the Raspberry Pi}{23}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Maximum Frequency}{23}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Comparing Python and C}{23}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Characterising Components of the Test Bed}{23}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Overclocking Components}{25}{subsection.3.3.1}
+\contentsline {chapter}{\numberline {4}Communications Testing}{26}{chapter.4}
+\contentsline {section}{\numberline {4.1}SNR for Different Modulation Schemes}{26}{section.4.1}
+\contentsline {section}{\numberline {4.2}Error Rate}{27}{section.4.2}
+\contentsline {section}{\numberline {4.3}Channel Coding}{27}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclusion}{28}{chapter.5}
+\contentsline {chapter}{Bibliography}{29}{chapter*.58}
