@@ -71,8 +71,8 @@ def Ssh_Start_Receiver(mask_length):
     pword = "rasPass2"
     # Update command for new file name
     command = "sudo python3 " + \
-              "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" + \
-              " " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
+              "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py"# + \
+              #" " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -89,7 +89,7 @@ def Ssh_Start_Receiver(mask_length):
         print("Executing command to start comReceiver")
         stdin, stdout, stderr = ssh.exec_command(command)
 
-        sleep(5)
+        sleep(15)
         print("Closing ssh connection\n")
         ssh.close()
         return True
