@@ -107,9 +107,16 @@ def getDummyOOKData():
 
     print("Half transition")
     arr = ([1,0]*4+[0]*8)*1000
-    '''
+    
     print("Full transition")
     arr = ([1, 0]*4+[0, 1]*4)*1000
+    '''
+
+    arr = [0]
+    for i in range(1,11):
+        for j in range(i):
+            arr.append(1)
+        arr.append(0)
 
     return arr
 
@@ -377,7 +384,7 @@ def main():
         input_stream = getDummyOOKData()
         # TODO: Encode_Error_Correction(input_stream)
 
-        receiver_started = 1#Ssh_Start_Receiver(len(input_stream))
+        receiver_started = Ssh_Start_Receiver(len(input_stream))
         if receiver_started:
             pause("About to transmit...")
             #sleep(10)
