@@ -5,7 +5,7 @@
 #include <string.h> // for strlen(string)
 
 const int num_of_ADC = 1;	// CHANGE THIS TO 2 WHEN SECOND ADC IMPLEMENTED (QAM)
-const uint clock_pin = 4;
+const uint clock_pin = 16;
 int mask_size;
 
 // ADC_bits is a bit mask of the GPIO pins which that ADC uses, expressed here

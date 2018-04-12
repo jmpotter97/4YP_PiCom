@@ -13,7 +13,7 @@
  * DAC's there are so works for all transmission schemes.
  */
 
-const uint CLK_PIN = 21;
+const uint CLK_PIN = 16;
 
 
 int main(int argc, char *argv[]) {

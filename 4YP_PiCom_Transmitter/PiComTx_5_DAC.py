@@ -120,8 +120,8 @@ def Transmit_Binary_Data(data_list):
     try:
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM);
-        CLK_PIN = 2
-        DATA_PIN = 3
+        CLK_PIN = 20
+        DATA_PIN = 21
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)

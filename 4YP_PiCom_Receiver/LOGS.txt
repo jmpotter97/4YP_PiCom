@@ -1,5 +1,6 @@
 ********** RECEIVER LOG FILE **********
 TRANSMISSION TYPE: OOK
-
-Exiting on unexpected error!
-Error is: No module named 'RPi'
+Receiver timeout waiting for signal to start
+Cleaning up GPIOs
+Size of data: 0
+Expected size: 100

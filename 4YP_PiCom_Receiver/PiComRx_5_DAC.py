@@ -39,8 +39,8 @@ def Receive_Binary_Data(out, LOGS):
     try:
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM)
-        CLK_PIN = 2
-        DATA_PIN = 3
+        CLK_PIN = 20
+        DATA_PIN = 21
         # Setup input and clock pins as IN-puts with pull-down (PUD_DOWN) resistor
         GPIO.setup(DATA_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -54,7 +54,7 @@ def Receive_Binary_Data(out, LOGS):
                 else:
                     still_receiving = False
         else:
-            LOGS.append("Receiver timeout waiting for signal\n")
+            LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
         LOGS.append("\nExiting program on keyboard interrupt\n")
     except Exception as e:
@@ -203,9 +203,7 @@ def Save_As_Image(out, path, LOGS):
 
 
 '''--------------------------------   Main   --------------------------------'''
-def main():
-    print(TRANSMISSION_TYPE)
-    
+def main():    
     if 1:#len(argv) > 1 and isinstance(argv[1], int):
         mask_size = 100#argv[1]
 
