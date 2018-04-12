@@ -20,6 +20,8 @@ if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
     with open('LOGS.txt', 'w') as f:
         for l in LOGS:
             f.write(l)
+            # Print to output while working on receiver file
+            print(l, end='')
     import sys
     sys.exit(1)
 else:
@@ -72,8 +74,9 @@ def Receive_Binary_Data(out, LOGS):
 def Receive_Data(size, LOGS):
     LOGS.append("Receiving data\n")
     receiver = run(["sudo", "./PiReceive", str(size)], stdout=PIPE)
-        
-    for line in transmitter.stdout.decode('utf-8').split('\n'):
+
+    LOGS.append("\n... C RECEIVER LOGS ...\n\n")
+    for line in receiver.stdout.decode('utf-8').split('\n'):
         LOGS.append("... {}".format(line))
     return_code = receiver.returncode
 		
@@ -207,17 +210,17 @@ def Save_As_Image(out, path, LOGS):
 
 
 '''--------------------------------   Main   --------------------------------'''
-def main():    
-    if len(argv) > 1 and isinstance(argv[1], int):
-        mask_size = argv[1]
+def main():
+    if len(argv) > 1:
+        mask_size = int(argv[1])
 
-        if TRANSMISSION_TYPE is "OOK":
+        if TRANSMISSION_TYPE == "OOK":
             output = []
             Receive_Binary_Data(output, LOGS)
 
             # TODO: Decode_Error_Correction(output)
             
-            LOGS.append("Size of data: {}\nExpected size: {}".format(len(output), mask_size))
+            LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
             with open('OUTPUT.txt','w') as f:
                 f.write("".join(str(i) for i in output))
         else:
@@ -246,4 +249,4 @@ finally:
         for l in LOGS:
             f.write(l)
             # Print to output while working on receiver file
-            # print(l)
+            print(l, end='')
