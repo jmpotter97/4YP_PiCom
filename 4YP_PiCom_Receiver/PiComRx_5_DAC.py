@@ -204,8 +204,8 @@ def Save_As_Image(out, path, LOGS):
 
 '''--------------------------------   Main   --------------------------------'''
 def main():    
-    if 1:#len(argv) > 1 and isinstance(argv[1], int):
-        mask_size = 100#argv[1]
+    if len(argv) > 1 and isinstance(argv[1], int):
+        mask_size = argv[1]
 
         if TRANSMISSION_TYPE is "OOK":
             output = []
@@ -242,4 +242,4 @@ finally:
         for l in LOGS:
             f.write(l)
             # Print to output while working on receiver file
-            print(l)
+            # print(l)
