@@ -198,7 +198,7 @@ def Convert_To_Data_Mask(data_list):
             WHERE F() MAPS THE 8-BIT DAC VALUE TO THE 32-BIT MASK
     '''
 
-    if TRANSMISSION_TYPE is "256PAM":
+    if TRANSMISSION_TYPE == "256PAM":
         # 1 SYMB/byte --> 0, 1, ..., 255
         # DAC = INPUT
         # MASK
@@ -215,7 +215,7 @@ def Convert_To_Data_Mask(data_list):
         print("Num of masks: {}".format(mask.size))
         return mask
 
-    elif TRANSMISSION_TYPE is "4PAM":
+    elif TRANSMISSION_TYPE == "4PAM":
         # 4 SYMB/byte --> 0, 1, 2, 3
         symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
@@ -239,7 +239,7 @@ def Convert_To_Data_Mask(data_list):
             mask[i] = mask32
         print("Num of masks: {}".format(mask.size))
         return mask
-    elif TRANSMISSION_TYPE is "16QAM":
+    elif TRANSMISSION_TYPE == "16QAM":
         # 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
         # Expressing I as col 1, Q as col 2 of N x 2 matrix
         symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
@@ -292,7 +292,8 @@ def Save_To_File(mask, path):
 
 def Transmit_Data():
     print("Transmitting data")
-    
+
+    print("\n... C RECEIVER LOGS ...\n")
     transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)], stdout=PIPE)
     for line in transmitter.stdout.decode('utf-8').split('\n'):
         print("... {}".format(line))
@@ -327,7 +328,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
         for pin in DAC_PINS_1 + DAC_PINS_2:
             GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
             
-    if TRANSMISSION_TYPE is "256PAM":
+    if TRANSMISSION_TYPE == "256PAM":
         for i, m in enumerate(mask):
             # This is slow but exhaustively checks all possibilities
             for pin in DAC_PINS_1:
@@ -338,7 +339,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
             pause("Input value {} = {}, mask displayed"\
                   .format(input_vals[i], bin(input_vals[i])))
             
-    elif TRANSMISSION_TYPE is "4PAM":
+    elif TRANSMISSION_TYPE == "4PAM":
         for i, inp in enumerate(input_vals):
             for j in range(4):
                 # This is slow but exhaustively checks all possibilities
@@ -350,7 +351,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
                 pause("Input value {} = {}, mask {}/4 displayed"\
                       .format(inp, bin(inp), j+1))
                 
-    elif TRANSMISSION_TYPE is "16QAM":
+    elif TRANSMISSION_TYPE == "16QAM":
         qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
                               [2,1],[2,0],[3,1],[3,0],\
                               [1,2],[1,3],[0,2],[0,3],\
@@ -377,7 +378,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
 def main():
     pause("Start")
         
-    if TRANSMISSION_TYPE is "OOK":
+    if TRANSMISSION_TYPE == "OOK":
         # Data stored as bits in Python lists
         # Transmitted using RPi.GPIO Python library
         
