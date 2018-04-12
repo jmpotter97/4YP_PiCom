@@ -28,7 +28,7 @@ transmitted signal
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
-OOK_TRANS_FREQ = 1000
+OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "OOK"
 
@@ -71,8 +71,8 @@ def Ssh_Start_Receiver(mask_length):
     pword = "rasPass2"
     # Update command for new file name
     command = "sudo python3 " + \
-              "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py"# + \
-              #" " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
+              "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" + \
+              " " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -89,7 +89,7 @@ def Ssh_Start_Receiver(mask_length):
         print("Executing command to start comReceiver")
         stdin, stdout, stderr = ssh.exec_command(command)
 
-        sleep(15)
+        sleep(5)
         print("Closing ssh connection\n")
         ssh.close()
         return True
@@ -117,6 +117,7 @@ def getDummyOOKData():
         for j in range(i):
             arr.append(1)
         arr.append(0)
+    arr *= 10000
 
     return arr
 
@@ -387,7 +388,7 @@ def main():
 
         receiver_started = Ssh_Start_Receiver(len(input_stream))
         if receiver_started:
-            pause("About to transmit...")
+            print("About to transmit...")
             #sleep(10)
             Transmit_Binary_Data(input_stream)
         else:
