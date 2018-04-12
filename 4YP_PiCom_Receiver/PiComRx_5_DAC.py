@@ -3,9 +3,10 @@ import imageio as io
 from time import sleep
 from subprocess import run, PIPE
 from sys import argv
-from os import remove
+import os
 
-remove('LOGS.txt')
+if os.path.isfile('LOGS.txt'):
+    os.remove('LOGS.txt')
 LOGS = ["********** RECEIVER LOG FILE **********\n"]
 DATA_PATH = "data_masks.bin"
 TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
@@ -229,7 +230,7 @@ def main():
                 LOGS.append("No data was received\n")
     else:
         LOGS.append("Mask size command line variable not correctly used\n")
-        LOGS.append("\n--- PiComRx_5_DAC.py ---\nUsage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]\n")
+        LOGS.append("\n------- PiComRx_5_DAC.py -------\n\nUsage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]\n")
 
 
 # Try necessary to save LOGS if error occurs in code,
