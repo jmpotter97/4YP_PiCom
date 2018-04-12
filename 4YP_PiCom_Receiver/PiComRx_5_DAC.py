@@ -5,8 +5,9 @@ from subprocess import run, PIPE
 from sys import argv
 import os
 
-if os.path.isfile('LOGS.txt'):
-    os.remove('LOGS.txt')
+LOGS_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
+if os.path.isfile(LOGS_PATH):
+    os.remove(LOGS_PATH)
 LOGS = ["********** RECEIVER LOG FILE **********\n"]
 DATA_PATH = "data_masks.bin"
 TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
@@ -17,7 +18,7 @@ if len(argv) > 2:
 
 if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
     LOGS.append("\nINVALID TRANSMISSION TYPE, EXITING\n")
-    with open('LOGS.txt', 'w') as f:
+    with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
             # Print to output while working on receiver file
@@ -221,7 +222,7 @@ def main():
             # TODO: Decode_Error_Correction(output)
             
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
-            with open('OUTPUT.txt','w') as f:
+            with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
                 f.write("".join(str(i) for i in output))
         else:
             output_masks = Receive_Data(mask_size, LOGS)
@@ -245,7 +246,7 @@ except KeyboardInterrupt:
 except Exception as e:
     LOGS.append("\nExiting on unexpected error!\nError is: {}\n".format(e))
 finally:
-    with open('LOGS.txt', 'w') as f:
+    with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
             # Print to output while working on receiver file
