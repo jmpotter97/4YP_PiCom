@@ -15,7 +15,10 @@ if len(argv) > 2:
     TRANSMISSION_TYPE = argv[2]
 
 if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
-    LOGS.append("INVALID TRANSMISSION TYPE, EXITING")
+    LOGS.append("\nINVALID TRANSMISSION TYPE, EXITING\n")
+    with open('LOGS.txt', 'w') as f:
+        for l in LOGS:
+            f.write(l)
     import sys
     sys.exit(1)
 else:
