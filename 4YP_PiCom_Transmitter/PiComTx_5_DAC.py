@@ -385,7 +385,7 @@ def main():
         
         input_stream = getDummyOOKData()
         # TODO: Encode_Error_Correction(input_stream)
-
+        
         receiver_started = Ssh_Start_Receiver(len(input_stream))
         if receiver_started:
             print("About to transmit...")
@@ -411,8 +411,8 @@ def main():
 
         # In Windows to check masks are being generated correctly for pins
         # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
-        
-        receiver_started = 1#Ssh_Start_Receiver(input_mask.size)
+        pause("About to transmit...")
+        receiver_started = Ssh_Start_Receiver(input_mask.size)
         if receiver_started:
             pause("About to transmit...")
             #sleep(10)
