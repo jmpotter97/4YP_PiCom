@@ -18,6 +18,7 @@ if len(argv) > 2:
 
 if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
     LOGS.append("\nINVALID TRANSMISSION TYPE, EXITING\n")
+    LOGS.append("***************************************\n")
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
@@ -246,6 +247,7 @@ except KeyboardInterrupt:
 except Exception as e:
     LOGS.append("\nExiting on unexpected error!\nError is: {}\n".format(e))
 finally:
+    LOGS.append("***************************************\n")
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)

@@ -89,8 +89,7 @@ def Ssh_Start_Receiver(mask_length):
         print("Executing command to start comReceiver")
         stdin, stdout, stderr = ssh.exec_command(command)
 
-        sleep(5)
-        print("Closing ssh connection\n")
+        print("Receiver started, closing ssh connection\n")
         ssh.close()
         return True
     else:
@@ -99,8 +98,40 @@ def Ssh_Start_Receiver(mask_length):
         return False
 
 
+def Fetch_Receiver_Logs():
+    print("\nFetching LOGS from receiver...")
+    
+    host = "raspberrypi2.local"
+    uname = "pi"
+    pword = "rasPass2"
+    # Print LOGS to output
+    command = "cat /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        # Connect to host
+        print("Connecting to {}".format(host))
+        ssh.connect(host, username=uname, password=pword)
+        print("Connected!")
+    except Exception as e:
+        print("Exception raised attempting to connect to ssh host",
+              "\n\tError is: {}".format(e))
+
+    if ssh.get_transport().is_active():
+        print("Executing command to start comReceiver")
+        stdin, stdout, stderr = ssh.exec_command(command)
+
+        for line in iter(stdout.readline, ""):
+            print(line, end="")
+
+        ssh.close()
+    else:
+        print("Closing unsuccessful ssh connection\n")
+        ssh.close()
+
+
 '''---------------------------   On-Off Keying   ---------------------------'''
-def getDummyOOKData():
+def Get_Dummy_OOK_Data():
     '''
     print("No transition")
     arr = ([1,0]*8)*1000
@@ -120,6 +151,10 @@ def getDummyOOKData():
     arr *= 10000
 
     return arr
+
+def Get_Binary_Image():
+    ''' TO BE ADDED '''
+        
 
 
 def Transmit_Binary_Data(data_list):
@@ -156,7 +191,7 @@ def Transmit_Binary_Data(data_list):
 
 
 '''---------------------- Advanced Modulation Schemes ----------------------'''
-def getStepBytes():
+def Get_Step_Bytes():
     # This outputs steps so you can check DAC works
 
     # SYMB_RATE = 1 - 256PAM
@@ -174,9 +209,13 @@ def getStepBytes():
     
 
 
-def getImageBytes(path):
+def Get_Image_Bytes(path):
     # PIL modes - RGB, L (greyscale)
-    img = io.imread(path, pilmode = 'RGB')
+    if "bw" in path:
+        img = io.imread(path)
+    else:
+        img = io.imread(path, pilmode = 'RGB')
+        
     size = img.size
 
     return img.reshape(size)
@@ -383,14 +422,18 @@ def main():
         # Data stored as bits in Python lists
         # Transmitted using RPi.GPIO Python library
         
-        input_stream = getDummyOOKData()
+        input_stream = Get_Dummy_OOK_Data()
+        #input_stream = Get_Binary_Image()
+        
         # TODO: Encode_Error_Correction(input_stream)
 
         receiver_started = Ssh_Start_Receiver(len(input_stream))
         if receiver_started:
             print("About to transmit...")
-            #sleep(10)
+            # Four seconds enough time to start receiver but not timeout
+            sleep(4)
             Transmit_Binary_Data(input_stream)
+            # TODO: Fetch_Receiver_Logs()
         else:
             print("Receiver never started")
         
@@ -398,8 +441,8 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        input_stream = getStepBytes()
-        #input_stream = getImageBytes('cat.png')
+        input_stream = Get_Step_Bytes()
+        #input_stream = Get_Image_Bytes('cat.png')
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
@@ -412,15 +455,18 @@ def main():
         # In Windows to check masks are being generated correctly for pins
         # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
         
-        receiver_started = 1#Ssh_Start_Receiver(input_mask.size)
+        receiver_started = Ssh_Start_Receiver(input_mask.size)
         if receiver_started:
             pause("About to transmit...")
-            #sleep(10)
+            # Four seconds enough time to start receiver but not timeout
+            sleep(4)
             Transmit_Data()
+            # TODO: Fetch_Receiver_Logs()
         else:
             print("Receiver never started")
+
     
-    print("Finishing program")
+    print("\nFinishing program")
 
 
 # Use try when debugging to catch errors, not necessary for use
