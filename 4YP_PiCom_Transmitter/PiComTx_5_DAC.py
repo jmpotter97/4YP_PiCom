@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "OOK"
+TRANSMISSION_TYPE = "256PAM"
 
 if len(argv) > 1:
         TRANSMISSION_TYPE = argv[1]
@@ -200,12 +200,12 @@ def Get_Step_Bytes():
 
     #SYMB_RATE = 25 - 256PAM
     step_fine = np.arange(256,dtype='uint8')
-    multiple_fine = np.tile(step_fine, 5)
+    multiple_fine = np.tile(step_fine, 40)
 
     # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
     pam4 = np.ones(50, dtype='uint8')*27
 
-    return step
+    return multiple_fine
     
 
 
@@ -457,7 +457,7 @@ def main():
         pause("About to transmit...")
         receiver_started = Ssh_Start_Receiver(input_mask.size)
         if receiver_started:
-            pause("About to transmit...")
+            print("About to transmit...")
             # Four seconds enough time to start receiver but not timeout
             sleep(4)
             Transmit_Data()

@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 		argv[1] = symbol_freq - Frequency of clock signal,
 									or take default (Hz)
 	*/
-	int symbol_freq = 5000;
+	int symbol_freq = 500;
 	if(argc>1) {
 		symbol_freq = atoi(argv[1]);
 		// Returns 0 if not a number string (and 0 not OK freq anyway)
@@ -105,8 +105,8 @@ int main(int argc, char *argv[]) {
 		usleep(symbol_time-1);
 		gpioWrite(CLK_PIN,1);
 		usleep(symbol_time);
-		printf("%i\nPause, press <ENTER> to continue...\n", i);
-		getchar();
+		//printf("%i\nPause, press <ENTER> to continue...\n", i);
+		//getchar();
 		
 	}
 	uint32_t t1 = gpioTick();
