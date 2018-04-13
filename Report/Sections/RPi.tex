@@ -12,7 +12,7 @@ The Raspberry Pi is a simple, affordable ARM-based computing module. It has, whi
 
 It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \ref{web_Raspbian} \ref{web_Rasp}.\\
 
-\todo[inline,color=blue!20]{Raspberry Pi Fundamentals}
+\todo[inline,color=blue!20]{Write Raspberry Pi Fundamentals}
 
 \begin{figure}[ht]
 	\centering
@@ -27,16 +27,17 @@ The Raspberry Pi can be interfaced with in a number of ways, but first it needs 
 \todo[inline,color=blue!20]{MISSING REFERENCE - How to setup Raspbian https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0}
 Raspbian can be accessed via the command line - typing in commands - or through an X Window similar to Windows OS.
 Either of these options can be used by connecting a screen, keyboard and mouse to the Pi, but this is not always available, so it is useful to have Secure Shell (SSH) set up for the command line, and Virtual Network Computing (VNC) for the X Window.
-When actually using both Raspberry Pis in the test bed, both of them will be running in command line mode as this saves resources, although during development, VNC or a screen using the X Window is much easier.
-In the test bed the Transmitter Pi will be connected to a screen and peripherals in command line, and then it will start the Receiver via SSH, which will run headless (without a screen or control peripherals) and receive the data, process and output it, and store information about the run in a log file which can be accessed later or again through SSH.\\
+Secure Shell is necessary regardless as it is used in the test bed execution.
+When actually using both Raspberry Pis in the test bed, both of them will be running in command line mode as this saves resources, although during development, VNC or a screen using the X Window makes it much easier to test and edit code.
+In the test bed, the Transmitter Pi will be connected to a screen and peripherals in command line mode, and then it will start the Receiver via SSH, which will run headless (without a screen or control peripherals) and receive the data, process and output it, and store information about the run in a log file which can be accessed later or again through SSH.\\
 
-Once the operating system is written to the SD card, SSH can be enabled by creating an empty file 'ssh' in the main portion of the card before putting it in the Raspberry Pi.
+Once the operating system is written to the SD card, SSH can be enabled by creating an empty file 'ssh' in the main portion of the card before putting it in the Raspberry Pi (for setup using a screen and peripherals, this can be turned on in the configuration settings).
 Now an Ethernet cable can be connected from a computer to the Pi and it can be logged into.
 A program such as PuTTY for Windows can be used, with "pi@raspberrypi.local" as the host name so the IP address isn't needed.
 The standard login is "username: pi" and "password: raspberry".
 \todo[inline,color=green!40]{Inline code reference should look like inline code}
 The command "sudo raspi-config" accesses the configuration settings where the file system can be expanded to the whole SD card, and other utilities such as Wi-Fi and VNC can be turned on.
-Again, these can be turned off when using the final test bed to improve performance of the devices.
+Again, all utilities except for SSH should be turned off when using the final test bed to improve performance of the devices.
 Once the Pi is connected to Wi-Fi and the IP address is known, it can be accessed remotely via the free RealVNC VNC Viewer \ref{web_RealVNC Viewer} and the X Window can be started with the command "startx" if it isn't already set to open the X Window on startup in the configuration settings.
 \todo[inline,color=blue!20]{MISSING REFERENCE - https://www.realvnc.com/en/connect/download/viewer/}
 This access can be made permanent by setting the Pi to have a static IP address or with a free RealVNC account which lets it be accessed independent of the IP address.\\
@@ -51,35 +52,38 @@ Any dependencies not in this list give clear instructions how to be downloaded w
 \todo[inline]{Include matplotlib if used in the end - ALSO INCLUDE REFERENCES TO ALL LIBRARIES MENTIONED}
 \lstset{style=python}
 \begin{lstlisting}[caption=Libraries and Packages Required for the Test Bed]
-	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+	sudo apt-get update
 	
 	sudo apt-get install vpnc
 	sudo apt-get install libffi6 libffi-dev python-dev
-	pip3 install cryptography paramiko
+	sudo pip3 install cryptography paramiko
+	
 	sudo apt-get install libatlas-base-dev
-	pip3 install numpy imageio
+	sudo pip3 install numpy imageio
 	sudo apt-get install pigpio
 	
 	sudo apt-get install git
 	cd "<Path for the code e.g. /pi/home/Documents/>"
 	git clone https://github.com/CamEadie/4YP_PiCom
 
+	sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+
 	# Used in Transmit_Binary_Data(): import RPi.GPIO as GPIO
-	# ... Only for OOK transmission which uses Python not C
 	# ... This library is already included in the Raspberry Pi
+	# ... Only for OOK transmission which uses Python not C
 	# Used in Check_Input_Masks(): from RPiSim.GPIO import GPIO
+	# ... pip GPIOSimulator (or pip3 if necessary)
 	# ... Only works in Windows, simulates Raspberry Pi pins (use like RPi.GPIO commands)
-	# ... pip GPIOSimulator (or pip3 if necessary)  
 \end{lstlisting}
 \todo[inline]{Do I need to change GitHub to an anonymous account if only candidate number is on cover page}
 
-Included are the following:
+Included are the following, as well as their dependencies:
 
 \begin{itemize}
-	\item VPNC - VPN software used to access the Oxford VPN to use the OWL Wi-Fi network
-	\item Paramiko - Python library used for SSH to start the receiver program, and its dependencies
+	\item VPNC - VPN software used to access the Oxford VPN in order to use the OWL Wi-Fi network
+	\item Paramiko - Python library used for SSH to start the receiver
 	\item NumPy - Python library used for easier array manipulation as well as interface with images
-	\item imageio - Python library used to read and save an image file as a NumPy array
+	\item imageio - Python library used to read and save image files as NumPy arrays
 	\item pigpio - C library used to interface with the GPIO pins
 	\item Git - Version control software which also allows for the cloning of the project code to any device
 \end{itemize}
