@@ -30,6 +30,12 @@
 % A bibliography package, and the bibliography file (contained in the same directory as this one).
 \usepackage[backend=biber,style=numeric,citestyle=numeric,sorting=none]{biblatex}
 \addbibresource{./bibliography.bib}
+% Include pdf pages
+\usepackage{pdfpages}
+% Appendices
+\usepackage{appendix}
+% Tables
+\usepackage{tabu}
 
 % Quote code with highlighting
 \usepackage{listings}
@@ -85,10 +91,11 @@
 
 % Package to allow images to be on left or right side with text wrapped
 \usepackage{wrapfig}
-% To do Package
-\usepackage[colorinlistoftodos]{todonotes}
 % Number the subsubsections
 \setcounter{secnumdepth}{3}
+% To do Package (use [disable] to turn off without removing todos)
+\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[disable]{todonotes}
 
 % Diagram drawing package -- NOT SURE IF I'LL USE
 \usepackage{tikz}
@@ -106,12 +113,13 @@
 \noindent\rule{5in}{0.6pt}\\[1mm]
 \huge{\textbf{Fourth Year Project}}\\[3mm]
 \Large{\textbf{PiCom: A Digital Communication Test Bed Based on Raspberry Pi}}\\[3mm]
+\todo[inline,color=green!40]{Layout of title page -- Must have project title, name, college}
 \noindent\rule{5in}{0.6pt}\\[1mm]
-Candidate Number:\\
-\todo[inline]{....................     CHECK: CANDIDATE NUMBER OR NAME - AND PAGE COUNT ?     ....................}
+\textbf{Candidate}\\
+Cameron Eadie\\
+Exeter College\\
 \textbf{Supervisor}\\
 Justin Coon\\
-\todo[inline,color=green!40]{Layout of title page to be confirmed}
 \noindent\rule{5in}{0.6pt}\\[1mm]
 \vfill
 %\today\\
@@ -119,10 +127,13 @@ Trinity Term, 2018\\
 \end{center}
 \end{titlepage}
 
+% Include Declaration of Authorship
+\graphicspath{{./Sections/PDFs/}}
+\includepdf[pages={1}]{4YPDeclarationOfAuthorshipForm2018.pdf}
+
 % Abstract
 %\textbf{\huge{Abstract}}\\
 \begin{abstract}
-\graphicspath{{./Sections/Images/}}
 \subfile{./Sections/Abstract.tex}
 \end{abstract}
 
@@ -140,26 +151,35 @@ Trinity Term, 2018\\
 
 % Raspberry Pi Chapter.
 \chapter{The Raspberry Pi and the Test Bed}
-\graphicspath{{./Sections/Images/}}
 \subfile{./Sections/RPi.tex}
 
 % Electronic Testing Chapter.
 \chapter{Electronic Testing} \label{sec_Electro Testing}
-\graphicspath{{./Sections/Images/}}
 \subfile{./Sections/Electro_Testing.tex}
 
 % Communications Testing Chapter.
 \chapter{Communications Testing}
-\graphicspath{{./Sections/Images/}}
 \subfile{./Sections/Comms_Testing.tex}
 
 % Summary/Overview, Future Directions Chapter.
 \chapter{Conclusion}
-\graphicspath{{./Sections/Images/}}
 \subfile{./Sections/Conclusion.tex}
 
 % Print the bibliography and add it to the table of contents.
 \clearpage
 \printbibliography[heading=bibintoc]
+\todo[inline,color=green!40]{Format for web pages should be:}
+Creator’s surname, creator’s first name. Title. Date of
+publication. Name of Institution associated with site. View date. <http://address/filename>.\\
+
+% Include pages from the Risk Assessments
+\appendix
+\addappheadtotoc
+\graphicspath{{./Sections/PDFs/}}
+
+
+\includepdf[pages=1, pagecommand=\chapter{Risk Assessments}\section{General Risk Assessment}, offset=0 -4cm]{4YPGeneralRiskAssessment.pdf}
+\includepdf[pages=2-]{4YPGeneralRiskAssessment.pdf}
+\includepdf[pages=1, pagecommand=\section{Computer Risk Assessment}, offset=0 -1cm]{4YPComputerRiskAssessment.pdf}
 
 \end{document}

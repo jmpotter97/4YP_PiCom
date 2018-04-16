@@ -1975,6 +1975,10 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">DhirNIPS2017</bcf:citekey>
+    <bcf:citekey order="2">web_Raspbian</bcf:citekey>
+    <bcf:citekey order="3">web_SetupRaspbian</bcf:citekey>
+    <bcf:citekey order="4">web_RpiMaxRatings</bcf:citekey>
+    <bcf:citekey order="5">web_RPiSpecsSE</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

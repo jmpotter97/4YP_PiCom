@@ -54,7 +54,101 @@
       \verb 2017NIPS_dhir.pdf:http\://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf:PDF
       \endverb
     \endentry
+    \entry{web_SetupRaspbian}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=708b706df410819f4c7b8365777bedcf}{%
+           family={Mackenzie},
+           familyi={M\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{708b706df410819f4c7b8365777bedcf}
+      \strng{fullhash}{708b706df410819f4c7b8365777bedcf}
+      \strng{bibnamehash}{708b706df410819f4c7b8365777bedcf}
+      \strng{authorbibnamehash}{708b706df410819f4c7b8365777bedcf}
+      \strng{authornamehash}{708b706df410819f4c7b8365777bedcf}
+      \strng{authorfullhash}{708b706df410819f4c7b8365777bedcf}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{2}
+      \field{month}{1}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{Headless Raspberry Pi Setup}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0
+      \endverb
+      \verb{url}
+      \verb https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0
+      \endverb
+    \endentry
+    \entry{web_RpiMaxRatings}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=817fe06b4a6398605a966f57b954d618}{%
+           family={Wiki},
+           familyi={W\bibinitperiod},
+           given={Embedded\bibnamedelima Linux},
+           giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{817fe06b4a6398605a966f57b954d618}
+      \strng{fullhash}{817fe06b4a6398605a966f57b954d618}
+      \strng{bibnamehash}{817fe06b4a6398605a966f57b954d618}
+      \strng{authorbibnamehash}{817fe06b4a6398605a966f57b954d618}
+      \strng{authornamehash}{817fe06b4a6398605a966f57b954d618}
+      \strng{authorfullhash}{817fe06b4a6398605a966f57b954d618}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{19}
+      \field{month}{1}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{RPi Low-Level Peripherals}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://elinux.org/RPi_Low-level_peripherals
+      \endverb
+      \verb{url}
+      \verb https://elinux.org/RPi_Low-level_peripherals
+      \endverb
+    \endentry
+    \entry{web_RPiSpecsSE}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=91a5f59705235ca27d945e711f7b1ccb}{%
+           family={Exchange},
+           familyi={E\bibinitperiod},
+           given={Raspberry\bibnamedelimb Pi\bibnamedelima Stack},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{91a5f59705235ca27d945e711f7b1ccb}
+      \strng{fullhash}{91a5f59705235ca27d945e711f7b1ccb}
+      \strng{bibnamehash}{91a5f59705235ca27d945e711f7b1ccb}
+      \strng{authorbibnamehash}{91a5f59705235ca27d945e711f7b1ccb}
+      \strng{authornamehash}{91a5f59705235ca27d945e711f7b1ccb}
+      \strng{authorfullhash}{91a5f59705235ca27d945e711f7b1ccb}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{11}
+      \field{month}{1}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{What are the Electrical Specifications of GPIO pins?}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://raspberrypi.stackexchange.com/questions/60218/what-are-the-electrical-specifications-of-gpio-pins/60219#60219
+      \endverb
+      \verb{url}
+      \verb https://raspberrypi.stackexchange.com/questions/60218/what-are-the-electrical-specifications-of-gpio-pins/60219#60219
+      \endverb
+    \endentry
   \enddatalist
+  \missing{web_Raspbian}
 \endrefsection
 \endinput
 

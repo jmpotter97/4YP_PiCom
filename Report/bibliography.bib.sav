@@ -1,0 +1,43 @@
+% Encoding: UTF-8
+
+@Misc{web_RpiMaxRatings,
+  author = {Embedded Linux Wiki},
+  title  = {RPi Low-Level Peripherals},
+  date   = {2017-01-19},
+  note   = {[Online: Accessed ...]},
+  url    = {https://elinux.org/RPi_Low-level_peripherals},
+}
+
+@Misc{web_RPiSpecsSE,
+  author = {Raspberry Pi Stack Exchange},
+  title  = {What are the Electrical Specifications of GPIO pins?},
+  date   = {2017-01-11},
+  note   = {[Online: Accessed ...]},
+  url    = {https://raspberrypi.stackexchange.com/questions/60218/what-are-the-electrical-specifications-of-gpio-pins/60219#60219},
+}
+
+@Misc{web_SetupRaspbian,
+  author = {Mackenzie, James},
+  title  = {Headless Raspberry Pi Setup},
+  date   = {2017-01-02},
+  note   = {[Online: Accessed ...]},
+  url    = {https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0},
+}
+
+@Misc{web_MosaicSpecs,
+  author = {Mosaic Industries},
+  title  = {GPIO Electrical Specifications},
+  note   = {[Online: Accessed ...]},
+  url    = {http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications},
+}
+
+@Misc{web_GPIOPadsErrata,
+  author   = {Gert Van Loo},
+  title    = {GPIO Pads Control},
+  date     = {2012-08-02},
+  subtitle = {Errata},
+  note     = {[Online: Accessed ...]},
+  url      = {https://www.scribd.com/doc/101830961/GPIO-Pads-Control2},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

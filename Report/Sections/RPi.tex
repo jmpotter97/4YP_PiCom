@@ -10,7 +10,7 @@ Talk about the RPi and test bed.
 
 The Raspberry Pi is a simple, affordable ARM-based computing module. It has, which can interface\\
 
-It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \ref{web_Raspbian} \ref{web_Rasp}.\\
+It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \cite{web_Raspbian}.\\
 
 \todo[inline,color=blue!20]{Write Raspberry Pi Fundamentals}
 
@@ -23,8 +23,7 @@ It is run using a Linux-based operating system called Raspbian which is availabl
 
 \subsection{Setting up the Raspberry Pi}
 
-The Raspberry Pi can be interfaced with in a number of ways, but first it needs to be set up with its operating system on the SD card \ref{web_Setup Raspbian}.
-\todo[inline,color=blue!20]{MISSING REFERENCE - How to setup Raspbian https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0}
+The Raspberry Pi can be interfaced with in a number of ways, but first it needs to be set up with its operating system on the SD card \cite{web_SetupRaspbian}.
 Raspbian can be accessed via the command line - typing in commands - or through an X Window similar to Windows OS.
 Either of these options can be used by connecting a screen, keyboard and mouse to the Pi, but this is not always available, so it is useful to have Secure Shell (SSH) set up for the command line, and Virtual Network Computing (VNC) for the X Window.
 Secure Shell is necessary regardless as it is used in the test bed execution.
@@ -93,7 +92,7 @@ Included are the following, as well as their dependencies:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 \section{Test Bed Architecture}
-
+\todo[inline]{Mention BMC numbering scheme and full name for it}
 The test bed comprises the two Raspberry Pis and a number of chips to provide the functions required for more advanced modulation schemes.
 This is built up as three arrangements with increasing complexity.
 The first is the Pis connected together by two wires, a serial data line and a clock line (Figure \ref{fig_OOK Architecture}).
@@ -247,7 +246,28 @@ The channel coding used is syndrome decoding and is discussed more in Section \r
 
 
 \subsubsection{Starting the Receiver}
-\todo[inline]{Paramiko}
+
+The receiver is started with the library Paramiko \ref{lib_Paramiko} which is used to make an SSH connection, and then to execute a command on the device which it connects to.
+\todo[inline]{Missing reference - Paramiko}
+The host names of the transmitter and the receiver were changed to \textit{raspberrypi1} and \textit{raspberrypi2} to differentiate them, and their passwords changed to \textit{rasPass1} and \textit{rasPass2}.
+The devices are connected by an Ethernet cable so no connection to the internet is required, and so the transmitter uses the local host name of the receiver \textit{raspberrypi2.local}.\\
+
+The command to start the program is:\\
+
+\begin{lstlisting}[caption=Command Line to Start the Receiver]
+	command = "sudo python3 " + \
+		"/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" + \
+		" " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
+\end{lstlisting}
+
+The super user call \textit{sudo} is necessary for control of the GPIO pins in the receiver code.
+The command line argument \textit{mask\textunderscore length} is required by the receiver, and ensures that the amount of data received is the amount expected, and allows for the checking of deletions in the transmission.
+The other argument \textit{TRANSMISSION\textunderscore TYPE} is not required, but if passed it overwrites the transmission type in the receiver code to ensure that it is expecting the same modulation scheme that the transmitter is using.\\
+
+The SSH connection is closed as soon as the command is executed so that both Raspberry Pis are not expending resources during transmission, and any readout to \textit{stdout}, the standard output of the program under the connection is ignored.
+All logging of the execution of the receiver is instead appended to a Python list \textit{LOGS}, and this variable is written to a file \textit{LOGS.txt} at the end of execution.
+This includes all of the trivial to calculate results of the post-transmission analysis such as the number of bits/bytes received (whether there was any data lost).
+The transmitter also implements another SSH connection after transmission to read the \textit{LOGS.txt} file to the \textit{stdout} of the connection using the command \textit{cat} so that the user doesn't need to change the screen (if only one screen available) between Raspberry Pis every time to see whether the transmission was successful.\\
 
 \subsection{Advanced Modulation Schemes} \label{sec_Advanced Modulation Schemes}
 
@@ -256,6 +276,7 @@ PAM - as mentioned in section \ref{sec_Multiplier} 0-3
 256 PAM is similar to 4PAM and is not included for space and because it's not viable in this setup especially with the problem mentioned in Section \ref{sec_Components}.
 \todo[inline,color=green!40]{Make sure the right section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
 OFDM is also conceptualised here but due to the same problem, the continuous value issue mentioned above would need to be fixed before it could be implemented.
+OFDM could be used with blablabla... NumPy fftn, ifftn
 
 Here we will definitely talk about the transmitter generally.\\
 
