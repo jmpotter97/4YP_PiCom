@@ -19,39 +19,32 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
-    \entry{DhirNIPS2017}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=d4d235cd7b46bf2c8e98959e64daeccd}{%
-           family={Dhir},
-           familyi={D\bibinitperiod},
-           given={Neil},
-           giveni={N\bibinitperiod}}}%
-        {{hash=9299bb30e45c272278a56811f48bec0c}{%
-           family={Kosiorek},
-           familyi={K\bibinitperiod},
-           given={Adam\bibnamedelima Roman},
-           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=8b1ac4e074945df8dd16455dcc68886c}{%
-           family={Posner},
-           familyi={P\bibinitperiod},
-           given={Ingmar},
-           giveni={I\bibinitperiod}}}%
+    \entry{lib_Raspbian}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=cfc124424a21c596c14a4cb50ebc8d89}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Raspberry\bibnamedelima Pi},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
       }
-      \strng{namehash}{8959e3dce1617894261c565b455b9931}
-      \strng{fullhash}{8959e3dce1617894261c565b455b9931}
-      \strng{bibnamehash}{8959e3dce1617894261c565b455b9931}
-      \strng{authorbibnamehash}{8959e3dce1617894261c565b455b9931}
-      \strng{authornamehash}{8959e3dce1617894261c565b455b9931}
-      \strng{authorfullhash}{8959e3dce1617894261c565b455b9931}
+      \strng{namehash}{cfc124424a21c596c14a4cb50ebc8d89}
+      \strng{fullhash}{cfc124424a21c596c14a4cb50ebc8d89}
+      \strng{bibnamehash}{cfc124424a21c596c14a4cb50ebc8d89}
+      \strng{authorbibnamehash}{cfc124424a21c596c14a4cb50ebc8d89}
+      \strng{authornamehash}{cfc124424a21c596c14a4cb50ebc8d89}
+      \strng{authorfullhash}{cfc124424a21c596c14a4cb50ebc8d89}
       \field{sortinit}{1}
       \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{NIPS Timeseries Workshop}
-      \field{title}{{Bayesian Delay Embeddings for Dynamical Systems}}
-      \field{year}{2017}
-      \verb{file}
-      \verb 2017NIPS_dhir.pdf:http\://www.robots.ox.ac.uk/~mobile/Papers/2017NIPS_dhir.pdf:PDF
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{Raspbian}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://www.raspberrypi.org/downloads/raspbian/
+      \endverb
+      \verb{url}
+      \verb https://www.raspberrypi.org/downloads/raspbian/
       \endverb
     \endentry
     \entry{web_SetupRaspbian}{misc}{}
@@ -68,8 +61,8 @@
       \strng{authorbibnamehash}{708b706df410819f4c7b8365777bedcf}
       \strng{authornamehash}{708b706df410819f4c7b8365777bedcf}
       \strng{authorfullhash}{708b706df410819f4c7b8365777bedcf}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{2}
@@ -83,6 +76,272 @@
       \endverb
       \verb{url}
       \verb https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0
+      \endverb
+    \endentry
+    \entry{lib_PuTTY}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e1f2616e32f74ae07dd3a6d988339af0}{%
+           family={Tatham},
+           familyi={T\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e1f2616e32f74ae07dd3a6d988339af0}
+      \strng{fullhash}{e1f2616e32f74ae07dd3a6d988339af0}
+      \strng{bibnamehash}{e1f2616e32f74ae07dd3a6d988339af0}
+      \strng{authorbibnamehash}{e1f2616e32f74ae07dd3a6d988339af0}
+      \strng{authornamehash}{e1f2616e32f74ae07dd3a6d988339af0}
+      \strng{authorfullhash}{e1f2616e32f74ae07dd3a6d988339af0}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{8}
+      \field{month}{6}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{PuTTY: a free SSH and Telnet client}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.chiark.greenend.org.uk/~sgtatham/putty/
+      \endverb
+      \verb{url}
+      \verb https://www.chiark.greenend.org.uk/~sgtatham/putty/
+      \endverb
+    \endentry
+    \entry{lib_RealVNCViewer}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=1afddd33ade637512fec57194e74d46c}{%
+           family={RealVNC},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{1afddd33ade637512fec57194e74d46c}
+      \strng{fullhash}{1afddd33ade637512fec57194e74d46c}
+      \strng{bibnamehash}{1afddd33ade637512fec57194e74d46c}
+      \strng{authorbibnamehash}{1afddd33ade637512fec57194e74d46c}
+      \strng{authornamehash}{1afddd33ade637512fec57194e74d46c}
+      \strng{authorfullhash}{1afddd33ade637512fec57194e74d46c}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{Download VNC Viewer}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://www.realvnc.com/en/connect/download/viewer/
+      \endverb
+      \verb{url}
+      \verb https://www.realvnc.com/en/connect/download/viewer/
+      \endverb
+    \endentry
+    \entry{lib_VPNC}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=fdc1a72ee05de60e94c25b1259be07be}{%
+           family={Bloch},
+           familyi={B\bibinitperiod},
+           given={Eduard},
+           giveni={E\bibinitperiod}}}%
+        {{hash=c6bc239f71158d62bb3590439d92155c}{%
+           family={Lackas},
+           familyi={L\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{fed06ae90751af4aff6034baa6f409c9}
+      \strng{fullhash}{fed06ae90751af4aff6034baa6f409c9}
+      \strng{bibnamehash}{fed06ae90751af4aff6034baa6f409c9}
+      \strng{authorbibnamehash}{fed06ae90751af4aff6034baa6f409c9}
+      \strng{authornamehash}{fed06ae90751af4aff6034baa6f409c9}
+      \strng{authorfullhash}{fed06ae90751af4aff6034baa6f409c9}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{23}
+      \field{month}{11}
+      \field{note}{[Online: Accessed ...]}
+      \field{subtitle}{VPNC}
+      \field{title}{System Administration Utilities}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://manpages.debian.org/testing/vpnc/vpnc.8.en.html
+      \endverb
+      \verb{url}
+      \verb https://manpages.debian.org/testing/vpnc/vpnc.8.en.html
+      \endverb
+    \endentry
+    \entry{lib_Paramiko}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=463212a1f7a42889ccd3612c33bc5cbe}{%
+           family={Forcier},
+           familyi={F\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{463212a1f7a42889ccd3612c33bc5cbe}
+      \strng{fullhash}{463212a1f7a42889ccd3612c33bc5cbe}
+      \strng{bibnamehash}{463212a1f7a42889ccd3612c33bc5cbe}
+      \strng{authorbibnamehash}{463212a1f7a42889ccd3612c33bc5cbe}
+      \strng{authornamehash}{463212a1f7a42889ccd3612c33bc5cbe}
+      \strng{authorfullhash}{463212a1f7a42889ccd3612c33bc5cbe}
+      \field{sortinit}{6}
+      \field{sortinithash}{57e57fb8451e7fcfa45d1e069f6d3136}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{Welcome to Paramiko!}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb http://www.paramiko.org/
+      \endverb
+      \verb{url}
+      \verb http://www.paramiko.org/
+      \endverb
+    \endentry
+    \entry{lib_NumPy}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ac8f9f6d402eb41cc08675c881fbc576}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={NumPy},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{ac8f9f6d402eb41cc08675c881fbc576}
+      \strng{fullhash}{ac8f9f6d402eb41cc08675c881fbc576}
+      \strng{bibnamehash}{ac8f9f6d402eb41cc08675c881fbc576}
+      \strng{authorbibnamehash}{ac8f9f6d402eb41cc08675c881fbc576}
+      \strng{authornamehash}{ac8f9f6d402eb41cc08675c881fbc576}
+      \strng{authorfullhash}{ac8f9f6d402eb41cc08675c881fbc576}
+      \field{sortinit}{7}
+      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{NumPy}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb http://www.numpy.org/
+      \endverb
+      \verb{url}
+      \verb http://www.numpy.org/
+      \endverb
+    \endentry
+    \entry{lib_imageio}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=240f1fe5a2809a00b6c57f8a2f59ccfe}{%
+           family={Klein},
+           familyi={K\bibinitperiod},
+           given={Almar},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
+      \strng{fullhash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
+      \strng{bibnamehash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
+      \strng{authorbibnamehash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
+      \strng{authornamehash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
+      \strng{authorfullhash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
+      \field{sortinit}{8}
+      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{subtitle}{Python library for reading and writing image data}
+      \field{title}{imageio}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://imageio.github.io/
+      \endverb
+      \verb{url}
+      \verb https://imageio.github.io/
+      \endverb
+    \endentry
+    \entry{lib_pigpio}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=6f003d73c4417ee25564e9a5c6ad755e}{%
+           family={joan2937},
+           familyi={j\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{fullhash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{bibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{authorbibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{authornamehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{authorfullhash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \field{sortinit}{9}
+      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{5}
+      \field{month}{4}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{The pigpio library}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://abyz.me.uk/rpi/pigpio/index.html
+      \endverb
+      \verb{url}
+      \verb http://abyz.me.uk/rpi/pigpio/index.html
+      \endverb
+    \endentry
+    \entry{lib_Git}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8f4ee0c97dee95179ce1e79e846dd298}{%
+           family={Chacon},
+           familyi={C\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{8f4ee0c97dee95179ce1e79e846dd298}
+      \strng{fullhash}{8f4ee0c97dee95179ce1e79e846dd298}
+      \strng{bibnamehash}{8f4ee0c97dee95179ce1e79e846dd298}
+      \strng{authorbibnamehash}{8f4ee0c97dee95179ce1e79e846dd298}
+      \strng{authornamehash}{8f4ee0c97dee95179ce1e79e846dd298}
+      \strng{authorfullhash}{8f4ee0c97dee95179ce1e79e846dd298}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{Git}
+      \verb{urlraw}
+      \verb https://git-scm.com/
+      \endverb
+      \verb{url}
+      \verb https://git-scm.com/
+      \endverb
+    \endentry
+    \entry{lib_RPi.GPIO}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e916da348163d73c23a44e14dd07cb27}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Python\bibnamedelima Software},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{fullhash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{bibnamehash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{authorbibnamehash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{authornamehash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{authorfullhash}{e916da348163d73c23a44e14dd07cb27}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{30}
+      \field{month}{10}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{RPi.GPIO 0.6.3}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://pypi.org/project/RPi.GPIO/
+      \endverb
+      \verb{url}
+      \verb https://pypi.org/project/RPi.GPIO/
       \endverb
     \endentry
     \entry{web_RpiMaxRatings}{misc}{}
@@ -99,8 +358,8 @@
       \strng{authorbibnamehash}{817fe06b4a6398605a966f57b954d618}
       \strng{authornamehash}{817fe06b4a6398605a966f57b954d618}
       \strng{authorfullhash}{817fe06b4a6398605a966f57b954d618}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{19}
@@ -130,8 +389,8 @@
       \strng{authorbibnamehash}{91a5f59705235ca27d945e711f7b1ccb}
       \strng{authornamehash}{91a5f59705235ca27d945e711f7b1ccb}
       \strng{authorfullhash}{91a5f59705235ca27d945e711f7b1ccb}
-      \field{sortinit}{5}
-      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{11}
@@ -147,8 +406,96 @@
       \verb https://raspberrypi.stackexchange.com/questions/60218/what-are-the-electrical-specifications-of-gpio-pins/60219#60219
       \endverb
     \endentry
+    \entry{web_MosaicSpecs}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d975504859cedbbd020768292ed2f749}{%
+           family={Industries},
+           familyi={I\bibinitperiod},
+           given={Mosaic},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d975504859cedbbd020768292ed2f749}
+      \strng{fullhash}{d975504859cedbbd020768292ed2f749}
+      \strng{bibnamehash}{d975504859cedbbd020768292ed2f749}
+      \strng{authorbibnamehash}{d975504859cedbbd020768292ed2f749}
+      \strng{authornamehash}{d975504859cedbbd020768292ed2f749}
+      \strng{authorfullhash}{d975504859cedbbd020768292ed2f749}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{GPIO Electrical Specifications}
+      \verb{urlraw}
+      \verb http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications
+      \endverb
+      \verb{url}
+      \verb http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications
+      \endverb
+    \endentry
+    \entry{web_GPIOPadsErrata}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ae8e2a209fd5f7a7272eb24053c33a2a}{%
+           family={Loo},
+           familyi={L\bibinitperiod},
+           given={Gert\bibnamedelima Van},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{ae8e2a209fd5f7a7272eb24053c33a2a}
+      \strng{fullhash}{ae8e2a209fd5f7a7272eb24053c33a2a}
+      \strng{bibnamehash}{ae8e2a209fd5f7a7272eb24053c33a2a}
+      \strng{authorbibnamehash}{ae8e2a209fd5f7a7272eb24053c33a2a}
+      \strng{authornamehash}{ae8e2a209fd5f7a7272eb24053c33a2a}
+      \strng{authorfullhash}{ae8e2a209fd5f7a7272eb24053c33a2a}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{2}
+      \field{month}{8}
+      \field{note}{[Online: Accessed ...]}
+      \field{subtitle}{Errata}
+      \field{title}{GPIO Pads Control}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.scribd.com/doc/101830961/GPIO-Pads-Control2
+      \endverb
+      \verb{url}
+      \verb https://www.scribd.com/doc/101830961/GPIO-Pads-Control2
+      \endverb
+    \endentry
+    \entry{lib_pigpioHWClock}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=6f003d73c4417ee25564e9a5c6ad755e}{%
+           family={joan2937},
+           familyi={j\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{fullhash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{bibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{authorbibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{authornamehash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \strng{authorfullhash}{6f003d73c4417ee25564e9a5c6ad755e}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{20}
+      \field{month}{3}
+      \field{note}{[Online: Accessed ...]}
+      \field{subtitle}{gpioHardwareClock}
+      \field{title}{pigpio C Interface}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://abyz.me.uk/rpi/pigpio/cif.html#gpioHardwareClock
+      \endverb
+      \verb{url}
+      \verb http://abyz.me.uk/rpi/pigpio/cif.html#gpioHardwareClock
+      \endverb
+    \endentry
   \enddatalist
-  \missing{web_Raspbian}
 \endrefsection
 \endinput
 

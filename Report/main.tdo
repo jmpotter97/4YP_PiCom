@@ -1,40 +1,26 @@
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Layout of title page -- Must have project title, name, college}{1}{section*.1}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Change/confirm layout of title page -- Must have project title, name, college}{1}{section*.1}
 \contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ RED - Important information to check/change}{1}{section*.2}
 \contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ BLUE - Sections and parts that still need writing/editing}{1}{section*.3}
 \contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ GREEN - Formatting of sections and layout of images/figures}{1}{section*.4}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Abstract - Do I need an abstract? If so, write this last.}{1}{section*.5}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ USE "CLEARPAGE" (INCLUDE FIGURES) AND "NEWPAGE" TO MAKE SURE SECTIONS ARE AS THEY SHOULD BE}{1}{section*.6}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Read back through the documentation, help pages, my own notes on how 4YP should be written and presented}{1}{section*.7}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Figure out how the Intro Chapter will be formatted}{5}{section*.10}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Still need to write this whole section}{5}{section*.11}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Raspberry Pi Fundamentals}{7}{section*.12}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Inline code reference should look like inline code}{8}{section*.14}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ MISSING REFERENCE - https://www.realvnc.com/en/connect/download/viewer/}{8}{section*.15}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Find python version of Pis}{8}{section*.16}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Create new format (and inline for above) called "shell"}{9}{section*.17}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Include matplotlib if used in the end - ALSO INCLUDE REFERENCES TO ALL LIBRARIES MENTIONED}{9}{section*.18}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Do I need to change GitHub to an anonymous account if only candidate number is on cover page}{9}{section*.19}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Mention BMC numbering scheme and full name for it}{11}{section*.20}
-\contentsline {todo}{Figure: Layout of Digital Analogue Converter}{12}{subsection.2.2.2}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Depending whether it's doable, include this section without multipliers on transmitter, pseudo ground on output}{13}{section*.24}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Need a diagramatic representation as well as an actual picture}{14}{section*.27}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Include a section on pricing of the parts and comparison to actually used test beds}{14}{section*.29}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Continue to add to this list as you write the Architecture section - remove redundant information already discussed in earlier sections}{15}{section*.30}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Make sure I am consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}{15}{section*.31}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Fact check this}{15}{section*.32}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Add bib reference to RPi.GPIO https://pypi.python.org/pypi/RPi.GPIO}{16}{section*.33}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ CHECK - Do I need to change this from my name to an anonymous account if only candidate number is on cover page}{16}{section*.34}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Rephrase this and make sure the section referenced is as consistent with this comment as possible}{16}{section*.35}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Missing reference - Paramiko}{18}{section*.37}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Make sure the right section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}{19}{section*.38}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Which method is more effective}{22}{section*.41}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Add a comment about the range of 2 to 28 not 0 to 32 in bank writing}{22}{section*.42}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Computing and Components Sections}{24}{section*.45}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Comparison of transmitter bank vs individual write and receiver read (callback) and read vars on clock pulse vs bank read on clock pulse -- Also mention }{25}{section*.46}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Missing reference above and -- Check rise time and max freq of this function below}{26}{section*.50}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Mention the fact that we had to deal with deletion channel vs error channel, clocked vs unclocked Justin's project - http://diwine-project.eu/public/publications.html}{28}{section*.52}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Comms Testing}{28}{section*.53}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Make sure SNR computation is fully understood before capturing values}{28}{section*.54}
-\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Conclusion}{30}{section*.55}
-\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Make sure each figure is referenced explicitly in text and has a title}{30}{section*.56}
-\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Format for web pages should be:}{31}{section*.58}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Abstract - Write this last.}{1}{section*.5}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Still need to write the Introduction Chapter}{5}{section*.8}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Raspberry Pi Fundamentals -- and take a better picture}{7}{section*.9}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Inline code reference should look like inline code not just italics ideally}{9}{section*.11}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Double check Python version of Pis is correct}{9}{section*.12}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write up layout of the ADC and more on Multiplier and other parts}{12}{section*.15}
+\contentsline {todo}{Figure: Layout of the Analogue Digital Converter}{12}{section*.15}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Need a diagramatic representation of this as well as an actual picture of the final test bed}{13}{section*.18}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Include a section on pricing of the parts and of the whole test bed, comparison to examples of projects and commercial solutions mentioned in Literature Review (Section \ref {sec_Lit Review})}{14}{section*.20}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Continue to add to this list as you write the Architecture section - remove redundant information already discussed in the Section itself for each part}{14}{section*.21}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Make sure it's consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}{14}{section*.22}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Rephrase this and make sure the section referenced is as consistent with this comment as possible}{16}{section*.23}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write up notes in Advanced Modulation Schemes into a proper coherent section}{19}{section*.25}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Make sure the corresponding section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}{19}{section*.26}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Which method is more effective?}{22}{section*.29}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Computing and Components Sections - I have all the data, screen shots and component characterising values}{25}{section*.32}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Comparison of transmitter bank vs individual write and receiver read (callback) and read vars on clock pulse vs bank read on clock pulse -- Also mention }{25}{section*.34}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Neet to write up the Comms Testing -- Mention the fact that we had to deal with deletion channel vs error channel, clocked vs unclocked, Justin's project - http://diwine-project.eu/public/publications.html}{28}{section*.39}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ I'm not entirely clear on how you would calculate the SNR for these signals, considering we end up with a bit stream on either end and so bit error rate is easy to understand. Some insight as I'm writing up the test results would be handy}{29}{section*.40}
+\contentsline {todo}{\color@fb@x {}{black}{}{blue!20}{\leavevmode {\color {blue!20}o}}\ Write Conclusion}{30}{section*.41}
+\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color {orange}o}}\ Make sure each figure is referenced explicitly in text and has a title}{30}{section*.42}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Format for web pages should be:}{32}{section*.44}

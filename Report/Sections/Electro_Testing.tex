@@ -55,11 +55,13 @@ All values were measured on a multi-meter and using the pin GPIO4 as pins 2 and 
 These impedances show that even the lowest input impedance of \SI{48.93}{\kilo\ohm} will only draw \SI{67.44}{\micro\ampere} of current from a \SI{3.3}{\volt} GPIO pin, three orders of magnitude lower than the maximum current enough that these pins from one Raspberry Pi can be connected directly to those of another. 
 The ground pins of Raspberry Pis must be connected together so that they share a common reference for the data levels.\\
 
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Computational Characteristics of the Raspberry Pi} \label{sec_Computation}
 
-\todo[inline,color=blue!20]{Write Computing and Components Sections}
+\todo[inline,color=blue!20]{Write Computing and Components Sections - I have all the data, screen shots and component characterising values}
 
 time.time() in for loop - 3.32 us
 time.time() in while loop with i++ - 4.02 us = slower
@@ -71,7 +73,16 @@ sleep(1/freq) - 104.13 us
 sleep(1/freq-timeDif) - 90.08 us == REMOVES DELAY OF ~15us - GPIO AND A BIT
 SAME without sleep(1/freq) (just GPIO) - 5.18 us
 SAME without GPIO.output (just sleep(1/freq)) - 97.18 us == SLEEP IS THE INEFFICIENT FUNCTION LOSING ME TIME
-You can hard-code in the ~104e-6 value to get offset of ~5us instead of 104us but this is not ideal - need to compare to coding in c...
+You can hard-code in the ~104e-6 value to get offset of ~5us instead of 104us but this is not ideal - need to compare to coding in c...\\
+
+Table from interim report and two screen shots in particular.\\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Benchmarking_Data.jpg}
+	\caption{Benchmarking initial data collection}
+	%\label{fig_}
+\end{figure}
 
 \subsection{Maximum Frequency}
 
@@ -79,13 +90,15 @@ You can hard-code in the ~104e-6 value to get offset of ~5us instead of 104us bu
 
 \subsection{Comparing Python and C} \label{sec_Comparing Python and C}
 
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Characterising Components of the Test Bed} \label{sec_Components}
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{DAC_Output.jpg}
+	\includegraphics[width=0.4\textwidth]{DAC_Output.jpg}
 	\caption{Non-continuous Output for Continuous Input Values of the DAC}
 	%\label{fig_}
 \end{figure}
@@ -99,7 +112,7 @@ You can hard-code in the ~104e-6 value to get offset of ~5us instead of 104us bu
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Pulse_Output.jpg}
+	\includegraphics[width=0.6\textwidth]{Sine_Output.jpg}
 	\caption{Output of pulse generator once filtered to be sine waves}
 	%\label{fig_}
 \end{figure}
@@ -118,16 +131,16 @@ Electrical Components:
 \subsection{Overclocking Components}
 
 The \textit{pigpio} library has access to the hardware clocks of the Raspberry Pi.
-Specifically on the Pis used, it has the ability to set a hardware clock which is not reserved for system use to a specified frequency between \SI{4.7}{\kilo\hertz} and \SI{250}{\mega\hertz} on pin 4, although the library documentation suggests that frequencies above \SI{30}{\mega\hertz} are unlikely to work.
+Specifically on the Pis used, it has the ability to set a hardware clock which is not reserved for system use to a specified frequency between \SI{4.7}{\kilo\hertz} and \SI{250}{\mega\hertz} on pin 4, although the library documentation suggests that frequencies above \SI{30}{\mega\hertz} are unlikely to work \cite{lib_pigpioHWClock}.\\
+
 There are certain components such as the Analogue Digital Converter and the pulse generator which work using an internal clock set by an external resistor, but which may be overclocked by an external clocking signal, and this functionality may be used.
 This would allow the frequencies of these devices to be defined in software with less reliance on external physical components.
 The pulse generator isn't as good an example as it still uses external filtering to generate sinusoidal outputs, but this is particularly relevant for the ADC as it requires eight clock pulses per conversion, and setting a hardware clock for (at least) eight times the transmission frequency is one way of ensuring this in software.\\
-\ref{http://abyz.me.uk/rpi/pigpio/cif.html#gpioHardwareClock}.
-\todo[inline]{Missing reference above and -- Check rise time and max freq of this function below}
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Clock_Analyse.jpg}
-	\caption{This is a high frequency view of the hardware clock for interest and rise-time (max frequency achievable actually)}
+	\caption{This is a high frequency view of the hardware clock for interest and rise-time (max frequency achievable actually) - will analyse screen grab from Oscilloscope and include in report}
 	%\label{fig_}
 \end{figure}
 

@@ -1,36 +1,41 @@
 \documentclass[../main.tex]{subfiles}
 	% COMMUNICATIONS TESTING
-\begin{document}s
+\begin{document}
 
-\todo[inline,color=blue!20]{Mention the fact that we had to deal with deletion channel vs error channel, clocked vs unclocked Justin's project - http://diwine-project.eu/public/publications.html}
+\todo[inline,color=blue!20]{Neet to write up the Comms Testing -- Mention the fact that we had to deal with deletion channel vs error channel, clocked vs unclocked, Justin's project - http://diwine-project.eu/public/publications.html}
 
-Testing Communications and shizniz.
-\todo[inline,color=blue!20]{Write Comms Testing}
-\textbf{Easily Attainable:}
-Construct a basic wired unidirectional communication test bed complete with a transmitter and a receiver.
-These units should be synchronised and an appropriate line code (i.e., baseband modulation scheme) should be exploited to convey test data from one device to another.\\
+Testing Communications, remember project levels:\\
 
-\textbf{Medium Complexity:}
-Characterise the performance of the test bed, identifying bandwidth limitations, noise characteristics, and reliability for different modulation and coding schemes. Test specific state-of-the-art modulation techniques recently published in the research literature. (These will be identified by the supervisor).\\
+\begin{quotation}
+	\textbf{Easily Attainable:}
+	Construct a basic wired unidirectional communication test bed complete with a transmitter and a receiver.
+	These units should be synchronised and an appropriate line code (i.e., baseband modulation scheme) should be exploited to convey test data from one device to another.\\
+	
+	\textbf{Medium Complexity:}
+	Characterise the performance of the test bed, identifying bandwidth limitations, noise characteristics, and reliability for different modulation and coding schemes. Test specific state-of-the-art modulation techniques recently published in the research literature. (These will be identified by the supervisor).\\
+	
+	\textbf{Advanced:}
+	Develop design enhancements that will enable the test bed to be extended to wireless scenarios, including RF and optical wireless systems.
+	Implement these modifications if the budget permits.
+\end{quotation}
 
-\textbf{Advanced:}
-Develop design enhancements that will enable the test bed to be extended to wireless scenarios, including RF and optical wireless systems.
-Implement these modifications if the budget permits.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{SNR for Different Modulation Schemes}
 
-\todo[inline]{Make sure SNR computation is fully understood before capturing values}
+\todo[inline]{I'm not entirely clear on how you would calculate the SNR for these signals, considering we end up with a bit stream on either end and so bit error rate is easy to understand. Some insight as I'm writing up the test results would be handy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Error Rate}
 
+Bit error rate of transmission.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Channel Coding} \label{sec_Channel Coding}
 
-
+Syndrome decoding - not a large amount of it covered but rather interesting stuff!
 
 \end{document}
