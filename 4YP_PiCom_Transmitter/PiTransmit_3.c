@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
 		// Low-going CS signal loads data (min low CS 10ns, min high CS 7ns)
 		usleep(1);
 		gpioWrite(CLK_PIN, 0);
-		usleep(symbol_time-1);
+		usleep(symbol_time);
 		gpioWrite(CLK_PIN,1);
 		usleep(symbol_time);
 		//printf("%i\nPause, press <ENTER> to continue...\n", i);
