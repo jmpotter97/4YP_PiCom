@@ -17,7 +17,6 @@ const uint CLK_PIN = 16;
 
 
 int main(int argc, char *argv[]) {
-	
 	/************************   SETUP   ************************/
 	printf("SETUP\n");
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
@@ -31,7 +30,7 @@ int main(int argc, char *argv[]) {
 		symbol_freq = atoi(argv[1]);
 		// Returns 0 if not a number string (and 0 not OK freq anyway)
 		if(symbol_freq == 0) {
-			printf("PiTransmit_3\n\n");
+			printf("--- PiTransmit_3 ---\n\nInvalid Frequency\n");
 			printf("Usage: ./PiTransmit_3 symbol_freq \n");
 			gpioTerminate();
 			return 3;	 
