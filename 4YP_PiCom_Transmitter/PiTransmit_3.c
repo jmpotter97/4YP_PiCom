@@ -100,7 +100,6 @@ int main(int argc, char *argv[]) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
 		// Low-going CS signal loads data (min low CS 10ns, min high CS 7ns)
-		usleep(1);
 		gpioWrite(CLK_PIN, 0);
 		usleep(symbol_time);
 		gpioWrite(CLK_PIN,1);
