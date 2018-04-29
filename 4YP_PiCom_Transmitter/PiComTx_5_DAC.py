@@ -202,9 +202,10 @@ def Get_Step_Bytes():
     multiple_fine = np.tile(step_fine, 40)
 
     # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
+    pam4_once = np.ones(1, dtype='uint8')*27
     pam4 = np.ones(50, dtype='uint8')*27
 
-    return multiple_fine
+    return step_fine
     
 
 
@@ -237,6 +238,9 @@ def Convert_To_Data_Mask(data_list):
             WHERE F() MAPS THE 8-BIT DAC VALUE TO THE 32-BIT MASK
     '''
 
+    # DAC Lookup table because DAC output is not working properly
+    DAC_lookup = [0, 74, 233, 128]
+
     if TRANSMISSION_TYPE == "256PAM":
         # 1 SYMB/byte --> 0, 1, ..., 255
         # DAC = INPUT
@@ -264,7 +268,10 @@ def Convert_To_Data_Mask(data_list):
                 symb[4*i+3-s] = ((1<<(2*s+1) | 1<<(2*s)) & byte) \
                                                    // (2**(2*s))
         # DAC
-        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
+        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        for i, s in enumerate(symb):
+            symb[i] = DAC_lookup[s]
         # MASK
         mask = np.zeros_like(symb)
         for i, DAC_level in enumerate(symb):
@@ -295,7 +302,12 @@ def Convert_To_Data_Mask(data_list):
             symb[2*i] = qam_const[byte // 16]
             symb[2*i+1] = qam_const[byte % 16]
         # DAC
-        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        # DAC
+        # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
+        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        for i, s in enumerate(symb):
+            symb[i,0] = DAC_lookup[s[0]]
+            symb[i,1] = DAC_lookup[s[1]]
         # MASK
         mask = np.zeros(symb.shape[0], dtype=np.uint32)
         for i, DAC_levels in enumerate(symb):
