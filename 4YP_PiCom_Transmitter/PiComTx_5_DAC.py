@@ -261,16 +261,16 @@ def Convert_To_Data_Mask(data_list):
         # 4 SYMB/byte --> 0, 1, 2, 3
         symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
-            for s in range(4):
-                if i % 25000 == 0 and i != 0:  #Stats
+            if i % 25000 == 0 and i != 0:  #Stats
                     print("Symbol - {}".format(4*i))
+            for s in range(4):
                 symb[4*i+3-s] = ((1<<(2*s+1) | 1<<(2*s)) & byte) \
                                                    // (2**(2*s))
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
-        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        for i, s in enumerate(symb):
-            symb[i] = DAC_lookup[s]
+        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        '''for i, s in enumerate(symb):
+            symb[i] = DAC_lookup[s]'''
         # MASK
         mask = np.zeros_like(symb)
         for i, DAC_level in enumerate(symb):
@@ -451,8 +451,8 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        input_stream = Get_Step_Bytes()
-        #input_stream = Get_Image_Bytes('cat.png')
+        #input_stream = Get_Step_Bytes()
+        input_stream = Get_Image_Bytes('cat2.jpg')
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")

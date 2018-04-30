@@ -9,7 +9,7 @@ LOGS_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
 if os.path.isfile(LOGS_PATH):
     os.remove(LOGS_PATH)
 LOGS = ["********** RECEIVER LOG FILE **********\n"]
-DATA_PATH = "data_masks.bin"
+DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin"
 TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "4PAM"
 
@@ -101,11 +101,7 @@ def Receive_Data(size, LOGS):
 
 
 def Decode_Masks(masks, LOGS):
-    LOGS.append("Decoding masks...")
-    ''' Prototyping
-    if "PAM" in TRANSMISSION_TYPE:
-        
-    '''
+    LOGS.append("Decoding masks...\n")
 
     '''
     MASK goes through a number of stages:
@@ -144,18 +140,18 @@ def Decode_Masks(masks, LOGS):
             masks[i] = val
         # Masks are 8-bit but attenuated
         highest = max(masks)
-        LOGS.append("Attenuation = {}".format( (255-highest) / 255 ))
+        LOGS.append("Attenuation = {}\n".format( (255-highest) / 255 ))
         # SYMB
         for i in range(masks.size):
-            if highest != 255:
+            if highest != 255 and highest != 0:
                 masks[i] = round(masks[i]*255/highest)
             # Masks are 8-bit and full-range
             # Maximum likelihood reconstruction of masks to symbols:
-            if masks[i] < (1-0)*85/2:
+            if masks[i] < 0.5*85:
                 masks[i] = 0
-            elif (1-0)*85/2 < masks[i] < (2-1)*85/2:
+            elif 0.5*85 < masks[i] < 1.5*85:
                 masks[i] = 1
-            elif (2-1)*85/2 < masks[i] < (3-2)*85/2:
+            elif 1.5*85 < masks[i] < 2.5*85:
                 masks[i] = 2
             else:
                 masks[i] = 3
@@ -210,15 +206,17 @@ def Decode_Error_Correction(out, LOGS):
 
 
 def Save_As_Image(out, path, LOGS):
-        if out.size == 160000:
-            io.imwrite(path, out.reshape(400,400))
-        elif out.size < 160000:
-            img = np.zeros(160000, dtype='uint8')
-            for i, o in enumerate(out):
-                img[i] = o
-            io.imwrite(path, img.reshape(400,400))
-        else:
-            io.imwrite(path, out[:160000].reshape(400,400))
+    if os.path.isfile(path):
+        os.remove(path)
+    if out.size == 256*256*3:
+        io.imwrite(path, out.reshape(256,256,3))
+    elif out.size < 256*256*3:
+        img = np.zeros(256*256*3, dtype='uint8')
+        for i, o in enumerate(out):
+            img[i] = o
+        io.imwrite(path, img.reshape(256,256,3))
+    else:
+        io.imwrite(path, out[:256*256*3].reshape(256,256,3))
 
 
 '''--------------------------------   Main   --------------------------------'''
@@ -236,11 +234,11 @@ def main():
             with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
                 f.write("".join(str(i) for i in output))
         else:
-            output_masks = Receive_Data(mask_size, LOGS)
+            output_masks = np.fromfile(DATA_PATH, dtype='uint32')#Receive_Data(mask_size, LOGS)
             
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
-                Save_As_Image(output, 'cat_bw_out.png', LOGS)
+                Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_bw.jpg', LOGS)
             else:
                 LOGS.append("No data was received\n")
     else:
@@ -252,6 +250,7 @@ def main():
 # won't slow down C part of receiver
 try:
     main()
+    LOGS.append("\nCompleted Receiver code!\n")
 except KeyboardInterrupt:
     LOGS.append("\nExiting on keyboard interrupt!\n")
 except Exception as e:

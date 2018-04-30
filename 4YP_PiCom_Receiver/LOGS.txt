@@ -1,7 +1,0 @@
-********** RECEIVER LOG FILE **********
-TRANSMISSION TYPE: OOK
-Mask size command line variable not correctly used
-
-------- PiComRx_5_DAC.py -------
-
-Usage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]
