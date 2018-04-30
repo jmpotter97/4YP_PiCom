@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "256PAM"
+TRANSMISSION_TYPE = "4PAM"
 
 if len(argv) > 1:
         TRANSMISSION_TYPE = argv[1]
@@ -207,7 +207,6 @@ def Get_Step_Bytes():
 
     return step_fine
     
-
 
 def Get_Image_Bytes(path):
     # PIL modes - RGB, L (greyscale)
