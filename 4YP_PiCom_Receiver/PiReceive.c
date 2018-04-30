@@ -24,16 +24,17 @@ void readPins(int gpio, int level, uint tick, void* data) {
             *((uint32_t*)(data + count++)) = current_state;
             //printf("%i\n", count);
         } else {
-            gpioSetAlertFuncEx(clock_pin, 0, NULL);
+            gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
             gpioSetWatchdog(CLK_PIN,0);
-            pin_state = 1<<32 - 1;
-            printf("DONE!\n\n");
+            pin_state = 4294967295;
+            // 4294967295 is (2^32 - 1) all pins = 1
+            printf("Mask size completely received!\n");
         }
     } else if(level == 2) {
-        gpioSetAlertFuncEx(clock_pin, 0, NULL);
+        gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
         gpioSetWatchdog(CLK_PIN,0);
-        pin_state = 1<<32 - 1;
-        printf("Watchdog timeout on clock");
+        pin_state = 4294967295;
+        printf("Watchdog timeout on clock pin\n");
     }
 }
 
@@ -110,7 +111,7 @@ int main(int argc, char *argv[]) {
     while(1) {
         // All pins set to 1 (which will never happen unless program
         // ends and sets this variable to all 1's)
-        if(pin_state == 1<<32 - 1)
+        if(pin_state == 4294967295)
             break;
         sleep(1);
     }
