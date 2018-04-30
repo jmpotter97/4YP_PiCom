@@ -30,7 +30,7 @@ else:
     LOGS.append("TRANSMISSION TYPE: {}\n".format(TRANSMISSION_TYPE))
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
-                         [2, 3, 4, 17, 27, 22, 23, 24]
+                         [14, 15, 18, 17, 27, 22, 23, 24]
 
 
 # Nice to use for debugging
@@ -84,8 +84,10 @@ def Receive_Data(size, LOGS):
 		
     return_options = { 0 : "Data transmission complete!\n",
 		       1 : "Data receive failed!\n",
-		       2 : "GPIO INIT FAIL\n",	 # Add more failure codes
-		       3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n"}
+		       2 : "GPIO INIT FAIL\n",
+                       3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n",
+                       4 : "Memory to receive data was not allocated!",
+                       5 : "Invalid Mask Size (Zero or not a number)"}
 
     if return_code in return_options:
         LOGS.append(return_options[return_code])

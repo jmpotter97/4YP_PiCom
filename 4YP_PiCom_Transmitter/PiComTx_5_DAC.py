@@ -43,7 +43,7 @@ else:
     print("TRANSMISSION TYPE: {}".format(TRANSMISSION_TYPE))
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
-                         [2, 3, 4, 17, 27, 22, 23, 24]
+                         [14, 15, 18, 17, 27, 22, 23, 24]
 DAC_MASK_1, DAC_MASK_2 = 0, 0
 for pin1 in DAC_PINS_1:
 	DAC_MASK_1 |= (1<<pin1)
