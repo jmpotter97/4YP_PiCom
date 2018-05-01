@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "4PAM"
+TRANSMISSION_TYPE = "16QAM"
 
 if len(argv) > 1:
         TRANSMISSION_TYPE = argv[1]
@@ -303,10 +303,10 @@ def Convert_To_Data_Mask(data_list):
         # DAC
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
-        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        for i, s in enumerate(symb):
+        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        '''for i, s in enumerate(symb):
             symb[i,0] = DAC_lookup[s[0]]
-            symb[i,1] = DAC_lookup[s[1]]
+            symb[i,1] = DAC_lookup[s[1]]'''
         # MASK
         mask = np.zeros(symb.shape[0], dtype=np.uint32)
         for i, DAC_levels in enumerate(symb):

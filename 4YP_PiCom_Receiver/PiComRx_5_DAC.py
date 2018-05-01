@@ -161,7 +161,19 @@ def Decode_Masks(masks, LOGS):
                 out[i] |= (2 ** (2*s)) * masks[4*i+3-s]
         return out
     elif TRANSMISSION_TYPE == "16QAM":
-        # 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
+        out = np.zeros((masks.size//2, 2), dtype='uint8')
+        # SYMB
+        symb = np.zeros((masks.size//2, 2), dtype='uint32')
+        # DAC
+        # Masks are 32-bit
+        for i, mask in enumerate(masks):
+            val = 0
+            for j, pin in enumerate(DAC_PINS_1):
+                # If each bit in mask exists, include it in out
+                if (1<<pin) & mask:
+                    val |= (1<<(7-j))
+            masks[i] = val
+        '''# 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
         # Expressing I as col 1, Q as col 2 of N x 2 matrix
         symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
         # Each value pair (indexed 0 to 15) gives I, Q for that
@@ -195,8 +207,9 @@ def Decode_Masks(masks, LOGS):
                     mask32 |= (1<<pin)
             mask[i] = mask32
         print("Num of masks: {}".format(mask.size))
-        return mask
-        '''-------------------------   FIX THIS   ---------------------------'''
+        return mask'''
+        out = np
+        
     else:
         print("Transmission type not implemented yet!")
 
@@ -238,7 +251,7 @@ def main():
             
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
-                Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_bw.jpg', LOGS)
+                Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out.jpg', LOGS)
             else:
                 LOGS.append("No data was received\n")
     else:

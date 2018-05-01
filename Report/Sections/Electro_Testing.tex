@@ -53,8 +53,8 @@ All values were measured on a multi-meter and using the pin GPIO4 as pins 2 and 
 \end{table}
 
 These impedances show that even the lowest input impedance of \SI{48.93}{\kilo\ohm} will only draw \SI{67.44}{\micro\ampere} of current from a \SI{3.3}{\volt} GPIO pin, three orders of magnitude lower than the maximum current enough that these pins from one Raspberry Pi can be connected directly to those of another. 
-The ground pins of Raspberry Pis must be connected together so that they share a common reference for the data levels.\\
-
+The ground pins of Raspberry Pis must be connected together so that they share a common reference for the data levels.
+\todo[inline]{Conclusion?  So two boards can indeed be connected directly?}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,6 +89,8 @@ Table from interim report and two screen shots in particular.\\
 \todo[inline,color=blue!20]{Comparison of transmitter bank vs individual write and receiver read (callback) and read vars on clock pulse vs bank read on clock pulse -- Also mention }
 
 \subsection{Comparing Python and C} \label{sec_Comparing Python and C}
+
+DIRECT MEMORY ACCESS, 
 
 \clearpage
 
@@ -128,7 +130,7 @@ Electrical Components:
 	\item Low Pass Filters
 \end{itemize}
 
-\subsection{Overclocking Components}
+\subsection{Overclocking Components} \label{sec_Overclocking}
 
 The \textit{pigpio} library has access to the hardware clocks of the Raspberry Pi.
 Specifically on the Pis used, it has the ability to set a hardware clock which is not reserved for system use to a specified frequency between \SI{4.7}{\kilo\hertz} and \SI{250}{\mega\hertz} on pin 4, although the library documentation suggests that frequencies above \SI{30}{\mega\hertz} are unlikely to work \cite{lib_pigpioHWClock}.\\

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  17 APR 2018 04:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  1 MAY 2018 18:11
 entering extended mode
 **./main.tex
 (main.tex
@@ -2036,7 +2036,7 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
 e.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.30 ...line {4.3}Channel Coding}{29}{section.4.3}
+l.30 ...line {4.3}Channel Coding}{30}{section.4.3}
                                                    [1
 
 ])
@@ -2046,7 +2046,7 @@ l.30 ...line {4.3}Channel Coding}{29}{section.4.3}
  [2] (main.tdo [3
 
 ]
-Overfull \hbox (69.59415pt too wide) in paragraph at lines 22--22
+Overfull \hbox (69.59415pt too wide) in paragraph at lines 27--27
  \OT1/phv/m/n/10.95 nel vs er-ror chan-nel, clocked vs un-clocked, Justin's pro
 ject - http://diwine-project.eu/public/publications.html[] [][]  
  []
@@ -2058,7 +2058,7 @@ ject - http://diwine-project.eu/public/publications.html[] [][]
  [4]
 Chapter 1.
 (Sections/Intro.tex
-Underfull \hbox (badness 10000) in paragraph at lines 16--21
+Underfull \hbox (badness 10000) in paragraph at lines 18--23
 
  []
 
@@ -2076,7 +2076,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
-<./Sections/Images/Raspberry_Pi.jpg, id=329, 3276.24pt x 2457.18pt>
+<./Sections/Images/Raspberry_Pi.jpg, id=341, 3276.24pt x 2457.18pt>
 File: ./Sections/Images/Raspberry_Pi.jpg Graphic file (type jpg)
 <use ./Sections/Images/Raspberry_Pi.jpg>
 Package pdftex.def Info: ./Sections/Images/Raspberry_Pi.jpg  used on input line
@@ -2095,7 +2095,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--36
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 39.
 [8 <./Sections/Images/Raspberry_Pi.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 50--52
+Underfull \hbox (badness 10000) in paragraph at lines 52--54
 
  []
 
@@ -2105,159 +2105,176 @@ y"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 55.
-LaTeX Font Info:    Try loading font information for OML+phv on input line 67.
+nput line 57.
+LaTeX Font Info:    Try loading font information for OML+phv on input line 69.
  ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omlphv.fd"
 File: omlphv.fd 
 )
 LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 67.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 69.
  [9]
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 83.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 85.
 
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 85.
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 97--106
+Underfull \hbox (badness 10000) in paragraph at lines 99--108
 
  []
 
-<./Sections/Images/OOK_Architecture.jpg, id=395, 3276.24pt x 2457.18pt>
+<./Sections/Images/OOK_Architecture.jpg, id=407, 3276.24pt x 2457.18pt>
 File: ./Sections/Images/OOK_Architecture.jpg Graphic file (type jpg)
 <use ./Sections/Images/OOK_Architecture.jpg>
 Package pdftex.def Info: ./Sections/Images/OOK_Architecture.jpg  used on input 
-line 109.
+line 111.
 (pdftex.def)             Requested size: 241.84843pt x 181.35605pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--122
+Underfull \hbox (badness 10000) in paragraph at lines 118--124
 
  []
 
 [11
 
  <./Sections/Images/OOK_Architecture.jpg>]
-<./Sections/Images/DAC_Layout.jpg, id=405, 3106.60625pt x 1991.44pt>
+<./Sections/Images/DAC_Layout.jpg, id=417, 3106.60625pt x 1991.44pt>
 File: ./Sections/Images/DAC_Layout.jpg Graphic file (type jpg)
 <use ./Sections/Images/DAC_Layout.jpg>
 Package pdftex.def Info: ./Sections/Images/DAC_Layout.jpg  used on input line 1
-25.
-(pdftex.def)             Requested size: 290.22107pt x 186.02853pt.
-<./Sections/Images/PAM_Architecture.jpg, id=406, 3276.24pt x 2457.18pt>
+27.
+(pdftex.def)             Requested size: 169.29684pt x 108.51157pt.
+<./Sections/Images/ad5424.png, id=418, 596.81032pt x 470.33783pt>
+File: ./Sections/Images/ad5424.png Graphic file (type png)
+<use ./Sections/Images/ad5424.png>
+Package pdftex.def Info: ./Sections/Images/ad5424.png  used on input line 128.
+(pdftex.def)             Requested size: 290.22107pt x 228.7236pt.
+<./Sections/Images/PAM_Architecture.jpg, id=419, 3276.24pt x 2457.18pt>
 File: ./Sections/Images/PAM_Architecture.jpg Graphic file (type jpg)
 <use ./Sections/Images/PAM_Architecture.jpg>
 Package pdftex.def Info: ./Sections/Images/PAM_Architecture.jpg  used on input 
-line 138.
+line 141.
 (pdftex.def)             Requested size: 193.47578pt x 145.09984pt.
- [12 <./Sections/Images/DAC_Layout.jpg> <./Sections/Images/PAM_Architecture.jpg
->]
-<./Sections/Images/QAM_OFDM_Architecture.jpg, id=413, 3276.24pt x 2457.18pt>
+ [12 <./Sections/Images/DAC_Layout.jpg> <./Sections/Images/ad5424.png>]
+<./Sections/Images/DAC_Modulation.jpg, id=425, 2305.61375pt x 1153.30875pt>
+File: ./Sections/Images/DAC_Modulation.jpg Graphic file (type jpg)
+<use ./Sections/Images/DAC_Modulation.jpg>
+Package pdftex.def Info: ./Sections/Images/DAC_Modulation.jpg  used on input li
+ne 154.
+(pdftex.def)             Requested size: 290.22107pt x 145.16632pt.
+<./Sections/Images/QAM_OFDM_Architecture.jpg, id=426, 3276.24pt x 2457.18pt>
 File: ./Sections/Images/QAM_OFDM_Architecture.jpg Graphic file (type jpg)
 <use ./Sections/Images/QAM_OFDM_Architecture.jpg>
 Package pdftex.def Info: ./Sections/Images/QAM_OFDM_Architecture.jpg  used on i
-nput line 165.
+nput line 168.
 (pdftex.def)             Requested size: 290.22107pt x 217.64977pt.
-<./Sections/Images/Live_Test_Bed.jpg, id=414, 2954.03625pt x 1638.12pt>
+ [13 <./Sections/Images/PAM_Architecture.jpg> <./Sections/Images/DAC_Modulation
+.jpg>]
+<./Sections/Images/Live_Test_Bed.jpg, id=435, 2954.03625pt x 1638.12pt>
 File: ./Sections/Images/Live_Test_Bed.jpg Graphic file (type jpg)
 <use ./Sections/Images/Live_Test_Bed.jpg>
 Package pdftex.def Info: ./Sections/Images/Live_Test_Bed.jpg  used on input lin
-e 175.
+e 178.
 (pdftex.def)             Requested size: 290.22107pt x 160.92209pt.
- [13 <./Sections/Images/QAM_OFDM_Architecture.jpg> <./Sections/Images/Live_Test
-_Bed.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 182--187
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--190
 
  []
 
-[14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 207--215
+[14 <./Sections/Images/QAM_OFDM_Architecture.jpg> <./Sections/Images/Live_Test_
+Bed.jpg>] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 210--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--226
+Underfull \hbox (badness 10000) in paragraph at lines 219--225
 
  []
 
-<./Sections/Images/Pi_Pin_Connections.jpg, id=439, 2882.77pt x 1992.44376pt>
-File: ./Sections/Images/Pi_Pin_Connections.jpg Graphic file (type jpg)
-<use ./Sections/Images/Pi_Pin_Connections.jpg>
-Package pdftex.def Info: ./Sections/Images/Pi_Pin_Connections.jpg  used on inpu
-t line 229.
-(pdftex.def)             Requested size: 290.22107pt x 200.56334pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--236
+
+ []
+
 [16
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 236--240
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 241--245
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--252
-
- []
-
-[17 <./Sections/Images/Pi_Pin_Connections.jpg>]
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 256.
-
-Underfull \hbox (badness 10000) in paragraph at lines 261--264
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--269
-
- []
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 278--280
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 243.
+<./Sections/Images/Pi_Pin_Connections.png, id=462, 546.843pt x 743.8992pt>
+File: ./Sections/Images/Pi_Pin_Connections.png Graphic file (type png)
+<use ./Sections/Images/Pi_Pin_Connections.png>
+Package pdftex.def Info: ./Sections/Images/Pi_Pin_Connections.png  used on inpu
+t line 250.
+(pdftex.def)             Requested size: 290.22107pt x 394.82089pt.
+ [17]
+Underfull \hbox (badness 10000) in paragraph at lines 257--262
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--283
+Underfull \hbox (badness 10000) in paragraph at lines 263--267
 
  []
 
-<./Sections/Images/Transmitter_Flow.png, id=467, 542.025pt x 741.0084pt>
-File: ./Sections/Images/Transmitter_Flow.png Graphic file (type png)
-<use ./Sections/Images/Transmitter_Flow.png>
-Package pdftex.def Info: ./Sections/Images/Transmitter_Flow.png  used on input 
-line 286.
-(pdftex.def)             Requested size: 483.69687pt x 661.2932pt.
+[18 <./Sections/Images/Pi_Pin_Connections.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 271--274
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--286
+
+ []
+
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 291--292
 
  []
 
-<./Sections/Images/Receiver_Flow.png, id=469, 546.843pt x 764.1348pt>
-File: ./Sections/Images/Receiver_Flow.png Graphic file (type png)
-<use ./Sections/Images/Receiver_Flow.png>
-Package pdftex.def Info: ./Sections/Images/Receiver_Flow.png  used on input lin
-e 295.
-(pdftex.def)             Requested size: 483.69687pt x 675.92696pt.
-[19] [20 <./Sections/Images/Transmitter_Flow.png>] [21 <./Sections/Images/Recei
-ver_Flow.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 302--303
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--303
 
  []
 
-<./Sections/Images/Mask_Expansion.jpg, id=489, 601.24625pt x 211.79124pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 304--306
+
+ []
+
+<./Sections/Images/Transmitter_Flow.png, id=494, 542.025pt x 741.0084pt>
+File: ./Sections/Images/Transmitter_Flow.png Graphic file (type png)
+<use ./Sections/Images/Transmitter_Flow.png>
+Package pdftex.def Info: ./Sections/Images/Transmitter_Flow.png  used on input 
+line 309.
+(pdftex.def)             Requested size: 483.69687pt x 661.2932pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+
+ []
+
+<./Sections/Images/Receiver_Flow.png, id=495, 546.843pt x 764.1348pt>
+File: ./Sections/Images/Receiver_Flow.png Graphic file (type png)
+<use ./Sections/Images/Receiver_Flow.png>
+Package pdftex.def Info: ./Sections/Images/Receiver_Flow.png  used on input lin
+e 318.
+(pdftex.def)             Requested size: 483.69687pt x 675.92696pt.
+[20] [21 <./Sections/Images/Transmitter_Flow.png>] [22 <./Sections/Images/Recei
+ver_Flow.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
+
+ []
+
+<./Sections/Images/Mask_Expansion.jpg, id=516, 601.24625pt x 211.79124pt>
 File: ./Sections/Images/Mask_Expansion.jpg Graphic file (type jpg)
 <use ./Sections/Images/Mask_Expansion.jpg>
 Package pdftex.def Info: ./Sections/Images/Mask_Expansion.jpg  used on input li
-ne 318.
+ne 341.
 (pdftex.def)             Requested size: 386.95897pt x 136.31183pt.
-) [22
+) [23
 
  <./Sections/Images/Mask_Expansion.jpg>]
 Chapter 3.
@@ -2276,7 +2293,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--25
 
  []
 
-[23
+[24
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 26--30
@@ -2287,11 +2304,7 @@ LaTeX Font Info:    Try loading font information for TS1+phv on input line 55.
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ts1phv.fd"
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 55--57
-
- []
-
-[24]
+[25]
 Underfull \hbox (badness 10000) in paragraph at lines 71--77
 
  []
@@ -2301,53 +2314,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--79
 
  []
 
-<./Sections/Images/Benchmarking_Data.jpg, id=516, 2999.205pt x 2216.28pt>
+<./Sections/Images/Benchmarking_Data.jpg, id=542, 2999.205pt x 2216.28pt>
 File: ./Sections/Images/Benchmarking_Data.jpg Graphic file (type jpg)
 <use ./Sections/Images/Benchmarking_Data.jpg>
 Package pdftex.def Info: ./Sections/Images/Benchmarking_Data.jpg  used on input
  line 82.
 (pdftex.def)             Requested size: 290.22107pt x 214.43782pt.
-[25
+[26
 
  <./Sections/Images/Benchmarking_Data.jpg>]
-<./Sections/Images/DAC_Output.jpg, id=522, 3048.38875pt x 2287.54625pt>
+<./Sections/Images/DAC_Output.jpg, id=548, 3048.38875pt x 2287.54625pt>
 File: ./Sections/Images/DAC_Output.jpg Graphic file (type jpg)
 <use ./Sections/Images/DAC_Output.jpg>
 Package pdftex.def Info: ./Sections/Images/DAC_Output.jpg  used on input line 1
-01.
+03.
 (pdftex.def)             Requested size: 193.47578pt x 145.1703pt.
-<./Sections/Images/Pulse_Output.jpg, id=523, 2304.61pt x 1145.27875pt>
+<./Sections/Images/Pulse_Output.jpg, id=549, 2304.61pt x 1145.27875pt>
 File: ./Sections/Images/Pulse_Output.jpg Graphic file (type jpg)
 <use ./Sections/Images/Pulse_Output.jpg>
 Package pdftex.def Info: ./Sections/Images/Pulse_Output.jpg  used on input line
- 108.
+ 110.
 (pdftex.def)             Requested size: 290.22107pt x 144.2255pt.
-<./Sections/Images/Sine_Output.jpg, id=524, 2432.08624pt x 1202.4925pt>
+<./Sections/Images/Sine_Output.jpg, id=550, 2432.08624pt x 1202.4925pt>
 File: ./Sections/Images/Sine_Output.jpg Graphic file (type jpg)
 <use ./Sections/Images/Sine_Output.jpg>
 Package pdftex.def Info: ./Sections/Images/Sine_Output.jpg  used on input line 
-115.
+117.
 (pdftex.def)             Requested size: 290.22107pt x 143.48553pt.
- [26
+ [27
 
  <./Sections/Images/DAC_Output.jpg> <./Sections/Images/Pulse_Output.jpg> <./Sec
 tions/Images/Sine_Output.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 133--135
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--139
+Underfull \hbox (badness 10000) in paragraph at lines 138--141
 
  []
 
-<./Sections/Images/Clock_Analyse.jpg, id=533, 3276.24pt x 1014.79124pt>
+<./Sections/Images/Clock_Analyse.jpg, id=559, 3276.24pt x 1014.79124pt>
 File: ./Sections/Images/Clock_Analyse.jpg Graphic file (type jpg)
 <use ./Sections/Images/Clock_Analyse.jpg>
 Package pdftex.def Info: ./Sections/Images/Clock_Analyse.jpg  used on input lin
-e 142.
+e 144.
 (pdftex.def)             Requested size: 290.22107pt x 89.8872pt.
-) [27 <./Sections/Images/Clock_Analyse.jpg>]
+) [28 <./Sections/Images/Clock_Analyse.jpg>]
 Chapter 4.
 (Sections/Comms_Testing.tex
 Underfull \hbox (badness 1546) in paragraph at lines 5--5
@@ -2376,16 +2389,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-[28
+[29
 
-]) [29]
+]) [30]
 Chapter 5.
 (Sections/Conclusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-) [30
+) [31
 
 ]
 Overfull \hbox (18.71829pt too wide) in paragraph at lines 170--170
@@ -2401,7 +2414,7 @@ O 0.6.3\OT1/phv/m/n/10.95 . [On-line: Ac-cessed ...] Oct. 30, 2016. \OT1/phv/m/
 sc/10.95 url\OT1/phv/m/n/10.95 : []$\OT1/cmtt/m/n/10.95 https :
  []
 
-[31
+[32
 
 
 ]
@@ -2413,7 +2426,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--174
 
 pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=578, 845.19763pt x 597.55246p
+<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=604, 845.19763pt x 597.55246p
 t>
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf>
@@ -2437,7 +2450,7 @@ pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 
 pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=581, page=1, 845.19763pt x 59
+<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=607, page=1, 845.19763pt x 59
 7.55246pt>
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
@@ -2449,7 +2462,7 @@ File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
 sed on input line 181.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
-[32]
+[33]
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
@@ -2467,7 +2480,7 @@ File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
 sed on input line 181.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
-[33
+[34
 
  <./Sections/PDFs/4YPGeneralRiskAssessment.pdf>]
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
@@ -2492,7 +2505,7 @@ pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 
 pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=630, page=2, 845.19763pt x 59
+<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=657, page=2, 845.19763pt x 59
 7.55246pt>
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 2>
@@ -2519,8 +2532,8 @@ File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page2 u
 sed on input line 182.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
-[34 <./Sections/PDFs/4YPGeneralRiskAssessment.pdf>]
-<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=638, 597.432pt x 844.83629pt
+[35 <./Sections/PDFs/4YPGeneralRiskAssessment.pdf>]
+<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=664, 597.432pt x 844.83629pt
 >
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf>
@@ -2532,7 +2545,7 @@ File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf  used on
  input line 183.
 (pdftex.def)             Requested size: 597.43054pt x 844.83423pt.
-<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=641, page=1, 597.432pt x 844
+<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=667, page=1, 597.432pt x 844
 .83629pt>
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf, page 1>
@@ -2559,27 +2572,27 @@ File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf , page1 
 used on input line 183.
 (pdftex.def)             Requested size: 597.93192pt x 845.54323pt.
- [35 <./Sections/PDFs/4YPComputerRiskAssessment.pdf>]
+ [36 <./Sections/PDFs/4YPComputerRiskAssessment.pdf>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 185.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 185.
  (main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 185.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 185.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 70C4CAA443E796AA39B8DDB562593919;2190.
+(rerunfilecheck)             Checksum: 1E2BA8CEF81DBD187381F70A31286A6B;2190.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 185.
  ) 
 Here is how much of TeX's memory you used:
- 41216 strings out of 493305
- 814031 string characters out of 3130672
- 1250597 words of memory out of 3000000
- 43996 multiletter control sequences out of 15000+200000
+ 41254 strings out of 493305
+ 814785 string characters out of 3130672
+ 1217884 words of memory out of 3000000
+ 44021 multiletter control sequences out of 15000+200000
  562991 words of font info for 91 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,27n,96p,10393b,1858s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,27n,96p,10393b,2773s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<
 C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mmi10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
@@ -2595,9 +2608,9 @@ m/cmtt10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/he
 lvetic/uhvb8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/u
 rw/helvetic/uhvr8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (38 pages, 17203456 bytes).
+Output written on main.pdf (39 pages, 16801283 bytes).
 PDF statistics:
- 725 PDF objects out of 1000 (max. 8388607)
- 157 named destinations out of 1000 (max. 500000)
- 459 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 752 PDF objects out of 1000 (max. 8388607)
+ 168 named destinations out of 1000 (max. 500000)
+ 469 words of extra memory for PDF output out of 10000 (max. 10000000)
 
