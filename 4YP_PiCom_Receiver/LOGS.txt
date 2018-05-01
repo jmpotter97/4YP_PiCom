@@ -1,0 +1,7 @@
+********** RECEIVER LOG FILE **********
+TRANSMISSION TYPE: 4PAM
+Decoding masks...
+Attenuation = 0.0
+
+Completed Receiver code!
+***************************************
