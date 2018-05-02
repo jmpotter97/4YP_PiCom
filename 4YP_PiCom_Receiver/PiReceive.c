@@ -8,6 +8,8 @@ const int CLK_PIN = 16;
 const int ADC_CLK = 4;
 int mask_size;
 uint32_t pin_state;
+const uint ADC_1_bits[8] = {10, 9, 11, 5, 6, 13, 19, 26}; // MSB to LSB
+const uint ADC_2_bits[8] = {14, 15, 18, 17, 27, 22, 23, 24};
 
 
 // Callback function is automatically passed gpio (will be clock_pin),
@@ -23,9 +25,15 @@ void readPins(int gpio, int level, uint tick, void* data) {
             //int* new_data = (int*)(data+count++);
             *((uint32_t*)(data + count++)) = current_state;
             //printf("%i\n", count);
+            if(count == 0)
+				gpioSetWatchdog(CLK_PIN, 1000);
         } else {
             gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
             gpioSetWatchdog(CLK_PIN,0);
+            for(int i=0;i<8;i++) {
+				gpioSetAlertFunc(ADC_1_bits[i], 0);
+				gpioSetAlertFunc(ADC_2_bits[i], 0);
+		    }
             pin_state = 4294967295;
             // 4294967295 is (2^32 - 1) all pins = 1
             printf("Mask size completely received!\n");
@@ -33,6 +41,10 @@ void readPins(int gpio, int level, uint tick, void* data) {
     } else if(level == 2) {
         gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
         gpioSetWatchdog(CLK_PIN,0);
+        for(int i=0;i<8;i++) {
+			gpioSetAlertFunc(ADC_1_bits[i], 0);
+			gpioSetAlertFunc(ADC_2_bits[i], 0);
+		}
         pin_state = 4294967295;
         printf("Watchdog timeout on clock pin\n");
     }
@@ -72,8 +84,6 @@ int main(int argc, char *argv[]) {
         return 3;
     }
 
-    const uint ADC_1_bits[8] = {10, 9, 11, 5, 6, 13, 19, 26}; // MSB to LSB
-    const uint ADC_2_bits[8] = {14, 15, 18, 17, 27, 22, 23, 24};
     for(int i=0;i<8;i++) {
         // It will work without this (setting ADC pins) but good practice
         gpioSetMode(ADC_1_bits[i], PI_INPUT);
@@ -105,7 +115,6 @@ int main(int argc, char *argv[]) {
     }
     gpioHardwareClock(ADC_CLK, 1000000);
     gpioSetAlertFuncEx(CLK_PIN, readPins, (void*)receive_data_mask);
-    gpioSetWatchdog(CLK_PIN, 1000);
 
     // Loop until the callback is turned off i.e. transmission finished
     while(1) {
@@ -116,10 +125,6 @@ int main(int argc, char *argv[]) {
         sleep(1);
     }
 
-    for(int i=0;i<8;i++) {
-        gpioSetAlertFunc(ADC_1_bits[i], 0);
-        gpioSetAlertFunc(ADC_2_bits[i], 0);
-    }
     gpioHardwareClock(ADC_CLK, 0);
 
     /*********************   WRITE TO FILE   *********************/
