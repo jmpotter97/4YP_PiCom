@@ -161,7 +161,7 @@ As a result, Pulse Amplitude Modulation uses the range $0$ to $V_{max}$ rather t
 Similarly, Quadrature Amplitude Modulation uses a grid of I and Q values all in the positive quadrant (0,1,2,3 not -3,-1,1,3).
 The same "negative" effect is still achieved by using the "GROUND" of the multipliers (which are fully differential)
 as $V_{max/2}$ using a voltage divider.
-This means that the sine and cos signals will be inverted when multiplied by the values 0 and 1 in the same way they would be for -3 and -1, and the transmitted signal will essentially be a normal PAM or QAM signal plus a DC component of $V_{max/2}$.
+This means that the sine and cos signals would be inverted when multiplied by the values 0 and 1 in the same way they would be for -3 and -1, and the transmitted signal will essentially be a normal PAM or QAM signal plus a DC component of $V_{max/2}$.
 
 \begin{figure}[ht]
 	\centering
@@ -232,31 +232,33 @@ The advanced modulation schemes considered are 4-level Pulse Amplitude Modulatio
 Code for this section implements the data stream as bytes in a \textit{NumPy} array rather than as bits in a list.
 This has certain computational advantages but also allows for the integration of image handling with \textit{imageio}.
 This means that images can be transmitted instead of random data, allowing for visualisation of the bit error rate etc. of the transmission.
-These schemes also implement a separate compiled C module for the actual transmitting and receiving of data.\\
+These schemes also use a separate compiled C module for the actual transmitting and receiving of data.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Pi_Pin_Connections.png}
+	\includegraphics[width=0.8\textwidth]{Pi_Pin_Connections.png}
 	\caption{Pin Diagram of Connections to Raspberry Pi (reference to image source) - These are alterable fairly easily in the code so changes can be made with little overhead}
 	\label{fig_Pin Connections}
 \end{figure}
 
 Pins used currently for the OOK transmission as well as for the DACs are shown in Figure \ref{fig_Pin Connections}.
-The pins with black boxes around them are the accessible GPIO pins, and they are referred to by their BCM number (GPIO# in the boxes) rather than their BOARD number (consecutive numbers in the circles).
+The pins with black boxes around them are the accessible GPIO pins, and they are referred to by their BCM number (GPIO\# in the boxes) rather than their BOARD number (consecutive numbers in the circles).
 Of particular interest due to their differences are pins 2, 3 and 4.
 Pins 2 and 3 are used for the clock and data lines of \textit{I\^2C} bus communication and so have internal pull-up resistors.
 Due to the fact that the test bed uses pins set with pull-down resistors, these pins aren't used.
 Pin 4 is the only pin on the Raspberry Pi B+ with access to a hardware clock which can be programmed for external use.
 It is thus used for overclocking external components which can be fed a clock signal, which is discussed in Section \ref{sec_Overclocking}.
-The code defines the pins used for transmission as a global variable at the start so that the rest of the code can be pin-independent.
-Except for the the DAC clock pin (pin 16) which is defined in the C code, Listing \ref{lst_Pins} shows these pin definitions.\\
+The code defines the pins used for transmission as global variables at the start so that the rest of the code can be pin-independent.
+Excepting the the DAC clock pin (pin 16) which is defined in the C code, Listing \ref{lst_Pins} shows these pin definitions.\\
 
-\begin{lstlisting}[caption=Pins used for OOK and the DACs]
+\begin{lstlisting}[caption={Pins used for OOK and the DACs}, label={lst_Pins}]
+	# OOK Pins
 	CLK_PIN = 20
 	DATA_PIN = 21
+	# DAC Pins
 	DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
 								[14, 15, 18, 17, 27, 22, 23, 24]
-\end{lstlisting} \label{lst_Pins}
+\end{lstlisting} 
 
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
 
@@ -298,16 +300,33 @@ The transmitter also implements another SSH connection after transmission to rea
 
 \subsection{Advanced Modulation Schemes} \label{sec_Advanced Modulation Schemes}
 
-This section is currently a mess of notes for myself.\\
 \todo[inline,color=blue!20]{Write up notes in Advanced Modulation Schemes into a proper coherent section}
-4PAM - as mentioned in section \ref{sec_Multiplier} uses values $V_{max}\times\frac{0 to 3}{3}$
 
-256 PAM is similar to 4PAM and is not included in the flow diagram for space and because it is not viable due to granularity issues, especially with the problem mentioned in Section \ref{sec_Components} (need to be more specific).
-\todo[inline,color=green!40]{Make sure the corresponding section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
+This section will start by describing the advanced modulation schemes used, and will then it will go on to how the transmitter and receiver implement  the schemes in code.\\
+
+The modulation schemes used are 4-level Pulse Amplitude Modulation (4PAM), 256-level Pulse Amplitude Modulation (256PAM) and 16-Quadrature Amplitude Modulation (16QAM).
+4PAM expresses each bit pair as one of four voltage levels which is expressed with use of a Digital Analogue Converter (DAC).
+16QAM uses a similar concept except it transmits two sets of 4-level voltages at once for each set of four bits.
+This is achieved using two DACs, and by multiplying the output of one by a sine wave and the other by a cos (or 90\^o phase-shifted sine) and adding them, using the orthogonality of the two waveforms to extract each level independently.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The communications test bed could be implemented with Orthogonal Frequency Division Multiplexing (OFDM), however there were certain issues and time constraints which meant that this was not realised.
+The details of how the test bed would be extended are included.
+As mentioned in Section \ref{sec_Multiplier}, the Raspberry Pi is unable to output negative voltages, and so all symbol values are in a positive voltage range between $V_{min} = 0V$ and $V_{max} = 3.3V$.
+Therefore, 4PAM and 16QAM use values from the range $\{0, 1, 2, 3\} \times \frac{3.3}{3}V$, output from one and two DACs respectively.
+Similarly 256PAM uses 256 values from $\{0, 1, ..., 255\} \times \frac{3.3}{255}V$.\\
+
+Figure \ref{fig_Transmitter_Flow} is a flow chart of the operation of the transmitter code.
+256PAM is omitted in the flow chart as it is similar to but more easily realised than 4PAM, and the space is better used conceptualising the addition of OFDM.
+It is also not a viable modulation scheme unless the DAC acts perfectly and is implemented mostly as a way of testing the accuracy of the DAC's granularity.
+Tests using 256PAM to output monotonically increasing values revealed that the converters were not working exactly as expected, and that there were spikes at certain values and a non-continuous analogue response was measured for continuous digital input.
+This problem is investigated in Section \ref{sec_Components}, but the solution was to use an empirically derived lookup table to get the four levels for 4PAM and 16QAM as close as they could be to the correct values -- this would be removed from the code if a successful replacement digital analogue converter was used.
+\todo[inline,color=green!40]{Make sure the corresponding section (USE THE RIGHT SUB-SECTION) does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
+
 OFDM is also conceptualised here but due to the above problem, the continuous value issue mentioned above would need to be fixed before it could be implemented.
+
 OFDM could be used with NumPy fftn (N-dim FFT), ifftn (N-dim Inverse FFT).\\
 
-Here we will talk about the transmitter generally and how it works referencing Figure \ref{fig_Transmitter_Flow}.
+TRANSMITTER BRUVS -- 
 Mention the QAM constellation used.\\
 
 \begin{figure}[ht]
