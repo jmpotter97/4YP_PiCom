@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "16QAM"
+TRANSMISSION_TYPE = "4PAM"
 
 if len(argv) > 1:
         TRANSMISSION_TYPE = argv[1]
@@ -43,7 +43,7 @@ else:
     print("TRANSMISSION TYPE: {}".format(TRANSMISSION_TYPE))
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
-                         [14, 15, 18, 17, 27, 22, 23, 24]
+                         [2, 3, 4, 17, 27, 22, 23, 24]
 DAC_MASK_1, DAC_MASK_2 = 0, 0
 for pin1 in DAC_PINS_1:
 	DAC_MASK_1 |= (1<<pin1)
@@ -205,8 +205,9 @@ def Get_Step_Bytes():
     pam4_once = np.ones(1, dtype='uint8')*27
     pam4 = np.ones(50, dtype='uint8')*27
 
-    return step_fine
+    return pam4_once
     
+
 
 def Get_Image_Bytes(path):
     # PIL modes - RGB, L (greyscale)
@@ -261,16 +262,16 @@ def Convert_To_Data_Mask(data_list):
         # 4 SYMB/byte --> 0, 1, 2, 3
         symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
-            if i % 25000 == 0 and i != 0:  #Stats
-                    print("Symbol - {}".format(4*i))
             for s in range(4):
+                if i % 25000 == 0 and i != 0:  #Stats
+                    print("Symbol - {}".format(4*i))
                 symb[4*i+3-s] = ((1<<(2*s+1) | 1<<(2*s)) & byte) \
                                                    // (2**(2*s))
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
-        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        '''for i, s in enumerate(symb):
-            symb[i] = DAC_lookup[s]'''
+        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        for i, s in enumerate(symb):
+            symb[i] = DAC_lookup[s]
         # MASK
         mask = np.zeros_like(symb)
         for i, DAC_level in enumerate(symb):
@@ -303,10 +304,10 @@ def Convert_To_Data_Mask(data_list):
         # DAC
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
-        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        '''for i, s in enumerate(symb):
+        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        for i, s in enumerate(symb):
             symb[i,0] = DAC_lookup[s[0]]
-            symb[i,1] = DAC_lookup[s[1]]'''
+            symb[i,1] = DAC_lookup[s[1]]
         # MASK
         mask = np.zeros(symb.shape[0], dtype=np.uint32)
         for i, DAC_levels in enumerate(symb):
