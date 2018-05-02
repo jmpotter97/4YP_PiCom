@@ -27,10 +27,11 @@ transmitted signal
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 1                        # Symbol rate (Hz)
+SYMB_RATE = 100                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "4PAM"
+SIZE = 0
 
 if len(argv) > 1:
         TRANSMISSION_TYPE = argv[1]
@@ -199,13 +200,13 @@ def Get_Step_Bytes():
 
     #SYMB_RATE = 25 - 256PAM
     step_fine = np.arange(256,dtype='uint8')
-    multiple_fine = np.tile(step_fine, 40)
+    multiple_fine = np.tile(step_fine, 2)
 
     # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
     pam4_once = np.ones(1, dtype='uint8')*27
-    pam4 = np.ones(50, dtype='uint8')*27
+    pam4 = np.ones(10, dtype='uint8')*27
 
-    return pam4_once
+    return multiple_fine
     
 
 
@@ -239,7 +240,7 @@ def Convert_To_Data_Mask(data_list):
     '''
 
     # DAC Lookup table because DAC output is not working properly
-    DAC_lookup = [0, 74, 233, 128]
+    DAC_lookup = [0,85,170,252]#[0, 74, 233, 128]
 
     if TRANSMISSION_TYPE == "256PAM":
         # 1 SYMB/byte --> 0, 1, ..., 255
@@ -262,21 +263,22 @@ def Convert_To_Data_Mask(data_list):
         # 4 SYMB/byte --> 0, 1, 2, 3
         symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
+            if i % 25000 == 0 and i != 0:  #Stats
+                    print("List val - {}".format(i))
             for s in range(4):
-                if i % 25000 == 0 and i != 0:  #Stats
-                    print("Symbol - {}".format(4*i))
                 symb[4*i+3-s] = ((1<<(2*s+1) | 1<<(2*s)) & byte) \
                                                    // (2**(2*s))
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
-        # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
+        #symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
         for i, s in enumerate(symb):
             symb[i] = DAC_lookup[s]
+        print(symb)
         # MASK
         mask = np.zeros_like(symb)
         for i, DAC_level in enumerate(symb):
-            if i % 25000 == 0 and i != 0:  #Stats
-                print("Mask - {}".format(4*i))
+            if i % 100000 == 0:  #Stats
+                print("Mask - {}".format(i))
             mask32 = 0
             for j, pin in enumerate(DAC_PINS_1):
                 # If each bit in binary exists, include it in 32-bit mask
@@ -342,10 +344,11 @@ def Save_To_File(mask, path):
 
 
 def Transmit_Data():
-    print("Transmitting data")
-
-    print("\n... C RECEIVER LOGS ...\n")
+    print("Transmitting data...\nEstimated {}min, {}sec transmit time..."\
+          .format(SIZE//(60*SYMB_RATE),round(100*60*((SIZE/(60*SYMB_RATE))%1))/100))
+    
     transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)], stdout=PIPE)
+    print("\n... C TRANSMITTER LOGS ...\n")
     for line in transmitter.stdout.decode('utf-8').split('\n'):
         print("... {}".format(line))
     return_code = transmitter.returncode
@@ -427,7 +430,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
 
 '''--------------------------------   Main   --------------------------------'''
 def main():
-    pause("Start")
+    #pause("Start")
         
     if TRANSMISSION_TYPE == "OOK":
         # Data stored as bits in Python lists
@@ -452,8 +455,8 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        #input_stream = Get_Step_Bytes()
-        input_stream = Get_Image_Bytes('cat2.jpg')
+        input_stream = Get_Step_Bytes()
+        #input_stream = Get_Image_Bytes('cat2.jpg')
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
@@ -463,14 +466,17 @@ def main():
         Save_To_File(input_mask, DATA_PATH)
         Save_To_File(input_mask_inv, DATA_INV_PATH)
 
+        global SIZE
+        SIZE = input_mask.size
+
         # In Windows to check masks are being generated correctly for pins
         # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
-        pause("About to transmit...")
-        receiver_started = Ssh_Start_Receiver(input_mask.size)
+        #pause("About to transmit...")
+        receiver_started = Ssh_Start_Receiver(SIZE)
         if receiver_started:
             print("About to transmit...")
             # Four seconds enough time to start receiver but not timeout
-            sleep(4)
+            sleep(6)
             Transmit_Data()
             # TODO: Fetch_Receiver_Logs()
         else:
