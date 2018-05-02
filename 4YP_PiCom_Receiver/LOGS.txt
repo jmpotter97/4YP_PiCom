@@ -1,7 +1,13 @@
 ********** RECEIVER LOG FILE **********
 TRANSMISSION TYPE: 4PAM
-Decoding masks...
-Attenuation = 0.0
+Receiving data
 
-Completed Receiver code!
+... C RECEIVER LOGS ...
+
+... YAY
+
+Return code: [0] Data transmission complete!
+
+Exiting on unexpected error!
+Error is: [Errno 2] No such file or directory: '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin'
 ***************************************

@@ -79,24 +79,24 @@ def Receive_Data(size, LOGS):
 
     LOGS.append("\n... C RECEIVER LOGS ...\n\n")
     for line in receiver.stdout.decode('utf-8').split('\n'):
-        LOGS.append("... {}".format(line))
+        LOGS.append("... {}\n".format(line))
     return_code = receiver.returncode
 		
     return_options = { 0 : "Data transmission complete!\n",
-		       1 : "Data receive failed!\n",
+		       1 : "Data receive failed! General error\n",
 		       2 : "GPIO INIT FAIL\n",
                        3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n",
                        4 : "Memory to receive data was not allocated!",
                        5 : "Invalid Mask Size (Zero or not a number)"}
 
     if return_code in return_options:
-        LOGS.append(return_options[return_code])
+        LOGS.append("\nReturn code: [{}] {}".format(return_code,return_options[return_code]))
         if not return_code:
             return np.fromfile(DATA_PATH, dtype='uint32')
         else:
             return np.empty(0)
     else:
-        LOGS.append("Invalid return code: {}".format(return_code))
+        LOGS.append("Invalid return code: [{}]".format(return_code))
         return np.empty(0)
 
 
@@ -234,6 +234,7 @@ def Save_As_Image(out, path, LOGS):
 
 '''--------------------------------   Main   --------------------------------'''
 def main():
+    pause("Start")
     if len(argv) > 1:
         mask_size = int(argv[1])
 
@@ -247,11 +248,15 @@ def main():
             with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
                 f.write("".join(str(i) for i in output))
         else:
-            output_masks = np.fromfile(DATA_PATH, dtype='uint32')#Receive_Data(mask_size, LOGS)
+            output_masks = Receive_Data(mask_size, LOGS)
+            # For testing data_masks.bin file already received or created
+            #output_masks = np.fromfile(DATA_PATH, dtype='uint32')
             
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
-                Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out.jpg', LOGS)
+                with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
+                    f.write("-".join(str(i) for i in output))
+                #Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out.jpg', LOGS)
             else:
                 LOGS.append("No data was received\n")
     else:
