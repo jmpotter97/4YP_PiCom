@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
     /*********************   WRITE TO FILE   *********************/
     printf("WRITE TO FILE\n");
     FILE* out_f;
-    char* path = "data_masks.bin";
+    char* path = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin";
 
     out_f = fopen(path,"wb");
     // Removing of other pins is done in python file (& ADC_Mask)
