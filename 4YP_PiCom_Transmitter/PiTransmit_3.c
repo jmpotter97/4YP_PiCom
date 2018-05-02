@@ -105,8 +105,8 @@ int main(int argc, char *argv[]) {
 		usleep(symbol_time);
 		gpioWrite(CLK_PIN,1);
 		usleep(symbol_time);
-		//printf("%i\nPause, press <ENTER> to continue...\n", i);
-		//getchar();
+		printf("%i\nPause, press <ENTER> to continue...\n", i);
+		getchar();
 		
 	}
 	uint32_t t1 = gpioTick();

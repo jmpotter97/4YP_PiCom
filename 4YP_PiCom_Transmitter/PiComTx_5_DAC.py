@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 1                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "256PAM"
+TRANSMISSION_TYPE = "4PAM"
 
 if len(argv) > 1:
         TRANSMISSION_TYPE = argv[1]
@@ -205,7 +205,7 @@ def Get_Step_Bytes():
     pam4_once = np.ones(1, dtype='uint8')*27
     pam4 = np.ones(50, dtype='uint8')*27
 
-    return step_fine
+    return pam4_once
     
 
 
@@ -452,8 +452,8 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        input_stream = Get_Step_Bytes()
-        #input_stream = Get_Image_Bytes('cat.png')
+        #input_stream = Get_Step_Bytes()
+        input_stream = Get_Image_Bytes('cat.png')
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
