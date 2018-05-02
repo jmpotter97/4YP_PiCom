@@ -9,9 +9,9 @@ LOGS_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
 if os.path.isfile(LOGS_PATH):
     os.remove(LOGS_PATH)
 LOGS = ["********** RECEIVER LOG FILE **********\n"]
-DATA_PATH = "data_masks.bin"
+DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin"
 TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "OOK"
+TRANSMISSION_TYPE = "4PAM"
 
 if len(argv) > 2:
     TRANSMISSION_TYPE = argv[2]
@@ -30,7 +30,7 @@ else:
     LOGS.append("TRANSMISSION TYPE: {}\n".format(TRANSMISSION_TYPE))
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
-                         [2, 3, 4, 17, 27, 22, 23, 24]
+                         [14, 15, 18, 17, 27, 22, 23, 24]
 
 
 # Nice to use for debugging
@@ -84,8 +84,10 @@ def Receive_Data(size, LOGS):
 		
     return_options = { 0 : "Data transmission complete!\n",
 		       1 : "Data receive failed!\n",
-		       2 : "GPIO INIT FAIL\n",	 # Add more failure codes
-		       3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n"}
+		       2 : "GPIO INIT FAIL\n",
+                       3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n",
+                       4 : "Memory to receive data was not allocated!",
+                       5 : "Invalid Mask Size (Zero or not a number)"}
 
     if return_code in return_options:
         LOGS.append(return_options[return_code])
@@ -99,11 +101,7 @@ def Receive_Data(size, LOGS):
 
 
 def Decode_Masks(masks, LOGS):
-    LOGS.append("Decoding masks...")
-    ''' Prototyping
-    if "PAM" in TRANSMISSION_TYPE:
-        
-    '''
+    LOGS.append("Decoding masks...\n")
 
     '''
     MASK goes through a number of stages:
@@ -116,6 +114,8 @@ def Decode_Masks(masks, LOGS):
 
     
     if TRANSMISSION_TYPE == "256PAM":
+        # This can't be adjusted for errors in the DAC so can only really be
+        # tested if pins connected directly without the DAC and ADC between
         out = np.zeros(masks.size, dtype='uint8')
         for i, mask in enumerate(masks):
             val = 0
@@ -125,37 +125,55 @@ def Decode_Masks(masks, LOGS):
                     val |= (1<<(7-j))
             out[i] = val
         return out
-        '''-------------------------   FIX THIS   ---------------------------'''
+
     elif TRANSMISSION_TYPE == "4PAM":
         # Will use maximum likelihood reconstruction and account for attenuation
-        out = np.zeros(masks.size//4, dtype='float')
-        for i, o in enumerate(out):
-            for s in range(4):
-                out[i] |= (2**(2*s)) * masks[4*i+3-s]
-        ''' Need this before recombining 4 values!!!
-                if max(out) == 255:
-                    LOGS.append("Attenuation = 0")
-                else:
-                    att = max(out)
-                    LOGS.append("Attenuation = {}".format(att))
-                    out /= att
-        '''
-        
-        # MASK
-        mask = np.zeros_like(symb)
-        for i, DAC_level in enumerate(symb):
-            if i % 25000 == 0 and i != 0:  #Stats
-                print("Mask - {}".format(4*i))
-            mask32 = 0
+        out = np.zeros(masks.size//4, dtype='uint8')
+        # DAC
+        # Masks are 32-bit
+        for i, mask in enumerate(masks):
+            val = 0
             for j, pin in enumerate(DAC_PINS_1):
-                # If each bit in binary exists, include it in 32-bit mask
-                if (1<<(7-j)) & DAC_level:
-                    mask32 |= (1<<pin)
-            mask[i] = mask32
-        print("Num of masks: {}".format(mask.size))
-        return mask
+                # If each bit in mask exists, include it in out
+                if (1<<pin) & mask:
+                    val |= (1<<(7-j))
+            masks[i] = val
+        # Masks are 8-bit but attenuated
+        highest = max(masks)
+        LOGS.append("Attenuation = {}\n".format( (255-highest) / 255 ))
+        # SYMB
+        for i in range(masks.size):
+            if highest != 255 and highest != 0:
+                masks[i] = round(masks[i]*255/highest)
+            # Masks are 8-bit and full-range
+            # Maximum likelihood reconstruction of masks to symbols:
+            if masks[i] < 0.5*85:
+                masks[i] = 0
+            elif 0.5*85 < masks[i] < 1.5*85:
+                masks[i] = 1
+            elif 1.5*85 < masks[i] < 2.5*85:
+                masks[i] = 2
+            else:
+                masks[i] = 3
+        # OUT
+        for i in range(out.size):
+            for s in range(4):
+                out[i] |= (2 ** (2*s)) * masks[4*i+3-s]
+        return out
     elif TRANSMISSION_TYPE == "16QAM":
-        # 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
+        out = np.zeros((masks.size//2, 2), dtype='uint8')
+        # SYMB
+        symb = np.zeros((masks.size//2, 2), dtype='uint32')
+        # DAC
+        # Masks are 32-bit
+        for i, mask in enumerate(masks):
+            val = 0
+            for j, pin in enumerate(DAC_PINS_1):
+                # If each bit in mask exists, include it in out
+                if (1<<pin) & mask:
+                    val |= (1<<(7-j))
+            masks[i] = val
+        '''# 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
         # Expressing I as col 1, Q as col 2 of N x 2 matrix
         symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
         # Each value pair (indexed 0 to 15) gives I, Q for that
@@ -189,10 +207,11 @@ def Decode_Masks(masks, LOGS):
                     mask32 |= (1<<pin)
             mask[i] = mask32
         print("Num of masks: {}".format(mask.size))
-        return mask
-        '''-------------------------   FIX THIS   ---------------------------'''
+        return mask'''
+        out = np
+        
     else:
-        print("Invalid transmission type!")
+        print("Transmission type not implemented yet!")
 
 
 def Decode_Error_Correction(out, LOGS):
@@ -200,15 +219,17 @@ def Decode_Error_Correction(out, LOGS):
 
 
 def Save_As_Image(out, path, LOGS):
-        if out.size == 160000:
-            io.imwrite(path, out.reshape(400,400))
-        elif out.size < 160000:
-            img = np.ones(160000, dtype='uint8') * 255
-            for i, o in enumerate(out):
-                img[i] = o
-            io.imwrite(path, img.reshape(400,400))
-        else:
-            io.imwrite(path, out[:160000].reshape(400,400))
+    if os.path.isfile(path):
+        os.remove(path)
+    if out.size == 256*256*3:
+        io.imwrite(path, out.reshape(256,256,3))
+    elif out.size < 256*256*3:
+        img = np.zeros(256*256*3, dtype='uint8')
+        for i, o in enumerate(out):
+            img[i] = o
+        io.imwrite(path, img.reshape(256,256,3))
+    else:
+        io.imwrite(path, out[:256*256*3].reshape(256,256,3))
 
 
 '''--------------------------------   Main   --------------------------------'''
@@ -226,11 +247,11 @@ def main():
             with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
                 f.write("".join(str(i) for i in output))
         else:
-            output_masks = Receive_Data(mask_size, LOGS)
+            output_masks = np.fromfile(DATA_PATH, dtype='uint32')#Receive_Data(mask_size, LOGS)
             
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
-                Save_As_Image(output, 'cat_out.png', LOGS)
+                Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out.jpg', LOGS)
             else:
                 LOGS.append("No data was received\n")
     else:
@@ -242,6 +263,7 @@ def main():
 # won't slow down C part of receiver
 try:
     main()
+    LOGS.append("\nCompleted Receiver code!\n")
 except KeyboardInterrupt:
     LOGS.append("\nExiting on keyboard interrupt!\n")
 except Exception as e:

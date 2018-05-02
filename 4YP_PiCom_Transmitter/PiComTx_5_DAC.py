@@ -453,7 +453,7 @@ def main():
         # Transmitted using compiled C code
         
         #input_stream = Get_Step_Bytes()
-        input_stream = Get_Image_Bytes('cat.png')
+        input_stream = Get_Image_Bytes('cat2.jpg')
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")

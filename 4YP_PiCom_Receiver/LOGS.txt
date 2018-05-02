@@ -1,7 +1,7 @@
 ********** RECEIVER LOG FILE **********
-TRANSMISSION TYPE: OOK
-Mask size command line variable not correctly used
+TRANSMISSION TYPE: 4PAM
+Decoding masks...
+Attenuation = 0.0
 
-------- PiComRx_5_DAC.py -------
-
-Usage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]
+Completed Receiver code!
+***************************************

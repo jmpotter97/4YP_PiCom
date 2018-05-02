@@ -8,11 +8,15 @@ Talk about the RPi and test bed.
 
 \section{Fundamentals}
 
-The Raspberry Pi is a simple, affordable ARM-based computing module. It has, which can interface\\
+The Raspberry Pi is a simple, affordable ARM-based computing module. It has General Purpose Input/Output (GPIO) pins which it can use to interface with stuff.\\
 
-It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \cite{web_Raspbian}.\\
+It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \cite{lib_Raspbian}.\\
 
-\todo[inline,color=blue!20]{Write Raspberry Pi Fundamentals}
+The main chip on the board is the Broadcom BCM2835.
+The Pi's pins can either be numbered as pin 1-40 going through them sequentially in layout, this is the BOARD numbering scheme, or they can be referred to by their Broadcom pin numbers with the BCM numbering scheme.
+The second scheme numbers the available GPIO pins in the range 2-27 (Pins 0 and 1 are reserved for system use).
+
+\todo[inline,color=blue!20]{Write Raspberry Pi Fundamentals -- and take a better picture}
 
 \begin{figure}[ht]
 	\centering
@@ -30,25 +34,25 @@ Secure Shell is necessary regardless as it is used in the test bed execution.
 When actually using both Raspberry Pis in the test bed, both of them will be running in command line mode as this saves resources, although during development, VNC or a screen using the X Window makes it much easier to test and edit code.
 In the test bed, the Transmitter Pi will be connected to a screen and peripherals in command line mode, and then it will start the Receiver via SSH, which will run headless (without a screen or control peripherals) and receive the data, process and output it, and store information about the run in a log file which can be accessed later or again through SSH.\\
 
-Once the operating system is written to the SD card, SSH can be enabled by creating an empty file 'ssh' in the main portion of the card before putting it in the Raspberry Pi (for setup using a screen and peripherals, this can be turned on in the configuration settings).
+\missingfigure{A flowchart that describes the set-up procedure could be useful.}
+
+Once the operating system is written to the SD card, SSH can be enabled by creating an empty file \textit{ssh} in the main portion of the card before putting it in the Raspberry Pi (for setup using a screen and peripherals, this can be turned on in the configuration settings).
 Now an Ethernet cable can be connected from a computer to the Pi and it can be logged into.
-A program such as PuTTY for Windows can be used, with "pi@raspberrypi.local" as the host name so the IP address isn't needed.
-The standard login is "username: pi" and "password: raspberry".
-\todo[inline,color=green!40]{Inline code reference should look like inline code}
-The command "sudo raspi-config" accesses the configuration settings where the file system can be expanded to the whole SD card, and other utilities such as Wi-Fi and VNC can be turned on.
+A program such as PuTTY \cite{lib_PuTTY} for Windows can be used, with \textit{pi@raspberrypi.local} as the host name so the IP address is not needed.
+The standard login is \textit{username: pi} and \textit{password: raspberry}.
+The command \textit{sudo raspi-config} accesses the configuration settings where the file system can be expanded to the whole SD card, and other utilities such as Wi-Fi and VNC can be turned on.
 Again, all utilities except for SSH should be turned off when using the final test bed to improve performance of the devices.
-Once the Pi is connected to Wi-Fi and the IP address is known, it can be accessed remotely via the free RealVNC VNC Viewer \ref{web_RealVNC Viewer} and the X Window can be started with the command "startx" if it isn't already set to open the X Window on startup in the configuration settings.
-\todo[inline,color=blue!20]{MISSING REFERENCE - https://www.realvnc.com/en/connect/download/viewer/}
+Once the Pi is connected to Wi-Fi and the IP address is known, it can be accessed remotely via the free RealVNC VNC Viewer \cite{lib_RealVNCViewer} and the X Window can be started with the command \textit{startx} if it is not already set to open the X Window on startup in the configuration settings.
 This access can be made permanent by setting the Pi to have a static IP address or with a free RealVNC account which lets it be accessed independent of the IP address.\\
+\todo[inline,color=green!40]{Inline code reference should look like inline code not just italics ideally}
 
 With full control of the Pi, all that is needed is to download all of the libraries and software used by the test bed and clone the GitHub repository with its code.
-The Python version used is 3.x.x.
-\todo[inline]{Find python version of Pis}
+The Python version used is 3.6.4.
+\todo[inline]{Double check Python version of Pis is correct}
 and as the Raspberry Pi has Python 2 and 3, pip - the Python package manager - is called as pip3 for python3.
-Any dependencies not in this list give clear instructions how to be downloaded when this is run line by line.\\
+Any dependencies not in this list give clear instructions as to how they are downloaded when this list is run line by line.\\
 
-\todo[inline,color=green!40]{Create new format (and inline for above) called "shell"}
-\todo[inline]{Include matplotlib if used in the end - ALSO INCLUDE REFERENCES TO ALL LIBRARIES MENTIONED}
+\todo[inline,color=green!40]{Create new format (and inline for above) called "shell"} IF I NEED TO AND HAVE TIME
 \lstset{style=python}
 \begin{lstlisting}[caption=Libraries and Packages Required for the Test Bed]
 	sudo apt-get update
@@ -74,17 +78,16 @@ Any dependencies not in this list give clear instructions how to be downloaded w
 	# ... pip GPIOSimulator (or pip3 if necessary)
 	# ... Only works in Windows, simulates Raspberry Pi pins (use like RPi.GPIO commands)
 \end{lstlisting}
-\todo[inline]{Do I need to change GitHub to an anonymous account if only candidate number is on cover page}
 
 Included are the following, as well as their dependencies:
 
 \begin{itemize}
-	\item VPNC - VPN software used to access the Oxford VPN in order to use the OWL Wi-Fi network
-	\item Paramiko - Python library used for SSH to start the receiver
-	\item NumPy - Python library used for easier array manipulation as well as interface with images
-	\item imageio - Python library used to read and save image files as NumPy arrays
-	\item pigpio - C library used to interface with the GPIO pins
-	\item Git - Version control software which also allows for the cloning of the project code to any device
+	\item VPNC - VPN software used to access Oxford VPN in order to use the OWL Wi-Fi network \cite{lib_VPNC}
+	\item Paramiko - Python library used for SSH to start the receiver \cite{lib_Paramiko}
+	\item NumPy - Python library used for easier array manipulation as well as interface with images \cite{lib_NumPy}
+	\item imageio - Python library used to read and save image files as NumPy arrays \cite{lib_imageio}
+	\item pigpio - C library used to interface with the GPIO pins \cite{lib_pigpio}
+	\item Git - Version control software which also allows for the cloning of the project code to any device \cite{lib_Git}
 \end{itemize}
 
 \clearpage
@@ -92,11 +95,11 @@ Included are the following, as well as their dependencies:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 \section{Test Bed Architecture}
-\todo[inline]{Mention BMC numbering scheme and full name for it}
+
 The test bed comprises the two Raspberry Pis and a number of chips to provide the functions required for more advanced modulation schemes.
 This is built up as three arrangements with increasing complexity.
 The first is the Pis connected together by two wires, a serial data line and a clock line (Figure \ref{fig_OOK Architecture}).
-This arrangement is similar to that used for an $I^2C$ bus, however the code written for this form of communication doesn't rely on any available modes of serial interfacing because it needs to be extensible to the parallel communication in the next arrangements.
+This arrangement is similar to that used for an $I^2C$ bus, however the code written for this form of communication does not rely on any available modes of serial interfacing because it needs to be extensible to the parallel communication in the next arrangements.
 The second arrangement is used for Pulse Amplitude Modulation schemes.
 It uses a single parallel Digital Analogue Converter (DAC) connected to the transmitter which transmits to a parallel Analogue Digital Converter connected to the receiver, allowing for multi-level signals to be transmitted between the two devices.
 The final arrangement extends the set-up to two DACs and two ADCs.
@@ -105,7 +108,7 @@ This arrangement is used for Quadrature Amplitude Modulation as well as Orthogon
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{OOK_Architecture.jpg}
+	\includegraphics[width=0.5\textwidth]{OOK_Architecture.jpg}
 	\caption{Test Bed Set-up For On-Off Keying}
 	\label{fig_OOK Architecture}
 \end{figure}
@@ -114,14 +117,15 @@ This arrangement is used for Quadrature Amplitude Modulation as well as Orthogon
 
 The Digital Analogue Converter used is the AD5424, an 8-bit CMOS current output DAC with an easy interface to microcontrollers.
 It has a \SI{17}{\nano\second} write cycle and a maximum update rate of \SI{20.4}{MSPS}. % Mega Samples Per Second
-The converter is set up with a non-inverting operational amplifier to produce a full-range voltage output.
+There are possible configurations in the data sheet using an inverting operational amplifier to produce the output, however due to the single supply and difficulties finding low-power operational amplifiers which provide rail-to-rail output for a 5V single supply, this was avoided where possible.
 The Read/Write ($R/\overline{W}$) pin is pulled low permanently so the chip is in write mode; read back of the parallel digital outputs is not required.
 The Chip Select pin ($\overline{CS}$) needs a falling edge and a rising edge to complete a write cycle, where the rising edge loads new parallel data, so this is connected to the clock pin of the Raspberry Pi.
 Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{DAC_Layout.jpg}
+	\includegraphics[width=0.35\textwidth]{DAC_Layout.jpg}
+	\includegraphics[width=0.6\textwidth]{ad5424.png}
 	\caption{Layout of the Digital Analogue Converter}
 	\label{fig_DAC Layout}
 \end{figure}
@@ -129,17 +133,19 @@ Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 \subsection{Analogue Digital Converter}
 
 The Analogue Digital Converter used is the ZN448, 
-
-\missingfigure{Layout of Digital Analogue Converter}
+\todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
+\missingfigure{Layout of the Analogue Digital Converter}
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{PAM_Architecture.jpg}
-	\caption{Layout for Pulse Amplitude Modulation}
+	\includegraphics[width=0.4\textwidth]{PAM_Architecture.jpg}
+	\caption{Layout of Test Bed for Pulse Amplitude Modulation}
 	%\label{fig_}
 \end{figure}
 
 \subsection{Multiplier} \label{sec_Multiplier}
+
+This section still needs the technical specifications and layout in the test bed of the multiplier.
 
 \todo[inline]{Depending whether it's doable, include  this section without multipliers on transmitter, pseudo ground on output}
 
@@ -147,54 +153,52 @@ The Analogue Digital Converter used is the ZN448,
 	\centering
 	\includegraphics[width=0.6\textwidth]{DAC_Modulation.jpg}
 	\caption{Four Quadrant Multiplication of input sinusoid using DAC}
-	%\label{fig_}
+	\label{fig_}
 \end{figure}
 
-The Pi is not able to output negative voltages. Thus, Pulse Amplitude Modulation
-uses the range 0 to Vmax not -Vmax to Vmax. Similarly, QAM uses a grid all in
-the positive quadrant (0,1,2,3 not -3,-1,1,3). The same "negative" effect is still
-achieved by using the "GROUND" of the multipliers (which are fully differential)
-as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
-for the values 0 and 1 in the same way they would be for -3 and -1 and the
-transmitted signal
+The Pi is not able to output negative voltages.
+As a result, Pulse Amplitude Modulation uses the range $0$ to $V_{max}$ rather than $-V_{max}$ to $V_{max}$.
+Similarly, Quadrature Amplitude Modulation uses a grid of I and Q values all in the positive quadrant (0,1,2,3 not -3,-1,1,3).
+The same "negative" effect is still achieved by using the "GROUND" of the multipliers (which are fully differential)
+as $V_{max/2}$ using a voltage divider.
+This means that the sine and cos signals will be inverted when multiplied by the values 0 and 1 in the same way they would be for -3 and -1, and the transmitted signal will essentially be a normal PAM or QAM signal plus a DC component of $V_{max/2}$.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{QAM_OFDM_Architecture.jpg}
-	\caption{Layout for Quadrature Amplitude Modulation and Potentially Orthogonal Frequency Division Multiplexing}
+	\caption{Layout of the Test Bed for QAM and Potentially OFDM}
 	%\label{fig_}
 \end{figure}
 
 \subsection{Parts Used}
 
-\todo[inline,color=green!40]{Need a diagramatic representation as well as an actual picture}
+\todo[inline,color=green!40]{Need a diagramatic representation of this as well as an actual picture of the final test bed}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Live_Test_Bed.jpg}
-	\caption{What the Test Bed Actually Looks Like in its Final Configuration}
+	\caption{The Final Configuration of the Test Bed}
 	%\label{fig_}
 \end{figure}
 
-\todo[inline,color=blue!20]{Include a section on pricing of the parts and comparison to actually used test beds}
+\todo[inline,color=blue!20]{Include a section on pricing of the parts and of the whole test bed, comparison to examples of projects and commercial solutions mentioned in Literature Review (Section \ref{sec_Lit Review})}
 
 It is worth noting that there is a large variety of available options for each component of the test bed.
 Each possibility has certain advantages and disadvantages, and a lot of the options are not suitable due to the power requirements or ease of interfacing with the Raspberry Pi.
 As a result of this, the parts used in this project were the most suitable parts which could be found and successfully sourced.
-However, there may be more suitable chips available given more time or experience, and being aware of this would be useful if this project were to be extended and/or replicated.
-All parts could be replaced with minimal adjustment to the set-up and code.\\
+However, there may be more suitable chips available given more time or experience to find them, and being aware of this would be useful if this project were to be extended and/or replicated.
+All parts could be replaced with minimal adjustment to the physical test bed layout and code.\\
 
 Changes which would be made with hindsight, if components with the required qualities could be found, are as follows:
 
-\todo[inline,color=blue!20]{Continue to add to this list as you write the Architecture section - remove redundant information already discussed in earlier sections}
+\todo[inline,color=blue!20]{Continue to add to this list as you write the Architecture section - remove redundant information already discussed in the Section itself for each part}
 \begin{itemize}
 	\item A number of chips used are surface mounted, requiring difficult soldering to solder pads, This would be useful if they were to be used on a printed circuit board for a final design, but on a prototyping breadboard, dual in-line packages would have been easier to use where available
-	\item The Digital Analogue Converter was chosen for its easy interfacing with a microcontroller, but a voltage-output device would remove the need to use additional operational amplifiers at the output. It also had some issues with correct values and it is unclear if it was the implementation or the chip itself.
+	\item The Digital Analogue Converter was chosen for its easy interfacing with a microcontroller, but a voltage-output device would remove the need to use additional operational amplifiers or a drain resistor at the output. It also had some issues with correct value output (See Section \ref{sec_Components}).
 	\item Analogue Digital Converter
-	\item The Quadrature Sinusoid Generator uses an oscillator chip which outputs $90^o$ out-of-phase square waves, and the used chip was the only simple one which did this. Ideally the outputs would already be sinusoidal (one quadrature chip or a sine generator and phase shifter) so that low pass filters with fixed frequency response could be omitted to make changing the carrier frequency purely software-dependent.
-	\todo[inline]{Make sure I am consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}	
-	\item The multiplier is designed to operate around \SI{10}{\volt}, and so has a built in \SI{10}{\volt} normalisation in the multiple which attenuates the signal and required re-amplification before transmission. A similar chip designed for lower voltages would be ideal.
-	\todo[inline]{Fact check this}
-	\item Low Pass Filters
+	\item The Quadrature Sinusoid Generator uses an oscillator chip which outputs $90^o$ out-of-phase square waves, and the chip used was the only simple one which did this or anything close. Ideally the outputs would already be sinusoidal (one quadrature chip or a sine generator and phase shifter) so that low pass filters with fixed frequency response could be omitted from the design, making the carrier frequency purely software-dependent. No obvious chip could be found for this and ones that did anything close were expensive.
+	\todo[inline]{Make sure it's consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}	
+	\item The multiplier is designed to operate around \SI{10}{\volt}, and so has a built in \SI{10}{\volt} normalisation in the multiple which attenuates the signal (which is at lower voltages) and requires re-amplification before transmission - an oversight when choosing it. A similar chip designed for lower voltages would be ideal.
+	\item Low Pass Filters to remove high frequency signals in the demodulation part of QAM were again made using fixed-value components, if frequency response of a filter could be altered in software, all frequencies used (carrier and symbol) could be hardware independent.
 \end{itemize}
 
 \clearpage
@@ -204,55 +208,77 @@ Changes which would be made with hindsight, if components with the required qual
 \section{Programming}
 
 The Raspberry Pi is used for its low cost, ease of use, and the fact that it has programmable Input/Output (I/O) pins.
-The I/O pins can be programmed using different libraries in Python and C.
-The standard GPIO library which comes installed with Raspbian is RPi.GPIO for Python \ref{web_RPi.GPIO}.
-\todo[inline,color=green!40]{Add bib reference to RPi.GPIO https://pypi.python.org/pypi/RPi.GPIO}
+The I/O pins can be programmed using different libraries in either Python or C.
+The standard GPIO library which comes installed with Raspbian is RPi.GPIO for Python \cite{lib_RPi.GPIO}.
 This is used for the On-Off Keying part of the communications test bed.
-The Python library is slow however, and so a C library is used for the pin-level manipulation for all modulation schemes requiring multi-level outputs through Digital Analogue Converters.
+Python is relatively slow however, and so a C library is used for the pin-level manipulation for all modulation schemes requiring multi-pin outputs to Digital Analogue Converters to generate multi-level signals.
 This is done both for the improved speed performance of the C library, and the capability of this library to output to multiple pins at once.
-Section \ref{sec_Comparing Python and C} goes into a detailed  investigation of the differences between these options.
-\todo[inline]{CHECK - Do I need to change this from my name to an anonymous account if only candidate number is on cover page}
+Section \ref{sec_Comparing Python and C} goes into a detailed  investigation of the differences between the libraries used and the reasons for choosing C over Python for the advanced modulation schemes.
 All of the code and the report for the project are maintained on GitHub, and may be found at \url{https://github.com/CamEadie/4YP_PiCom}.\\
 
-The transmitter and receiver code for all modulation schemes considered works from a single final version of the test bed.
-This consists of the Python transmitter \textit{PiComTx\textunderscore 5\textunderscore DAC.py} and receiver \textit{PiComRx\textunderscore 5\textunderscore DAC.py} files, and the executables compiled from C code for the transmitter \textit{PiTransmit\textunderscore 3} and receiver \textit{PiReceive}.
-The body of the main Python codes for each the transmitter and receiver is split into OOK and Advanced Modulation Schemes.
-On-Off Keying (Section \ref{sec_On-Off Keying}) is the simplest form of clocked communication possible, and acts as a proof of concept for the Raspberry Pis as a test bed.
-It is implemented using a native Python list which stores '1's and '0's to represent the binary stream, and these are output using the native RPi.GPIO library.
-The OOK was added into the final code of the Advanced Modulation Schemes (Section \ref{sec_Advanced Modulation Schemes})  from previous versions retrospectively, as all of the Advances Schemes are implemented in the same code.
-This was done both to make it easier to conduct all tests through one program, and to adhere to the idea of Software Defined Radio being as change-independent as possible (Section \ref{sec_Lit Review}).\\
-\todo[inline,color=green!40]{Rephrase this and make sure the section referenced is as consistent with this comment as possible}
-The Advanced Schemes considered are 4-level Pulse Amplitude Modulation, 256-level Pulse Amplitude Modulation (used more for setting up the DAC and ADC, as differentiating between levels this precisely is not viable), 16-Quadrature Amplitude Modulation and Orthogonal Frequency Division Multiplexing.
-The code also improves the data manipulation, includes image handling so images can be transmitted allowing for visualisation of the error rate etc. of the transmission, and implements a separate compiled C module for the actual transmitting and receiving of data.\\
+The transmitter and receiver code for all modulation schemes considered works from a single final version of the test bed code.
+This comprises of the Python transmitter \textit{PiComTx\textunderscore 5\textunderscore DAC.py}, and receiver \textit{PiComRx\textunderscore 5\textunderscore DAC.py}, as well as the executables compiled from C code for the transmitter \textit{PiTransmit\textunderscore 3}, and receiver \textit{PiReceive}.
+The main function in the Python files for each the transmitter and receiver is split into On-Off Keying and Advanced Modulation Schemes.
+On-Off Keying (Section \ref{sec_On-Off Keying}) is the simplest form of clocked communication, and acts as a proof of concept for the Raspberry Pis as a test bed.
+It is implemented using Python lists to store '1's and '0's to represent the binary stream.
+These are output using the native RPi.GPIO library.\\
+
+The OOK part was added into the final code for the Advanced Modulation Schemes (Section \ref{sec_Advanced Modulation Schemes})  from previous versions retrospectively, as all of the Advanced Schemes are implemented in the same code.
+This was done to make it easier to conduct all communications tests through a single program interface.
+It also allows all of the modulation schemes to be used on essentially the same layout with minor changes to the hardware, and this adheres better to the idea of Software Defined Radio being as software-defined and hardware-change-independent as possible (Section \ref{sec_Lit Review}).\\
+\todo[inline,color=green!40]{Rephrase this and make sure the section referenced is as consistent with this comment as possible - reference that paper or lit review}
+
+The advanced modulation schemes considered are 4-level Pulse Amplitude Modulation, 256-level Pulse Amplitude Modulation (used more for setting up the DAC and ADC, as differentiating between levels this precisely is not viable), 16-Quadrature Amplitude Modulation and Orthogonal Frequency Division Multiplexing.
+Code for this section implements the data stream as bytes in a \textit{NumPy} array rather than as bits in a list.
+This has certain computational advantages but also allows for the integration of image handling with \textit{imageio}.
+This means that images can be transmitted instead of random data, allowing for visualisation of the bit error rate etc. of the transmission.
+These schemes also implement a separate compiled C module for the actual transmitting and receiving of data.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Pi_Pin_Connections.jpg}
+	\includegraphics[width=0.6\textwidth]{Pi_Pin_Connections.png}
 	\caption{Pin Diagram of Connections to Raspberry Pi (reference to image source) - These are alterable fairly easily in the code so changes can be made with little overhead}
 	\label{fig_Pin Connections}
 \end{figure}
 
+Pins used currently for the OOK transmission as well as for the DACs are shown in Figure \ref{fig_Pin Connections}.
+The pins with black boxes around them are the accessible GPIO pins, and they are referred to by their BCM number (GPIO# in the boxes) rather than their BOARD number (consecutive numbers in the circles).
+Of particular interest due to their differences are pins 2, 3 and 4.
+Pins 2 and 3 are used for the clock and data lines of \textit{I\^2C} bus communication and so have internal pull-up resistors.
+Due to the fact that the test bed uses pins set with pull-down resistors, these pins aren't used.
+Pin 4 is the only pin on the Raspberry Pi B+ with access to a hardware clock which can be programmed for external use.
+It is thus used for overclocking external components which can be fed a clock signal, which is discussed in Section \ref{sec_Overclocking}.
+The code defines the pins used for transmission as a global variable at the start so that the rest of the code can be pin-independent.
+Except for the the DAC clock pin (pin 16) which is defined in the C code, Listing \ref{lst_Pins} shows these pin definitions.\\
+
+\begin{lstlisting}[caption=Pins used for OOK and the DACs]
+	CLK_PIN = 20
+	DATA_PIN = 21
+	DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
+								[14, 15, 18, 17, 27, 22, 23, 24]
+\end{lstlisting} \label{lst_Pins}
+
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
 
 On-Off Keying is a modulation scheme based on using $V_{max}$ as '1' and \SI{0}{\volt} as '0'.
-The transmit section of the test bed loops through the data list, outputting each value followed by a clock pulse using the sleep function.
+The transmit section of the test bed loops through the data list, outputting each value to the data pin followed by a clock pulse using the sleep function.
 The speed and accuracy of the \textit{GPIO.output()} and \textit{sleep()} functions is covered in Section \ref{sec_Electro Testing}.
-The receiver uses the function \textit{GPIO.wait\textunderscore for\textunderscore edge()} on rising edges of the clock pin to trigger reading of the data pin, and .\\
+The receiver uses the function \textit{GPIO.wait\textunderscore for\textunderscore edge()} on rising edges of the clock pin to trigger reading of the data pin.
+Using a function which is polling the clock pin as opposed to interrupt-driven solution is not ideal, but it was more easily written and so used for this early-stage modulation scheme.\\
 
 Earlier versions of this modulation scheme included a function \textit{Prep\textunderscore Binary\textunderscore Data()} which added initial and final padding to the data of '1's to prevent missing timing of the beginning and end of transmission.
 The function also added a padding bit to the data when either value had been repeated a certain number of times (for example a '1' if '0' had been repeated 5 times in a row).
-This function was removed when \textit{Encode\textunderscore Error\textunderscore Correction()} was included, as forward error correction was seen as a better way of avoiding these and other errors without including padding bits which could be difficult to remove if errors did occur in the code transmission.
+This function was removed when \textit{Encode\textunderscore Error\textunderscore Correction()} was included, as forward error correction was seen as a better way of avoiding these and other errors without including padding bits which may be difficult to remove if errors did occur in the code transmission.
 The channel coding used is syndrome decoding and is discussed more in Section \ref{sec_Channel Coding}.\\
 
 
 \subsubsection{Starting the Receiver}
 
-The receiver is started with the library Paramiko \ref{lib_Paramiko} which is used to make an SSH connection, and then to execute a command on the device which it connects to.
-\todo[inline]{Missing reference - Paramiko}
+The receiver is started with the library Paramiko \cite{lib_Paramiko} which is used to make an SSH connection, and then to execute a command on the device which it connects to.
 The host names of the transmitter and the receiver were changed to \textit{raspberrypi1} and \textit{raspberrypi2} to differentiate them, and their passwords changed to \textit{rasPass1} and \textit{rasPass2}.
-The devices are connected by an Ethernet cable so no connection to the internet is required, and so the transmitter uses the local host name of the receiver \textit{raspberrypi2.local}.\\
+The devices are connected by an Ethernet cable so no connection to the internet is required, and so the transmitter can use the local host name of the receiver \textit{raspberrypi2.local}.\\
 
-The command to start the program is:\\
+The command to start the program is:
 
 \begin{lstlisting}[caption=Command Line to Start the Receiver]
 	command = "sudo python3 " + \
@@ -264,21 +290,25 @@ The super user call \textit{sudo} is necessary for control of the GPIO pins in t
 The command line argument \textit{mask\textunderscore length} is required by the receiver, and ensures that the amount of data received is the amount expected, and allows for the checking of deletions in the transmission.
 The other argument \textit{TRANSMISSION\textunderscore TYPE} is not required, but if passed it overwrites the transmission type in the receiver code to ensure that it is expecting the same modulation scheme that the transmitter is using.\\
 
-The SSH connection is closed as soon as the command is executed so that both Raspberry Pis are not expending resources during transmission, and any readout to \textit{stdout}, the standard output of the program under the connection is ignored.
-All logging of the execution of the receiver is instead appended to a Python list \textit{LOGS}, and this variable is written to a file \textit{LOGS.txt} at the end of execution.
+The SSH connection is closed as soon as the command is executed so that both Raspberry Pis are not expending resources during transmission, and any readout to \textit{stdout}, the standard output of the program over the connection is ignored.
+All logging of the receiver is instead appended to a Python list \textit{LOGS}, and this variable is written to a file \textit{LOGS.txt} at the end of execution.
 This includes all of the trivial to calculate results of the post-transmission analysis such as the number of bits/bytes received (whether there was any data lost).
-The transmitter also implements another SSH connection after transmission to read the \textit{LOGS.txt} file to the \textit{stdout} of the connection using the command \textit{cat} so that the user doesn't need to change the screen (if only one screen available) between Raspberry Pis every time to see whether the transmission was successful.\\
+\todo[inline]{Clearly check below once done}
+The transmitter also implements another SSH connection after transmission to read the \textit{LOGS.txt} file to the \textit{stdout} of the connection using the command \textit{cat} so that the user does not need to change the screen (if only one screen available) between Raspberry Pis every time to see whether the transmission was successful.\\
 
 \subsection{Advanced Modulation Schemes} \label{sec_Advanced Modulation Schemes}
 
-PAM - as mentioned in section \ref{sec_Multiplier} 0-3
+This section is currently a mess of notes for myself.\\
+\todo[inline,color=blue!20]{Write up notes in Advanced Modulation Schemes into a proper coherent section}
+4PAM - as mentioned in section \ref{sec_Multiplier} uses values $V_{max}\times\frac{0 to 3}{3}$
 
-256 PAM is similar to 4PAM and is not included for space and because it's not viable in this setup especially with the problem mentioned in Section \ref{sec_Components}.
-\todo[inline,color=green!40]{Make sure the right section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
-OFDM is also conceptualised here but due to the same problem, the continuous value issue mentioned above would need to be fixed before it could be implemented.
-OFDM could be used with blablabla... NumPy fftn, ifftn
+256 PAM is similar to 4PAM and is not included in the flow diagram for space and because it is not viable due to granularity issues, especially with the problem mentioned in Section \ref{sec_Components} (need to be more specific).
+\todo[inline,color=green!40]{Make sure the corresponding section does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
+OFDM is also conceptualised here but due to the above problem, the continuous value issue mentioned above would need to be fixed before it could be implemented.
+OFDM could be used with NumPy fftn (N-dim FFT), ifftn (N-dim Inverse FFT).\\
 
-Here we will definitely talk about the transmitter generally.\\
+Here we will talk about the transmitter generally and how it works referencing Figure \ref{fig_Transmitter_Flow}.
+Mention the QAM constellation used.\\
 
 \begin{figure}[ht]
 	\centering
@@ -287,7 +317,7 @@ Here we will definitely talk about the transmitter generally.\\
 	\label{fig_Transmitter_Flow}
 \end{figure}
 
-Here we will definitely talk about the receiver generally enough to separate the flow charts by a page.\\
+Here we will talk about the receiver generally and how it works - probably enough to separate the flow charts with a page of writing.\\
 
 \begin{figure}[ht]
 	\centering
@@ -298,30 +328,25 @@ Here we will definitely talk about the receiver generally enough to separate the
 
 \subsubsection{Data and Image Handling}
 
-NumPy and imageio.\\
+NumPy and imageio, how they work and are used in the code, examples.\\
 
 \subsubsection{C Transmitter and Receiver}
 
 Receiver: in Section \ref{sec_Computation} the options of data mask in on trigger vs read data then in on clock were compared and BLA was chosen as the more effective method.
-\todo[inline]{Which method is more effective}
+\todo[inline]{Which method is more effective?}
 
-/* PiTransmit now works independent of the choice of DAC pins.
-* It reads in the bit-mask (bits to set) from a binary file for speed,
-* which is calculated and saved in the Python before transmission,
-* and it also reads in inversion mask (bits to clear) so the calculation
-* isn't done during transmission.
-* This also means the Transmit program doesn't need to know how many
-* DAC's there are so works for all transmission schemes.
-*/
+PiTransmit works independent of the choice of DAC pins.
+It reads in the bit-mask (bits to set) from a binary file for speed, which is calculated and saved in the Python before transmission, and it also reads in inversion mask (bits to clear) so the calculation is not done during transmission.
+This also means the Transmit program does not need to know how many DACs there are so works for all transmission schemes.
 
 The pins selected are based on the DAC1 choice from Figure \ref{fig_Pin Connections} but could be used for any set of possible output pins.
-\todo[inline,color=blue!20]{Add a comment about the range of 2 to 28 not 0 to 32 in bank writing}
+There will also be an explanation about what these bit-masks actually mean and refers to, it is exemplified in Figure \ref{fig_Mask Expansion}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Mask_Expansion.jpg}
+	\includegraphics[width=0.8\textwidth]{Mask_Expansion.jpg}
 	\caption{Explanation of the concept of mask expansion}
-	%\label{fig_}
+	\label{fig_Mask Expansion}
 \end{figure}
 
 \end{document}

@@ -17,7 +17,6 @@ const uint CLK_PIN = 16;
 
 
 int main(int argc, char *argv[]) {
-	
 	/************************   SETUP   ************************/
 	printf("SETUP\n");
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
@@ -31,7 +30,7 @@ int main(int argc, char *argv[]) {
 		symbol_freq = atoi(argv[1]);
 		// Returns 0 if not a number string (and 0 not OK freq anyway)
 		if(symbol_freq == 0) {
-			printf("PiTransmit_3\n\n");
+			printf("--- PiTransmit_3 ---\n\nInvalid Frequency\n");
 			printf("Usage: ./PiTransmit_3 symbol_freq \n");
 			gpioTerminate();
 			return 3;	 
@@ -44,7 +43,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	const uint DAC_1_bits[8] = {10, 9, 11, 5, 6, 13, 19, 26}; // MSB to LSB
-	const uint DAC_2_bits[8] = {2, 3, 4, 17, 27, 22, 23, 24};
+	const uint DAC_2_bits[8] = {14, 15, 18, 17, 27, 22, 23, 24};
     for(int i=0;i<8;i++) {
 		// It will work without this (setting DAC pins) but good practice
 		gpioSetMode(DAC_1_bits[i], PI_OUTPUT);
@@ -100,7 +99,6 @@ int main(int argc, char *argv[]) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
 		// Low-going CS signal loads data (min low CS 10ns, min high CS 7ns)
-		usleep(1);
 		gpioWrite(CLK_PIN, 0);
 		usleep(symbol_time);
 		gpioWrite(CLK_PIN,1);
@@ -115,6 +113,8 @@ int main(int argc, char *argv[]) {
 	//gpioHardwareClock(4, 0);
 	
 	/* SEE  PITRANSMIT_2 FOR NOTES ON CALLBACK FUNCTION IN TRANSMITTER*/
+	free(transmit_data_mask);
+	free(transmit_data_mask_inv);
 	gpioTerminate();
 	return 0;
 }
