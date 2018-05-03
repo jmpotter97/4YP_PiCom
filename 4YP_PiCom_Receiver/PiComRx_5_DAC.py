@@ -75,7 +75,8 @@ def Receive_Binary_Data(out, LOGS):
 '''---------------------- Advanced Modulation Schemes ----------------------'''
 def Receive_Data(size, LOGS):
     LOGS.append("Receiving data\n")
-    receiver = run(["sudo", "./PiReceive", str(size)], stdout=PIPE)
+    C_receive_command = "./home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiReceive"
+    receiver = run(["sudo", C_receive_command, str(size)], stdout=PIPE)
 
     LOGS.append("\n... C RECEIVER LOGS ...\n\n")
     for line in receiver.stdout.decode('utf-8').split('\n'):
