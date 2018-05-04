@@ -304,7 +304,6 @@ def Convert_To_Data_Mask(data_list):
             symb[2*i] = qam_const[byte // 16]
             symb[2*i+1] = qam_const[byte % 16]
         # DAC
-        # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
         # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
         for i, s in enumerate(symb):

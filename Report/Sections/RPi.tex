@@ -124,8 +124,7 @@ Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.35\textwidth]{DAC_Layout.jpg}
-	\includegraphics[width=0.6\textwidth]{ad5424.png}
+	\includegraphics[width=0.8\textwidth]{ad5424.png}
 	\caption{Layout of the Digital Analogue Converter}
 	\label{fig_DAC Layout}
 \end{figure}
@@ -134,7 +133,13 @@ Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 The Analogue Digital Converter used is the ZN448, 
 \todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
-\missingfigure{Layout of the Analogue Digital Converter}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{zn448.png}
+	\caption{Layout of the Analogue Digital Converter}
+	\label{fig_ADC Layout}
+\end{figure}
 
 \begin{figure}[ht]
 	\centering
@@ -244,7 +249,7 @@ These schemes also use a separate compiled C module for the actual transmitting 
 Pins used currently for the OOK transmission as well as for the DACs are shown in Figure \ref{fig_Pin Connections}.
 The pins with black boxes around them are the accessible GPIO pins, and they are referred to by their BCM number (GPIO\# in the boxes) rather than their BOARD number (consecutive numbers in the circles).
 Of particular interest due to their differences are pins 2, 3 and 4.
-Pins 2 and 3 are used for the clock and data lines of \textit{I\^2C} bus communication and so have internal pull-up resistors.
+Pins 2 and 3 are used for the clock and data lines of $I^2C$ bus communication and so have internal pull-up resistors.
 Due to the fact that the test bed uses pins set with pull-down resistors, these pins aren't used.
 Pin 4 is the only pin on the Raspberry Pi B+ with access to a hardware clock which can be programmed for external use.
 It is thus used for overclocking external components which can be fed a clock signal, which is discussed in Section \ref{sec_Overclocking}.
@@ -274,7 +279,7 @@ This function was removed when \textit{Encode\textunderscore Error\textunderscor
 The channel coding used is syndrome decoding and is discussed more in Section \ref{sec_Channel Coding}.\\
 
 
-\subsubsection{Starting the Receiver}
+\subsubsection{Starting the Receiver} \label{sec_SSH}
 
 The receiver is started with the library Paramiko \cite{lib_Paramiko} which is used to make an SSH connection, and then to execute a command on the device which it connects to.
 The host names of the transmitter and the receiver were changed to \textit{raspberrypi1} and \textit{raspberrypi2} to differentiate them, and their passwords changed to \textit{rasPass1} and \textit{rasPass2}.
@@ -289,6 +294,8 @@ The command to start the program is:
 \end{lstlisting}
 
 The super user call \textit{sudo} is necessary for control of the GPIO pins in the receiver code.
+When programs are run from a command in command line mode, it can have additional information to it through the use of command line arguments.
+These are additional space-separated strings after the name of the program which can be accessed by the program.
 The command line argument \textit{mask\textunderscore length} is required by the receiver, and ensures that the amount of data received is the amount expected, and allows for the checking of deletions in the transmission.
 The other argument \textit{TRANSMISSION\textunderscore TYPE} is not required, but if passed it overwrites the transmission type in the receiver code to ensure that it is expecting the same modulation scheme that the transmitter is using.\\
 
@@ -305,11 +312,14 @@ The transmitter also implements another SSH connection after transmission to rea
 This section will start by describing the advanced modulation schemes used, and will then it will go on to how the transmitter and receiver implement  the schemes in code.\\
 
 The modulation schemes used are 4-level Pulse Amplitude Modulation (4PAM), 256-level Pulse Amplitude Modulation (256PAM) and 16-Quadrature Amplitude Modulation (16QAM).
+Orthogonal Frequency Division Multiplexing (OFDM) is discussed as a possibility but not implemented.
 4PAM expresses each bit pair as one of four voltage levels which is expressed with use of a Digital Analogue Converter (DAC).
-16QAM uses a similar concept except it transmits two sets of 4-level voltages at once for each set of four bits.
-This is achieved using two DACs, and by multiplying the output of one by a sine wave and the other by a cos (or 90\^o phase-shifted sine) and adding them, using the orthogonality of the two waveforms to extract each level independently.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The communications test bed could be implemented with Orthogonal Frequency Division Multiplexing (OFDM), however there were certain issues and time constraints which meant that this was not realised.
+16QAM uses a similar concept except it transmits two voltages at once to describe each set of four bits.
+This is achieved using two DACs, and by multiplying the output of one by a sine wave and the other by a cos (or $90^o$ phase-shifted sine) and adding them, using the orthogonality of the two waveforms to extract each level independently at the other end.
+OFDM is a scheme which uses sub-carrier modulation in the digital domain, where each sub-carrier is modulated with a conventional modulation scheme such as Phase Shift Keying or QAM.
+It then transmits the Inverse Fast Fourier Transform (IFFT) of the combination of these sub-carriers as a complex carrier-modulated signal.\\
+
+The communications test bed could be implemented with OFDM, however there were certain issues and time constraints which meant that this was not realised.
 The details of how the test bed would be extended are included.
 As mentioned in Section \ref{sec_Multiplier}, the Raspberry Pi is unable to output negative voltages, and so all symbol values are in a positive voltage range between $V_{min} = 0V$ and $V_{max} = 3.3V$.
 Therefore, 4PAM and 16QAM use values from the range $\{0, 1, 2, 3\} \times \frac{3.3}{3}V$, output from one and two DACs respectively.
@@ -317,17 +327,51 @@ Similarly 256PAM uses 256 values from $\{0, 1, ..., 255\} \times \frac{3.3}{255}
 
 Figure \ref{fig_Transmitter_Flow} is a flow chart of the operation of the transmitter code.
 256PAM is omitted in the flow chart as it is similar to but more easily realised than 4PAM, and the space is better used conceptualising the addition of OFDM.
-It is also not a viable modulation scheme unless the DAC acts perfectly and is implemented mostly as a way of testing the accuracy of the DAC's granularity.
+256PAM is also not a viable modulation scheme unless the DAC acts perfectly, and so it is implemented mostly as a way of testing the accuracy of the DAC's granularity.
 Tests using 256PAM to output monotonically increasing values revealed that the converters were not working exactly as expected, and that there were spikes at certain values and a non-continuous analogue response was measured for continuous digital input.
-This problem is investigated in Section \ref{sec_Components}, but the solution was to use an empirically derived lookup table to get the four levels for 4PAM and 16QAM as close as they could be to the correct values -- this would be removed from the code if a successful replacement digital analogue converter was used.
+This problem is investigated in Section \ref{sec_Components}, but the solution was to use an empirically derived lookup table to get the four levels for 4PAM and 16QAM as close as they could be to the correct values -- this would be removed from the code if a successful replacement digital analogue converter was used.\\
 \todo[inline,color=green!40]{Make sure the corresponding section (USE THE RIGHT SUB-SECTION) does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
 
-OFDM is also conceptualised here but due to the above problem, the continuous value issue mentioned above would need to be fixed before it could be implemented.
+The transmitter can be run from the command line with transmission frequency and modulation scheme as command line variables, otherwise it uses the currently coded in values.
+For 4PAM, each byte is split into four symbols, and each symbol (of value 0, 1, 2 or 3) is converted into an 8-bit digital value.
+As mentioned above this is done with a lookup table, but would ideally be done by multiplying each symbol by $\frac{255}{3} = 85$.
+The values are then expanded into bitmasks which can be used by the bank write operation in the C code.
+This is explained in below in Section \ref{sec_C Transmitter and Receiver}.
+For 16QAM each byte is split into two symbols, where each symbol consists of an I and a Q component (of value 0, 1, 2 or 3).
+These symbols are chosen using the grey coded 16QAM constellation in Figure \ref{fig_QAM Constellation}.
+By inverting the constellation, an array of 4-bit values to symbols is used to easily convert each byte to a symbol, shown in Listing \ref{lst_Inverted QAM}.
+Each symbol is then converted into an 8-bit DAC value and expanded onto a bitmask for the C code, with the I component mapped to the first DAC's pins, and the Q component mapped to the second DAC's pins.\\
 
-OFDM could be used with NumPy fftn (N-dim FFT), ifftn (N-dim Inverse FFT).\\
+\begin{lstlisting}[caption={Inverted QAM Constellation and its use to encode each byte as two symbols}, label={lst_Inverted QAM}]
+	qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
+						  [2,1],[2,0],[3,1],[3,0],\
+						  [1,2],[1,3],[0,2],[0,3],\
+						  [1,1],[0,1],[1,0],[0,0]])
+	
+	for i, byte in enumerate(data_list):
+		symb[2*i] = qam_const[byte // 16]
+		symb[2*i+1] = qam_const[byte % 16]
+\end{lstlisting}
 
-TRANSMITTER BRUVS -- 
-Mention the QAM constellation used.\\
+\missingfigure{16 QAM Constellation} \label{fig_QAM Constellation}
+
+OFDM is also conceptualised here but due to the DAC continuous value issue mentioned above, a better-functioning DAC would need to be found before this could be implemented.
+For OFDM, the data stream is split into N sub-streams, each transmitted on a separate sub-carrier.
+These sub-carriers are chosen to be orthogonal so they do not interfere with each other, normally achieved by having each sub-carrier centred at integer multiples of the desired frequency gap $\delta F$.
+The transmitter takes N complex symbols from the conventional modulation scheme - 16QAM for example - at a time, and puts them through an IFFT  with N inputs.
+The complex output is then transmitted as a complex carrier-modulated signal, meaning that the real output of the IFFT would be modulated by a sine wave and the imaginary output by a cos wave at a chosen carrier frequency in the same manner as the I and Q components of QAM.
+NumPy has functions \textit{numpy.fft()} and \textit{numpy.ifft()} which make the transition from 16QAM to OFDM as simple as splitting the signal into multiple streams before converting the data into QAM symbols, and then using the symbols as inputs to the IFFT.
+Adding a cyclic prefix to each block of IFFT samples to prevent inter-block interference, ensuring the outputs are expressed as 8-bit digital outputs and mapping the values to a set of bitmasks would still need to be included.\\
+
+For all modulation schemes considered, once the output is expressed as an array of bitmasks - essentially 32-bit binary numbers where each bit corresponds to a pin to set - each element in this array is exclusive bitwise OR-ed (XOR-ed) with the bit mask of the two DACs' address pins.
+This results in another array of bitmasks where all of the pins in the DAC bitmasks are inverted, and all the other pins remain zero.
+This is necessary because the C library has two bank operations (which work on a bank of pins), \textit{gpioWrite\textunderscore Bits\textunderscore 0\textunderscore 31\textunderscore Set()} and \textit{gpioWrite\textunderscore Bits\textunderscore 0\textunderscore 31\textunderscore Clear()}.
+As the name suggests, one is required to set all of the pins which will be set to '1', and one is required to clear all of the bits which will be set to '0' but may have been '1' before.
+Both arrays are saved as binary files, so they can be read in by the C transmitter code.
+At this point the command to start the receiver is passed through an SSH link to the receiver and the connection is terminated.
+The receiver is started with command line arguments of number of masks (symbols) and the transmission type.
+After this, the C transmitter is started with one command line argument, mask (symbol) transmission frequency, otherwise known as baud rate.
+The C transmitter sets up the pins for the transmission, reads in the binary files corresponding to the \textit{Set} and \textit{Clear} bitmasks, and then loops through, outputting the values to the DACs at the specified baud rate.\\
 
 \begin{figure}[ht]
 	\centering
@@ -335,6 +379,14 @@ Mention the QAM constellation used.\\
 	\caption{Flow Chart for Transmitter Code}
 	\label{fig_Transmitter_Flow}
 \end{figure}
+
+%\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The receiver starts, and if the transmission type is not OOK and thus an advanced modulation scheme, it immediately starts the C receiver code passing the command line argument of number of masks so that it knows how much data to expect.
+The C receiver saves one bitmask per clock pulse until it has received the expected amount of data.
+There is also a way of checking if the transmission times out when the clock stops so if data was missed at the beginning of or during transmission the receiver will still end its listening and complete execution.
+It then saves the bitmasks to a binary file and terminates successfully.
+T%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Here we will talk about the receiver generally and how it works - probably enough to separate the flow charts with a page of writing.\\
 
@@ -349,21 +401,21 @@ Here we will talk about the receiver generally and how it works - probably enoug
 
 NumPy and imageio, how they work and are used in the code, examples.\\
 
-\subsubsection{C Transmitter and Receiver}
+\subsubsection{C Transmitter and Receiver} \label{sec_C Transmitter and Receiver}
 
 Receiver: in Section \ref{sec_Computation} the options of data mask in on trigger vs read data then in on clock were compared and BLA was chosen as the more effective method.
 \todo[inline]{Which method is more effective?}
 
 PiTransmit works independent of the choice of DAC pins.
-It reads in the bit-mask (bits to set) from a binary file for speed, which is calculated and saved in the Python before transmission, and it also reads in inversion mask (bits to clear) so the calculation is not done during transmission.
+It reads in the bitmask (bits to set) from a binary file for speed, which is calculated and saved in the Python before transmission, and it also reads in inversion mask (bits to clear) so the calculation is not done during transmission.
 This also means the Transmit program does not need to know how many DACs there are so works for all transmission schemes.
 
 The pins selected are based on the DAC1 choice from Figure \ref{fig_Pin Connections} but could be used for any set of possible output pins.
-There will also be an explanation about what these bit-masks actually mean and refers to, it is exemplified in Figure \ref{fig_Mask Expansion}.
+There will also be an explanation about what these bitmasks actually mean and refers to, it is exemplified in Figure \ref{fig_Mask Expansion}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{Mask_Expansion.jpg}
+	\includegraphics[width=0.8\textwidth]{Mask_Expansion.png}
 	\caption{Explanation of the concept of mask expansion}
 	\label{fig_Mask Expansion}
 \end{figure}

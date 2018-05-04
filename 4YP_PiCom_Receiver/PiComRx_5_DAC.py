@@ -262,7 +262,7 @@ def main():
                 LOGS.append("No data was received\n")
     else:
         LOGS.append("Mask size command line variable not correctly used\n")
-        LOGS.append("\n------- PiComRx_5_DAC.py -------\n\nUsage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]\n")
+        LOGS.append("\n------- PiComRx_5_DAC.py -------\nMask size not provided\n\nUsage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]\n")
 
 
 # Try necessary to save LOGS if error occurs in code,
