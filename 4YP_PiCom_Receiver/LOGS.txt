@@ -1,7 +1,7 @@
 ********** RECEIVER LOG FILE **********
-TRANSMISSION TYPE: 16QAM
-Decoding masks...
-Attenuation = 0.011764705882352941
+TRANSMISSION TYPE: 4PAM
+Receiving data
 
-Completed Receiver code!
+Exiting on unexpected error!
+Error is: [Errno 2] No such file or directory: './home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiReceive'
 ***************************************

@@ -84,6 +84,8 @@ def Receive_Data(size, LOGS):
     LOGS.append("\n... C RECEIVER LOGS ...\n\n")
     for line in receiver.stdout.decode('utf-8').split('\n'):
         LOGS.append("... {}\n".format(line))
+    for line in receiver.stderr.decode('utf-8').split('\n'):
+        LOGS.append("... ERR... {}\n".format(line))
     return_code = receiver.returncode
 		
     return_options = { 0 : "Data transmission complete!\n",
