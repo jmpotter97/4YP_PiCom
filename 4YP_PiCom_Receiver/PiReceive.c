@@ -63,6 +63,14 @@ int main(int argc, char *argv[]) {
      * STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
      * FOR 2us : gpioCfgClock(2,1,0);
      * Not necessary as current ADC max freq = 111kHz*/
+     ////////////////////////////////////////////////////////////
+    FILE* test1_f;
+    char* test1 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test.txt";
+
+    test1_f = fopen(test1,"w");
+    fprintf(test1_f, "Started");
+    fclose(test1_f);
+     ////////////////////////////////////////////////////////////
     if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
     /*  argv should have values:
@@ -83,7 +91,14 @@ int main(int argc, char *argv[]) {
         gpioTerminate();
         return 3;
     }
+	////////////////////////////////////////////////////////////
+    FILE* test2_f;
+    char* test2 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test2.txt";
 
+    test2_f = fopen(test2,"w");
+    fprintf(test2_f, "About to setup");
+    fclose(test2_f);
+     ////////////////////////////////////////////////////////////
     for(int i=0;i<8;i++) {
         // It will work without this (setting ADC pins) but good practice
         gpioSetMode(ADC_1_bits[i], PI_INPUT);
@@ -98,6 +113,14 @@ int main(int argc, char *argv[]) {
 
     /*********************   RECEIVE DATA   *********************/
     printf("RECEIVE DATA\n");
+    ////////////////////////////////////////////////////////////
+    FILE* test3_f;
+    char* test3 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test3.txt";
+
+    test3_f = fopen(test3,"w");
+    fprintf(test3_f, "Started");
+    fclose(test3_f);
+     ////////////////////////////////////////////////////////////
     uint32_t* receive_data_mask = (uint32_t*)calloc(mask_size, sizeof(uint32_t));
     if(receive_data_mask == NULL){
         printf("Memory was not allocated!\n");
