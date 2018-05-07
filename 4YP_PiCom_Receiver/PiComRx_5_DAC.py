@@ -78,14 +78,16 @@ def Receive_Binary_Data(out, LOGS):
 '''---------------------- Advanced Modulation Schemes ----------------------'''
 def Receive_Data(size, LOGS):
     LOGS.append("Receiving data\n")
-    C_receive_command = "./home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiReceive"
-    receiver = run(["sudo", C_receive_command, str(size)], stdout=PIPE)
+    C_receive_command = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiReceive"
+    receiver = run(["sudo", C_receive_command, str(size)], stdout=PIPE, stderr=PIPE)
 
     LOGS.append("\n... C RECEIVER LOGS ...\n\n")
     for line in receiver.stdout.decode('utf-8').split('\n'):
-        LOGS.append("... {}\n".format(line))
+        if line != "":
+            LOGS.append("... {}\n".format(line))
     for line in receiver.stderr.decode('utf-8').split('\n'):
-        LOGS.append("... ERR... {}\n".format(line))
+        if line != "":
+            LOGS.append("... ERR... {}\n".format(line))
     return_code = receiver.returncode
 		
     return_options = { 0 : "Data transmission complete!\n",

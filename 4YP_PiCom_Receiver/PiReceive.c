@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
     char* test3 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test3.txt";
 
     test3_f = fopen(test3,"w");
-    fprintf(test3_f, "Started");
+    fprintf(test3_f, "Receiving");
     fclose(test3_f);
      ////////////////////////////////////////////////////////////
     uint32_t* receive_data_mask = (uint32_t*)calloc(mask_size, sizeof(uint32_t));
@@ -138,7 +138,14 @@ int main(int argc, char *argv[]) {
     }
     gpioHardwareClock(ADC_CLK, 1000000);
     gpioSetAlertFuncEx(CLK_PIN, readPins, (void*)receive_data_mask);
+	////////////////////////////////////////////////////////////
+    FILE* test4_f;
+    char* test4 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test4.txt";
 
+    test4_f = fopen(test4,"w");
+    fprintf(test4_f, "While");
+    fclose(test4_f);
+     ////////////////////////////////////////////////////////////
     // Loop until the callback is turned off i.e. transmission finished
     while(1) {
         // All pins set to 1 (which will never happen unless program
@@ -149,6 +156,14 @@ int main(int argc, char *argv[]) {
     }
 
     gpioHardwareClock(ADC_CLK, 0);
+    ////////////////////////////////////////////////////////////
+    FILE* test5_f;
+    char* test5 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test5.txt";
+
+    test5_f = fopen(test5,"w");
+    fprintf(test5_f, "Complete");
+    fclose(test5_f);
+     ////////////////////////////////////////////////////////////
 
     /*********************   WRITE TO FILE   *********************/
     printf("WRITE TO FILE\n");
@@ -159,7 +174,14 @@ int main(int argc, char *argv[]) {
     // Removing of other pins is done in python file (& ADC_Mask)
     fwrite((void*)receive_data_mask, sizeof(uint32_t), mask_size, out_f);
     fclose(out_f);
+	////////////////////////////////////////////////////////////
+    FILE* test6_f;
+    char* test6 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test6.txt";
 
+    test6_f = fopen(test6,"w");
+    fprintf(test6_f, "Fin");
+    fclose(test6_f);
+     ////////////////////////////////////////////////////////////
 	free(receive_data_mask);
 	gpioTerminate();
 	return 0;
