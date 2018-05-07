@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 100                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "4PAM"
+TRANSMISSION_TYPE = "16QAM"
 SIZE = 0
 
 if len(argv) > 1:
@@ -44,7 +44,7 @@ else:
     print("TRANSMISSION TYPE: {}".format(TRANSMISSION_TYPE))
 
 DAC_PINS_1, DAC_PINS_2 = [10, 9, 11, 5, 6, 13, 19, 26], \
-                         [2, 3, 4, 17, 27, 22, 23, 24]
+                         [14, 15, 18, 17, 27, 22, 23, 24]
 DAC_MASK_1, DAC_MASK_2 = 0, 0
 for pin1 in DAC_PINS_1:
 	DAC_MASK_1 |= (1<<pin1)
@@ -261,6 +261,20 @@ def Convert_To_Data_Mask(data_list):
 
     elif TRANSMISSION_TYPE == "4PAM":
         # 4 SYMB/byte --> 0, 1, 2, 3
+        mapping_table = {(0,0) : 0,
+                         (0,1) : 1,
+                         (1,0) : 2,
+                         (1,1) : 3}
+        def Mapping(bits):
+            return np.array([mapping_table[tuple(b)] for b in bits])
+
+        
+        data_list_bits = np.unpackbits(data_list)\
+                         .reshape((np.unpackbits(data_list).size//2,2))
+        symb = Mapping(data_list_bits)
+        
+        '''
+        OLD METHOD
         symb = np.zeros(4*data_list.size, dtype='uint32')
         for i, byte in enumerate(data_list):
             if i % 25000 == 0 and i != 0:  #Stats
@@ -268,12 +282,12 @@ def Convert_To_Data_Mask(data_list):
             for s in range(4):
                 symb[4*i+3-s] = ((1<<(2*s+1) | 1<<(2*s)) & byte) \
                                                    // (2**(2*s))
+        '''
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
         #symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        for i, s in enumerate(symb):
-            symb[i] = DAC_lookup[s]
-        print(symb)
+        symb = np.array([DAC_lookup[s] for s in symb])
+        #print(symb)
         # MASK
         mask = np.zeros_like(symb)
         for i, DAC_level in enumerate(symb):
@@ -290,6 +304,34 @@ def Convert_To_Data_Mask(data_list):
     elif TRANSMISSION_TYPE == "16QAM":
         # 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
         # Expressing I as col 1, Q as col 2 of N x 2 matrix
+        mapping_table = {
+            (0,0,0,0) : 0 + 0j,
+            (0,0,0,1) : 0 + 1j,
+            (0,0,1,0) : 0 + 3j,
+            (0,0,1,1) : 0 + 2j,
+            (0,1,0,0) : 1 + 0j,
+            (0,1,0,1) : 1 + 1j,
+            (0,1,1,0) : 1 + 3j,
+            (0,1,1,1) : 1 + 2j,
+            (1,0,0,0) : 3 + 0j,
+            (1,0,0,1) : 3 + 1j,
+            (1,0,1,0) : 3 + 3j,
+            (1,0,1,1) : 3 + 2j,
+            (1,1,0,0) : 2 + 0j,
+            (1,1,0,1) : 2 + 1j,
+            (1,1,1,0) : 2 + 3j,
+            (1,1,1,1) : 2 + 2j
+            }
+        def Mapping(bits):
+            return np.array([mapping_table[tuple(b)] for b in bits])
+
+        
+        data_list_bits = np.unpackbits(data_list)\
+                         .reshape((np.unpackbits(data_list).size//4,4))
+        symb = Mapping(data_list_bits)
+                
+        '''
+        OLD METHOD
         symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
         # Each value pair (indexed 0 to 15) gives I, Q for that
         # 4-bit value (grey coded)
@@ -303,26 +345,27 @@ def Convert_To_Data_Mask(data_list):
                     print("Symbol - {}".format(2*i))
             symb[2*i] = qam_const[byte // 16]
             symb[2*i+1] = qam_const[byte % 16]
+            '''
         # DAC
         # IF DAC WERE WORKING USE THIS INSTEAD OF LOOKUP
         # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        for i, s in enumerate(symb):
-            symb[i,0] = DAC_lookup[s[0]]
-            symb[i,1] = DAC_lookup[s[1]]
+        symb = np.array([DAC_lookup[int(s.real)] for s in symb]) \
+               + np.multiply(np.array([DAC_lookup[int(s.imag)] for s in symb]),1j)
+        pause("{}".format(symb[:32]))
         # MASK
-        mask = np.zeros(symb.shape[0], dtype=np.uint32)
+        mask = np.zeros(symb.size, dtype=np.uint32)
         for i, DAC_levels in enumerate(symb):
             if i % 25000 == 0 and i != 0:  #Stats
-                print("Mask - {}".format(2*i))
+                print("Mask - {}".format(i))
             mask32 = 0
-            # Assign level[0] to I DAC and level[1] to Q DAC
+            # Assign real level to I DAC and imag level to Q DAC
             for j, pin in enumerate(DAC_PINS_1):
                 # If each bit in binary exists, include it in 32-bit mask
-                if (1<<(7-j)) & DAC_levels[0]:
+                if (1<<(7-j)) & int(DAC_levels.real):
                     mask32 |= (1<<pin)
             for j, pin in enumerate(DAC_PINS_2):
                 # If each bit in binary exists, include it in 32-bit mask
-                if (1<<(7-j)) & DAC_levels[1]:
+                if (1<<(7-j)) & int(DAC_levels.imag):
                     mask32 |= (1<<pin)
             mask[i] = mask32
         print("Num of masks: {}".format(mask.size))
@@ -454,9 +497,9 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        input_stream = Get_Step_Bytes()
-        #input_stream = Get_Image_Bytes('cat2.jpg')
-        print("Input stream length (bytes): {}".format(input_stream.size))
+        #input_stream = Get_Step_Bytes()
+        input_stream = Get_Image_Bytes('cat2.jpg')
+        #print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
         input_mask = Convert_To_Data_Mask(input_stream)
@@ -474,8 +517,8 @@ def main():
         receiver_started = Ssh_Start_Receiver(SIZE)
         if receiver_started:
             print("About to transmit...")
-            # Four seconds enough time to start receiver but not timeout
-            sleep(6)
+            # Five seconds enough time to start receiver but not timeout
+            sleep(5)
             Transmit_Data()
             # TODO: Fetch_Receiver_Logs()
         else:

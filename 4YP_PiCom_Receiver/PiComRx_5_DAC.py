@@ -5,13 +5,16 @@ from subprocess import run, PIPE
 from sys import argv
 import os
 
+
+DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin"
+OUT_PATH  = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt"
 LOGS_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
 if os.path.isfile(LOGS_PATH):
     os.remove(LOGS_PATH)
 LOGS = ["********** RECEIVER LOG FILE **********\n"]
-DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin"
+
 TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "4PAM"
+TRANSMISSION_TYPE = "16QAM"
 
 if len(argv) > 2:
     TRANSMISSION_TYPE = argv[2]
@@ -141,11 +144,12 @@ def Decode_Masks(masks, LOGS):
             masks[i] = val
         # Masks are 8-bit but attenuated
         highest = max(masks)
-        LOGS.append("Attenuation = {}\n".format( (255-highest) / 255 ))
+        lowest = min(masks)
+        LOGS.append("Attenuation = {}\n".format( (255-(highest-lowest)) / 255 ))
         # SYMB
         for i in range(masks.size):
-            if highest != 255 and highest != 0:
-                masks[i] = round(masks[i]*255/highest)
+            if highest != 255 and highest != lowest and highest != 0:
+                masks[i] = round((masks[i]-lowest)*255/(highest-lowest))
             # Masks are 8-bit and full-range
             # Maximum likelihood reconstruction of masks to symbols:
             if masks[i] < 0.5*85:
@@ -162,55 +166,81 @@ def Decode_Masks(masks, LOGS):
                 out[i] |= (2 ** (2*s)) * masks[4*i+3-s]
         return out
     elif TRANSMISSION_TYPE == "16QAM":
-        out = np.zeros((masks.size//2, 2), dtype='uint8')
-        # SYMB
-        symb = np.zeros((masks.size//2, 2), dtype='uint32')
+        out = np.zeros(masks.size//2, dtype='uint8')
         # DAC
         # Masks are 32-bit
+        dac = np.zeros(masks.size, dtype='complex')
         for i, mask in enumerate(masks):
             val = 0
             for j, pin in enumerate(DAC_PINS_1):
                 # If each bit in mask exists, include it in out
                 if (1<<pin) & mask:
                     val |= (1<<(7-j))
-            masks[i] = val
-        '''# 2 SYMB/byte --> I = 0, 1, 2, 3 : Q = 0, 1, 2, 3 SYMB is I,Q
-        # Expressing I as col 1, Q as col 2 of N x 2 matrix
-        symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
-        # Each value pair (indexed 0 to 15) gives I, Q for that
-        # 4-bit value (grey coded)
-        qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
-                              [2,1],[2,0],[3,1],[3,0],\
-                              [1,2],[1,3],[0,2],[0,3],\
-                              [1,1],[0,1],[1,0],[0,0]])
-
-        for i, byte in enumerate(data_list):
-            if i % 25000 == 0 and i != 0:  #Stats
-                    print("Symbol - {}".format(2*i))
-            symb[2*i] = qam_const[byte // 16]
-            symb[2*i+1] = qam_const[byte % 16]
-        # DAC
-        symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
-        # MASK
-        mask = np.zeros(symb.shape[0], dtype=np.uint32)
-        for i, DAC_levels in enumerate(symb):
-            if i % 25000 == 0 and i != 0:  #Stats
-                print("Mask - {}".format(2*i))
-            mask32 = 0
-            # Assign level[0] to I DAC and level[1] to Q DAC
-            for j, pin in enumerate(DAC_PINS_1):
-                # If each bit in binary exists, include it in 32-bit mask
-                if (1<<(7-j)) & DAC_levels[0]:
-                    mask32 |= (1<<pin)
+            dac[i] = val
+            val=0
             for j, pin in enumerate(DAC_PINS_2):
-                # If each bit in binary exists, include it in 32-bit mask
-                if (1<<(7-j)) & DAC_levels[1]:
-                    mask32 |= (1<<pin)
-            mask[i] = mask32
-        print("Num of masks: {}".format(mask.size))
-        return mask'''
-        out = np
+                # If each bit in mask exists, include it in out
+                if (1<<pin) & mask:
+                    val |= (1<<(7-j))
+            dac[i] += val * 1j
+        # DAC values are 8-bit but attenuated
+        highest = int(max(np.hstack((dac.real,dac.imag))))
+        lowest = int(min(np.hstack((dac.real,dac.imag))))
+        LOGS.append("Attenuation = {}\n"\
+                    .format( (255-(highest-lowest)) / 255 ))
+        # SYMB
+        for i in range(dac.size):
+            re = dac[i].real
+            im = dac[i].imag
+            if highest != 255 and highest != lowest and highest != 0:
+                dac[i] = round((re-lowest)*255/(highest-lowest))\
+                         + round((im-lowest)*255/(highest-lowest))*1j
+            # Masks are 8-bit and full-range
+            # Maximum likelihood reconstruction of masks to symbols:
+            if re < 0.5*85:
+                dac[i] = 0
+            elif 0.5*85 < re < 1.5*85:
+                dac[i] = 1
+            elif 1.5*85 < re < 2.5*85:
+                dac[i] = 2
+            else:
+                dac[i] = 3
+                
+            if im < 0.5*85:
+                dac[i] += 0j
+            elif 0.5*85 < im < 1.5*85:
+                dac[i] += 1j
+            elif 1.5*85 < im < 2.5*85:
+                dac[i] += 2j
+            else:
+                dac[i] += 3j
+
+        mapping_table = {
+            (0,0,0,0) : 0+0j,
+            (0,0,0,1) : 0+1j,
+            (0,0,1,0) : 0+3j,
+            (0,0,1,1) : 0+2j,
+            (0,1,0,0) : 1+0j,
+            (0,1,0,1) : 1+1j,
+            (0,1,1,0) : 1+3j,
+            (0,1,1,1) : 1+2j,
+            (1,0,0,0) : 3+0j,
+            (1,0,0,1) : 3+1j,
+            (1,0,1,0) : 3+3j,
+            (1,0,1,1) : 3+2j,
+            (1,1,0,0) : 2+0j,
+            (1,1,0,1) : 2+1j,
+            (1,1,1,0) : 2+3j,
+            (1,1,1,1) : 2+2j
+            }
+        demap_table = { v : k for k, v in mapping_table.items() }
         
+        def DeMapping(symbs):
+            return np.array([demap_table[s] for s in symbs])
+        
+        output_bits = DeMapping(dac)
+        out = np.packbits(output_bits)
+        return out
     else:
         print("Transmission type not implemented yet!")
 
@@ -235,7 +265,7 @@ def Save_As_Image(out, path, LOGS):
 
 '''--------------------------------   Main   --------------------------------'''
 def main():
-    pause("Start")
+    #pause("Start")
     if len(argv) > 1:
         mask_size = int(argv[1])
 
@@ -246,7 +276,7 @@ def main():
             # TODO: Decode_Error_Correction(output)
             
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
-            with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
+            with open(OUT_PATH,'w') as f:
                 f.write("".join(str(i) for i in output))
         else:
             output_masks = Receive_Data(mask_size, LOGS)
@@ -255,9 +285,9 @@ def main():
             
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
-                with open('/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT.txt','w') as f:
-                    f.write("-".join(str(i) for i in output))
-                #Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out.jpg', LOGS)
+                '''with open(OUT_PATH,'w') as f:
+                    f.write("-".join(str(i) for i in output))'''
+                Save_As_Image(output, '/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out.jpg', LOGS)
             else:
                 LOGS.append("No data was received\n")
     else:

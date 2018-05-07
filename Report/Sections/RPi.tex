@@ -325,12 +325,21 @@ As mentioned in Section \ref{sec_Multiplier}, the Raspberry Pi is unable to outp
 Therefore, 4PAM and 16QAM use values from the range $\{0, 1, 2, 3\} \times \frac{3.3}{3}V$, output from one and two DACs respectively.
 Similarly 256PAM uses 256 values from $\{0, 1, ..., 255\} \times \frac{3.3}{255}V$.\\
 
-Figure \ref{fig_Transmitter_Flow} is a flow chart of the operation of the transmitter code.
+\newpage
+
+Figure \ref{fig_Transmitter_Flow} (see Page \pageref{fig_Transmitter_Flow}) is a flow chart of the operation of the transmitter code.
 256PAM is omitted in the flow chart as it is similar to but more easily realised than 4PAM, and the space is better used conceptualising the addition of OFDM.
 256PAM is also not a viable modulation scheme unless the DAC acts perfectly, and so it is implemented mostly as a way of testing the accuracy of the DAC's granularity.
 Tests using 256PAM to output monotonically increasing values revealed that the converters were not working exactly as expected, and that there were spikes at certain values and a non-continuous analogue response was measured for continuous digital input.
 This problem is investigated in Section \ref{sec_Components}, but the solution was to use an empirically derived lookup table to get the four levels for 4PAM and 16QAM as close as they could be to the correct values -- this would be removed from the code if a successful replacement digital analogue converter was used.\\
 \todo[inline,color=green!40]{Make sure the corresponding section (USE THE RIGHT SUB-SECTION) does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{QAM_Const.eps}
+	\caption{16-QAM Constellation with Grey Code}
+	\label{fig_QAM Constellation}
+\end{figure}
 
 The transmitter can be run from the command line with transmission frequency and modulation scheme as command line variables, otherwise it uses the currently coded in values.
 For 4PAM, each byte is split into four symbols, and each symbol (of value 0, 1, 2 or 3) is converted into an 8-bit digital value.
@@ -339,21 +348,37 @@ The values are then expanded into bitmasks which can be used by the bank write o
 This is explained in below in Section \ref{sec_C Transmitter and Receiver}.
 For 16QAM each byte is split into two symbols, where each symbol consists of an I and a Q component (of value 0, 1, 2 or 3).
 These symbols are chosen using the grey coded 16QAM constellation in Figure \ref{fig_QAM Constellation}.
-By inverting the constellation, an array of 4-bit values to symbols is used to easily convert each byte to a symbol, shown in Listing \ref{lst_Inverted QAM}.
+Grey code is a binary system where any symbol has only one bit difference to all directly adjacent symbols, and it is chosen because if a symbol is incorrectly decoded, the next most likely symbols are directly adjacent and so only one bit will be incorrect, minimising the bit error.
+By inverting the constellation, a dictionary of 4-bit values to symbols is used to easily convert each byte to two symbols.
+This is done by unpacking each byte into corresponding bits and reshaping into a matrix with four columns, then each row is taken as a dictionary key to decode the symbol, shown in Listing \ref{lst_Inverted QAM}.
 Each symbol is then converted into an 8-bit DAC value and expanded onto a bitmask for the C code, with the I component mapped to the first DAC's pins, and the Q component mapped to the second DAC's pins.\\
 
 \begin{lstlisting}[caption={Inverted QAM Constellation and its use to encode each byte as two symbols}, label={lst_Inverted QAM}]
-	qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
-						  [2,1],[2,0],[3,1],[3,0],\
-						  [1,2],[1,3],[0,2],[0,3],\
-						  [1,1],[0,1],[1,0],[0,0]])
-	
-	for i, byte in enumerate(data_list):
-		symb[2*i] = qam_const[byte // 16]
-		symb[2*i+1] = qam_const[byte % 16]
+	mapping_table = {
+	(0,0,0,0) : 0 + 0j,
+	(0,0,0,1) : 0 + 1j,
+	(0,0,1,0) : 0 + 3j,
+	(0,0,1,1) : 0 + 2j,
+	(0,1,0,0) : 1 + 0j,
+	(0,1,0,1) : 1 + 1j,
+	(0,1,1,0) : 1 + 3j,
+	(0,1,1,1) : 1 + 2j,
+	(1,0,0,0) : 3 + 0j,
+	(1,0,0,1) : 3 + 1j,
+	(1,0,1,0) : 3 + 3j,
+	(1,0,1,1) : 3 + 2j,
+	(1,1,0,0) : 2 + 0j,
+	(1,1,0,1) : 2 + 1j,
+	(1,1,1,0) : 2 + 3j,
+	(1,1,1,1) : 2 + 2j }
+	# Unpack data list into N bits and reshape to (N/4 x 4) bit matrix
+	data_list_bits = np.unpackbits(data_list)
+	data_list_bits = data_list_bits.reshape( (data_list_bits.size//4, 4) )
+	# Convert (N/4 x 4) matrix into N/4 symbols
+	def Mapping(bits):
+		return np.array([mapping_table[tuple(b)] for b in bits])
+	symb = Mapping(data_list_bits)
 \end{lstlisting}
-
-\missingfigure{16 QAM Constellation} \label{fig_QAM Constellation}
 
 OFDM is also conceptualised here but due to the DAC continuous value issue mentioned above, a better-functioning DAC would need to be found before this could be implemented.
 For OFDM, the data stream is split into N sub-streams, each transmitted on a separate sub-carrier.
@@ -380,15 +405,28 @@ The C transmitter sets up the pins for the transmission, reads in the binary fil
 	\label{fig_Transmitter_Flow}
 \end{figure}
 
-%\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\clearpage
+
+Figure \ref{fig_Receiver_Flow} (see Page \pageref{fig_Receiver_Flow}) is a flow chart of the receiver code's execution path.
 The receiver starts, and if the transmission type is not OOK and thus an advanced modulation scheme, it immediately starts the C receiver code passing the command line argument of number of masks so that it knows how much data to expect.
-The C receiver saves one bitmask per clock pulse until it has received the expected amount of data.
-There is also a way of checking if the transmission times out when the clock stops so if data was missed at the beginning of or during transmission the receiver will still end its listening and complete execution.
-It then saves the bitmasks to a binary file and terminates successfully.
-T%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This part of the receiver saves one bitmask per clock pulse until it has received the expected amount of data.
+There is also a way of checking if the transmission has finished, when the clock stops, so that if data was missed at the beginning of or during the transmission, the receiver will still stop listening and complete execution.
+The C code then saves the bitmasks received to a binary file and terminates successfully.\\
 
-Here we will talk about the receiver generally and how it works - probably enough to separate the flow charts with a page of writing.\\
+If the C receiver is successful, the binary file is read into a NumPy array to be decoded.
+For all modulation schemes, the first step is to de-map the data from the masks to their DAC value(s) using the list \textit{DAC\textunderscore Pins\textunderscore 1} as well as \textit{DAC\textunderscore Pins\textunderscore 2} for quadrature-carrier modulation schemes.
+The receiver then measures the peak values of the signal and if there has been any attenuation of the signal, it is scaled to the full input range and the attenuation is logged.
+PAM and QAM then use maximum likelihood decoding to figure out the correct symbol values.
+This equates to using partitions which are half way between possible symbols to decode them.
+For example in 16-QAM, any value within the box around each symbol in Figure \ref{fig_QAM ML Decoding} would be mapped to the symbol at its centre.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{QAM_Grid.eps}
+	\caption{16-QAM Constellation with Maximum Likelihood Boundaries}
+	\label{fig_QAM ML Decoding}
+\end{figure}
 
 \begin{figure}[ht]
 	\centering
@@ -396,6 +434,9 @@ Here we will talk about the receiver generally and how it works - probably enoug
 	\caption{Flow Chart for Receiver Code}
 	\label{fig_Receiver_Flow}
 \end{figure}
+
+
+\todo[inline,color=blue!20]{Write the rest of receiver, Data and Image handling and the C Sections (and if time, the test masks code)}
 
 \subsubsection{Data and Image Handling}
 
@@ -410,7 +451,7 @@ PiTransmit works independent of the choice of DAC pins.
 It reads in the bitmask (bits to set) from a binary file for speed, which is calculated and saved in the Python before transmission, and it also reads in inversion mask (bits to clear) so the calculation is not done during transmission.
 This also means the Transmit program does not need to know how many DACs there are so works for all transmission schemes.
 
-The pins selected are based on the DAC1 choice from Figure \ref{fig_Pin Connections} but could be used for any set of possible output pins.
+The pins selected are based on the DAC1 choice from Figure \ref{fig_Pin Connections} (reference already used) but could be used for any set of possible output pins.
 There will also be an explanation about what these bitmasks actually mean and refers to, it is exemplified in Figure \ref{fig_Mask Expansion}.
 
 \begin{figure}[ht]
