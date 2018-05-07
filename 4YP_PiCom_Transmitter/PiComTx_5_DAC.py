@@ -30,7 +30,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 100                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "16QAM"
+TRANSMISSION_TYPE = "4PAM"
 SIZE = 0
 
 if len(argv) > 1:
@@ -204,9 +204,9 @@ def Get_Step_Bytes():
 
     # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
     pam4_once = np.ones(1, dtype='uint8')*27
-    pam4 = np.ones(10, dtype='uint8')*27
+    pam4 = np.ones(25, dtype='uint8')*27
 
-    return multiple_fine
+    return pam4
     
 
 
@@ -351,7 +351,6 @@ def Convert_To_Data_Mask(data_list):
         # symb *= 85  # dac = symb * 85 --> 0, 85, 170, 255
         symb = np.array([DAC_lookup[int(s.real)] for s in symb]) \
                + np.multiply(np.array([DAC_lookup[int(s.imag)] for s in symb]),1j)
-        pause("{}".format(symb[:32]))
         # MASK
         mask = np.zeros(symb.size, dtype=np.uint32)
         for i, DAC_levels in enumerate(symb):
@@ -497,8 +496,8 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        #input_stream = Get_Step_Bytes()
-        input_stream = Get_Image_Bytes('cat2.jpg')
+        input_stream = Get_Step_Bytes()
+        #input_stream = Get_Image_Bytes('cat2.jpg')
         #print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
