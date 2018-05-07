@@ -27,7 +27,7 @@ transmitted signal
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 100                        # Symbol rate (Hz)
+SYMB_RATE = 5000                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "4PAM"
@@ -499,8 +499,8 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        input_stream = Get_Step_Bytes()
-        #input_stream = Get_Image_Bytes('cat2.jpg')
+        #input_stream = Get_Step_Bytes()
+        input_stream = Get_Image_Bytes('cat2.jpg')
         #print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
