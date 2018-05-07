@@ -121,11 +121,11 @@ def Fetch_Receiver_Logs():
     if ssh.get_transport().is_active():
         channel = ssh.invoke_shell()
         stdin, stdout, stderr = channel.send(command)
-    '''if ssh.get_transport().is_active():
+        '''if ssh.get_transport().is_active():
         stdin, stdout, stderr = ssh.exec_command(command)'''
 
-        for line in iter(stdout.readline, ""):
-            print(line, end="")
+        '''for line in iter(stdout.readline, ""):
+        print(line, end="")'''
 
         ssh.close()
     else:

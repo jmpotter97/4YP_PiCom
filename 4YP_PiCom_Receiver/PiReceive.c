@@ -20,7 +20,7 @@ void readPins(int gpio, int level, uint tick, void* data) {
     uint32_t current_state = pin_state;
     static int count = 0;
 
-    if(!level) {
+    if(level==0) {
         if (count < mask_size) {
             //int* new_data = (int*)(data+count++);
             *((uint32_t*)(data + count++)) = current_state;
@@ -63,14 +63,6 @@ int main(int argc, char *argv[]) {
      * STANDARD IS 5us (200kHz), FASTEST IS 1us (1MHz)
      * FOR 2us : gpioCfgClock(2,1,0);
      * Not necessary as current ADC max freq = 111kHz*/
-     ////////////////////////////////////////////////////////////
-    FILE* test1_f;
-    char* test1 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test.txt";
-
-    test1_f = fopen(test1,"w");
-    fprintf(test1_f, "Started");
-    fclose(test1_f);
-     ////////////////////////////////////////////////////////////
     if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
     /*  argv should have values:
@@ -138,6 +130,7 @@ int main(int argc, char *argv[]) {
     }
     gpioHardwareClock(ADC_CLK, 1000000);
     gpioSetAlertFuncEx(CLK_PIN, readPins, (void*)receive_data_mask);
+    gpioSetWatchdog(CLK_PIN,10000);
 
     // Loop until the callback is turned off i.e. transmission finished
     while(1) {
@@ -147,6 +140,14 @@ int main(int argc, char *argv[]) {
             break;
         sleep(1);
     }
+    ////////////////////////////////////////////////////////////
+    FILE* test1_f;
+    char* test1 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test_fin.txt";
+
+    test1_f = fopen(test1,"w");
+    fprintf(test1_f, "Passed while loop");
+    fclose(test1_f);
+     ////////////////////////////////////////////////////////////
 
     gpioHardwareClock(ADC_CLK, 0);
 
