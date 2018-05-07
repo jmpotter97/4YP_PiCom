@@ -33,7 +33,7 @@ def pam4(masks):
             masks[i] = 2
         else:
             masks[i] = 3
-    return masks
+    return masks[:500]
     # OUT
     for i in range(out.size):
         for s in range(4):

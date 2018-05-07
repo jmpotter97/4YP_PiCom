@@ -83,14 +83,7 @@ int main(int argc, char *argv[]) {
         gpioTerminate();
         return 3;
     }
-	////////////////////////////////////////////////////////////
-    FILE* test2_f;
-    char* test2 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test2.txt";
-
-    test2_f = fopen(test2,"w");
-    fprintf(test2_f, "About to setup");
-    fclose(test2_f);
-     ////////////////////////////////////////////////////////////
+    
     for(int i=0;i<8;i++) {
         // It will work without this (setting ADC pins) but good practice
         gpioSetMode(ADC_1_bits[i], PI_INPUT);
@@ -105,14 +98,6 @@ int main(int argc, char *argv[]) {
 
     /*********************   RECEIVE DATA   *********************/
     printf("RECEIVE DATA\n");
-    ////////////////////////////////////////////////////////////
-    FILE* test3_f;
-    char* test3 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test3.txt";
-
-    test3_f = fopen(test3,"w");
-    fprintf(test3_f, "Receiving");
-    fclose(test3_f);
-     ////////////////////////////////////////////////////////////
     uint32_t* receive_data_mask = (uint32_t*)calloc(mask_size, sizeof(uint32_t));
     if(receive_data_mask == NULL){
         printf("Memory was not allocated!\n");
@@ -128,18 +113,10 @@ int main(int argc, char *argv[]) {
         gpioSetAlertFunc(ADC_1_bits[i], checkPins);
         gpioSetAlertFunc(ADC_2_bits[i], checkPins);
     }
-    gpioHardwareClock(ADC_CLK, 1000000);
+    gpioHardwareClock(ADC_CLK, 100000);
     gpioSetAlertFuncEx(CLK_PIN, readPins, (void*)receive_data_mask);
     gpioSetWatchdog(CLK_PIN,10000);
     
-	////////////////////////////////////////////////////////////
-    FILE* test4_f;
-    char* test4 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test4.txt";
-    
-    test4_f = fopen(test4,"w");
-    fprintf(test4_f, "While");
-    fclose(test4_f);
-     ////////////////////////////////////////////////////////////
     // Loop until the callback is turned off i.e. transmission finished
     while(1) {
         // All pins set to 1 (which will never happen unless program
@@ -150,14 +127,6 @@ int main(int argc, char *argv[]) {
     }
 
     gpioHardwareClock(ADC_CLK, 0);
-    ////////////////////////////////////////////////////////////
-    FILE* test5_f;
-    char* test5 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test5.txt";
-
-    test5_f = fopen(test5,"w");
-    fprintf(test5_f, "Complete");
-    fclose(test5_f);
-     ////////////////////////////////////////////////////////////
 
     /*********************   WRITE TO FILE   *********************/
     printf("WRITE TO FILE\n");
@@ -168,14 +137,7 @@ int main(int argc, char *argv[]) {
     // Removing of other pins is done in python file (& ADC_Mask)
     fwrite((void*)receive_data_mask, sizeof(uint32_t), mask_size, out_f);
     fclose(out_f);
-	////////////////////////////////////////////////////////////
-    FILE* test6_f;
-    char* test6 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test6.txt";
-
-    test6_f = fopen(test6,"w");
-    fprintf(test6_f, "Fin");
-    fclose(test6_f);
-     ////////////////////////////////////////////////////////////
+	
 	free(receive_data_mask);
 	gpioTerminate();
 	return 0;

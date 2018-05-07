@@ -15,7 +15,6 @@
 
 const uint CLK_PIN = 16;
 
-
 int main(int argc, char *argv[]) {
 	/************************   SETUP   ************************/
 	printf("SETUP\n");
