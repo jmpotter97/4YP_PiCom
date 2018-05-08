@@ -96,6 +96,8 @@ Included are the following, as well as their dependencies:
 	
 \section{Test Bed Architecture}
 
+\todo[inline]{Include references to the data sheets of all of the components}
+
 The test bed comprises the two Raspberry Pis and a number of chips to provide the functions required for more advanced modulation schemes.
 This is built up as three arrangements with increasing complexity.
 The first is the Pis connected together by two wires, a serial data line and a clock line (Figure \ref{fig_OOK Architecture}).
@@ -117,35 +119,54 @@ This arrangement is used for Quadrature Amplitude Modulation as well as Orthogon
 
 The Digital Analogue Converter used is the AD5424, an 8-bit CMOS current output DAC with an easy interface to microcontrollers.
 It has a \SI{17}{\nano\second} write cycle and a maximum update rate of \SI{20.4}{MSPS}. % Mega Samples Per Second
-There are possible configurations in the data sheet using an inverting operational amplifier to produce the output, however due to the single supply and difficulties finding low-power operational amplifiers which provide rail-to-rail output for a 5V single supply, this was avoided where possible.
-The Read/Write ($R/\overline{W}$) pin is pulled low permanently so the chip is in write mode; read back of the parallel digital outputs is not required.
-The Chip Select pin ($\overline{CS}$) needs a falling edge and a rising edge to complete a write cycle, where the rising edge loads new parallel data, so this is connected to the clock pin of the Raspberry Pi.
+There are possible configurations in the data sheet using an inverting operational amplifier to produce the output, however due to the single supply and difficulties finding low-power operational amplifiers which provide rail-to-rail output for a 5V single supply, this was avoided where the output through a load resistor can produce required voltages.
+The Read/Write ($R/\overline{W}$) pin is pulled low so the chip is permanently in write mode; read back of the parallel digital outputs is not required.
+The Chip Select pin ($\overline{CS}$) needs a rising edge and a falling edge to complete a write cycle, where the rising edge loads new parallel data and the falling edge...
+\todo[inline]{Check that falling edge of DAC makes analogue output valid/readable}
+This is therefore connected to the clock pin of the Raspberry Pi.
+The same clock pulses are also fed to the $\overline{WR}$ (start conversion) pin of the analogue digital converter.
 Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{ad5424.png}
+	\includegraphics[width=0.8\textwidth]{ad5424.eps}
 	\caption{Layout of the Digital Analogue Converter}
 	\label{fig_DAC Layout}
 \end{figure}
 
 \subsection{Analogue Digital Converter}
 
-The Analogue Digital Converter used is the ZN448, 
-\todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
+The Analogue Digital Converter used is the ZN448, an 8-bit successive approximation ADC designed to be easily interfaced to microprocessors.
+It operates with an on-chip clock with capability to be overclocked, and has a \SI{9}{\micro\second} conversion time guarantee.
+The conversion from analogue to digital values starts when the $\overline{WR}$ (start conversion) pin is pulled low, and so this is connected to the clock pin of the transmitter Raspberry Pi.
+Figure \ref{fig_ADC Layout} is a diagram of the ADC connections to both Raspberry Pis.
+The $\overline{RD}$ (output enable) pin is pulled low to allow non-destructive readout.
+The $\overline{BUSY}$ (end of conversion) pin goes low when the a conversion starts ($\overline{WR}$ is pulled low), and goes high when the conversion is complete.
+The positive edge of this signal is taken as the clock for the Receiver, resulting in the correct digital value at the output.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{zn448.png}
+	\includegraphics[width=0.8\textwidth]{zn448.eps}
 	\caption{Layout of the Analogue Digital Converter}
 	\label{fig_ADC Layout}
 \end{figure}
 
+The clock frequency is selected with the $CLK$ pin, either with a single clock capacitor (with an equivalent frequency table provided in the data sheet) or by providing an external clocking signal (see Section \ref{sec_Overclocking}).
+Both options are shown as grey lines in the diagram and only one should be used.
+The conversion by successive approximation works by approximating one bit per clock pulse over eight clock pulses, and the data sheet suggests due to accepting a completely asynchronous convert pulse with respect to the clock, valid data is produced between 7.5 and 8.5 clock pulses later.
+The maximum clock frequency is \SI{1}{\mega\hertz} and given the guaranteed \SI{9}{\micro\second} conversion time, a clock frequency giving 9 pulses between conversions is suggested.
+The capacitor value of \SI{100}{\pico\farad} in Figure \ref{fig_ADC Layout} corresponds to a \SI{900}{\mega\hertz} clock for a sampling rate of at least \SI{100}{MSPS} % Mega Samples Per Second
+(or equivalently a baud rate of at least \SI{100}{\mega\hertz}) which is close to the extent of the converter.\\
+
+Figure \ref{fig_PAM Architecture} is a picture of of the two Raspberry Pis connected together for baseband 4PAM communication.
+
+\todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
+
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.4\textwidth]{PAM_Architecture.jpg}
+	\includegraphics[width=0.8\textwidth]{PAM_Architecture_Pic.jpg}
 	\caption{Layout of Test Bed for Pulse Amplitude Modulation}
-	%\label{fig_}
+	\label{fig_PAM Architecture}
 \end{figure}
 
 \subsection{Multiplier} \label{sec_Multiplier}
@@ -170,9 +191,9 @@ This means that the sine and cos signals would be inverted when multiplied by th
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{QAM_OFDM_Architecture.jpg}
-	\caption{Layout of the Test Bed for QAM and Potentially OFDM}
-	%\label{fig_}
+	\includegraphics[width=\textwidth]{qam_archictecture.eps}
+	\caption{Layout of the Test Bed for QAM and OFDM}
+	\label{fig_QAM Layout}
 \end{figure}
 
 \subsection{Parts Used}
@@ -419,7 +440,7 @@ For all modulation schemes, the first step is to de-map the data from the masks 
 The receiver then measures the peak values of the signal and if there has been any attenuation of the signal, it is scaled to the full input range and the attenuation is logged.
 PAM and QAM then use maximum likelihood decoding to figure out the correct symbol values.
 This equates to using partitions which are half way between possible symbols to decode them.
-For example in 16-QAM, any value within the box around each symbol in Figure \ref{fig_QAM ML Decoding} would be mapped to the symbol at its centre.
+For example in 16-QAM, any value within the box around each symbol in Figure \ref{fig_QAM ML Decoding} would be mapped to the symbol at its centre.\\
 
 \begin{figure}[ht]
 	\centering
@@ -434,6 +455,8 @@ For example in 16-QAM, any value within the box around each symbol in Figure \re
 	\caption{Flow Chart for Receiver Code}
 	\label{fig_Receiver_Flow}
 \end{figure}
+
+RECEIVER!!!
 
 
 \todo[inline,color=blue!20]{Write the rest of receiver, Data and Image handling and the C Sections (and if time, the test masks code)}

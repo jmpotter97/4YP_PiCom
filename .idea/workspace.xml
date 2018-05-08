@@ -10,22 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932ca5e4-338a-4393-a26b-192d0171a91d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Receiver/.idea/4YP_PiCom_Receiver.iml" afterPath="$PROJECT_DIR$/4YP_PiCom_Receiver/.idea/4YP_PiCom_Receiver.iml" />
-      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Receiver/.idea/workspace.xml" afterPath="$PROJECT_DIR$/4YP_PiCom_Receiver/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Receiver/LOGS.txt" afterPath="$PROJECT_DIR$/4YP_PiCom_Receiver/LOGS.txt" />
-      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Receiver/PiComRx_5_DAC.py" afterPath="$PROJECT_DIR$/4YP_PiCom_Receiver/PiComRx_5_DAC.py" />
-      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py" afterPath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py" />
-      <change beforePath="$PROJECT_DIR$/Report/Sections/Comms_Testing.tex" afterPath="$PROJECT_DIR$/Report/Sections/Comms_Testing.tex" />
-      <change beforePath="$PROJECT_DIR$/Report/Sections/Electro_Testing.tex" afterPath="$PROJECT_DIR$/Report/Sections/Electro_Testing.tex" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c" afterPath="$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c" />
+      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c" afterPath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/ad5424.png" afterPath="$PROJECT_DIR$/Report/Sections/Images/ad5424.png" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/zn448.png" afterPath="$PROJECT_DIR$/Report/Sections/Images/zn448.png" />
       <change beforePath="$PROJECT_DIR$/Report/Sections/RPi.tex" afterPath="$PROJECT_DIR$/Report/Sections/RPi.tex" />
       <change beforePath="$PROJECT_DIR$/Report/main.aux" afterPath="$PROJECT_DIR$/Report/main.aux" />
-      <change beforePath="$PROJECT_DIR$/Report/main.blg" afterPath="$PROJECT_DIR$/Report/main.blg" />
       <change beforePath="$PROJECT_DIR$/Report/main.log" afterPath="$PROJECT_DIR$/Report/main.log" />
       <change beforePath="$PROJECT_DIR$/Report/main.out" afterPath="$PROJECT_DIR$/Report/main.out" />
       <change beforePath="$PROJECT_DIR$/Report/main.pdf" afterPath="$PROJECT_DIR$/Report/main.pdf" />
       <change beforePath="$PROJECT_DIR$/Report/main.synctex.gz" afterPath="$PROJECT_DIR$/Report/main.synctex.gz" />
       <change beforePath="$PROJECT_DIR$/Report/main.tdo" afterPath="$PROJECT_DIR$/Report/main.tdo" />
-      <change beforePath="$PROJECT_DIR$/Report/main.tex" afterPath="$PROJECT_DIR$/Report/main.tex" />
       <change beforePath="$PROJECT_DIR$/Report/main.toc" afterPath="$PROJECT_DIR$/Report/main.toc" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="PiReceive.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PiReceive.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+            <state relative-caret-position="389">
+              <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,41 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PiComTx_5_DAC.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2675">
-              <caret line="111" column="24" lean-forward="false" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="install.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/eric6-18.04/install.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PiTransmit_3.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PiTransmit_3.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1208">
-              <caret line="46" column="61" lean-forward="false" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PiCom_TimeTest.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/Part_Tests/PiCom_TimeTest.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            <state relative-caret-position="248">
+              <caret line="111" column="82" lean-forward="true" selection-start-line="111" selection-start-column="82" selection-end-line="111" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -103,6 +69,7 @@
     <findStrings>
       <find>strlen</find>
       <find>DAC_1_bits</find>
+      <find>symb</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,13 +78,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/Part_Tests/PiCom_Run.c" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/Part_Tests/PiCom_TimeTest.c" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_2.c" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/Part_Tests/Py-Bin-C/Bin_File_Read_C.c" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/Bin_File_Read_C.c" />
+        <option value="$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c" />
         <option value="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c" />
       </list>
     </option>
@@ -241,11 +208,12 @@
       <workItem from="1523032902822" duration="1355000" />
       <workItem from="1523359906485" duration="8000" />
       <workItem from="1523434875504" duration="1616000" />
+      <workItem from="1525773897080" duration="6033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16309000" />
+    <option name="totallyTimeSpent" value="22342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,14 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/Part_Tests/PiCom_Run.c" />
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/Part_Tests/PiCom_Run.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -551,7 +511,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2675">
+        <state relative-caret-position="2650">
           <caret line="111" column="24" lean-forward="false" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
           <folding />
         </state>
@@ -591,8 +551,16 @@
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/Bin_File_Read_C.c" />
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1208">
-          <caret line="46" column="61" lean-forward="false" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
+        <state relative-caret-position="248">
+          <caret line="111" column="82" lean-forward="true" selection-start-line="111" selection-start-column="82" selection-end-line="111" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
           <folding />
         </state>
       </provider>

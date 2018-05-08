@@ -20,12 +20,16 @@ void readPins(int gpio, int level, uint tick, void* data) {
     uint32_t current_state = pin_state;
     static int count = 0;
 
-    if(level==0) {
+    if(level==1) {
         if (count < mask_size) {
-            //int* new_data = (int*)(data+count++);
             *((uint32_t*)(data + count++)) = current_state;
-            //printf("%i\n", count);
+            // Omits superfluous pointer allocation:
+            // uint32_t* new_data = (uint32_t*)(data+count++); new_data* = current_state;
+
+            // For testing:
+            // printf("%i\n", count);
             if(count == 0)
+                // Once transmission started, reduce timeout to 1 second after last clock pulse
 				gpioSetWatchdog(CLK_PIN, 1000);
         } else {
             gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
@@ -128,8 +132,10 @@ int main(int argc, char *argv[]) {
         gpioSetAlertFunc(ADC_1_bits[i], checkPins);
         gpioSetAlertFunc(ADC_2_bits[i], checkPins);
     }
-    gpioHardwareClock(ADC_CLK, 1000000);
+    // Replaced hardware clock with ADC clock capacitor as simpler
+    //gpioHardwareClock(ADC_CLK, 100000);
     gpioSetAlertFuncEx(CLK_PIN, readPins, (void*)receive_data_mask);
+    // Timeout if clock stays silent for 10 seconds
     gpioSetWatchdog(CLK_PIN,10000);
     
 	////////////////////////////////////////////////////////////
@@ -149,7 +155,8 @@ int main(int argc, char *argv[]) {
         sleep(1);
     }
 
-    gpioHardwareClock(ADC_CLK, 0);
+    // Replaced hardware clock with ADC clock capacitor as simpler
+    //gpioHardwareClock(ADC_CLK, 0);
     ////////////////////////////////////////////////////////////
     FILE* test5_f;
     char* test5 = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/test5.txt";

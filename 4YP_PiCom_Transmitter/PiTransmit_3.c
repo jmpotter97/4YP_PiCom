@@ -30,16 +30,20 @@ int main(int argc, char *argv[]) {
 		symbol_freq = atoi(argv[1]);
 		// Returns 0 if not a number string (and 0 not OK freq anyway)
 		if(symbol_freq == 0) {
-			printf("--- PiTransmit_3 ---\n\nInvalid Frequency\n");
+			printf("--- PiTransmit_3 ---\n\nInvalid Frequency - zero or not a number\n");
 			printf("Usage: ./PiTransmit_3 symbol_freq \n");
 			gpioTerminate();
 			return 3;	 
-		}
+		} else if(symbol_freq > 100000) {
+            printf("--- PiTransmit_3 ---\n\nInvalid Frequency - over 100kHz is too fast for the current ADC\n");
+            printf("Usage: ./PiTransmit_3 symbol_freq \n");
+            gpioTerminate();
+            return 3;
+        }
 	}
-	// Half clock period time in us
-	const int symbol_time = 1000000 / (2*symbol_freq);
-	printf("Frequency: %i Hz\nHalf-clock-period: %.3f ms\n",
-			symbol_freq,symbol_time/1000.0); 
+	// Clock full period in micro-seconds minus 1us (explained in TRANSMIT DATA)
+	const int symbol_time = (1000000 / symbol_freq) - 1;
+	printf("Frequency (baud rate): %i Hz\n", symbol_freq);
 	
 	
 	const uint DAC_1_bits[8] = {10, 9, 11, 5, 6, 13, 19, 26}; // MSB to LSB
@@ -98,11 +102,21 @@ int main(int argc, char *argv[]) {
 	for(int i=0; i<num_of_masks; i++) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
 		gpioWrite_Bits_0_31_Set(transmit_data_mask[i]);
-		// Low-going CS signal loads data (min low CS 10ns, min high CS 7ns)
-		gpioWrite(CLK_PIN, 0);
-		usleep(symbol_time);
-		gpioWrite(CLK_PIN,1);
-		usleep(symbol_time);
+
+        /* Clock symbol will have shape
+         * |_|------------|_|------------|_|------------|_|------------
+         * Low pulses will be low for 1us ^ and high ^ for the rest of the clock period
+         * ADC:
+         * Rising _CS_ latches data but read event requires falling then rising edge
+         * DAC:
+         * _WR_ going low clears the converter and _WR_ high starts the conversion
+         *
+         * A 1us pulse is definitely long enough for both converters to receive */
+        gpioWrite(CLK_PIN, 0);
+        usleep(1);
+        gpioWrite(CLK_PIN,1);
+        usleep(symbol_time);
+
 		//printf("%i\nPause, press <ENTER> to continue...\n", i);
 		//getchar();
 		
