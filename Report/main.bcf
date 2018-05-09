@@ -1986,11 +1986,12 @@
     <bcf:citekey order="10">lib_Git</bcf:citekey>
     <bcf:citekey order="11">lib_RPi.GPIO</bcf:citekey>
     <bcf:citekey order="12">lib_Paramiko</bcf:citekey>
-    <bcf:citekey order="13">web_RpiMaxRatings</bcf:citekey>
-    <bcf:citekey order="14">web_RPiSpecsSE</bcf:citekey>
-    <bcf:citekey order="15">web_MosaicSpecs</bcf:citekey>
-    <bcf:citekey order="16">web_GPIOPadsErrata</bcf:citekey>
-    <bcf:citekey order="17">lib_pigpioHWClock</bcf:citekey>
+    <bcf:citekey order="13">lib_pigpio</bcf:citekey>
+    <bcf:citekey order="14">web_RpiMaxRatings</bcf:citekey>
+    <bcf:citekey order="15">web_RPiSpecsSE</bcf:citekey>
+    <bcf:citekey order="16">web_MosaicSpecs</bcf:citekey>
+    <bcf:citekey order="17">web_GPIOPadsErrata</bcf:citekey>
+    <bcf:citekey order="18">lib_pigpioHWClock</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

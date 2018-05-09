@@ -376,11 +376,11 @@ def Convert_To_Data_Mask(data_list):
         print("Transmission type not implemented yet!")
 
 
-def Invert_Mask(mask):
+def Invert_Mask(masks):
     if "PAM" in TRANSMISSION_TYPE:
-        return mask ^ DAC_MASK_1
+        return masks ^ DAC_MASK_1
     else:
-        return mask ^ (DAC_MASK_1 | DAC_MASK_2)
+        return masks ^ (DAC_MASK_1 | DAC_MASK_2)
 
 
 def Save_To_File(mask, path):

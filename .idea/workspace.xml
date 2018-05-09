@@ -11,17 +11,24 @@
   <component name="ChangeListManager">
     <list default="true" id="932ca5e4-338a-4393-a26b-192d0171a91d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c" afterPath="$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c" />
+      <change beforePath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py" afterPath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiComTx_5_DAC.py" />
       <change beforePath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c" afterPath="$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c" />
-      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/ad5424.png" afterPath="$PROJECT_DIR$/Report/Sections/Images/ad5424.png" />
-      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/zn448.png" afterPath="$PROJECT_DIR$/Report/Sections/Images/zn448.png" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/QAM_Const-eps-converted-to.pdf" afterPath="$PROJECT_DIR$/Report/Sections/Images/QAM_Const-eps-converted-to.pdf" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/QAM_Grid-eps-converted-to.pdf" afterPath="$PROJECT_DIR$/Report/Sections/Images/QAM_Grid-eps-converted-to.pdf" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/Receiver_Flow.png" afterPath="$PROJECT_DIR$/Report/Sections/Images/Receiver_Flow.png" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/ad5424-eps-converted-to.pdf" afterPath="$PROJECT_DIR$/Report/Sections/Images/ad5424-eps-converted-to.pdf" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/qam_archictecture-eps-converted-to.pdf" afterPath="$PROJECT_DIR$/Report/Sections/Images/qam_archictecture-eps-converted-to.pdf" />
+      <change beforePath="$PROJECT_DIR$/Report/Sections/Images/zn448-eps-converted-to.pdf" afterPath="$PROJECT_DIR$/Report/Sections/Images/zn448-eps-converted-to.pdf" />
       <change beforePath="$PROJECT_DIR$/Report/Sections/RPi.tex" afterPath="$PROJECT_DIR$/Report/Sections/RPi.tex" />
       <change beforePath="$PROJECT_DIR$/Report/main.aux" afterPath="$PROJECT_DIR$/Report/main.aux" />
+      <change beforePath="$PROJECT_DIR$/Report/main.bcf" afterPath="$PROJECT_DIR$/Report/main.bcf" />
+      <change beforePath="$PROJECT_DIR$/Report/main.blg" afterPath="$PROJECT_DIR$/Report/main.blg" />
       <change beforePath="$PROJECT_DIR$/Report/main.log" afterPath="$PROJECT_DIR$/Report/main.log" />
       <change beforePath="$PROJECT_DIR$/Report/main.out" afterPath="$PROJECT_DIR$/Report/main.out" />
       <change beforePath="$PROJECT_DIR$/Report/main.pdf" afterPath="$PROJECT_DIR$/Report/main.pdf" />
       <change beforePath="$PROJECT_DIR$/Report/main.synctex.gz" afterPath="$PROJECT_DIR$/Report/main.synctex.gz" />
       <change beforePath="$PROJECT_DIR$/Report/main.tdo" afterPath="$PROJECT_DIR$/Report/main.tdo" />
+      <change beforePath="$PROJECT_DIR$/Report/main.tex" afterPath="$PROJECT_DIR$/Report/main.tex" />
       <change beforePath="$PROJECT_DIR$/Report/main.toc" afterPath="$PROJECT_DIR$/Report/main.toc" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +43,8 @@
       <file leaf-file-name="PiReceive.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+            <state relative-caret-position="275">
+              <caret line="170" column="16" lean-forward="true" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -56,8 +63,8 @@
       <file leaf-file-name="PiTransmit_3.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="111" column="82" lean-forward="true" selection-start-line="111" selection-start-column="82" selection-end-line="111" selection-end-column="82" />
+            <state relative-caret-position="-450">
+              <caret line="111" column="22" lean-forward="false" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -95,11 +102,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-63" />
-    <option name="y" value="-25" />
-    <option name="width" value="1841" />
-    <option name="height" value="909" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="903" />
+    <option name="width" value="934" />
+    <option name="height" value="1090" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -208,12 +214,12 @@
       <workItem from="1523032902822" duration="1355000" />
       <workItem from="1523359906485" duration="8000" />
       <workItem from="1523434875504" duration="1616000" />
-      <workItem from="1525773897080" duration="6033000" />
+      <workItem from="1525773897080" duration="10662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22342000" />
+    <option name="totallyTimeSpent" value="26971000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -225,7 +231,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1849" height="1102" extended-state="6" />
+    <frame x="903" y="0" width="934" height="1090" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -234,7 +240,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33446327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -551,16 +557,16 @@
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/Bin_File_Read_C.c" />
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Transmitter/PiTransmit_3.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="111" column="82" lean-forward="true" selection-start-line="111" selection-start-column="82" selection-end-line="111" selection-end-column="82" />
+        <state relative-caret-position="-450">
+          <caret line="111" column="22" lean-forward="false" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/4YP_PiCom_Receiver/PiReceive.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+        <state relative-caret-position="275">
+          <caret line="170" column="16" lean-forward="true" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
           <folding />
         </state>
       </provider>

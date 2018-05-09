@@ -9,24 +9,25 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Digital Analogue Converter}{section.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.2.2}{Analogue Digital Converter}{section.2.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.3}{Multiplier}{section.2.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.4}{Parts Used}{section.2.2}% 12
-\BOOKMARK [1][-]{section.2.3}{Programming}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.3.1}{On-Off Keying}{section.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.3.2}{Advanced Modulation Schemes}{section.2.3}% 15
-\BOOKMARK [0][-]{chapter.3}{Electronic Testing}{}% 16
-\BOOKMARK [1][-]{section.3.1}{Electrical Characteristics of the Raspberry Pi}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.2}{Computational Characteristics of the Raspberry Pi}{chapter.3}% 18
-\BOOKMARK [2][-]{subsection.3.2.1}{Maximum Frequency}{section.3.2}% 19
-\BOOKMARK [2][-]{subsection.3.2.2}{Comparing Python and C}{section.3.2}% 20
-\BOOKMARK [1][-]{section.3.3}{Characterising Components of the Test Bed}{chapter.3}% 21
-\BOOKMARK [2][-]{subsection.3.3.1}{Overclocking Components}{section.3.3}% 22
-\BOOKMARK [0][-]{chapter.4}{Communications Testing}{}% 23
-\BOOKMARK [1][-]{section.4.1}{SNR for Different Modulation Schemes}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.2}{Error Rate}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.3}{Channel Coding}{chapter.4}% 26
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 27
-\BOOKMARK [0][-]{chapter*.56}{Bibliography}{}% 28
-\BOOKMARK [0][-]{section*.58}{Appendices}{}% 29
-\BOOKMARK [0][-]{appendix.A}{Risk Assessments}{}% 30
-\BOOKMARK [1][-]{section.A.1}{General Risk Assessment}{appendix.A}% 31
-\BOOKMARK [1][-]{section.A.2}{Computer Risk Assessment}{appendix.A}% 32
+\BOOKMARK [2][-]{subsection.2.2.4}{Quadrature Pulse Generator}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.5}{Parts Used}{section.2.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Programming}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.3.1}{On-Off Keying}{section.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.3.2}{Advanced Modulation Schemes}{section.2.3}% 16
+\BOOKMARK [0][-]{chapter.3}{Electronic Testing}{}% 17
+\BOOKMARK [1][-]{section.3.1}{Electrical Characteristics of the Raspberry Pi}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.2}{Computational Characteristics of the Raspberry Pi}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.2.1}{Maximum Frequency}{section.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.2.2}{Comparing Python and C}{section.3.2}% 21
+\BOOKMARK [1][-]{section.3.3}{Characterising Components of the Test Bed}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.1}{Overclocking Components}{section.3.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Communications Testing}{}% 24
+\BOOKMARK [1][-]{section.4.1}{SNR for Different Modulation Schemes}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.2}{Error Rate}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.3}{Channel Coding}{chapter.4}% 27
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 28
+\BOOKMARK [0][-]{chapter*.55}{Bibliography}{}% 29
+\BOOKMARK [0][-]{section*.57}{Appendices}{}% 30
+\BOOKMARK [0][-]{appendix.A}{Risk Assessments}{}% 31
+\BOOKMARK [1][-]{section.A.1}{General Risk Assessment}{appendix.A}% 32
+\BOOKMARK [1][-]{section.A.2}{Computer Risk Assessment}{appendix.A}% 33

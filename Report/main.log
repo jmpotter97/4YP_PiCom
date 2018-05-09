@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  8 MAY 2018 18:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.25)  9 MAY 2018 12:03
 entering extended mode
 **./main.tex
 (main.tex
@@ -1751,21 +1751,21 @@ File: english.lbx 2018/03/04 v3.11 biblatex localization (PK/MW)
  (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 105.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 128.
 
 
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
@@ -1811,7 +1811,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box72
-Package hyperref Info: Link coloring OFF on input line 105.
+Package hyperref Info: Link coloring OFF on input line 128.
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 "
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1822,9 +1822,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count458
 )
-LaTeX Info: Redefining \ref on input line 105.
-LaTeX Info: Redefining \pageref on input line 105.
-LaTeX Info: Redefining \nameref on input line 105.
+LaTeX Info: Redefining \ref on input line 128.
+LaTeX Info: Redefining \pageref on input line 128.
+LaTeX Info: Redefining \nameref on input line 128.
  (main.out) (main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -1935,8 +1935,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (main.bbl)
-Package biblatex Info: Reference section=0 on input line 105.
-Package biblatex Info: Reference segment=0 on input line 105.
+Package biblatex Info: Reference section=0 on input line 128.
+Package biblatex Info: Reference segment=0 on input line 128.
 
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.s
 ty"
@@ -1949,94 +1949,94 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 \c@lstlisting=\count465
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 105.
+LaTeX Font Info:    Try loading font information for U+msa on input line 128.
 
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 105.
+LaTeX Font Info:    Try loading font information for U+msb on input line 128.
 
 ("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 110.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 133.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 114.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 137.
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 116.
+ine 139.
 
 [1
 
 {C:/Users/Cam/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, id=150, 597.55246pt x 
+<./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, id=154, 597.55246pt x 
 845.07718pt>
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
-  used on input line 132.
+  used on input line 155.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
-  used on input line 132.
+  used on input line 155.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-<./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, id=153, page=1, 597.55
+<./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, id=157, page=1, 597.55
 246pt x 845.07718pt>
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
- , page1 used on input line 132.
+ , page1 used on input line 155.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
- , page1 used on input line 132.
+ , page1 used on input line 155.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
- , page1 used on input line 132.
+ , page1 used on input line 155.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
- , page1 used on input line 132.
+ , page1 used on input line 155.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.132 ...]{4YPDeclarationOfAuthorshipForm2018.pdf}
+l.155 ...]{4YPDeclarationOfAuthorshipForm2018.pdf}
                                                   
 File: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf Graphic file (type
  pdf)
 <use ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf
- , page1 used on input line 132.
+ , page1 used on input line 155.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [1 <./Sections/PDFs/4YPDeclarationOfAuthorshipForm2018.pdf>]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 136.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 159.
  (Sections/Abstract.tex)pdfTeX warning (ext4): destination with the same identi
 fier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.138 \end{abstract}
+l.161 \end{abstract}
                      [1]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 142.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 165.
  (main.tocpdfTeX warning (ext4): destination with the same identifier (name{pag
 e.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.30 ...line {4.3}Channel Coding}{36}{section.4.3}
+l.30 ...mberline {4.2}Error Rate}{40}{section.4.2}
                                                    [1
 
 ])
@@ -2046,7 +2046,7 @@ l.30 ...line {4.3}Channel Coding}{36}{section.4.3}
  [2] (main.tdo [3
 
 ]
-Overfull \hbox (69.59415pt too wide) in paragraph at lines 31--31
+Overfull \hbox (69.59415pt too wide) in paragraph at lines 29--29
  \OT1/phv/m/n/10.95 nel vs er-ror chan-nel, clocked vs un-clocked, Justin's pro
 ject - http://diwine-project.eu/public/publications.html[] [][]  
  []
@@ -2144,16 +2144,12 @@ Package epstopdf Info: Source file: <./Sections/Images/ad5424.eps>
 (epstopdf)                    size: 104206 bytes
 (epstopdf)             Output file: <./Sections/Images/ad5424-eps-converted-to.
 pdf>
+(epstopdf)                    date: 2018-05-08 18:50:10
+(epstopdf)                    size: 32933 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Sections/Images/ad5424-ep
 s-converted-to.pdf ./Sections/Images/ad5424.eps>
 (epstopdf)             \includegraphics on input line 132.
-runsystem(epstopdf --outfile=./Sections/Images/ad5424-eps-converted-to.pdf ./Se
-ctions/Images/ad5424.eps)...executed (allowed).
-
-Package epstopdf Info: Result file: <./Sections/Images/ad5424-eps-converted-to.
-pdf>
-(epstopdf)                    date: 2018-05-08 18:26:50
-(epstopdf)                    size: 32933 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <./Sections/Images/ad5424-eps-converted-to.pdf, id=429, 596.2275pt x 469.755pt>
 
 File: ./Sections/Images/ad5424-eps-converted-to.pdf Graphic file (type pdf)
@@ -2176,16 +2172,12 @@ Package epstopdf Info: Source file: <./Sections/Images/zn448.eps>
 (epstopdf)                    size: 121557 bytes
 (epstopdf)             Output file: <./Sections/Images/zn448-eps-converted-to.p
 df>
+(epstopdf)                    date: 2018-05-08 18:50:10
+(epstopdf)                    size: 38713 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Sections/Images/zn448-eps
 -converted-to.pdf ./Sections/Images/zn448.eps>
 (epstopdf)             \includegraphics on input line 149.
-runsystem(epstopdf --outfile=./Sections/Images/zn448-eps-converted-to.pdf ./Sec
-tions/Images/zn448.eps)...executed (allowed).
-
-Package epstopdf Info: Result file: <./Sections/Images/zn448-eps-converted-to.p
-df>
-(epstopdf)                    date: 2018-05-08 18:26:50
-(epstopdf)                    size: 38713 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <./Sections/Images/zn448-eps-converted-to.pdf, id=450, 604.2575pt x 469.755pt>
 File: ./Sections/Images/zn448-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Sections/Images/zn448-eps-converted-to.pdf>
@@ -2218,18 +2210,12 @@ Package epstopdf Info: Source file: <./Sections/Images/qam_archictecture.eps>
 (epstopdf)                    size: 100008 bytes
 (epstopdf)             Output file: <./Sections/Images/qam_archictecture-eps-co
 nverted-to.pdf>
-(epstopdf)                    date: 2018-05-08 18:23:05
+(epstopdf)                    date: 2018-05-08 18:50:11
 (epstopdf)                    size: 35722 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Sections/Images/qam_archi
 ctecture-eps-converted-to.pdf ./Sections/Images/qam_archictecture.eps>
 (epstopdf)             \includegraphics on input line 194.
-runsystem(epstopdf --outfile=./Sections/Images/qam_archictecture-eps-converted-
-to.pdf ./Sections/Images/qam_archictecture.eps)...executed (allowed).
-
-Package epstopdf Info: Result file: <./Sections/Images/qam_archictecture-eps-co
-nverted-to.pdf>
-(epstopdf)                    date: 2018-05-08 18:26:51
-(epstopdf)                    size: 35722 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <./Sections/Images/qam_archictecture-eps-converted-to.pdf, id=483, 652.4375pt x
  333.245pt>
 File: ./Sections/Images/qam_archictecture-eps-converted-to.pdf Graphic file (ty
@@ -2242,133 +2228,138 @@ df  used on input line 194.
 File: ./Sections/Images/Live_Test_Bed.jpg Graphic file (type jpg)
 <use ./Sections/Images/Live_Test_Bed.jpg>
 Package pdftex.def Info: ./Sections/Images/Live_Test_Bed.jpg  used on input lin
-e 204.
+e 208.
 (pdftex.def)             Requested size: 290.22107pt x 160.92209pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--216
+Underfull \hbox (badness 10000) in paragraph at lines 215--222
 
  []
 
 [15 <./Sections/Images/qam_archictecture-eps-converted-to.pdf> <./Sections/Imag
-es/Live_Test_Bed.jpg>] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 236--244
+es/Live_Test_Bed.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 251--256
+
+ []
+
+[16] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 276--284
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--251
+Underfull \hbox (badness 10000) in paragraph at lines 285--291
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--262
+Underfull \hbox (badness 10000) in paragraph at lines 297--302
 
  []
 
-[17
+[18
 
 ]
-<./Sections/Images/Pi_Pin_Connections.png, id=520, 554.5518pt x 744.8628pt>
+<./Sections/Images/Pi_Pin_Connections.png, id=528, 554.5518pt x 744.8628pt>
 File: ./Sections/Images/Pi_Pin_Connections.png Graphic file (type png)
 <use ./Sections/Images/Pi_Pin_Connections.png>
 Package pdftex.def Info: ./Sections/Images/Pi_Pin_Connections.png  used on inpu
-t line 265.
+t line 305.
 (pdftex.def)             Requested size: 386.95897pt x 519.76375pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--279
+Underfull \hbox (badness 10000) in paragraph at lines 310--319
 
  []
 
-[18 <./Sections/Images/Pi_Pin_Connections.png>]
+[19 <./Sections/Images/Pi_Pin_Connections.png>]
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 285.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 325.
 
-Underfull \hbox (badness 10000) in paragraph at lines 291--296
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 297--301
-
- []
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 305--308
+Underfull \hbox (badness 10000) in paragraph at lines 331--336
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 317--322
+Underfull \hbox (badness 10000) in paragraph at lines 337--341
 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 327--328
+Underfull \hbox (badness 10000) in paragraph at lines 345--348
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--334
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 335--342
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 343--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--362
 
  []
 
 [21]
+Underfull \hbox (badness 10000) in paragraph at lines 379--384
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 387--388
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 389--396
+
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 397--402
+
+ []
+
+[23]
 Package epstopdf Info: Source file: <./Sections/Images/QAM_Const.eps>
 (epstopdf)                    date: 2018-05-07 10:02:35
 (epstopdf)                    size: 17127 bytes
 (epstopdf)             Output file: <./Sections/Images/QAM_Const-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2018-05-07 11:51:27
+(epstopdf)                    date: 2018-05-08 18:50:13
 (epstopdf)                    size: 6119 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Sections/Images/QAM_Const
 -eps-converted-to.pdf ./Sections/Images/QAM_Const.eps>
-(epstopdf)             \includegraphics on input line 360.
+(epstopdf)             \includegraphics on input line 414.
 Package epstopdf Info: Output file is already uptodate.
-<./Sections/Images/QAM_Const-eps-converted-to.pdf, id=562, 421.575pt x 316.1812
+<./Sections/Images/QAM_Const-eps-converted-to.pdf, id=576, 421.575pt x 316.1812
 4pt>
 File: ./Sections/Images/QAM_Const-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Sections/Images/QAM_Const-eps-converted-to.pdf>
 Package pdftex.def Info: ./Sections/Images/QAM_Const-eps-converted-to.pdf  used
- on input line 360.
+ on input line 414.
 (pdftex.def)             Requested size: 386.95897pt x 290.22449pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 365--376
+Underfull \hbox (badness 10000) in paragraph at lines 419--432
 
  []
 
-[22 <./Sections/Images/QAM_Const-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 404--411
+[24 <./Sections/Images/QAM_Const-eps-converted-to.pdf>] [25]
+Underfull \hbox (badness 10000) in paragraph at lines 460--467
 
  []
 
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 412--421
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--477
 
  []
 
-<./Sections/Images/Transmitter_Flow.png, id=608, 542.9886pt x 783.8886pt>
+<./Sections/Images/Transmitter_Flow.png, id=620, 542.9886pt x 783.8886pt>
 File: ./Sections/Images/Transmitter_Flow.png Graphic file (type png)
 <use ./Sections/Images/Transmitter_Flow.png>
 Package pdftex.def Info: ./Sections/Images/Transmitter_Flow.png  used on input 
-line 424.
+line 480.
 (pdftex.def)             Requested size: 483.69687pt x 698.30457pt.
-[24] [25 <./Sections/Images/Transmitter_Flow.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 432--437
+[26] [27] [28 <./Sections/Images/Transmitter_Flow.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 488--493
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 438--444
+Underfull \hbox (badness 10000) in paragraph at lines 494--500
 
  []
 
@@ -2377,42 +2368,50 @@ Package epstopdf Info: Source file: <./Sections/Images/QAM_Grid.eps>
 (epstopdf)                    size: 19769 bytes
 (epstopdf)             Output file: <./Sections/Images/QAM_Grid-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2018-05-07 12:12:18
+(epstopdf)                    date: 2018-05-08 18:50:14
 (epstopdf)                    size: 6626 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Sections/Images/QAM_Grid-
 eps-converted-to.pdf ./Sections/Images/QAM_Grid.eps>
-(epstopdf)             \includegraphics on input line 447.
+(epstopdf)             \includegraphics on input line 503.
 Package epstopdf Info: Output file is already uptodate.
-<./Sections/Images/QAM_Grid-eps-converted-to.pdf, id=621, 421.575pt x 316.18124
+<./Sections/Images/QAM_Grid-eps-converted-to.pdf, id=639, 421.575pt x 316.18124
 pt>
 File: ./Sections/Images/QAM_Grid-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Sections/Images/QAM_Grid-eps-converted-to.pdf>
 Package pdftex.def Info: ./Sections/Images/QAM_Grid-eps-converted-to.pdf  used 
-on input line 447.
+on input line 503.
 (pdftex.def)             Requested size: 386.95897pt x 290.22449pt.
-<./Sections/Images/Receiver_Flow.png, id=622, 552.6246pt x 783.8886pt>
+<./Sections/Images/Receiver_Flow.png, id=640, 542.9886pt x 783.8886pt>
 File: ./Sections/Images/Receiver_Flow.png Graphic file (type png)
 <use ./Sections/Images/Receiver_Flow.png>
 Package pdftex.def Info: ./Sections/Images/Receiver_Flow.png  used on input lin
-e 454.
-(pdftex.def)             Requested size: 483.69687pt x 686.15202pt.
-[26
+e 510.
+(pdftex.def)             Requested size: 483.69687pt x 698.30457pt.
+[29
 
- <./Sections/Images/QAM_Grid-eps-converted-to.pdf>] [27] [28 <./Sections/Images
+ <./Sections/Images/QAM_Grid-eps-converted-to.pdf>] [30] [31 <./Sections/Images
 /Receiver_Flow.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 466--467
+Underfull \hbox (badness 10000) in paragraph at lines 526--535
 
  []
 
-<./Sections/Images/Mask_Expansion.png, id=647, 538.6524pt x 187.902pt>
+<./Sections/Images/Mask_Expansion.png, id=666, 538.6524pt x 187.902pt>
 File: ./Sections/Images/Mask_Expansion.png Graphic file (type png)
 <use ./Sections/Images/Mask_Expansion.png>
 Package pdftex.def Info: ./Sections/Images/Mask_Expansion.png  used on input li
-ne 482.
+ne 538.
 (pdftex.def)             Requested size: 386.95897pt x 134.99115pt.
-) [29
+[32
 
  <./Sections/Images/Mask_Expansion.png>]
+("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\lstlang1.st
+y"
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+("C:\Users\Cam\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\lstmisc.sty
+"
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+)) [33]
 Chapter 3.
 (Sections/Electro_Testing.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--9
@@ -2429,14 +2428,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--25
 
  []
 
-[30
+[34
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
-[31]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 71--77
 
  []
@@ -2446,34 +2445,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--79
 
  []
 
-<./Sections/Images/Benchmarking_Data.jpg, id=673, 2999.205pt x 2216.28pt>
+<./Sections/Images/Benchmarking_Data.jpg, id=711, 2999.205pt x 2216.28pt>
 File: ./Sections/Images/Benchmarking_Data.jpg Graphic file (type jpg)
 <use ./Sections/Images/Benchmarking_Data.jpg>
 Package pdftex.def Info: ./Sections/Images/Benchmarking_Data.jpg  used on input
  line 82.
 (pdftex.def)             Requested size: 290.22107pt x 214.43782pt.
-[32
+[36
 
  <./Sections/Images/Benchmarking_Data.jpg>]
-<./Sections/Images/DAC_Output.jpg, id=679, 3048.38875pt x 2287.54625pt>
+<./Sections/Images/DAC_Output.jpg, id=717, 3048.38875pt x 2287.54625pt>
 File: ./Sections/Images/DAC_Output.jpg Graphic file (type jpg)
 <use ./Sections/Images/DAC_Output.jpg>
 Package pdftex.def Info: ./Sections/Images/DAC_Output.jpg  used on input line 1
 03.
 (pdftex.def)             Requested size: 193.47578pt x 145.1703pt.
-<./Sections/Images/Pulse_Output.jpg, id=680, 2304.61pt x 1145.27875pt>
+<./Sections/Images/Pulse_Output.jpg, id=718, 2304.61pt x 1145.27875pt>
 File: ./Sections/Images/Pulse_Output.jpg Graphic file (type jpg)
 <use ./Sections/Images/Pulse_Output.jpg>
 Package pdftex.def Info: ./Sections/Images/Pulse_Output.jpg  used on input line
  110.
 (pdftex.def)             Requested size: 290.22107pt x 144.2255pt.
-<./Sections/Images/Sine_Output.jpg, id=681, 2432.08624pt x 1202.4925pt>
+<./Sections/Images/Sine_Output.jpg, id=719, 2432.08624pt x 1202.4925pt>
 File: ./Sections/Images/Sine_Output.jpg Graphic file (type jpg)
 <use ./Sections/Images/Sine_Output.jpg>
 Package pdftex.def Info: ./Sections/Images/Sine_Output.jpg  used on input line 
 117.
 (pdftex.def)             Requested size: 290.22107pt x 143.48553pt.
- [33
+ [37
 
  <./Sections/Images/DAC_Output.jpg> <./Sections/Images/Pulse_Output.jpg> <./Sec
 tions/Images/Sine_Output.jpg>]
@@ -2486,13 +2485,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--141
 
  []
 
-<./Sections/Images/Clock_Analyse.jpg, id=690, 3276.24pt x 1014.79124pt>
+<./Sections/Images/Clock_Analyse.jpg, id=728, 3276.24pt x 1014.79124pt>
 File: ./Sections/Images/Clock_Analyse.jpg Graphic file (type jpg)
 <use ./Sections/Images/Clock_Analyse.jpg>
 Package pdftex.def Info: ./Sections/Images/Clock_Analyse.jpg  used on input lin
 e 144.
 (pdftex.def)             Requested size: 290.22107pt x 89.8872pt.
-) [34 <./Sections/Images/Clock_Analyse.jpg>]
+) [38 <./Sections/Images/Clock_Analyse.jpg>]
 Chapter 4.
 (Sections/Comms_Testing.tex
 Underfull \hbox (badness 1546) in paragraph at lines 5--5
@@ -2521,36 +2520,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-[35
+[39
 
-]) [36]
+]) [40]
 Chapter 5.
 (Sections/Conclusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-) [37
+) [41
 
 ]
-Overfull \hbox (18.71829pt too wide) in paragraph at lines 170--170
+Overfull \hbox (18.71829pt too wide) in paragraph at lines 193--193
 []\OT1/phv/m/n/10.95 Raspberry Pi Foun-da-tion. \OT1/phv/m/sl/10.95 Rasp-bian\O
 T1/phv/m/n/10.95 . [On-line: Ac-cessed ...] 2018. \OT1/phv/m/sc/10.95 url\OT1/p
 hv/m/n/10.95 : []$\OT1/cmtt/m/n/10.95 https : / / www . raspberrypi .
  []
 
 
-Overfull \hbox (0.24731pt too wide) in paragraph at lines 170--170
+Overfull \hbox (0.24731pt too wide) in paragraph at lines 193--193
 []\OT1/phv/m/n/10.95 Python Soft-ware Foun-da-tion. \OT1/phv/m/sl/10.95 RPi.GPI
 O 0.6.3\OT1/phv/m/n/10.95 . [On-line: Ac-cessed ...] Oct. 30, 2016. \OT1/phv/m/
 sc/10.95 url\OT1/phv/m/n/10.95 : []$\OT1/cmtt/m/n/10.95 https :
  []
 
-[38
+[42
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
 
  []
 
@@ -2558,12 +2557,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--174
 
 pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=735, 845.19763pt x 597.55246p
+<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=773, 845.19763pt x 597.55246p
 t>
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf  used on 
-input line 181.
+input line 204.
 (pdftex.def)             Requested size: 845.19557pt x 597.551pt.
 
 
@@ -2572,7 +2571,7 @@ pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf  used on 
-input line 181.
+input line 204.
 (pdftex.def)             Requested size: 845.19557pt x 597.551pt.
 
 
@@ -2582,43 +2581,43 @@ pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 
 pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=738, page=1, 845.19763pt x 59
+<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=776, page=1, 845.19763pt x 59
 7.55246pt>
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
-sed on input line 181.
+sed on input line 204.
 (pdftex.def)             Requested size: 845.19557pt x 597.551pt.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
-sed on input line 181.
+sed on input line 204.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
-[39]
+[43]
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
-sed on input line 181.
+sed on input line 204.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
-sed on input line 181.
+sed on input line 204.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
 
 Appendix A.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page1 u
-sed on input line 181.
+sed on input line 204.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
-[40
+[44
 
  <./Sections/PDFs/4YPGeneralRiskAssessment.pdf>]
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf  used on 
-input line 182.
+input line 205.
 (pdftex.def)             Requested size: 845.19557pt x 597.551pt.
 
 
@@ -2627,7 +2626,7 @@ pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf  used on 
-input line 182.
+input line 205.
 (pdftex.def)             Requested size: 845.19557pt x 597.551pt.
 
 
@@ -2637,92 +2636,92 @@ pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 
 pdfTeX warning: pdflatex.exe (file ./Sections/PDFs/4YPGeneralRiskAssessment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=788, page=2, 845.19763pt x 59
+<./Sections/PDFs/4YPGeneralRiskAssessment.pdf, id=825, page=2, 845.19763pt x 59
 7.55246pt>
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 2>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page2 u
-sed on input line 182.
+sed on input line 205.
 (pdftex.def)             Requested size: 845.19557pt x 597.551pt.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 2>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page2 u
-sed on input line 182.
+sed on input line 205.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 2>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page2 u
-sed on input line 182.
+sed on input line 205.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 2>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page2 u
-sed on input line 182.
+sed on input line 205.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
 File: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPGeneralRiskAssessment.pdf, page 2>
 Package pdftex.def Info: ./Sections/PDFs/4YPGeneralRiskAssessment.pdf , page2 u
-sed on input line 182.
+sed on input line 205.
 (pdftex.def)             Requested size: 597.64415pt x 422.5328pt.
-[41 <./Sections/PDFs/4YPGeneralRiskAssessment.pdf>]
-<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=795, 597.432pt x 844.83629pt
+[45 <./Sections/PDFs/4YPGeneralRiskAssessment.pdf>]
+<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=832, 597.432pt x 844.83629pt
 >
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf  used on
- input line 183.
+ input line 206.
 (pdftex.def)             Requested size: 597.43054pt x 844.83423pt.
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf  used on
- input line 183.
+ input line 206.
 (pdftex.def)             Requested size: 597.43054pt x 844.83423pt.
-<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=798, page=1, 597.432pt x 844
+<./Sections/PDFs/4YPComputerRiskAssessment.pdf, id=835, page=1, 597.432pt x 844
 .83629pt>
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf , page1 
-used on input line 183.
+used on input line 206.
 (pdftex.def)             Requested size: 597.43054pt x 844.83423pt.
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf , page1 
-used on input line 183.
+used on input line 206.
 (pdftex.def)             Requested size: 597.93192pt x 845.54323pt.
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf , page1 
-used on input line 183.
+used on input line 206.
 (pdftex.def)             Requested size: 597.93192pt x 845.54323pt.
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf , page1 
-used on input line 183.
+used on input line 206.
 (pdftex.def)             Requested size: 597.93192pt x 845.54323pt.
 File: ./Sections/PDFs/4YPComputerRiskAssessment.pdf Graphic file (type pdf)
 <use ./Sections/PDFs/4YPComputerRiskAssessment.pdf, page 1>
 Package pdftex.def Info: ./Sections/PDFs/4YPComputerRiskAssessment.pdf , page1 
-used on input line 183.
+used on input line 206.
 (pdftex.def)             Requested size: 597.93192pt x 845.54323pt.
- [42 <./Sections/PDFs/4YPComputerRiskAssessment.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 185.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 185.
+ [46 <./Sections/PDFs/4YPComputerRiskAssessment.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
  (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 185.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 185.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CE0F5740A6C0E1336F5CADCA2BC41639;2190.
+(rerunfilecheck)             Checksum: E314DDB26DEABAABB8D60718A2729ACD;2271.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 185.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 208.
  ) 
 Here is how much of TeX's memory you used:
- 41359 strings out of 493305
- 816867 string characters out of 3130672
- 1259877 words of memory out of 3000000
- 44082 multiletter control sequences out of 15000+200000
- 562991 words of font info for 91 fonts, out of 3000000 for 9000
+ 41457 strings out of 493305
+ 818351 string characters out of 3130672
+ 1258425 words of memory out of 3000000
+ 44154 multiletter control sequences out of 15000+200000
+ 564732 words of font info for 96 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,27n,96p,10393b,2773s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<
@@ -2736,13 +2735,14 @@ ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/Cam/AppDa
 ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
 s/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pf
 b><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmtt10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/he
-lvetic/uhvb8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/u
-rw/helvetic/uhvr8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (45 pages, 13170208 bytes).
+m/cmti10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmtt10.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/urw/helvetic/uhvb8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Cam/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on main.pdf (49 pages, 13172611 bytes).
 PDF statistics:
- 891 PDF objects out of 1000 (max. 8388607)
- 209 named destinations out of 1000 (max. 500000)
- 479 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 938 PDF objects out of 1000 (max. 8388607)
+ 227 named destinations out of 1000 (max. 500000)
+ 487 words of extra memory for PDF output out of 10000 (max. 10000000)
 
