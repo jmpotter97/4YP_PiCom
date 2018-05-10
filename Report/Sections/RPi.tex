@@ -96,6 +96,8 @@ Included are the following, as well as their dependencies:
 	
 \section{Test Bed Architecture}
 
+\todo[inline]{Include references to the data sheets of all of the components}
+
 The test bed comprises the two Raspberry Pis and a number of chips to provide the functions required for more advanced modulation schemes.
 This is built up as three arrangements with increasing complexity.
 The first is the Pis connected together by two wires, a serial data line and a clock line (Figure \ref{fig_OOK Architecture}).
@@ -117,35 +119,54 @@ This arrangement is used for Quadrature Amplitude Modulation as well as Orthogon
 
 The Digital Analogue Converter used is the AD5424, an 8-bit CMOS current output DAC with an easy interface to microcontrollers.
 It has a \SI{17}{\nano\second} write cycle and a maximum update rate of \SI{20.4}{MSPS}. % Mega Samples Per Second
-There are possible configurations in the data sheet using an inverting operational amplifier to produce the output, however due to the single supply and difficulties finding low-power operational amplifiers which provide rail-to-rail output for a 5V single supply, this was avoided where possible.
-The Read/Write ($R/\overline{W}$) pin is pulled low permanently so the chip is in write mode; read back of the parallel digital outputs is not required.
-The Chip Select pin ($\overline{CS}$) needs a falling edge and a rising edge to complete a write cycle, where the rising edge loads new parallel data, so this is connected to the clock pin of the Raspberry Pi.
+There are possible configurations in the data sheet using an inverting operational amplifier to produce the output, however due to the single supply and difficulties finding low-power operational amplifiers which provide rail-to-rail output for a 5V single supply, this was avoided where the output through a load resistor can produce required voltages.
+The Read/Write ($R/\overline{W}$) pin is pulled low so the chip is permanently in write mode; read back of the parallel digital outputs is not required.
+The Chip Select pin ($\overline{CS}$) needs a rising edge and a falling edge to complete a write cycle, where the rising edge loads new parallel data and the falling edge...
+\todo[inline]{Check that falling edge of DAC makes analogue output valid/readable}
+This is therefore connected to the clock pin of the Raspberry Pi.
+The same clock pulses are also fed to the $\overline{WR}$ (start conversion) pin of the analogue digital converter.
 Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{ad5424.png}
+	\includegraphics[width=0.8\textwidth]{ad5424.eps}
 	\caption{Layout of the Digital Analogue Converter}
 	\label{fig_DAC Layout}
 \end{figure}
 
 \subsection{Analogue Digital Converter}
 
-The Analogue Digital Converter used is the ZN448, 
-\todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
+The Analogue Digital Converter used is the ZN448, an 8-bit successive approximation ADC designed to be easily interfaced to microprocessors.
+It operates with an on-chip clock with capability to be overclocked, and has a \SI{9}{\micro\second} conversion time guarantee.
+The conversion from analogue to digital values starts when the $\overline{WR}$ (start conversion) pin is pulled low, and so this is connected to the clock pin of the transmitter Raspberry Pi.
+Figure \ref{fig_ADC Layout} is a diagram of the ADC connections to both Raspberry Pis.
+The $\overline{RD}$ (output enable) pin is pulled low to allow non-destructive readout.
+The $\overline{BUSY}$ (end of conversion) pin goes low when the a conversion starts ($\overline{WR}$ is pulled low), and goes high when the conversion is complete.
+The positive edge of this signal is taken as the clock for the Receiver, resulting in the correct digital value at the output.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{zn448.png}
+	\includegraphics[width=0.8\textwidth]{zn448.eps}
 	\caption{Layout of the Analogue Digital Converter}
 	\label{fig_ADC Layout}
 \end{figure}
 
+The clock frequency is selected with the $CLK$ pin, either with a single clock capacitor (with an equivalent frequency table provided in the data sheet) or by providing an external clocking signal (see Section \ref{sec_Overclocking}).
+Both options are shown as grey lines in the diagram and only one should be used.
+The conversion by successive approximation works by approximating one bit per clock pulse over eight clock pulses, and the data sheet suggests due to accepting a completely asynchronous convert pulse with respect to the clock, valid data is produced between 7.5 and 8.5 clock pulses later.
+The maximum clock frequency is \SI{1}{\mega\hertz} and given the guaranteed \SI{9}{\micro\second} conversion time, a clock frequency giving 9 pulses between conversions is suggested.
+The capacitor value of \SI{100}{\pico\farad} in Figure \ref{fig_ADC Layout} corresponds to a \SI{900}{\mega\hertz} clock for a sampling rate of at least \SI{100}{MSPS} % Mega Samples Per Second
+(or equivalently a baud rate of at least \SI{100}{\mega\hertz}) which is close to the extent of the converter.\\
+
+Figure \ref{fig_PAM Architecture} is a picture of of the two Raspberry Pis connected together for baseband 4PAM communication.
+
+\todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
+
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.4\textwidth]{PAM_Architecture.jpg}
+	\includegraphics[width=0.8\textwidth]{PAM_Architecture_Pic.jpg}
 	\caption{Layout of Test Bed for Pulse Amplitude Modulation}
-	%\label{fig_}
+	\label{fig_PAM Architecture}
 \end{figure}
 
 \subsection{Multiplier} \label{sec_Multiplier}
@@ -170,10 +191,14 @@ This means that the sine and cos signals would be inverted when multiplied by th
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{QAM_OFDM_Architecture.jpg}
-	\caption{Layout of the Test Bed for QAM and Potentially OFDM}
-	%\label{fig_}
+	\includegraphics[width=\textwidth]{qam_archictecture.eps}
+	\caption{Layout of the Test Bed for QAM and OFDM}
+	\label{fig_QAM Layout}
 \end{figure}
+
+\subsection{Quadrature Pulse Generator}
+
+
 
 \subsection{Parts Used}
 
@@ -187,6 +212,42 @@ This means that the sine and cos signals would be inverted when multiplied by th
 
 \todo[inline,color=blue!20]{Include a section on pricing of the parts and of the whole test bed, comparison to examples of projects and commercial solutions mentioned in Literature Review (Section \ref{sec_Lit Review})}
 
+Table \ref{tab_Part Prices} is a table of all of the key parts used in the construction of the test bed, excluding small items such as resistors and capacitors.
+The total price - without Value Added Tax (about $20\%$ on average) and handling charges of individual orders - comes to $\mathsterling166.56$.
+Even with all of the additional components and charges this allows the test bed to be constructed for under $\mathsterling250$.
+This is significantly cheaper than any of the examples considered in Section \ref{sec_Lit Review}.
+This demonstrates that it is possible to construct a simple software-defined radio communications test bed using two Raspberry Pis at a much reduced cost than by purchasing a standard test bed.
+Although these test beds may provide certain advanced capabilities, the key functionalities required should be achievable with this design.
+The amount to which this architecture can successfully achieve these goals is a question investigated by the rest of the report.\\
+
+\begin{table}[h]
+	\centering
+	\global\tabulinesep = 2mm
+	\begin{tabu} to 0.8\textwidth { | X[l] | X[c] | X[c] | }
+		\hline
+		Component & Quantity & Price ($\mathsterling$)\\
+		\hline\hline
+		Raspberry Pi Model B+ + Case & 2 & 28.39 + 4.95\\
+		\hline
+		Breadboards + Jumper cables & -- & 21.96 + 11.05\\
+		\hline
+		DAC (AD5424) + Surface mount & 2 & 4.19 + 3.36\\
+		\hline
+		ADC (ZN488)  & 2 & 8.57\\
+		\hline
+		Multiplier (AD633)  & 4 & 7.29\\
+		\hline
+		Quadrature Pulse Generator (LTC6908-2) + Surface mount & 1 & 3.35 + 2.12\\
+		\hline\hline
+		Test bed total price & -- & 165.56\\
+		\hline
+	\end{tabu}
+	\caption{Prices of components used in the test bed (prices as purchased from RS, Digi-Key, Farnell and Mouser Electronics excluding VAT and handling charges)}
+	\label{tab_Part Prices}
+\end{table}
+
+\todo[inline,color=blue!20]{Add references to above suppliers}
+
 It is worth noting that there is a large variety of available options for each component of the test bed.
 Each possibility has certain advantages and disadvantages, and a lot of the options are not suitable due to the power requirements or ease of interfacing with the Raspberry Pi.
 As a result of this, the parts used in this project were the most suitable parts which could be found and successfully sourced.
@@ -197,10 +258,10 @@ Changes which would be made with hindsight, if components with the required qual
 
 \todo[inline,color=blue!20]{Continue to add to this list as you write the Architecture section - remove redundant information already discussed in the Section itself for each part}
 \begin{itemize}
-	\item A number of chips used are surface mounted, requiring difficult soldering to solder pads, This would be useful if they were to be used on a printed circuit board for a final design, but on a prototyping breadboard, dual in-line packages would have been easier to use where available
-	\item The Digital Analogue Converter was chosen for its easy interfacing with a microcontroller, but a voltage-output device would remove the need to use additional operational amplifiers or a drain resistor at the output. It also had some issues with correct value output (See Section \ref{sec_Components}).
-	\item Analogue Digital Converter
-	\item The Quadrature Sinusoid Generator uses an oscillator chip which outputs $90^o$ out-of-phase square waves, and the chip used was the only simple one which did this or anything close. Ideally the outputs would already be sinusoidal (one quadrature chip or a sine generator and phase shifter) so that low pass filters with fixed frequency response could be omitted from the design, making the carrier frequency purely software-dependent. No obvious chip could be found for this and ones that did anything close were expensive.
+	\item A number of chips used are surface mounted, requiring difficult soldering to solder pads. This would be useful if they were to be used on a printed circuit board for a final design, but on a prototyping breadboard, dual in-line packages would have been easier to use where available.
+	\item The Digital Analogue Converter was chosen for its easy interfacing with microcontrollers, but it has a current-output and a voltage-output device with the same characteristics would be preferable. The converter also had issues with correct value output (see Section \ref{sec_Components}) which would need to be fixed before OFDM could be implemented.
+	\item Analogue Digital Converter???
+	\item The Quadrature Sinusoid Generator uses an oscillator chip which outputs $90^o$ out-of-phase square waves, and the chip used was the only simple one which did this or anything close. Ideally the outputs would already be sinusoidal (one quadrature chip or a sine generator and phase shifter) so that low pass filters with fixed frequency response could be omitted from the design. A component using an input clock could potentially use the Raspberry Pi's hardware clock and make the carrier frequency purely software-dependent. No obvious chip could be found for this and ones that did anything in this area were expensive and complicated.
 	\todo[inline]{Make sure it's consistent with use of Quadrature Sinusoid Generator vs Oscillator in report}	
 	\item The multiplier is designed to operate around \SI{10}{\volt}, and so has a built in \SI{10}{\volt} normalisation in the multiple which attenuates the signal (which is at lower voltages) and requires re-amplification before transmission - an oversight when choosing it. A similar chip designed for lower voltages would be ideal.
 	\item Low Pass Filters to remove high frequency signals in the demodulation part of QAM were again made using fixed-value components, if frequency response of a filter could be altered in software, all frequencies used (carrier and symbol) could be hardware independent.
@@ -302,12 +363,26 @@ The other argument \textit{TRANSMISSION\textunderscore TYPE} is not required, bu
 The SSH connection is closed as soon as the command is executed so that both Raspberry Pis are not expending resources during transmission, and any readout to \textit{stdout}, the standard output of the program over the connection is ignored.
 All logging of the receiver is instead appended to a Python list \textit{LOGS}, and this variable is written to a file \textit{LOGS.txt} at the end of execution.
 This includes all of the trivial to calculate results of the post-transmission analysis such as the number of bits/bytes received (whether there was any data lost).
-\todo[inline]{Clearly check below once done}
-The transmitter also implements another SSH connection after transmission to read the \textit{LOGS.txt} file to the \textit{stdout} of the connection using the command \textit{cat} so that the user does not need to change the screen (if only one screen available) between Raspberry Pis every time to see whether the transmission was successful.\\
+%The transmitter also implements another SSH connection after transmission to read the \textit{LOGS.txt} file to the \textit{stdout} of the connection using the command \textit{cat} so that the user does not need to change the screen (if only one screen available) between Raspberry Pis every time to see whether the transmission was successful.\\ -- NO LONGER THE CASE!!!
+
+\subsubsection{Data and Image Handling}
+
+NumPy is a package used for scientific computing in Python.
+Its main feature is an N-dimensional array object with various functions for reshaping and efficiently computing on large arrays.
+These arrays are used to store the data to be transmitted while it is converted from byte-wise data into bitmasks which can be transmitted by the DACs and vice versa on the receiving end.
+Scalar operations can be performed on an entire NumPy array which allows the inverting of all of the bitmasks of the transmission data by XOR to be expressed simply as \textit{masks $\hat{}$ DAC\textunderscore MASK\textunderscore 1}.
+The arrays also have stronger typing than regular Python, so an array can be set to have data types such as unsigned 8-bit integer (byte, \textit{dtype='uint8'}) array or unsigned 32-bit integer (bitmask, \textit{dtype='uint32'}) array and Numpy will ensure that its elements remain in that type.
+The library is imported \textit{import numpy as np} so all of the library functions can be called with the standard \textit{np.} shorthand such as \textit{np.array()}.
+Functions of particular interest are \textit{np.unpackbits()} and \textit{np.packbits()} which allow you to unpack a size-N array of M-bit integers into a size-($N\times M$) binary array of the bits of each integer, which makes switching from byte-wise data to bit-wise operations and back very simple.
+NumPy also has \textit{np.fft.fft()} and \textit{np.fft.ifft()} for computing Fast Fourier Transforms and Inverse Fast Fourier Transforms on data which makes OFDM easier to implement.
+
+The library imageio is designed as an easy interface to read and write images in Python.
+Reading in an image is as simple as \textit{img = imageio.imread(path, pilmode = 'RGB')} which saves the pixel values of the image at \textit{path} into a size-(x, y, 3) NumPy array in the variable \textit{img}.
+Different \textit{pilmode} settings can be used to read the image as black and white \textit{pilmode = 'L'} or in another colour palette.
+Saving an image is just as simple with\textit{imageio.imwrite(path, img)}.
+Using imageio the transmitted data can be image files which are more interesting to work with than random bit-streams, and any significant number of errors will be visible in the output.\\
 
 \subsection{Advanced Modulation Schemes} \label{sec_Advanced Modulation Schemes}
-
-\todo[inline,color=blue!20]{Write up notes in Advanced Modulation Schemes into a proper coherent section}
 
 This section will start by describing the advanced modulation schemes used, and will then it will go on to how the transmitter and receiver implement  the schemes in code.\\
 
@@ -342,6 +417,8 @@ This problem is investigated in Section \ref{sec_Components}, but the solution w
 \end{figure}
 
 The transmitter can be run from the command line with transmission frequency and modulation scheme as command line variables, otherwise it uses the currently coded in values.
+The data is taken as NumPy arrays of bytes (8-bit unsigned integers).
+This is either pseudo-randomly generated or taken as pixel values from an image file using imageio.
 For 4PAM, each byte is split into four symbols, and each symbol (of value 0, 1, 2 or 3) is converted into an 8-bit digital value.
 As mentioned above this is done with a lookup table, but would ideally be done by multiplying each symbol by $\frac{255}{3} = 85$.
 The values are then expanded into bitmasks which can be used by the bank write operation in the C code.
@@ -417,9 +494,9 @@ The C code then saves the bitmasks received to a binary file and terminates succ
 If the C receiver is successful, the binary file is read into a NumPy array to be decoded.
 For all modulation schemes, the first step is to de-map the data from the masks to their DAC value(s) using the list \textit{DAC\textunderscore Pins\textunderscore 1} as well as \textit{DAC\textunderscore Pins\textunderscore 2} for quadrature-carrier modulation schemes.
 The receiver then measures the peak values of the signal and if there has been any attenuation of the signal, it is scaled to the full input range and the attenuation is logged.
-PAM and QAM then use maximum likelihood decoding to figure out the correct symbol values.
+PAM and QAM then use Maximum Likelihood (ML) decoding to figure out the correct symbol values.
 This equates to using partitions which are half way between possible symbols to decode them.
-For example in 16-QAM, any value within the box around each symbol in Figure \ref{fig_QAM ML Decoding} would be mapped to the symbol at its centre.
+For example in 16-QAM, any value within the box around each symbol in Figure \ref{fig_QAM ML Decoding} would be mapped to the symbol at its centre.\\
 
 \begin{figure}[ht]
 	\centering
@@ -435,24 +512,26 @@ For example in 16-QAM, any value within the box around each symbol in Figure \re
 	\label{fig_Receiver_Flow}
 \end{figure}
 
+Once the input has been decoded into the ML estimated symbols, it must be recombined into byte-wise data.
+For 4PAM this constitutes an OR of the four symbols of a byte, each symbol bit-shifted two bits to the left (multiplied by four) of the next.
+For QAM, the mapping table of Listing \ref{lst_Inverted QAM} is inverted and each symbol de-mapped into four bits.
+The bits are then packed into 8-bit numbers with the command \textit{np.packbits(output\textunderscore bits)}.
+If the transmission was of an image file, the receiver saves the received data into an image file of the same size, otherwise it saves it to a file where it can be compared to the original data.
 
-\todo[inline,color=blue!20]{Write the rest of receiver, Data and Image handling and the C Sections (and if time, the test masks code)}
 
-\subsubsection{Data and Image Handling}
-
-NumPy and imageio, how they work and are used in the code, examples.\\
+\todo[inline,color=blue!20]{Write the C Sections (and if time, the test masks code)}
 
 \subsubsection{C Transmitter and Receiver} \label{sec_C Transmitter and Receiver}
 
-Receiver: in Section \ref{sec_Computation} the options of data mask in on trigger vs read data then in on clock were compared and BLA was chosen as the more effective method.
-\todo[inline]{Which method is more effective?}
-
-PiTransmit works independent of the choice of DAC pins.
-It reads in the bitmask (bits to set) from a binary file for speed, which is calculated and saved in the Python before transmission, and it also reads in inversion mask (bits to clear) so the calculation is not done during transmission.
-This also means the Transmit program does not need to know how many DACs there are so works for all transmission schemes.
-
-The pins selected are based on the DAC1 choice from Figure \ref{fig_Pin Connections} (reference already used) but could be used for any set of possible output pins.
-There will also be an explanation about what these bitmasks actually mean and refers to, it is exemplified in Figure \ref{fig_Mask Expansion}.
+The C library used for manipulation of the GPIO pins is pigpio \cite{lib_pigpio}.
+This library uses direct memory access to read the values of the pins, and has functions for reading in or writing to a bank of values as a bitmask.
+A bitmask is an unsigned 32-bit integer (in this case) where each bit corresponds to a pin value being '1' or '0'.
+The mask uses BCM numbers, and although there are 32 pins which can theoretically be accessed, only BCM pins 2-27 are available for user purposes.
+The Python transmitter expands the required DAC bit values (0-7 for 8-bit output) onto the 32-bit mask depending on which GPIO pins the DAC is connected to.
+An simplified example of this mask expansion is shown in Figure \ref{fig_Mask Expansion}.
+As Section \ref{sec_Advanced Modulation Schemes} explained, an inverted mask is also required to clear the '0'-value bits from previous values.
+Section \ref{sec_Computation} compared the speed of the individual pin read to the bank read operation, and the speed of the individual pin write to a bank set and clear, and in both cases the bank operation is faster - likely because of the direct memory access - as well as reading or setting all required pins at once.
+As a result, all of the C code uses these mask operations to set and read the pins.\\
 
 \begin{figure}[ht]
 	\centering
@@ -460,5 +539,42 @@ There will also be an explanation about what these bitmasks actually mean and re
 	\caption{Explanation of the concept of mask expansion}
 	\label{fig_Mask Expansion}
 \end{figure}
+
+Another advantage of using bitmasks is that \textit{PiTransmit\textunderscore 3} and \textit{PiReceive} can operate entirely independently of the choice of which GPIOs the DACs and ADCs use, or even whether the modulation scheme is using one or two of each.
+The transmitter reads in the array of bitmasks (bits to set) from a binary file, which is calculated and saved in the Python before transmission.
+It also reads in inversion mask (bits to clear) so this calculation is not done during transmission.
+The clock pulse goes low with the data and then high \SI{1}{\micro\second} later, going high again after the rest of the clock cycle.
+Listing \ref{lst_Transmitter Docs} from the transmitter comments explains the reason for the clock shape.
+The transmitter loops through the data masks, bank setting (masks) and clearing (inversion masks) the values for the DAC input and outputting the clock signal, then it closes on completion.\\
+
+\newpage
+
+\lstset{style=C}
+\begin{lstlisting}[caption={Transmitter documentation explaining the clock signal}, label={lst_Transmitter Docs}]
+/* Clock cycle will have shape:
+ * |_|------------|_|------------|_|------------|_|------------
+ * The pulses will be low for 1us ^ and high ^ for the rest of the clock period
+ * ADC:
+ * Rising _CS_ latches data but read event requires falling then rising edge
+ * It holds the output at the latched value until the next falling edge
+ * DAC:
+ * _WR_ going low clears the converter and _WR_ high starts the conversion
+ * _BUSY_ goes high when conversion is complete, and is used as Rx clock pin
+ *
+ * A 1us pulse is long enough for both converters to use as a trigger (100ns at least)
+ * It is also short enough that at max frequency (100kHz) it is still a fraction of clock
+ */
+\end{lstlisting}
+
+The receiver starts by allocating a memory block for the number of masks expected.
+It then sets up two callback functions, \textit{readPins()} and \textit{checkPins()}.
+\textit{checkPins()} is set up as a callback on the change of state of all of the ADC pins, and all it does is update a global variable \textit{pin\textunderscore state} to the output bitmask of \textit{gpioRead\textunderscore Bits\textunderscore 0\textunderscore 31()}.
+\textit{readPins()} is setup as a callback on the change of state of the clock (ADC $\overline{BUSY}$) pin.
+It saves \textit{pin\textunderscore state} to a local variable, then if the event triggered was a rising edge, it saves this value into the output array.
+A static counter keeps track of the data received, and when it reaches the number of masks expected, closes the callbacks on all pins and changes the global \textit{pin\textunderscore state} to a specific value which it can't reach on its own.
+The callbacks are also closed and this specific value set if there is a watchdog time-out -- the callback is called because there has been change in the clock pin for a certain amount of time.\\
+
+Once the receiver has set up the callbacks, it uses a while loop to wait until the specific value is set to the \textit{pin\textunderscore state} signifying the end of the program.
+After this the received data masks are saved to a binary file which can be opened by the Python code and mapped to ADC values to decode the transmitted data.
 
 \end{document}

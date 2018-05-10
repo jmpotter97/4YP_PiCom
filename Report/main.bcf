@@ -1974,23 +1974,27 @@
     <bcf:datasource type="file" datatype="bibtex">./bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">lib_Raspbian</bcf:citekey>
-    <bcf:citekey order="2">web_SetupRaspbian</bcf:citekey>
-    <bcf:citekey order="3">lib_PuTTY</bcf:citekey>
-    <bcf:citekey order="4">lib_RealVNCViewer</bcf:citekey>
-    <bcf:citekey order="5">lib_VPNC</bcf:citekey>
-    <bcf:citekey order="6">lib_Paramiko</bcf:citekey>
-    <bcf:citekey order="7">lib_NumPy</bcf:citekey>
-    <bcf:citekey order="8">lib_imageio</bcf:citekey>
-    <bcf:citekey order="9">lib_pigpio</bcf:citekey>
-    <bcf:citekey order="10">lib_Git</bcf:citekey>
-    <bcf:citekey order="11">lib_RPi.GPIO</bcf:citekey>
-    <bcf:citekey order="12">lib_Paramiko</bcf:citekey>
-    <bcf:citekey order="13">web_RpiMaxRatings</bcf:citekey>
-    <bcf:citekey order="14">web_RPiSpecsSE</bcf:citekey>
-    <bcf:citekey order="15">web_MosaicSpecs</bcf:citekey>
-    <bcf:citekey order="16">web_GPIOPadsErrata</bcf:citekey>
-    <bcf:citekey order="17">lib_pigpioHWClock</bcf:citekey>
+    <bcf:citekey order="1">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=267870</bcf:citekey>
+    <bcf:citekey order="2">https://www.makeuseof.com/tag/9-things-wanted-know-raspberry-pi/</bcf:citekey>
+    <bcf:citekey order="3">https://www.jfwindustries.com/pdf/Understanding</bcf:citekey>
+    <bcf:citekey order="4">lib_Raspbian</bcf:citekey>
+    <bcf:citekey order="5">web_SetupRaspbian</bcf:citekey>
+    <bcf:citekey order="6">lib_PuTTY</bcf:citekey>
+    <bcf:citekey order="7">lib_RealVNCViewer</bcf:citekey>
+    <bcf:citekey order="8">lib_VPNC</bcf:citekey>
+    <bcf:citekey order="9">lib_Paramiko</bcf:citekey>
+    <bcf:citekey order="10">lib_NumPy</bcf:citekey>
+    <bcf:citekey order="11">lib_imageio</bcf:citekey>
+    <bcf:citekey order="12">lib_pigpio</bcf:citekey>
+    <bcf:citekey order="13">lib_Git</bcf:citekey>
+    <bcf:citekey order="14">lib_RPi.GPIO</bcf:citekey>
+    <bcf:citekey order="15">lib_Paramiko</bcf:citekey>
+    <bcf:citekey order="16">lib_pigpio</bcf:citekey>
+    <bcf:citekey order="17">web_RpiMaxRatings</bcf:citekey>
+    <bcf:citekey order="18">web_RPiSpecsSE</bcf:citekey>
+    <bcf:citekey order="19">web_MosaicSpecs</bcf:citekey>
+    <bcf:citekey order="20">web_GPIOPadsErrata</bcf:citekey>
+    <bcf:citekey order="21">lib_pigpioHWClock</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
