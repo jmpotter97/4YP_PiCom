@@ -19,5 +19,9 @@ def decode(masks):
 x = decode(i)
 y = np.arange(x.size)
 
+plt.xlabel("Time (s)")
+plt.ylabel("Magnitude")
+plt.title("Plot of output of ZN488 ADC sine wave")
+
 plt.plot(y,x)
 plt.show()
