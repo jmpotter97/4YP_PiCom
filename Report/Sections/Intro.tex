@@ -2,39 +2,41 @@
 	% INTRODUCTION
 \begin{document}
 
-\begin{quotation}
-	This is about the project in general, what it does/did, and then about the report, how its structured and what it explains. Not sure how much of the "Conclusion-like" stuff should also be in here.
-\end{quotation}
+The idea of a software radio is attributed to Dr. Joseph Mitola III in the early 1990's, referring to radios which could be reconfigured by changing the software, allowing for changes to communications protocols without changing the underlying hardware \cite{https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=267870}.
+The ideal software radio would consist of a computer connected to a Digital-Analogue Converter (DAC) to an antenna as a transmitter, and an antenna connected to an Analogue-Digital Converter (ADC) to a computer as a receiver.
+An ideal software radio is not realisable with the current converter technology, but with a few dedicated hardware components it should be possible to develop a radio communication system which can implement a variety of alternative modulation schemes.\\
 
+'Software-defined radio' (SDR) test beds have become more popular as the technology becomes more accessible and cost-efficient.
+These test beds are used to test the usefulness and effectiveness of various coding and modulation schemes for wireless communication.
+Digital communication systems in the modern era are constantly evolving as researchers formulate new more efficient methods of transmitting data, approaching channel capacity.
+These schemes are developed theoretically, but they eventually need to be tested in order to prove their utility.
+There are a number of available ‘software-defined radio’ test beds, however most of these can be very expensive.
+Although these test beds supply advanced tool kits, the base functionality is really all that is required to successfully test new communication schemes.\\
 
-\todo[inline,color=blue!20]{Still need to write the Introduction Chapter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Motivation}
 
-Why is there a need for this, discuss the excessive cost of extant Software Defined Radio test beds, the low-cost alternative that is the Raspberry Pi. Use (PARAPHRASE) parts of Justin's description of the project as that sums it up nicely.
+The Raspberry Pi is a low-cost computer based on an ARM processor running a Linux distribution.
+It has a number of software-programmable General Purpose Input/Output (GPIO) pins which can be used to interface with external devices.
+This combination of computational power and versatility has  caught the attention of a wide range of engineers and hobbyists \cite{https://www.makeuseof.com/tag/9-things-wanted-know-raspberry-pi/}.
+The Raspberry Pi provides an easily accessible way of developing an alternative SDR test bed which doesn't require thousands of pounds to purchase (see Section \ref{sec_Lit Review}).
+This would make such test beds significantly more available, such that one might be built by anyone interested in investigating the physical realisation of their ideas.\\
 
-The section should do as you have organised: provide motivation for the project, define the project, give the background.  Remember your interrogatives: why, what, how.  This section relates mostly to why and what.  The 'how' is the subject of much of the rest of the report.
-
-\begin{quotation}
-	Modern digital communication systems are built upon a solid foundation of modulation and coding theory.
-	Over the years, researchers have successfully developed numerous schemes using pen and paper along with computer models.
-	Any such scheme ultimately must be tested on a suitable hardware/software platform to prove their usefulness in practice.
-	Standard ‘software-defined radio’ test beds can cost thousands of pounds.
-	Although these test beds provide users with advanced development tools, much of their functionality is superfluous to requirement.\\
-	
-	A Raspberry Pi is a simple, affordable ARM-based computer module that is capable of interfacing with external peripheral devices through a bank of IO ports.
-	It is also programmable (using Python), and as such has found many uses by hobbyists and electronics/computer engineers in recent years.
-	The purpose of this project is to develop a basic digital communication test bed using two Raspberry Pi modules (one transmitter and one receiver).
-	The test bed will be affordable and the interested student will need to work to a budget to ensure a successful outcome.
-	The project will require a considerable amount of Python programming as well as knowledge of, and a keen interest in, digital communication theory and techniques.
-\end{quotation}
-
+Modern test beds often consist of radio transmitters and receivers wired together with adjustable attenuation between them.
+This allows for the testing of these radio systems in close proximity, while simulating different distances between them \cite{https://www.jfwindustries.com/pdf/Understanding}%20The%20Limitations%20of%20Modern%20Military%20Radio%20Testbeds.pdf}.
+The aim of this project is to develop a basic wired digital communications test bed between two Raspberry Pis, with one as the transmitter and the other as the receiver.
+This will serve as a proof of concept for the development of low-budget software-defined radio test beds, and it is developed with costing in mind.
+The next stage is then to attempt to characterise the performance of the test bed.
+This consists of characterising the Raspberry Pi and other components used, as well as the test bed as pertains to its ability to communicate.
+This includes testing its reliability for different modulation and coding schemes, and identifying key characteristics such as noise and bandwidth limitations.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Background - Literature Review} \label{sec_Lit Review}
+
+Use Justin's project and wipi for sure!
 
 \begin{quotation}
 	Explanation of the existing literature, what exists on the market and has this kind of project been attempted before to some degree by others.
@@ -50,6 +52,12 @@ The section should do as you have organised: provide motivation for the project,
 
 \section{Contributions}
 
+The body of this report is structured into three main chapters.
+Chapter \ref{sec_RPi} describes how the Raspberry Pi is set up for the test bed, what comprises the physical test bed architecture,  and investigates the code which was developed to test various modulation schemes.
+Chapter \ref{sec_Electro Testing} is aimed at characterising the Raspberry Pi electrically and computationally to understand its capabilities and limitations.
+It also characterises the physical components used by the set-up.
+
 My contributions to the existing literature, what difference I have made (in the third person...) - Write once I have finished writing up tests and results.
+\todo[inline,color=blue!20]{Still need to write the Contributions Chapter (last)}
 
 \end{document}  
