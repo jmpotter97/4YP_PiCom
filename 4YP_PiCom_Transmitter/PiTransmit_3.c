@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
         }
 	}
 	// Clock full period in micro-seconds minus 2us (explained in TRANSMIT DATA)
-	const int symbol_time = (1000000 / symbol_freq) - 2;
+	const int symbol_time = (1000000 / symbol_freq) - 1;
 	printf("Frequency (baud rate): %i Hz\n", symbol_freq);
 	
 	
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
          * It's also short enough that at max frequency (100kHz) this is still a fraction of total time*/
 
         // gpioWrite(CLK_PIN, 0); is now integrated with the Clear mask
-        usleep(2);
+        usleep(1);
         gpioWrite(CLK_PIN,1);
         usleep(symbol_time);
 

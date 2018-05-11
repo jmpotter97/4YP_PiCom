@@ -27,7 +27,7 @@ transmitted signal
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 2000                        # Symbol rate (Hz)
+SYMB_RATE = 1000                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "4PAM"
@@ -243,7 +243,7 @@ def Convert_To_Data_Mask(data_list):
     '''
 
     # DAC Lookup table because DAC output is not working properly
-    DAC_lookup = [0,85,170,252]#[0, 74, 233, 128]
+    DAC_lookup = [0, 74, 170, 252]
 
     if TRANSMISSION_TYPE == "256PAM":
         # 1 SYMB/byte --> 0, 1, ..., 255
