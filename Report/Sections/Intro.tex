@@ -2,7 +2,7 @@
 	% INTRODUCTION
 \begin{document}
 
-The idea of a software radio is attributed to Dr. Joseph Mitola III in the early 1990's, referring to radios which could be reconfigured by changing the software, allowing for changes to communications protocols without changing the underlying hardware \cite{https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=267870}.
+The idea of a software radio is attributed to Dr. Joseph Mitola III in the early 1990's, referring to radios which could be reconfigured by changing the software, allowing for changes to communications protocols without changing the underlying hardware \cite{pap_SoftRadio}.
 The ideal software radio would consist of a computer connected to a Digital-Analogue Converter (DAC) to an antenna as a transmitter, and an antenna connected to an Analogue-Digital Converter (ADC) to a computer as a receiver.
 An ideal software radio is not realisable with the current converter technology, but with a few dedicated hardware components it should be possible to develop a radio communication system which can implement a variety of alternative modulation schemes.\\
 
@@ -20,12 +20,12 @@ Although these test beds supply advanced tool kits, the base functionality is re
 
 The Raspberry Pi is a low-cost computer based on an ARM processor running a Linux distribution.
 It has a number of software-programmable General Purpose Input/Output (GPIO) pins which can be used to interface with external devices.
-This combination of computational power and versatility has  caught the attention of a wide range of engineers and hobbyists \cite{https://www.makeuseof.com/tag/9-things-wanted-know-raspberry-pi/}.
+This combination of computational power and versatility has  caught the attention of a wide range of engineers and hobbyists \cite{web_AboutPi}.
 The Raspberry Pi provides an easily accessible way of developing an alternative SDR test bed which doesn't require thousands of pounds to purchase (see Section \ref{sec_Lit Review}).
 This would make such test beds significantly more available, such that one might be built by anyone interested in investigating the physical realisation of their ideas.\\
 
 Modern test beds often consist of radio transmitters and receivers wired together with adjustable attenuation between them.
-This allows for the testing of these radio systems in close proximity, while simulating different distances between them \cite{https://www.jfwindustries.com/pdf/Understanding}%20The%20Limitations%20of%20Modern%20Military%20Radio%20Testbeds.pdf}.
+This allows for the testing of these radio systems in close proximity, while simulating different distances between them \cite{pap_MilitaryRadioTB}.
 The aim of this project is to develop a basic wired digital communications test bed between two Raspberry Pis, with one as the transmitter and the other as the receiver.
 This will serve as a proof of concept for the development of low-budget software-defined radio test beds, and it is developed with costing in mind.
 The next stage is then to attempt to characterise the performance of the test bed.
@@ -36,7 +36,13 @@ This includes testing its reliability for different modulation and coding scheme
 
 \section{Background - Literature Review} \label{sec_Lit Review}
 
-Use Justin's project and wipi for sure!
+Use Justin's project:
+DIWINE project \cite{pap_DIWINEpaper4} wireless communication through a dense relay/node situation.
+The project final paper using six Ettus USRPs -- two source, two relay and two destination nodes in a Smart Meter Network.
+
+WiPi:
+
+
 
 \begin{quotation}
 	Explanation of the existing literature, what exists on the market and has this kind of project been attempted before to some degree by others.
@@ -53,9 +59,10 @@ Use Justin's project and wipi for sure!
 \section{Contributions}
 
 The body of this report is structured into three main chapters.
-Chapter \ref{sec_RPi} describes how the Raspberry Pi is set up for the test bed, what comprises the physical test bed architecture,  and investigates the code which was developed to test various modulation schemes.
-Chapter \ref{sec_Electro Testing} is aimed at characterising the Raspberry Pi electrically and computationally to understand its capabilities and limitations.
-It also characterises the physical components used by the set-up.
+Chapter \ref{sec_RPi}, "The Raspberry Pi and the Test Bed" describes how the Raspberry Pi is set up for its operation in the test bed and what comprises the physical architecture, as well as investigating the code which was developed to test various modulation schemes.
+Chapter \ref{sec_Electro Testing}, "Electronic Testing" is aimed at characterising the Raspberry Pi electrically and computationally to understand its capabilities and limitations.
+It also characterises the physical external components used.
+Chapter \ref{sec_Comms Testing}, "Communications Testing" runs through tests for different modulation and coding schemes at different frequencies in order to characterise the test bed in a communications context, as well as discover its limits.\\
 
 My contributions to the existing literature, what difference I have made (in the third person...) - Write once I have finished writing up tests and results.
 \todo[inline,color=blue!20]{Still need to write the Contributions Chapter (last)}

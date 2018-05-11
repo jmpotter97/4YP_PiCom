@@ -21,12 +21,14 @@ It also provides the maximum current to be drawn from all \SI{3.3}{\volt} power 
 However that specification was actually a design value for the original Pi, designed to supply \SI{3}{\milli\ampere} for each of its17 pins for $\approx \SI{51}{\milli\ampere}$ total, according to Gert Van Loo, the hardware engineer of the first Pi's boards \cite{web_RPiSpecsSE}.
 There is no current-limiting on the pins so they will attempt to drive the current pulled they stops working, however multiple sources including Gert Van Loo suggest that the maximum current that should be drawn from any one pin for safe operation is \SI{16}{\milli\ampere} as this is the current to which the electronics on each pad are rated.
 Mosaic Documentation Web also has a page attempting to define the electrical specifications of the Raspberry Pi \cite{web_MosaicSpecs}, and it also suggests that one shouldn't attempt to source or sink more than \SI{16}{\milli\ampere} on an output pin.
-The pins actually have a set drive strength from \SIrange{2}{16}{\milli\ampere} in \SI{2}{\milli\ampere} increments which is set for a bank of pins and usually set to \SI{8}{\milli\ampere} but even a pin set to \SI{2}{\milli\ampere} drive strength and then loaded so as to draw \SI{2}{\milli\ampere} will not be damaged \cite{web_GPIOPadsErrata}.\\
+The pins actually have a set drive strength from \SIrange{2}{16}{\milli\ampere} in \SI{2}{\milli\ampere} increments which is set for a bank of pins and usually set to \SI{8}{\milli\ampere} but even a pin set to \SI{2}{\milli\ampere} drive strength and then loaded so as to draw \SI{16}{\milli\ampere} will not be damaged \cite{web_GPIOPadsErrata}.\\
 
 The maximum current which can be drawn from an output pin is a useful detail.
 This is both in order to ensure that none of the attached components draw too much current, as well as to decide, along with the input impedances of the pins, whether or not the GPIO pins of one Pi can be connected directly to another without a protective resistor between them.
-The input and output impedances of the pins in various set-up modes are investigated in Table \ref{tab_Pin Impedances}.
-All values were measured on a multi-meter and using the pin GPIO4 as pins 2 and 3 have permanent internal pull-up resistors whereas all of the rest have software-controllable pull-up or pull-down resistors.\\
+It is important that the ground pins of the two Raspberry Pis must be connected together so that they share a common reference for the data levels.
+The input and output impedances of the pins in various set-up modes are shown in Table \ref{tab_Pin Impedances}.
+All values were measured on a multi-meter and using the pin GPIO26 and compared to other pins to check consistency.
+Pins 2 and 3 have permanent internal pull-up resistors whereas all of the rest have software-controllable pull-up or pull-down resistors which can be set for inputs.\\
 
 \begin{table}[h]
 	\centering
@@ -35,33 +37,56 @@ All values were measured on a multi-meter and using the pin GPIO4 as pins 2 and 
 		\hline
 		Input/Output Mode & Impedance to Ground ($\SI{}{\kilo\ohm}$)\\
 		\hline\hline
-		Input & 48.93\\
+		Input & Open Loop\\
 		\hline
-		Input with Pull Up Resistor  & NEED TO DOUBLE CHECK\\
+		Input with Pull Up Resistor  & 53 250\\
 		\hline
-		Input with Pull Down Resistor  & NEED TO DOUBLE CHECK\\
+		Input with Pull Down Resistor  & 49.24\\
 		\hline
-		Output & NEED TO DOUBLE CHECK\\
+		Output & 0.0329\\
 		\hline
-		Raspberry Pi ON (No Mode) & NEED TO DOUBLE CHECK\\
+		Raspberry Pi ON (No Mode) & 49.23\\
 		\hline
-		Raspberry Pi OFF & 53 550\\
+		Raspberry Pi OFF & 606.14\\
 		\hline
 	\end{tabu}
 	\caption{Table of GPIO Pin Impedances for Different Operating Modes}
 	\label{tab_Pin Impedances}
 \end{table}
 
-These impedances show that even the lowest input impedance of \SI{48.93}{\kilo\ohm} will only draw \SI{67.44}{\micro\ampere} of current from a \SI{3.3}{\volt} GPIO pin, three orders of magnitude lower than the maximum current enough that these pins from one Raspberry Pi can be connected directly to those of another. 
-The ground pins of Raspberry Pis must be connected together so that they share a common reference for the data levels.
-\todo[inline]{Conclusion?  So two boards can indeed be connected directly?}
-\clearpage
+These impedances show that even the lowest input impedance of \SI{48.93}{\kilo\ohm} will only draw \SI{67.44}{\micro\ampere} of current from a \SI{3.3}{\volt} GPIO pin, and this is three orders of magnitude lower than the maximum current these pins can supply.
+The impedance of pins set to be outputs is the only value lower than this at \SI{32.9}{\ohm}, and so if an output at \SI{0}{\volt} were connected to another pin at \SI{3.3}{\volt} it would potentially draw about \SI{100}{\milli\ampere} which would damage both pins or at least (the Raspberry Pi has safeguards excessive currents) restart the Pi.
+This is unlikely to happen in the test bed setup however, unless an output pin was directly connected to a \SI{3.3}{\volt} power pin, or both Pis had directly connected pins set as outputs.
+In conclusion, the pins of two Raspberry Pis can be directly connected together, as long as care is taken not to have both devices setting these pins to outputs at the same time .\\
+
+%\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Computational Characteristics of the Raspberry Pi} \label{sec_Computation}
 
 \todo[inline,color=blue!20]{Write Computing and Components Sections - I have all the data, screen shots and component characterising values}
+
+The Raspberry Pi is not a real-time device.
+Running under an operating system, there will always be interrupts due to scheduling of different threads, which mean that code execution may not always be as perfectly timed as it would on a dedicated embedded device like an Arduino.
+The Raspberry Pi has certain advantages however; Python is significantly more versatile for signal processing, and the Raspberry Pi B+ has a \SI{1.4}{\giga\hertz} processor compared to the Arduino Uno's \SI{16}{\mega\hertz} clock \cite{lib_Arduino}.
+There are also ways of ensuring the Pi operates as close to real time as possible.\\
+
+The time-sensitive parts of the code are the actual pin manipulations in the transmitter, and the reading in of the pin values in the receiver.
+This means that these need to be the parts optimised for speed.
+
+System interrupts can be turned off in the code, however this results in nothing else being run on the computer, essentially freezing it until the interrupts are turned back on \cite{web_Interrupts}.
+This should not be done for too long as it is bad for the Pi, and as the transmitter and receiver may be used to transmit a significant amount of data, this is not suggestible without periodically turning on interrupts to allow them to run, losing samples at the receiver to the backlog of interrupts.
+However, there is one particularly inhibiting interrupt - adjusting of the refresh rate of RAM every 500ms - which can be turned off \cite{web_PiOscilloscope}.
+This is achieved with the terminal command in Listing \ref{lst_RAM Refresh}.\\
+
+\lstset{style=C}
+\begin{lstlisting}[caption={Turning off the RAM refresh rate adjustment}, label={lst_RAM Refresh}]
+	sudo sed -i '$s/$/\ndisable_pvt=1/' /boot/config.txt
+\end{lstlisting}
+
+
+DIWINE White Paper 2 \cite{pap_DIWINEpaper2} at the end of the second year in a three year project, they still had "'time zero' reference" between the terminal nodes for synchronisation.
 
 time.time() in for loop - 3.32 us
 time.time() in while loop with i++ - 4.02 us = slower
@@ -79,18 +104,35 @@ Table from interim report and two screen shots in particular.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Benchmarking_Data.jpg}
+	\includegraphics[width=\textwidth]{Benchmarking_Data.jpg}
 	\caption{Benchmarking initial data collection}
 	%\label{fig_}
 \end{figure}
 
+\subsection{Comparing Python and C} \label{sec_Comparing Python and C}
+
+Python is implemented as an interpreted language, meaning that the code (or at least an intermediate byte-code representation) is interpreted by a virtual machine at runtime.
+This means that, although a lot more powerful, Python can have drawbacks in performance relative to C, which is compiled into executable machine code prior to being run.
+An article from 2015 benchmarking the frequency achieved by switching a GPIO on and off continuously suggests that the Python library RPi.GPIO achieved the highest frequency of Python libraries, at \SI{70}{\kilo\hertz} \cite{web_BenchmarkingPi}.
+It also suggested that all of the C libraries achieved frequency ranges in the Megahertz.
+The libraries have been updated to improve efficiency, but if C is found to be a significantly better option, then the pin manipulations of the transmitter and receiver themselves should be written in C and compiled into executables which the main Python code-base can run.
+
 \subsection{Maximum Frequency}
 
 \todo[inline,color=blue!20]{Comparison of transmitter bank vs individual write and receiver read (callback) and read vars on clock pulse vs bank read on clock pulse -- Also mention }
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Write_Time_Test.png}
+	\caption{Write Time Test}
+	%\label{fig_}
+\end{figure}
 
-\subsection{Comparing Python and C} \label{sec_Comparing Python and C}
-
-DIRECT MEMORY ACCESS, 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Read_Time_Test.png}
+	\caption{Read Time Test}
+	%\label{fig_}
+\end{figure}
 
 \clearpage
 

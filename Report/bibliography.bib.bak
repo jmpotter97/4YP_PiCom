@@ -121,4 +121,92 @@
   url    = {https://pypi.org/project/RPi.GPIO/},
 }
 
+@Misc{lib_pigpioHWClock,
+  author   = {joan2937},
+  title    = {pigpio C Interface},
+  date     = {2018-03-20},
+  subtitle = {gpioHardwareClock},
+  note     = {[Online: Accessed ...]},
+  url      = {http://abyz.me.uk/rpi/pigpio/cif.html#gpioHardwareClock},
+}
+
+@Misc{web_ParamikoSSH,
+  author = {Sebastian Dahlgren},
+  title  = {Using paramiko to send SSH commands},
+  date   = {2012-10-22},
+  note   = {[Online: Accessed ...]},
+  url    = {http://sebastiandahlgren.se/2012/10/11/using-paramiko-to-send-ssh-commands/},
+}
+
+@TechReport{pap_DIWINEpaper4,
+  author      = {Justin P. Coon et al},
+  title       = {A wireless cloud network for the Internet of Things},
+  institution = {DIWINE},
+  date        = {2016-03-23},
+  url         = {http://diwine-project.eu/public/content/files/public/DIWINE_WhitePaper_4.pdf},
+}
+
+@Misc{web_AboutPi,
+  author = {Mihir Patkar},
+  title  = {9 Things You Wanted to Know About Raspberry Pi},
+  date   = {2016-08-12},
+  note   = {[Online: Accessed ...]},
+  url    = {https://www.makeuseof.com/tag/9-things-wanted-know-raspberry-pi/},
+}
+
+@TechReport{pap_DIWINEpaper4,
+  author      = {Justin P. Coon et al},
+  title       = {A wireless cloud network for the Internet of Things},
+  institution = {DIWINE},
+  date        = {2016-03-23},
+  url         = {http://diwine-project.eu/public/content/files/public/DIWINE_WhitePaper_4.pdf},
+}
+
+@TechReport{pap_MilitaryRadioTB,
+  author      = {JFW Engineering Dept.},
+  title       = {Understanding The Limitations Of Modern Military Radio Testbeds},
+  institution = {JFW Industries, Inc.},
+  url         = {https://www.jfwindustries.com/pdf/Understanding%20The%20Limitations%20of%20Modern%20Military%20Radio%20Testbeds.pdf},
+}
+
+@TechReport{pap_DIWINEpaper2,
+  author      = {The DIWINE consortium},
+  title       = {Dense cooperative wireless cloud networks (DIWINE) – 5G experimental facilities: Smart meter network demonstrator testbed},
+  institution = {DIWINE},
+  date        = {2015-01-19},
+  url         = {http://diwine-project.eu/public/content/files/public/DIWINE_WhitePaper_2.pdf},
+}
+
+@Misc{web_Interrupts,
+  author = {petzval},
+  title  = {Accurate timing for real time control},
+  date   = {2013-08-10},
+  note   = {[Online: Accessed ...]},
+  url    = {https://www.raspberrypi.org/forums/viewtopic.php?t=52393},
+}
+
+@Misc{web_PiOscilloscope,
+  author = {digibird1},
+  title  = {Raspberry Pi as an Oscilloscope @ 10 MSPS},
+  year   = {2014},
+  note   = {[Online: Accessed ...]},
+  url    = {https://digibird1.wordpress.com/raspberry-pi-as-an-oscilloscope-10-msps/},
+}
+
+@Misc{web_BenchmarkingPi,
+  author = {Joonas Pihlajamaa},
+  title  = {Benchmarking Raspberry Pi GPIO Speed},
+  date   = {2015-02-15},
+  note   = {[Online: Accessed ...]},
+  url    = {https://digibird1.wordpress.com/raspberry-pi-as-an-oscilloscope-10-msps/},
+}
+
+@Misc{lib_Arduino,
+  author = {Arduino},
+  title  = {ARDUINO UNO REV3},
+  year   = {2017},
+  note   = {[Online: Accessed ...]},
+  url    = {https://store.arduino.cc/arduino-uno-rev3},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
