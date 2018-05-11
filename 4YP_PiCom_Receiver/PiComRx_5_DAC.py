@@ -284,6 +284,7 @@ def main():
             # TODO: Decode_Error_Correction(output)
             
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
+            global OUT_PATH
             OUT_PATH = OUT_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
             with open(OUT_PATH,'w') as f:
                 f.write("".join(str(i) for i in output))
@@ -296,6 +297,7 @@ def main():
                 output = Decode_Masks(output_masks, LOGS)
                 '''with open(OUT_PATH,'w') as f:
                     f.write("-".join(str(i) for i in output))'''
+                global IMG_PATH
                 IMG_PATH = IMG_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
                 Save_As_Image(output, IMG_PATH, LOGS)
             else:
@@ -316,6 +318,7 @@ except Exception as e:
     LOGS.append("\nExiting on unexpected error!\nError is: {}\n".format(e))
 finally:
     LOGS.append("***************************************\n")
+    global LOGS_PATH
     LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
