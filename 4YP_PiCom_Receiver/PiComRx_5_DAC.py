@@ -17,7 +17,7 @@ if os.path.isfile(LOGS_PATH):
 LOGS = ["********** RECEIVER LOG FILE **********\n"]
 
 TRANSMISSION_TYPES = ["OOK", "256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "16QAM"
+TRANSMISSION_TYPE = "4PAM"
 
 if len(argv) > 2:
     TRANSMISSION_TYPE = argv[2]
@@ -250,7 +250,7 @@ def Decode_Masks(masks, LOGS):
         out = np.packbits(output_bits)
         return out
     else:
-        print("Transmission type not implemented yet!")
+        LOGS.append("Transmission type not implemented yet!")
 
 
 def Decode_Error_Correction(out, LOGS):
@@ -258,7 +258,7 @@ def Decode_Error_Correction(out, LOGS):
 
 
 def Save_As_Image(out, path, LOGS):
-    LOGS.append("Size of output: {} out of {}".format(out.size),256*256)
+    LOGS.append("Size of output: {} out of {}".format(out.size,256*256))
     if os.path.isfile(path):
         os.remove(path)
     if out.size == 256*256:

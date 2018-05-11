@@ -1,0 +1,7 @@
+********** RECEIVER LOG FILE **********
+TRANSMISSION TYPE: 4PAM
+Decoding masks...
+Attenuation = 0.058823529411764705
+Size of output: 65536 out of 65536
+Completed Receiver code!
+***************************************
