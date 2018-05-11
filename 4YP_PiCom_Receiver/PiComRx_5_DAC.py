@@ -258,17 +258,18 @@ def Decode_Error_Correction(out, LOGS):
 
 
 def Save_As_Image(out, path, LOGS):
+    LOGS.append("Size of output: {} out of {}".format(out.size),256*256)
     if os.path.isfile(path):
         os.remove(path)
-    if out.size == 256*256*3:
-        io.imwrite(path, out.reshape(256,256,3))
-    elif out.size < 256*256*3:
-        img = np.zeros(256*256*3, dtype='uint8')
+    if out.size == 256*256:
+        io.imwrite(path, out.reshape(256,256))
+    elif out.size < 256*256:
+        img = np.zeros(256*256, dtype='uint8')
         for i, o in enumerate(out):
             img[i] = o
-        io.imwrite(path, img.reshape(256,256,3))
+        io.imwrite(path, img.reshape(256,256))
     else:
-        io.imwrite(path, out[:256*256*3].reshape(256,256,3))
+        io.imwrite(path, out[:256*256].reshape(256,256))
 
 
 '''--------------------------------   Main   --------------------------------'''
