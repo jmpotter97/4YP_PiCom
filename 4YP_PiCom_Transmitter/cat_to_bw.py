@@ -1,4 +1,4 @@
 import imageio as io
 
-img = io.imread('cat.png', pilmode = 'L')
-io.imwrite('cat_bw.png', img)
+img = io.imread('cat2.jpg', pilmode = 'L')
+io.imwrite('cat2_bw.jpg', img)

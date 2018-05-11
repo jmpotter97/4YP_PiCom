@@ -27,7 +27,7 @@ transmitted signal
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 5000                        # Symbol rate (Hz)
+SYMB_RATE = 2000                        # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "4PAM"
@@ -502,9 +502,9 @@ def main():
     else:
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
-        '''
+        
         #input_stream = Get_Step_Bytes()
-        input_stream = Get_Image_Bytes('cat2.jpg')
+        input_stream = Get_Image_Bytes('cat2_bw.jpg')
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
@@ -513,9 +513,9 @@ def main():
         print("Saving data as masks...")
         Save_To_File(input_mask, DATA_PATH)
         Save_To_File(input_mask_inv, DATA_INV_PATH)
-        '''
+        
         global SIZE
-        SIZE = 786432#input_mask.size
+        SIZE = input_mask.size
 
         # In Windows to check masks are being generated correctly for pins
         # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
