@@ -36,33 +36,35 @@ void readPins(int gpio, int level, uint tick) {
                 // Once transmission started, reduce timeout to 1 second after last clock pulse
 				gpioSetWatchdog(CLK_PIN, 1000);
         } else {
-            gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
+            gpioSetAlertFunc(CLK_PIN, 0);
             gpioSetWatchdog(CLK_PIN,0);
             /*for(int i=0;i<8;i++) {
 				gpioSetAlertFunc(ADC_1_bits[i], 0);
 				gpioSetAlertFunc(ADC_2_bits[i], 0);
 		    }*/
+		    extern uint32_t pin_state;
             pin_state = 4294967295;
             // 4294967295 is (2^32 - 1) all pins = 1
             printf("Mask size completely received!\n");
         }
     } else if(level == 2) {
-        gpioSetAlertFuncEx(CLK_PIN, 0, NULL);
+        gpioSetAlertFunc(CLK_PIN, 0);
         gpioSetWatchdog(CLK_PIN,0);
         /*for(int i=0;i<8;i++) {
 			gpioSetAlertFunc(ADC_1_bits[i], 0);
 			gpioSetAlertFunc(ADC_2_bits[i], 0);
 		}*/
+		extern uint32_t pin_state;
         pin_state = 4294967295;
         printf("Watchdog timeout on clock pin\n");
     }
 }
 
-// Updates global variable pin_state so it can be read immediately on clock pulse
+/* Updates global variable pin_state so it can be read immediately on clock pulse
 void checkPins(int gpio, int level, uint tick) {
     extern uint32_t pin_state;
     pin_state = gpioRead_Bits_0_31();
-}
+}*/
 
 int main(int argc, char *argv[]) {
 	/************************   SETUP   ************************/
@@ -123,7 +125,7 @@ int main(int argc, char *argv[]) {
     }*/
     
     // Replaced hardware clock with ADC clock capacitor as simpler
-    gpioHardwareClock(ADC_CLK, 10000);
+    //gpioHardwareClock(ADC_CLK, 10000);
     
     //gpioSetAlertFuncEx(CLK_PIN, readPins, (void*)receive_data_mask);
     gpioSetAlertFunc(CLK_PIN, readPins);
@@ -144,7 +146,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Replaced hardware clock with ADC clock capacitor as simpler
-    gpioHardwareClock(ADC_CLK, 0);
+    //gpioHardwareClock(ADC_CLK, 0);
     
 
     /*********************   WRITE TO FILE   *********************/

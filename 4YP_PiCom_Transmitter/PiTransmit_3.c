@@ -40,8 +40,8 @@ int main(int argc, char *argv[]) {
             return 3;
         }
 	}
-	// Clock full period in micro-seconds minus 1us (explained in TRANSMIT DATA)
-	const int symbol_time = (1000000 / symbol_freq) - 1;
+	// Clock full period in micro-seconds minus 2us (explained in TRANSMIT DATA)
+	const int symbol_time = (1000000 / symbol_freq) - 2;
 	printf("Frequency (baud rate): %i Hz\n", symbol_freq);
 	
 	
@@ -99,8 +99,9 @@ int main(int argc, char *argv[]) {
 
     // Add CLK_PIN to the inverted mask so the clock is set to zero simultaneous with the
     // data values being set (and then only rising clock edge to latch data required_
-    for(int i=0; i<num_of_masks; i++)
+    for(int i=0; i<num_of_masks; i++) {
         transmit_data_mask_inv[i] |= (1<<CLK_PIN);
+	}
 
 	printf("TRANSMIT DATA\n");
 	uint32_t t0 = gpioTick();
@@ -110,7 +111,7 @@ int main(int argc, char *argv[]) {
 
         /* Clock cycle will have shape
          * |_|------------|_|------------|_|------------|_|------------
-         * The pulses will be low for 1us ^ and high ^ for the rest of the clock period
+         * The pulses will be low for 2us ^ and high ^ for the rest of the clock period
          * ADC:
          * Rising _CS_ latches data but read event requires falling then rising edge
          * It holds the output at the latched value until the next falling edge
@@ -118,11 +119,11 @@ int main(int argc, char *argv[]) {
          * _WR_ going low clears the converter and _WR_ high starts the conversion
          * _BUSY_ goes high when conversion is complete, and is used as Rx clock pin
          *
-         * A 1us pulse is definitely long enough for both converters to use as a trigger (100ns at least)
+         * A 2us pulse is definitely long enough for both converters to use as a trigger (100ns at least)
          * It's also short enough that at max frequency (100kHz) this is still a fraction of total time*/
 
         // gpioWrite(CLK_PIN, 0); is now integrated with the Clear mask
-        usleep(1);
+        usleep(2);
         gpioWrite(CLK_PIN,1);
         usleep(symbol_time);
 
