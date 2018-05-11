@@ -18,13 +18,14 @@ const uint CLK_PIN = 16;
 int main(int argc, char *argv[]) {
 	/************************   SETUP   ************************/
 	printf("SETUP\n");
+	gpioTerminate();
 	if (gpioInitialise()<0) { printf("GPIO INIT FAIL\n"); return 2;}
 
 	/*  argv should have values:
 		argv[1] = symbol_freq - Frequency of clock signal,
 									or take default (Hz)
 	*/
-	int symbol_freq = 500;
+	int symbol_freq = 500000;
 	if(argc>1) {
 		symbol_freq = atoi(argv[1]);
 		// Returns 0 if not a number string (and 0 not OK freq anyway)

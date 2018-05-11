@@ -391,10 +391,14 @@ def Transmit_Data():
     print("Transmitting data...\nEstimated {}min, {}sec transmit time..."\
           .format(SIZE//(60*SYMB_RATE),round(100*60*((SIZE/(60*SYMB_RATE))%1))/100))
     
-    transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)], stdout=PIPE)
+    transmitter = run(["sudo","./PiTransmit_3",str(SYMB_RATE)], stdout=PIPE, stderr=PIPE)
     print("\n... C TRANSMITTER LOGS ...\n")
     for line in transmitter.stdout.decode('utf-8').split('\n'):
-        print("... {}".format(line))
+        if line != "":
+            print("... {}".format(line))
+    for line in transmitter.stderr.decode('utf-8').split('\n'):
+        if line != "":
+            print("... ERR... {}\n".format(line))
     return_code = transmitter.returncode
 
     return_options = {0: "Data transmission complete!",
@@ -498,10 +502,10 @@ def main():
     else:
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
-        
+        '''
         #input_stream = Get_Step_Bytes()
         input_stream = Get_Image_Bytes('cat2.jpg')
-        #print("Input stream length (bytes): {}".format(input_stream.size))
+        print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
         input_mask = Convert_To_Data_Mask(input_stream)
@@ -509,9 +513,9 @@ def main():
         print("Saving data as masks...")
         Save_To_File(input_mask, DATA_PATH)
         Save_To_File(input_mask_inv, DATA_INV_PATH)
-
+        '''
         global SIZE
-        SIZE = input_mask.size
+        SIZE = 786432#input_mask.size
 
         # In Windows to check masks are being generated correctly for pins
         # Check_Input_Masks(input_stream, input_mask, input_mask_inv)
