@@ -2,57 +2,63 @@
 	% THE RASPBERRY PI AND THE TEST BED
 \begin{document}
 
-Talk about the RPi and test bed.
+The communications test bed consists of a transmitter and a receiver Raspberry Pi, and a number of custom chips arranged on prototyping breadboards.
+This section details the physical set-up of the test bed, the Raspberry Pi interface and the installation of the custom libraries used.
+It also covers the technical specifications of the components and the details of the software underlying its operation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Fundamentals}
+\section{Raspberry Pi Fundamentals}
 
-The Raspberry Pi is a simple, affordable ARM-based computing module. It has General Purpose Input/Output (GPIO) pins which it can use to interface with stuff.\\
-
-It is run using a Linux-based operating system called Raspbian which is available for download from the Raspberry Pi official website \cite{lib_Raspbian}.\\
-
-The main chip on the board is the Broadcom BCM2835.
-The Pi's pins can either be numbered as pin 1-40 going through them sequentially in layout, this is the BOARD numbering scheme, or they can be referred to by their Broadcom pin numbers with the BCM numbering scheme.
-The second scheme numbers the available GPIO pins in the range 2-27 (Pins 0 and 1 are reserved for system use).
-
-\todo[inline,color=blue!20]{Write Raspberry Pi Fundamentals -- and take a better picture}
+The Raspberry Pi is a small, simple and affordable ARM-based computing module (Figure \ref{fig_Raspberry Pi}).
+It has General Purpose Input/Output (GPIO) pins which it can use to interface with external peripherals.
+The GPIOs can only take binary values of '0' (\SI{0}{\volt}) or '1' ($V_{max} = 3.3V$) and so converters are needed to output or input analogue signals.
+The Pi is run on a Linux-based operating system called Raspbian, which is available for download from the Raspberry Pi official website
+\cite{lib_Raspbian}.\\
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Raspberry_Pi.jpg}
-	\caption{The Raspberry Pi}
-	%\label{fig_}
+	\includegraphics[width=0.8\textwidth]{Raspberry_Pi.jpg}
+	\caption{The Raspberry Pi with its case, a prototyping breadboard and some jumper cables}
+	\label{fig_Raspberry Pi}
 \end{figure}
 
-\subsection{Setting up the Raspberry Pi}
+The Raspberry Pi 3 Model B+ which is used for this project has a \SI{1.4}{\giga\hertz} 64-bit quad-core processor
+The main chip on the board is the Broadcom BCM2835.
+The Pi's pins can either be numbered sequentially as pins 1 through 40 down the board - this is the BOARD numbering scheme, or they can be referred to by their Broadcom pin numbers - the BCM numbering scheme.
+The second scheme numbers the available GPIO pins in the range 2-27 (Pins 0 and 1 are reserved for system use).
 
+\subsection{Setting up the Raspberry Pi}
+\lstset{style=python}
 The Raspberry Pi can be interfaced with in a number of ways, but first it needs to be set up with its operating system on the SD card \cite{web_SetupRaspbian}.
-Raspbian can be accessed via the command line - typing in commands - or through an X Window similar to Windows OS.
+Raspbian can be controlled via the command line interface (CLI) - typing in commands - or through an X Window graphical user interface (GUI) similar to Windows Operating System.
 Either of these options can be used by connecting a screen, keyboard and mouse to the Pi, but this is not always available, so it is useful to have Secure Shell (SSH) set up for the command line, and Virtual Network Computing (VNC) for the X Window.
 Secure Shell is necessary regardless as it is used in the test bed execution.
 When actually using both Raspberry Pis in the test bed, both of them will be running in command line mode as this saves resources, although during development, VNC or a screen using the X Window makes it much easier to test and edit code.
 In the test bed, the Transmitter Pi will be connected to a screen and peripherals in command line mode, and then it will start the Receiver via SSH, which will run headless (without a screen or control peripherals) and receive the data, process and output it, and store information about the run in a log file which can be accessed later or again through SSH.\\
 
-\missingfigure{A flowchart that describes the set-up procedure could be useful.}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{RPi_Setup.png}
+	\caption{The setup procedure of the Raspberry Pi}
+	\label{fig_RPi Setup}
+\end{figure}
 
+The setup procedure is shown in Figure \ref{fig_RPi Setup}.
 Once the operating system is written to the SD card, SSH can be enabled by creating an empty file \textit{ssh} in the main portion of the card before putting it in the Raspberry Pi (for setup using a screen and peripherals, this can be turned on in the configuration settings).
 Now an Ethernet cable can be connected from a computer to the Pi and it can be logged into.
 A program such as PuTTY \cite{lib_PuTTY} for Windows can be used, with \textit{pi@raspberrypi.local} as the host name so the IP address is not needed.
 The standard login is \textit{username: pi} and \textit{password: raspberry}.
-The command \textit{sudo raspi-config} accesses the configuration settings where the file system can be expanded to the whole SD card, and other utilities such as Wi-Fi and VNC can be turned on.
+The command \colorbox{backcolour}{\lstinline{sudo raspi-config}} accesses the configuration settings where the file system can be expanded to the whole SD card, and other utilities such as Wi-Fi and VNC can be turned on.
 Again, all utilities except for SSH should be turned off when using the final test bed to improve performance of the devices.
-Once the Pi is connected to Wi-Fi and the IP address is known, it can be accessed remotely via the free RealVNC VNC Viewer \cite{lib_RealVNCViewer} and the X Window can be started with the command \textit{startx} if it is not already set to open the X Window on startup in the configuration settings.
+Once the Pi is connected to Wi-Fi and the IP address is known, it can be accessed remotely via the free RealVNC VNC Viewer \cite{lib_RealVNCViewer} and the X Window can be started with the command \colorbox{backcolour}{\lstinline{startx}} if it is not already set to open the X Window on startup in the configuration settings.
 This access can be made permanent by setting the Pi to have a static IP address or with a free RealVNC account which lets it be accessed independent of the IP address.\\
-\todo[inline,color=green!40]{Inline code reference should look like inline code not just italics ideally}
 
 With full control of the Pi, all that is needed is to download all of the libraries and software used by the test bed and clone the GitHub repository with its code.
 The Python version used is 3.5.3.
 and as the Raspberry Pi has Python 2 and 3, pip - the Python package manager - is called as pip3 for python3.
 Any dependencies not in this list give clear instructions as to how they are downloaded when this list is run line by line.\\
 
-\todo[inline,color=green!40]{Create new format (and inline for above) called "shell"} IF I NEED TO AND HAVE TIME
-\lstset{style=python}
 \begin{lstlisting}[caption=Libraries and Packages Required for the Test Bed]
 	sudo apt-get update
 	
@@ -109,22 +115,24 @@ This arrangement is used for Quadrature Amplitude Modulation as well as Orthogon
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.5\textwidth]{OOK_Architecture.jpg}
+	\includegraphics[width=0.6\textwidth]{ook_architecture.eps}
 	\caption{Test Bed Set-up For On-Off Keying}
 	\label{fig_OOK Architecture}
 \end{figure}
 
 \subsection{Digital Analogue Converter}
 
-The Digital Analogue Converter used is the AD5424, an 8-bit CMOS current output DAC with an easy interface to microcontrollers.
+The Digital Analogue Converter (DAC) used is the AD5424, an 8-bit CMOS current output DAC with an easy interface to microcontrollers.
 It has a \SI{17}{\nano\second} write cycle and a maximum update rate of \SI{20.4}{MSPS}. % Mega Samples Per Second
+A parallel 8-bit DAC and equivalent Analogue Digital Converter (ADC) were chosen because they can achieve significantly higher data rates than a serial interface device which must transmit all eight bits per sample on one GPIO pin.
 There are possible configurations in the data sheet using an inverting operational amplifier to produce the output, however due to the single supply and difficulties finding low-power operational amplifiers which provide rail-to-rail output for a 5V single supply, this was avoided where the output through a load resistor can produce required voltages.
 The Read/Write ($R/\overline{W}$) pin is pulled low so the chip is permanently in write mode; read back of the parallel digital outputs is not required.
-The Chip Select pin ($\overline{CS}$) needs a rising edge and a falling edge to complete a write cycle, where the rising edge loads new parallel data and the falling edge...
-\todo[inline]{Check that falling edge of DAC makes analogue output valid/readable}
-This is therefore connected to the clock pin of the Raspberry Pi.
+The Chip Select pin ($\overline{CS}$) needs a falling edge and a rising edge to complete a write cycle.
+This is because the DAC has a latched interface; the rising edge loads the new parallel data to be held in the latches and immediately provide the analogue output.
+The latches are not transparent however (the input is not visible while $\overline{CS}$ is low and the chip is selected), therefore the output holds the analogue conversion of the latched digital byte until the falling edge of its input.
+This pin is therefore connected to the clock pin of the Raspberry Pi, and the shape of the clock signal used to best utilise the DAC is discussed in Section \ref{sec_C Transmitter and Receiver}.
 The same clock pulses are also fed to the $\overline{WR}$ (start conversion) pin of the analogue digital converter.
-Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
+Connections between the transmitter Raspberry Pi and the DAC are in Figure \ref{fig_DAC Layout}.\\
 
 \begin{figure}[ht]
 	\centering
@@ -137,11 +145,13 @@ Layout of the connections to the Pi are in the Figure \ref{fig_DAC Layout}.\\
 
 The Analogue Digital Converter used is the ZN448, an 8-bit successive approximation ADC designed to be easily interfaced to microprocessors.
 It operates with an on-chip clock with capability to be overclocked, and has a \SI{9}{\micro\second} conversion time guarantee.
-The conversion from analogue to digital values starts when the $\overline{WR}$ (start conversion) pin is pulled low, and so this is connected to the clock pin of the transmitter Raspberry Pi.
 Figure \ref{fig_ADC Layout} is a diagram of the ADC connections to both Raspberry Pis.
-The $\overline{RD}$ (output enable) pin is pulled low to allow non-destructive readout.
+The converter is cleared when the $\overline{WR}$ (start conversion) pin is pulled low.
+On the rising edge of this pin, the comparison of $\frac{V_{REF}}{2}$ to the Most Significant Bit (MSB) set to '1' and all other bits set to '0' is made, and the conversion from analogue to digital values continues by successively setting the next bit, making a comparison and so on.
+Therefore this pin uses the clock line from the transmitter Raspberry Pi.
 The $\overline{BUSY}$ (end of conversion) pin goes low when the a conversion starts ($\overline{WR}$ is pulled low), and goes high when the conversion is complete.
-The positive edge of this signal is taken as the clock for the Receiver, resulting in the correct digital value at the output.\\
+The positive edge of this signal is taken as the clock for the Receiver, as there is some delay in the ADC's calculation but on the rising edge of $\overline{BUSY}$ the resulting digital value at the output is correct as long as the transmitter is not transmitting so fast as to transmit the next value before the ADC can finish converting the last one.
+The $\overline{RD}$ (output enable) pin is pulled low to allow non-destructive readout.\\
 
 \begin{figure}[ht]
 	\centering
@@ -150,16 +160,14 @@ The positive edge of this signal is taken as the clock for the Receiver, resulti
 	\label{fig_ADC Layout}
 \end{figure}
 
-The clock frequency is selected with the $CLK$ pin, either with a single clock capacitor (with an equivalent frequency table provided in the data sheet) or by providing an external clocking signal (see Section \ref{sec_Overclocking}).
+The DAC's internal clock frequency is selected with the $CLK$ pin, either with a single clock capacitor (with an equivalent frequency table provided in the data sheet) or by providing an external clocking signal (see Section \ref{sec_Overclocking}).
 Both options are shown as grey lines in the diagram and only one should be used.
 The conversion by successive approximation works by approximating one bit per clock pulse over eight clock pulses, and the data sheet suggests due to accepting a completely asynchronous convert pulse with respect to the clock, valid data is produced between 7.5 and 8.5 clock pulses later.
-The maximum clock frequency is \SI{1}{\mega\hertz} and given the guaranteed \SI{9}{\micro\second} conversion time, a clock frequency giving 9 pulses between conversions is suggested.
-The capacitor value of \SI{100}{\pico\farad} in Figure \ref{fig_ADC Layout} corresponds to a \SI{900}{\mega\hertz} clock for a sampling rate of at least \SI{100}{MSPS} % Mega Samples Per Second
-(or equivalently a baud rate of at least \SI{100}{\mega\hertz}) which is close to the extent of the converter.\\
+The maximum internal clock frequency is \SI{1}{\mega\hertz} and given the guaranteed \SI{9}{\micro\second} conversion time (\SI{0.11}{MSPS}), a clock frequency giving 9 pulses between conversions is suggested to ensure complete conversion.
+The capacitor value of \SI{100}{\pico\farad} in Figure \ref{fig_ADC Layout} corresponds to a \SI{900}{\kilo\hertz} internal clock frequency, allowing for a sampling rate of at least \SI{0.1}{MSPS} % Mega Samples Per Second
+(or equivalently a baud rate of at least \SI{100}{\kilo\hertz}) which is close to the extent of the converter.\\
 
-Figure \ref{fig_PAM Architecture} is a picture of of the two Raspberry Pis connected together for baseband 4PAM communication.
-
-\todo[inline,color=blue!20]{Write up layout of the ADC and more on Multiplier and other parts}
+Figure \ref{fig_PAM Architecture} is a picture of of the two Raspberry Pis connected together for baseband 4PAM communication.\\
 
 \begin{figure}[ht]
 	\centering
@@ -171,15 +179,9 @@ Figure \ref{fig_PAM Architecture} is a picture of of the two Raspberry Pis conne
 \subsection{Multiplier} \label{sec_Multiplier}
 
 This section still needs the technical specifications and layout in the test bed of the multiplier.
+\todo[inline,color=blue!20]{Write up Multiplier and sine generator}
 
 \todo[inline]{Depending whether it's doable, include  this section without multipliers on transmitter, pseudo ground on output}
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.6\textwidth]{DAC_Modulation.jpg}
-	\caption{Four Quadrant Multiplication of input sinusoid using DAC}
-	\label{fig_}
-\end{figure}
 
 The Pi is not able to output negative voltages.
 As a result, Pulse Amplitude Modulation uses the range $0$ to $V_{max}$ rather than $-V_{max}$ to $V_{max}$.
@@ -203,15 +205,13 @@ q(t) = 2x(t)sin(t) =
 
 \subsection{Parts Used}
 
-\todo[inline,color=green!40]{Need a diagramatic representation of this as well as an actual picture of the final test bed}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Live_Test_Bed.jpg}
 	\caption{The Final Configuration of the Test Bed}
 	%\label{fig_}
 \end{figure}
-
-\todo[inline,color=blue!20]{Include a section on pricing of the parts and of the whole test bed, comparison to examples of projects and commercial solutions mentioned in Literature Review (Section \ref{sec_Lit Review})}
+\todo[inline]{Replace this with picture/diagram compound}
 
 Table \ref{tab_Part Prices} is a table of all of the key parts used in the construction of the test bed, excluding small items such as resistors and capacitors.
 The total price - without Value Added Tax (about $20\%$ on average) and handling charges of individual orders - comes to $\mathsterling166.56$.
@@ -255,6 +255,8 @@ As a result of this, the parts used in this project were the most suitable parts
 However, there may be more suitable chips available given more time or experience to find them, and being aware of this would be useful if this project were to be extended and/or replicated.
 All parts could be replaced with minimal adjustment to the physical test bed layout and code.\\
 
+\newpage
+
 Changes which would be made with hindsight, if components with the required qualities could be found, are as follows:
 
 \todo[inline,color=blue!20]{Continue to add to this list as you write the Architecture section - remove redundant information already discussed in the Section itself for each part}
@@ -284,7 +286,7 @@ Section \ref{sec_Comparing Python and C} goes into a detailed  investigation of 
 All of the code and the report for the project are maintained on GitHub, and may be found at \url{https://github.com/CamEadie/4YP_PiCom}.\\
 
 The transmitter and receiver code for all modulation schemes considered works from a single final version of the test bed code.
-This comprises of the Python transmitter \textit{PiComTx\textunderscore 5\textunderscore DAC.py}, and receiver \textit{PiComRx\textunderscore 5\textunderscore DAC.py}, as well as the executables compiled from C code for the transmitter \textit{PiTransmit\textunderscore 3}, and receiver \textit{PiReceive}.
+This comprises of the Python transmitter \colorbox{backcolour}{\lstinline{PiComTx_5_DAC.py}}, and receiver \colorbox{backcolour}{\lstinline{PiComRx_5_DAC.py}}, as well as the executables compiled from C code for the transmitter \colorbox{backcolour}{\lstinline{PiTransmit_3}}, and receiver \colorbox{backcolour}{\lstinline{PiReceive}}.
 The main function in the Python files for each the transmitter and receiver is split into On-Off Keying and Advanced Modulation Schemes.
 On-Off Keying (Section \ref{sec_On-Off Keying}) is the simplest form of clocked communication, and acts as a proof of concept for the Raspberry Pis as a test bed.
 It is implemented using Python lists to store '1's and '0's to represent the binary stream.
@@ -302,10 +304,10 @@ This means that images can be transmitted instead of random data, allowing for v
 These schemes also use a separate compiled C module for the actual transmitting and receiving of data.\\
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{Pi_Pin_Connections.png}
-	\caption{Pin Diagram of Connections to Raspberry Pi (reference to image source) - These are alterable fairly easily in the code so changes can be made with little overhead}
-	\label{fig_Pin Connections}
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{Pi_Pin_Connections.png}
+ 	\caption{Pin Diagram of Connections to Raspberry Pi (reference to image source) - These are alterable fairly easily in the code so changes can be made with little overhead}
+ 	\label{fig_Pin Connections}
 \end{figure}
 
 Pins used currently for the OOK transmission as well as for the DACs are shown in Figure \ref{fig_Pin Connections}.
@@ -319,12 +321,12 @@ The code defines the pins used for transmission as global variables at the start
 Excepting the the DAC clock pin (pin 16) which is defined in the C code, Listing \ref{lst_Pins} shows these pin definitions.\\
 
 \begin{lstlisting}[caption={Pins used for OOK and the DACs}, label={lst_Pins}]
-	# OOK Pins
-	CLK_PIN = 20
-	DATA_PIN = 21
-	# DAC Pins
-	DAC_PINS_1, DAC_PINS_2 = [10, 9 , 11, 5 , 6 , 13, 19, 26], \
-							 [14, 15, 18, 17, 27, 22, 23, 24]
+# OOK Pins
+CLK_PIN = 20
+DATA_PIN = 21
+# DAC Pins
+DAC_PINS_1, DAC_PINS_2 = [10, 9 , 11, 5 , 6 , 13, 19, 26], \
+[14, 15, 18, 17, 27, 22, 23, 24]
 \end{lstlisting} 
 
 \subsection{On-Off Keying} \label{sec_On-Off Keying}
@@ -351,9 +353,9 @@ The devices are connected by an Ethernet cable so no connection to the internet 
 The command to start the program is:
 
 \begin{lstlisting}[caption=Command Line to Start the Receiver]
-	command = "sudo python3 " + \
-		"/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" + \
-		" " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
+command = "sudo python3 " + \
+"/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiComRx_5_DAC.py" + \
+" " +str(mask_length) + " " +str(TRANSMISSION_TYPE)
 \end{lstlisting}
 
 The super user call \textit{sudo} is necessary for control of the GPIO pins in the receiver code.
@@ -372,8 +374,8 @@ This includes all of the trivial to calculate results of the post-transmission a
 NumPy is a package used for scientific computing in Python.
 Its main feature is an N-dimensional array object with various functions for reshaping and efficiently computing on large arrays.
 These arrays are used to store the data to be transmitted while it is converted from byte-wise data into bitmasks which can be transmitted by the DACs and vice versa on the receiving end.
-Scalar operations can be performed on an entire NumPy array which allows the inverting of all of the bitmasks of the transmission data by XOR to be expressed simply as \textit{masks $\hat{}$ DAC\textunderscore MASK\textunderscore 1}.
-The arrays also have stronger typing than regular Python, so an array can be set to have data types such as unsigned 8-bit integer (byte, \textit{dtype='uint8'}) array or unsigned 32-bit integer (bitmask, \textit{dtype='uint32'}) array and Numpy will ensure that its elements remain in that type.
+Scalar operations can be performed on an entire NumPy array which allows the inverting of all of the bitmasks of the transmission data by XOR to be expressed simply as \colorbox{backcolour}{\lstinline{masks ^ DAC_MASK_1}}.
+The arrays also have stronger typing than regular Python, so an array can be set to have data types such as unsigned 8-bit integer (byte, \colorbox{backcolour}{\lstinline{dtype='uint8'}}) array or unsigned 32-bit integer (bitmask, \textit{dtype='uint32'}) array and Numpy will ensure that its elements remain in that type.
 The library is imported \textit{import numpy as np} so all of the library functions can be called with the standard \textit{np.} shorthand such as \textit{np.array()}.
 Functions of particular interest are \textit{np.unpackbits()} and \textit{np.packbits()} which allow you to unpack a size-N array of M-bit integers into a size-($N\times M$) binary array of the bits of each integer, which makes switching from byte-wise data to bit-wise operations and back very simple.
 NumPy also has \textit{np.fft.fft()} and \textit{np.fft.ifft()} for computing Fast Fourier Transforms and Inverse Fast Fourier Transforms on data which makes OFDM easier to implement.
@@ -412,10 +414,10 @@ This problem is investigated in Section \ref{sec_Components}, but the solution w
 \todo[inline,color=green!40]{Make sure the corresponding section (USE THE RIGHT SUB-SECTION) does reference the fact that the DAC doesn't work exactly as it's supposed to and how I dealt with it}
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{QAM_Const.eps}
-	\caption{16-QAM Constellation with Grey Code}
-	\label{fig_QAM Constellation}
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{QAM_Const.eps}
+ 	\caption{16-QAM Constellation with Grey Code}
+ 	\label{fig_QAM Constellation}
 \end{figure}
 
 The transmitter can be run from the command line with transmission frequency and modulation scheme as command line variables, otherwise it uses the currently coded in values.
@@ -432,30 +434,30 @@ By inverting the constellation, a dictionary of 4-bit values to symbols is used 
 This is done by unpacking each byte into corresponding bits and reshaping into a matrix with four columns, then each row is taken as a dictionary key to decode the symbol, shown in Listing \ref{lst_Inverted QAM}.
 Each symbol is then converted into an 8-bit DAC value and expanded onto a bitmask for the C code, with the I component mapped to the first DAC's pins, and the Q component mapped to the second DAC's pins.\\
 
-\begin{lstlisting}[caption={Inverted QAM Constellation and its use to encode each byte as two symbols}, label={lst_Inverted QAM}]
+	\begin{lstlisting}[caption={Inverted QAM Constellation and its use to encode each byte as two symbols}, label={lst_Inverted QAM}]
 	mapping_table = {
-	(0,0,0,0) : 0 + 0j,
-	(0,0,0,1) : 0 + 1j,
-	(0,0,1,0) : 0 + 3j,
-	(0,0,1,1) : 0 + 2j,
-	(0,1,0,0) : 1 + 0j,
-	(0,1,0,1) : 1 + 1j,
-	(0,1,1,0) : 1 + 3j,
-	(0,1,1,1) : 1 + 2j,
-	(1,0,0,0) : 3 + 0j,
-	(1,0,0,1) : 3 + 1j,
-	(1,0,1,0) : 3 + 3j,
-	(1,0,1,1) : 3 + 2j,
-	(1,1,0,0) : 2 + 0j,
-	(1,1,0,1) : 2 + 1j,
-	(1,1,1,0) : 2 + 3j,
-	(1,1,1,1) : 2 + 2j }
+		(0,0,0,0) : 0 + 0j,
+		(0,0,0,1) : 0 + 1j,
+		(0,0,1,0) : 0 + 3j,
+		(0,0,1,1) : 0 + 2j,
+		(0,1,0,0) : 1 + 0j,
+		(0,1,0,1) : 1 + 1j,
+		(0,1,1,0) : 1 + 3j,
+		(0,1,1,1) : 1 + 2j,
+		(1,0,0,0) : 3 + 0j,
+		(1,0,0,1) : 3 + 1j,
+		(1,0,1,0) : 3 + 3j,
+		(1,0,1,1) : 3 + 2j,
+		(1,1,0,0) : 2 + 0j,
+		(1,1,0,1) : 2 + 1j,
+		(1,1,1,0) : 2 + 3j,
+		(1,1,1,1) : 2 + 2j }
 	# Unpack data list into N bits and reshape to (N/4 x 4) bit matrix
 	data_list_bits = np.unpackbits(data_list)
 	data_list_bits = data_list_bits.reshape( (data_list_bits.size//4, 4) )
 	# Convert (N/4 x 4) matrix into N/4 symbols
 	def Mapping(bits):
-		return np.array([mapping_table[tuple(b)] for b in bits])
+	return np.array([mapping_table[tuple(b)] for b in bits])
 	symb = Mapping(data_list_bits)
 \end{lstlisting}
 
@@ -478,10 +480,10 @@ After this, the C transmitter is started with one command line argument, mask (s
 The C transmitter sets up the pins for the transmission, reads in the binary files corresponding to the \textit{Set} and \textit{Clear} bitmasks, and then loops through, outputting the values to the DACs at the specified baud rate.\\
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=\textwidth]{Transmitter_Flow.png}
-	\caption{Flow Chart for Transmitter Code}
-	\label{fig_Transmitter_Flow}
+ 	\centering
+ 	\includegraphics[width=\textwidth]{Transmitter_Flow.png}
+ 	\caption{Flow Chart for Transmitter Code}
+ 	\label{fig_Transmitter_Flow}
 \end{figure}
 
 
@@ -501,17 +503,17 @@ This equates to using partitions which are half way between possible symbols to 
 For example in 16-QAM, any value within the box around each symbol in Figure \ref{fig_QAM ML Decoding} would be mapped to the symbol at its centre.\\
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{QAM_Grid.eps}
-	\caption{16-QAM Constellation with Maximum Likelihood Boundaries}
-	\label{fig_QAM ML Decoding}
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{QAM_Grid.eps}
+ 	\caption{16-QAM Constellation with Maximum Likelihood Boundaries}
+ 	\label{fig_QAM ML Decoding}
 \end{figure}
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=\textwidth]{Receiver_Flow.png}
-	\caption{Flow Chart for Receiver Code}
-	\label{fig_Receiver_Flow}
+ 	\centering
+ 	\includegraphics[width=\textwidth]{Receiver_Flow.png}
+ 	\caption{Flow Chart for Receiver Code}
+ 	\label{fig_Receiver_Flow}
 \end{figure}
 
 Once the input has been decoded into the ML estimated symbols, it must be recombined into byte-wise data.
@@ -536,10 +538,10 @@ Section \ref{sec_Computation} compared the speed of the individual pin read to t
 As a result, all of the C code uses these mask operations to set and read the pins.\\
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{Mask_Expansion.png}
-	\caption{Explanation of the concept of mask expansion}
-	\label{fig_Mask Expansion}
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{Mask_Expansion.png}
+ 	\caption{Explanation of the concept of mask expansion}
+ 	\label{fig_Mask Expansion}
 \end{figure}
 
 Another advantage of using bitmasks is that \textit{PiTransmit\textunderscore 3} and \textit{PiReceive} can operate entirely independently of the choice of which GPIOs the DACs and ADCs use, or even whether the modulation scheme is using one or two of each.
@@ -554,18 +556,18 @@ The transmitter loops through the data masks, bank setting (masks) and clearing 
 \lstset{style=C}
 \begin{lstlisting}[caption={Transmitter documentation explaining the clock signal}, label={lst_Transmitter Docs}]
 /* Clock cycle will have shape:
- * |_|------------|_|------------|_|------------|_|------------
- * The pulses will be low for 1us ^ and high ^ for the rest of the clock period
- * ADC:
- * Rising _CS_ latches data but read event requires falling then rising edge
- * It holds the output at the latched value until the next falling edge
- * DAC:
- * _WR_ going low clears the converter and _WR_ high starts the conversion
- * _BUSY_ goes high when conversion is complete, and is used as Rx clock pin
- *
- * A 1us pulse is long enough for both converters to use as a trigger (100ns at least)
- * It is also short enough that at max frequency (100kHz) it is still a fraction of clock
- */
+* |_|------------|_|------------|_|------------|_|------------
+* The pulses will be low for 1us ^ and high ^ for the rest of the clock period
+* ADC:
+* Rising _CS_ latches data but read event requires falling then rising edge
+* It holds the output at the latched value until the next falling edge
+* DAC:
+* _WR_ going low clears the converter and _WR_ high starts the conversion
+* _BUSY_ goes high when conversion is complete, and is used as Rx clock pin
+*
+* A 1us pulse is long enough for both converters to use as a trigger (100ns at least)
+* It is also short enough that at max frequency (100kHz) it is still a fraction of clock
+*/
 \end{lstlisting}
 
 The receiver starts by allocating a memory block for the number of masks expected.
@@ -578,5 +580,5 @@ The callbacks are also closed and this specific value set if there is a watchdog
 
 Once the receiver has set up the callbacks, it uses a while loop to wait until the specific value is set to the \textit{pin\textunderscore state} signifying the end of the program.
 After this the received data masks are saved to a binary file which can be opened by the Python code and mapped to ADC values to decode the transmitted data.
-
+ 
 \end{document}

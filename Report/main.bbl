@@ -19,13 +19,16 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
-    \entry{pap_SoftRadio}{inproceedings}{}
+    \entry{pap_Mitola}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=13a73bc6c6c8ebe78274df89a77b9f55}{%
            family={Mitola},
            familyi={M\bibinitperiod},
            given={J.},
            giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
       }
       \strng{namehash}{13a73bc6c6c8ebe78274df89a77b9f55}
       \strng{fullhash}{13a73bc6c6c8ebe78274df89a77b9f55}
@@ -37,14 +40,10 @@
       \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{[Proceedings] NTC-92: National Telesystems Conference}
-      \field{day}{19}
-      \field{month}{5}
+      \field{booktitle}{[Proceedings] {NTC}-92: National Telesystems Conference}
       \field{title}{Software radios-survey, critical evaluation and future directions}
-      \field{year}{1992}
-      \field{dateera}{ce}
       \verb{doi}
-      \verb 10.1109/NTC.1992.267870
+      \verb 10.1109/ntc.1992.267870
       \endverb
     \endentry
     \entry{web_AboutPi}{misc}{}
@@ -110,25 +109,25 @@
     \endentry
     \entry{pap_DIWINEpaper4}{report}{}
       \name{author}{1}{}{%
-        {{hash=ee38448319814dcade553664e3760073}{%
-           family={Justin\bibnamedelimb P.\bibnamedelimi Coon},
-           familyi={J\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim C\bibinitperiod},
-           given={Jan\bibnamedelima Sýkora},
-           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod},
-           suffix={Alister\bibnamedelimb G.\bibnamedelimi Burr},
-           suffixi={A\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=dc2c74b14ba09a95e38ae1530754ca2d}{%
+           family={al.},
+           familyi={a\bibinitperiod},
+           given={Justin\bibnamedelimb P.\bibnamedelimi Coon},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim C\bibinitperiod},
+           prefix={et},
+           prefixi={e\bibinitperiod}}}%
       }
       \list{institution}{1}{%
         {DIWINE}%
       }
-      \strng{namehash}{ee38448319814dcade553664e3760073}
-      \strng{fullhash}{ee38448319814dcade553664e3760073}
-      \strng{bibnamehash}{ee38448319814dcade553664e3760073}
-      \strng{authorbibnamehash}{ee38448319814dcade553664e3760073}
-      \strng{authornamehash}{ee38448319814dcade553664e3760073}
-      \strng{authorfullhash}{ee38448319814dcade553664e3760073}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \strng{namehash}{dc2c74b14ba09a95e38ae1530754ca2d}
+      \strng{fullhash}{dc2c74b14ba09a95e38ae1530754ca2d}
+      \strng{bibnamehash}{dc2c74b14ba09a95e38ae1530754ca2d}
+      \strng{authorbibnamehash}{dc2c74b14ba09a95e38ae1530754ca2d}
+      \strng{authornamehash}{dc2c74b14ba09a95e38ae1530754ca2d}
+      \strng{authorfullhash}{dc2c74b14ba09a95e38ae1530754ca2d}
+      \field{sortinit}{8}
+      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{23}
@@ -144,6 +143,65 @@
       \verb http://diwine-project.eu/public/content/files/public/DIWINE_WhitePaper_4.pdf
       \endverb
     \endentry
+    \entry{pap_WARP_light}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a3b7e31ab636339aa7ecdfcf6f6bcfe7}{%
+           family={Qiao},
+           familyi={Q\bibinitperiod},
+           given={Yijun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=e841f7b40643bc78e2660b1c27e1bb99}{%
+           family={Haas},
+           familyi={H\bibinitperiod},
+           given={Harald},
+           giveni={H\bibinitperiod}}}%
+        {{hash=32b97fd3e1225451a36208f013df073c}{%
+           family={Knightly},
+           familyi={K\bibinitperiod},
+           given={Edward},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f53068ad80c1475def39cab91c6bfa3b}
+      \strng{fullhash}{f53068ad80c1475def39cab91c6bfa3b}
+      \strng{bibnamehash}{f53068ad80c1475def39cab91c6bfa3b}
+      \strng{authorbibnamehash}{f53068ad80c1475def39cab91c6bfa3b}
+      \strng{authornamehash}{f53068ad80c1475def39cab91c6bfa3b}
+      \strng{authorfullhash}{f53068ad80c1475def39cab91c6bfa3b}
+      \field{sortinit}{9}
+      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Software-defined Visible Light Communications System with WARP}
+    \endentry
+    \entry{pap_WiPi}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=82eede91d06a488c9197ec1fc840a7ce}{%
+           family={Attaby},
+           familyi={A\bibinitperiod},
+           given={Abdelhamid},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bd638c4533c9cab1a88177eda2d2bf6e}{%
+           family={Youssef},
+           familyi={Y\bibinitperiod},
+           given={Moustafa},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{6d0679f3a2a5e3264d551d19e43488c4}
+      \strng{fullhash}{6d0679f3a2a5e3264d551d19e43488c4}
+      \strng{bibnamehash}{6d0679f3a2a5e3264d551d19e43488c4}
+      \strng{authorbibnamehash}{6d0679f3a2a5e3264d551d19e43488c4}
+      \strng{authornamehash}{6d0679f3a2a5e3264d551d19e43488c4}
+      \strng{authorfullhash}{6d0679f3a2a5e3264d551d19e43488c4}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eventtitle}{IEEE-VTC Spring}
+      \field{part}{25}
+      \field{title}{WiPi: A Low-Cost Heterogeneous Wireless Testbed for Next Generation Applications}
+      \field{volume}{8. Wireless Networks: Protocols, Security, and Services Papers}
+      \field{year}{2018}
+    \endentry
     \entry{lib_Raspbian}{misc}{}
       \name{author}{1}{}{%
         {{hash=cfc124424a21c596c14a4cb50ebc8d89}{%
@@ -158,8 +216,8 @@
       \strng{authorbibnamehash}{cfc124424a21c596c14a4cb50ebc8d89}
       \strng{authornamehash}{cfc124424a21c596c14a4cb50ebc8d89}
       \strng{authorfullhash}{cfc124424a21c596c14a4cb50ebc8d89}
-      \field{sortinit}{5}
-      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{[Online: Accessed ...]}
@@ -186,8 +244,8 @@
       \strng{authorbibnamehash}{708b706df410819f4c7b8365777bedcf}
       \strng{authornamehash}{708b706df410819f4c7b8365777bedcf}
       \strng{authorfullhash}{708b706df410819f4c7b8365777bedcf}
-      \field{sortinit}{6}
-      \field{sortinithash}{57e57fb8451e7fcfa45d1e069f6d3136}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{2}
@@ -217,8 +275,8 @@
       \strng{authorbibnamehash}{e1f2616e32f74ae07dd3a6d988339af0}
       \strng{authornamehash}{e1f2616e32f74ae07dd3a6d988339af0}
       \strng{authorfullhash}{e1f2616e32f74ae07dd3a6d988339af0}
-      \field{sortinit}{7}
-      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{8}
@@ -246,8 +304,8 @@
       \strng{authorbibnamehash}{1afddd33ade637512fec57194e74d46c}
       \strng{authornamehash}{1afddd33ade637512fec57194e74d46c}
       \strng{authorfullhash}{1afddd33ade637512fec57194e74d46c}
-      \field{sortinit}{8}
-      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{[Online: Accessed ...]}
@@ -279,8 +337,8 @@
       \strng{authorbibnamehash}{fed06ae90751af4aff6034baa6f409c9}
       \strng{authornamehash}{fed06ae90751af4aff6034baa6f409c9}
       \strng{authorfullhash}{fed06ae90751af4aff6034baa6f409c9}
-      \field{sortinit}{9}
-      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{23}
@@ -394,8 +452,8 @@
       \strng{authorbibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
       \strng{authornamehash}{6f003d73c4417ee25564e9a5c6ad755e}
       \strng{authorfullhash}{6f003d73c4417ee25564e9a5c6ad755e}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{5}
@@ -425,8 +483,8 @@
       \strng{authorbibnamehash}{8f4ee0c97dee95179ce1e79e846dd298}
       \strng{authornamehash}{8f4ee0c97dee95179ce1e79e846dd298}
       \strng{authorfullhash}{8f4ee0c97dee95179ce1e79e846dd298}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{[Online: Accessed ...]}
@@ -452,8 +510,8 @@
       \strng{authorbibnamehash}{e916da348163d73c23a44e14dd07cb27}
       \strng{authornamehash}{e916da348163d73c23a44e14dd07cb27}
       \strng{authorfullhash}{e916da348163d73c23a44e14dd07cb27}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{30}
@@ -483,8 +541,8 @@
       \strng{authorbibnamehash}{1f032ee53cb3eb2a3a8d014a0b59ee9f}
       \strng{authornamehash}{1f032ee53cb3eb2a3a8d014a0b59ee9f}
       \strng{authorfullhash}{1f032ee53cb3eb2a3a8d014a0b59ee9f}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{22}
@@ -514,8 +572,8 @@
       \strng{authorbibnamehash}{817fe06b4a6398605a966f57b954d618}
       \strng{authornamehash}{817fe06b4a6398605a966f57b954d618}
       \strng{authorfullhash}{817fe06b4a6398605a966f57b954d618}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{19}
@@ -633,8 +691,8 @@
       \strng{authorbibnamehash}{ee5bced252ab77ec8d633c1afda7c5da}
       \strng{authornamehash}{ee5bced252ab77ec8d633c1afda7c5da}
       \strng{authorfullhash}{ee5bced252ab77ec8d633c1afda7c5da}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{[Online: Accessed ...]}
@@ -659,8 +717,8 @@
       \strng{authorbibnamehash}{321bb069555a79a8649a595f0fc42ebd}
       \strng{authornamehash}{321bb069555a79a8649a595f0fc42ebd}
       \strng{authorfullhash}{321bb069555a79a8649a595f0fc42ebd}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{10}
@@ -688,8 +746,8 @@
       \strng{authorbibnamehash}{92e0aedd6ab07f7eab795a3a2ace147c}
       \strng{authornamehash}{92e0aedd6ab07f7eab795a3a2ace147c}
       \strng{authorfullhash}{92e0aedd6ab07f7eab795a3a2ace147c}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{[Online: Accessed ...]}
@@ -719,8 +777,8 @@
       \strng{authorbibnamehash}{9b5b4a2a69fdc01d7e7aa618f93ac51f}
       \strng{authornamehash}{9b5b4a2a69fdc01d7e7aa618f93ac51f}
       \strng{authorfullhash}{9b5b4a2a69fdc01d7e7aa618f93ac51f}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{19}
@@ -750,8 +808,8 @@
       \strng{authorbibnamehash}{7d5c0f532039fcf6f79ef75add357fe3}
       \strng{authornamehash}{7d5c0f532039fcf6f79ef75add357fe3}
       \strng{authorfullhash}{7d5c0f532039fcf6f79ef75add357fe3}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{15}
@@ -779,8 +837,8 @@
       \strng{authorbibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
       \strng{authornamehash}{6f003d73c4417ee25564e9a5c6ad755e}
       \strng{authorfullhash}{6f003d73c4417ee25564e9a5c6ad755e}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{20}
@@ -797,7 +855,40 @@
       \verb http://abyz.me.uk/rpi/pigpio/cif.html#gpioHardwareClock
       \endverb
     \endentry
+    \entry{lib_CommPy}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ea2e0355b8efca3ca2b807b457a736e7}{%
+           family={Taranalli},
+           familyi={T\bibinitperiod},
+           given={Veeresh},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea2e0355b8efca3ca2b807b457a736e7}
+      \strng{fullhash}{ea2e0355b8efca3ca2b807b457a736e7}
+      \strng{bibnamehash}{ea2e0355b8efca3ca2b807b457a736e7}
+      \strng{authorbibnamehash}{ea2e0355b8efca3ca2b807b457a736e7}
+      \strng{authornamehash}{ea2e0355b8efca3ca2b807b457a736e7}
+      \strng{authorfullhash}{ea2e0355b8efca3ca2b807b457a736e7}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed ...]}
+      \field{title}{CommPy: Digital Communication with Python}
+      \field{version}{0.3.0.}
+      \field{year}{2015}
+      \verb{urlraw}
+      \verb https://github.com/veeresht/CommPy
+      \endverb
+      \verb{url}
+      \verb https://github.com/veeresht/CommPy
+      \endverb
+    \endentry
   \enddatalist
+  \missing{web_GNURadio:http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/}
+  \missing{web_GNUonRPi:http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/}
+  \missing{web_PortableSR}
+  \missing{web_SDRTB_SubSamplingReceiver}
 \endrefsection
 \endinput
 

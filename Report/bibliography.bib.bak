@@ -138,14 +138,6 @@
   url    = {http://sebastiandahlgren.se/2012/10/11/using-paramiko-to-send-ssh-commands/},
 }
 
-@TechReport{pap_DIWINEpaper4,
-  author      = {Justin P. Coon et al},
-  title       = {A wireless cloud network for the Internet of Things},
-  institution = {DIWINE},
-  date        = {2016-03-23},
-  url         = {http://diwine-project.eu/public/content/files/public/DIWINE_WhitePaper_4.pdf},
-}
-
 @Misc{web_AboutPi,
   author = {Mihir Patkar},
   title  = {9 Things You Wanted to Know About Raspberry Pi},
@@ -155,7 +147,7 @@
 }
 
 @TechReport{pap_DIWINEpaper4,
-  author      = {Justin P. Coon et al},
+  author      = {Justin P. Coon et al.},
   title       = {A wireless cloud network for the Internet of Things},
   institution = {DIWINE},
   date        = {2016-03-23},
@@ -207,6 +199,82 @@
   year   = {2017},
   note   = {[Online: Accessed ...]},
   url    = {https://store.arduino.cc/arduino-uno-rev3},
+}
+
+@Conference{pap_WiPi,
+  author     = {Abdelhamid Attaby and Moustafa Youssef},
+  title      = {WiPi: A Low-Cost Heterogeneous Wireless Testbed for Next Generation Applications},
+  year       = {2018},
+  eventtitle = {IEEE-VTC Spring},
+  volume     = {8. Wireless Networks: Protocols, Security, and Services Papers},
+  part       = {25},
+}
+
+@InProceedings{pap_Mitola,
+  author    = {J. Mitola},
+  title     = {Software radios-survey, critical evaluation and future directions},
+  booktitle = {[Proceedings] {NTC}-92: National Telesystems Conference},
+  publisher = {{IEEE}},
+  doi       = {10.1109/ntc.1992.267870},
+}
+
+@Misc{web_NationalInstruments,
+  author = {National Instruments},
+  title  = {Software Defined Radio},
+  year   = {2017},
+  note   = {[Online: Accessed ...]},
+  url    = {http://www.ni.com/en-gb/innovations/wireless/software-defined-radio.html},
+}
+
+@Article{pap_WARP_light,
+  author = {Qiao, Yijun and Haas, Harald and Knightly, Edward},
+  title  = {A Software-defined Visible Light Communications System with WARP},
+}
+
+@Misc{lib_CommPy,
+  author  = {Veeresh Taranalli},
+  title   = {CommPy: Digital Communication with Python},
+  year    = {2015},
+  version = {0.3.0.},
+  note    = {[Online: Accessed ...]},
+  url     = {https://github.com/veeresht/CommPy},
+}
+
+@Article{web_PortableSR,
+  author    = {M. Dickens and B. Dunn and L.J. Nicholas},
+  title     = {Design and Implementation of a Portable Software Radio},
+  journal   = {{IEEE} Communications Magazine},
+  year      = {2008},
+  volume    = {46},
+  number    = {8},
+  pages     = {58--66},
+  doi       = {10.1109/mcom.2008.4597105},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+}
+
+@InProceedings{web_SDRTB_SubSamplingReceiver,
+  author    = {Shin Guan Ku and A.W.C. Tan and Heng Siong Lim},
+  title     = {A software defined radio testbed for simulation and real-world testing of {RF} subsampling receiver},
+  booktitle = {International Conference on Frontiers of Communications, Networks and Applications ({ICFCNA} 2014 - Malaysia)},
+  year      = {2014},
+  publisher = {Institution of Engineering and Technology},
+  doi       = {10.1049/cp.2014.1408},
+}
+
+@InProceedings{pap_SDRTB_Localisation,
+  author    = {Johannes Schmitz and Felix Bartsch and Manuel Hernandez and Rudolf Mathar},
+  title     = {Distributed software defined radio testbed for real-time emitter localization and tracking},
+  booktitle = {2017 {IEEE} International Conference on Communications Workshops ({ICC} Workshops)},
+  year      = {2017},
+  publisher = {{IEEE}},
+  doi       = {10.1109/iccw.2017.7962829},
+}
+
+@Conference{pap_PiSDRTB_Spectrum,
+  author     = {El Barrak, Soumaya and Lyhyaoui, Abdelouahid and Puliafito, Antonio and Serrano, Salvatore},
+  title      = {Implementation of a low cost SDR-based Spectrum Sensing prototype using USRP and Raspberry Pi Board},
+  year       = {2017},
+  eventtitle = {4th International Conference on Automation, Control Engineering and Computer Science (ACECS-2017)},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
