@@ -27,10 +27,10 @@ transmitted signal
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 1000                        # Symbol rate (Hz)
+SYMB_RATE = 500                       # Symbol rate (Hz)
 OOK_TRANS_FREQ = 100000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "4PAM"
+TRANSMISSION_TYPE = "16QAM"
 SIZE = 0
 
 if len(argv) > 1:
