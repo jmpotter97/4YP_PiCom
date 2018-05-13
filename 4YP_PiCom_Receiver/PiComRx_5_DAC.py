@@ -25,7 +25,7 @@ if len(argv) > 2:
 if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
     LOGS.append("\nINVALID TRANSMISSION TYPE, EXITING\n")
     LOGS.append("***************************************\n")
-    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H:%M"))
+    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
@@ -296,7 +296,7 @@ def main():
             
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
             global OUT_PATH
-            OUT_PATH = OUT_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H:%M"))
+            OUT_PATH = OUT_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
             with open(OUT_PATH,'w') as f:
                 f.write("".join(str(i) for i in output))
         else:
@@ -309,7 +309,7 @@ def main():
                 '''with open(OUT_PATH,'w') as f:
                     f.write("-".join(str(i) for i in output))'''
                 global IMG_PATH
-                IMG_PATH = IMG_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H:%M"))
+                IMG_PATH = IMG_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
                 Save_As_Image(output, IMG_PATH, LOGS)
             else:
                 LOGS.append("No data was received\n")
@@ -330,7 +330,7 @@ except Exception as e:
 finally:
     LOGS.append("***************************************\n")
     global LOGS_PATH
-    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H:%M"))
+    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
