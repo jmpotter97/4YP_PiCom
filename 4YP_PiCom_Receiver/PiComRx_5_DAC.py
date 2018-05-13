@@ -8,9 +8,9 @@ import datetime
 
 # {} in paths designed for .format(TransType+DATE_TIME)
 DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/data_masks.bin"
-OUT_PATH  = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT {}.txt"
-LOGS_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS {}.txt"
-IMG_PATH  = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out {}.jpg"
+OUT_PATH  = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/OUTPUT_{}.txt"
+LOGS_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS_{}.txt"
+IMG_PATH  = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/cat2_out_{}.jpg"
 
 if os.path.isfile(LOGS_PATH):
     os.remove(LOGS_PATH)
@@ -25,7 +25,7 @@ if len(argv) > 2:
 if TRANSMISSION_TYPE not in TRANSMISSION_TYPES:
     LOGS.append("\nINVALID TRANSMISSION TYPE, EXITING\n")
     LOGS.append("***************************************\n")
-    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
@@ -257,8 +257,18 @@ def Decode_Error_Correction(out, LOGS):
     ''' TO BE ADDED '''
 
 
+def EndZeros(array):
+    i = 0
+    j = 0
+    while j == 0 and i<array.size:
+        if array[-1-i] == 0:
+            i = i+1
+        else:
+            j = 1
+    return i
+
 def Save_As_Image(out, path, LOGS):
-    LOGS.append("Size of output: {} out of {}".format(out.size,256*256))
+    LOGS.append("End zeros: {} out of {}".format(EndZeros(out),256*256))
     if os.path.isfile(path):
         os.remove(path)
     if out.size == 256*256:
@@ -286,7 +296,7 @@ def main():
             
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
             global OUT_PATH
-            OUT_PATH = OUT_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+            OUT_PATH = OUT_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
             with open(OUT_PATH,'w') as f:
                 f.write("".join(str(i) for i in output))
         else:
@@ -299,7 +309,7 @@ def main():
                 '''with open(OUT_PATH,'w') as f:
                     f.write("-".join(str(i) for i in output))'''
                 global IMG_PATH
-                IMG_PATH = IMG_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+                IMG_PATH = IMG_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
                 Save_As_Image(output, IMG_PATH, LOGS)
             else:
                 LOGS.append("No data was received\n")
@@ -320,7 +330,7 @@ except Exception as e:
 finally:
     LOGS.append("***************************************\n")
     global LOGS_PATH
-    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+" "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+    LOGS_PATH = LOGS_PATH.format(TRANSMISSION_TYPE+"_"+datetime.datetime.now().strftime("%H-%M"))
     with open(LOGS_PATH, 'w') as f:
         for l in LOGS:
             f.write(l)
