@@ -40,8 +40,9 @@
       \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{[Proceedings] {NTC}-92: National Telesystems Conference}
+      \field{booktitle}{{NTC}-92: National Telesystems Conference}
       \field{title}{Software radios-survey, critical evaluation and future directions}
+      \field{year}{1992}
       \verb{doi}
       \verb 10.1109/ntc.1992.267870
       \endverb
@@ -66,7 +67,7 @@
       \field{labeltitlesource}{title}
       \field{day}{12}
       \field{month}{8}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 20-04-2018]}
       \field{title}{9 Things You Wanted to Know About Raspberry Pi}
       \field{year}{2016}
       \field{dateera}{ce}
@@ -107,6 +108,174 @@
       \verb https://www.jfwindustries.com/pdf/Understanding%20The%20Limitations%20of%20Modern%20Military%20Radio%20Testbeds.pdf
       \endverb
     \endentry
+    \entry{web_NatIn}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e07a8a16139f25a4c05b0e1e9aedfa3a}{%
+           family={Instruments},
+           familyi={I\bibinitperiod},
+           given={National},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{e07a8a16139f25a4c05b0e1e9aedfa3a}
+      \strng{fullhash}{e07a8a16139f25a4c05b0e1e9aedfa3a}
+      \strng{bibnamehash}{e07a8a16139f25a4c05b0e1e9aedfa3a}
+      \strng{authorbibnamehash}{e07a8a16139f25a4c05b0e1e9aedfa3a}
+      \strng{authornamehash}{e07a8a16139f25a4c05b0e1e9aedfa3a}
+      \strng{authorfullhash}{e07a8a16139f25a4c05b0e1e9aedfa3a}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed 27-04-2018]}
+      \field{title}{Software Defined Radio}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb http://www.ni.com/en-gb/innovations/wireless/software-defined-radio.html
+      \endverb
+      \verb{url}
+      \verb http://www.ni.com/en-gb/innovations/wireless/software-defined-radio.html
+      \endverb
+    \endentry
+    \entry{web_GNURadio}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ef1134ae6b0c46d54eb45aff4e2d3eac}{%
+           family={Radio},
+           familyi={R\bibinitperiod},
+           given={GNU},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{ef1134ae6b0c46d54eb45aff4e2d3eac}
+      \strng{fullhash}{ef1134ae6b0c46d54eb45aff4e2d3eac}
+      \strng{bibnamehash}{ef1134ae6b0c46d54eb45aff4e2d3eac}
+      \strng{authorbibnamehash}{ef1134ae6b0c46d54eb45aff4e2d3eac}
+      \strng{authornamehash}{ef1134ae6b0c46d54eb45aff4e2d3eac}
+      \strng{authorfullhash}{ef1134ae6b0c46d54eb45aff4e2d3eac}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed 12-01-2018]}
+      \field{title}{GNU Radio}
+      \verb{urlraw}
+      \verb https://gnuradio.org/
+      \endverb
+      \verb{url}
+      \verb https://gnuradio.org/
+      \endverb
+    \endentry
+    \entry{web_GNUonRPi}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ac1ddd42620d38d76c492cff4540f6e9}{%
+           family={Hayes},
+           familyi={H\bibinitperiod},
+           given={Gareth},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{ac1ddd42620d38d76c492cff4540f6e9}
+      \strng{fullhash}{ac1ddd42620d38d76c492cff4540f6e9}
+      \strng{bibnamehash}{ac1ddd42620d38d76c492cff4540f6e9}
+      \strng{authorbibnamehash}{ac1ddd42620d38d76c492cff4540f6e9}
+      \strng{authornamehash}{ac1ddd42620d38d76c492cff4540f6e9}
+      \strng{authorfullhash}{ac1ddd42620d38d76c492cff4540f6e9}
+      \field{sortinit}{6}
+      \field{sortinithash}{57e57fb8451e7fcfa45d1e069f6d3136}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{14}
+      \field{month}{7}
+      \field{note}{[Online: Accessed 12-01-2018]}
+      \field{title}{GNU Radio and rtl sdr on Raspberry Pi}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/
+      \endverb
+      \verb{url}
+      \verb http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/
+      \endverb
+    \endentry
+    \entry{web_PortableSR}{article}{}
+      \name{author}{3}{}{%
+        {{hash=42194fcb2123e6185b4efe301d624d66}{%
+           family={Dickens},
+           familyi={D\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4cc585caad9f86a95373e3d363f5e9ae}{%
+           family={Dunn},
+           familyi={D\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=ee699518b363a3beb66491f03a43c9b8}{%
+           family={Nicholas},
+           familyi={N\bibinitperiod},
+           given={L.J.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers ({IEEE})}%
+      }
+      \strng{namehash}{21db64b4a0c4b20a5fc44c7ad5904d3e}
+      \strng{fullhash}{21db64b4a0c4b20a5fc44c7ad5904d3e}
+      \strng{bibnamehash}{21db64b4a0c4b20a5fc44c7ad5904d3e}
+      \strng{authorbibnamehash}{21db64b4a0c4b20a5fc44c7ad5904d3e}
+      \strng{authornamehash}{21db64b4a0c4b20a5fc44c7ad5904d3e}
+      \strng{authorfullhash}{21db64b4a0c4b20a5fc44c7ad5904d3e}
+      \field{sortinit}{7}
+      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Communications Magazine}
+      \field{number}{8}
+      \field{title}{Design and Implementation of a Portable Software Radio}
+      \field{volume}{46}
+      \field{year}{2008}
+      \field{pages}{58\bibrangedash 66}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/mcom.2008.4597105
+      \endverb
+    \endentry
+    \entry{web_SDRTB_SubSamplingReceiver}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=56b12a47da4f762a02838f5addc8b11f}{%
+           family={Ku},
+           familyi={K\bibinitperiod},
+           given={Shin\bibnamedelima Guan},
+           giveni={S\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=17ad1e7a85360879d3d5c7c719155635}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={A.W.C.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ee828b23e2f20b14a8992ac32d0f6ac3}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Heng\bibnamedelima Siong},
+           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Institution of Engineering}%
+        {Technology}%
+      }
+      \strng{namehash}{18146a588ff561e692430dbaf591e654}
+      \strng{fullhash}{18146a588ff561e692430dbaf591e654}
+      \strng{bibnamehash}{18146a588ff561e692430dbaf591e654}
+      \strng{authorbibnamehash}{18146a588ff561e692430dbaf591e654}
+      \strng{authornamehash}{18146a588ff561e692430dbaf591e654}
+      \strng{authorfullhash}{18146a588ff561e692430dbaf591e654}
+      \field{sortinit}{8}
+      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Frontiers of Communications, Networks and Applications ({ICFCNA} 2014 - Malaysia)}
+      \field{title}{A software defined radio testbed for simulation and real-world testing of {RF} subsampling receiver}
+      \field{year}{2014}
+      \verb{doi}
+      \verb 10.1049/cp.2014.1408
+      \endverb
+    \endentry
     \entry{pap_DIWINEpaper4}{report}{}
       \name{author}{1}{}{%
         {{hash=dc2c74b14ba09a95e38ae1530754ca2d}{%
@@ -126,8 +295,8 @@
       \strng{authorbibnamehash}{dc2c74b14ba09a95e38ae1530754ca2d}
       \strng{authornamehash}{dc2c74b14ba09a95e38ae1530754ca2d}
       \strng{authorfullhash}{dc2c74b14ba09a95e38ae1530754ca2d}
-      \field{sortinit}{8}
-      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
+      \field{sortinit}{9}
+      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{23}
@@ -143,7 +312,50 @@
       \verb http://diwine-project.eu/public/content/files/public/DIWINE_WhitePaper_4.pdf
       \endverb
     \endentry
-    \entry{pap_WARP_light}{article}{}
+    \entry{pap_SDRTB_Localisation}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=3b6a52dd1d0ab1ff7ccbdff4d4406e5e}{%
+           family={Schmitz},
+           familyi={S\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c917bb3b819422100e3d0f8c33c4e8c0}{%
+           family={Bartsch},
+           familyi={B\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod}}}%
+        {{hash=ed08292e23f3d39be993d1c11f2122a4}{%
+           family={Hernandez},
+           familyi={H\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6d260a5339995174052502af5d8edfe7}{%
+           family={Mathar},
+           familyi={M\bibinitperiod},
+           given={Rudolf},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{c97e5dff2a27da56f01c2901ea0cc87b}
+      \strng{fullhash}{ed5d75591399c1dfdc4d5724b9bbd194}
+      \strng{bibnamehash}{c97e5dff2a27da56f01c2901ea0cc87b}
+      \strng{authorbibnamehash}{c97e5dff2a27da56f01c2901ea0cc87b}
+      \strng{authornamehash}{c97e5dff2a27da56f01c2901ea0cc87b}
+      \strng{authorfullhash}{ed5d75591399c1dfdc4d5724b9bbd194}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 {IEEE} International Conference on Communications Workshops ({ICC} Workshops)}
+      \field{title}{Distributed software defined radio testbed for real-time emitter localization and tracking}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1109/iccw.2017.7962829
+      \endverb
+    \endentry
+    \entry{pap_WARP_light}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=a3b7e31ab636339aa7ecdfcf6f6bcfe7}{%
            family={Qiao},
@@ -167,11 +379,50 @@
       \strng{authorbibnamehash}{f53068ad80c1475def39cab91c6bfa3b}
       \strng{authornamehash}{f53068ad80c1475def39cab91c6bfa3b}
       \strng{authorfullhash}{f53068ad80c1475def39cab91c6bfa3b}
-      \field{sortinit}{9}
-      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{booktitle}{1st ACM Workshop on Visible Light Communication Systems}
       \field{title}{A Software-defined Visible Light Communications System with WARP}
+      \field{year}{2014}
+    \endentry
+    \entry{pap_PiSDRTB_Spectrum}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=56746f1c7f5886b2ac95ebf808a2221f}{%
+           family={El\bibnamedelima Barrak},
+           familyi={E\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Soumaya},
+           giveni={S\bibinitperiod}}}%
+        {{hash=10cd8257a7e76aa4a4f1d22ac5313003}{%
+           family={Lyhyaoui},
+           familyi={L\bibinitperiod},
+           given={Abdelouahid},
+           giveni={A\bibinitperiod}}}%
+        {{hash=484f442bff317a64b3864cc189009cc5}{%
+           family={Puliafito},
+           familyi={P\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c6c161dde4c54f8ae1fe71f492d2cb62}{%
+           family={Serrano},
+           familyi={S\bibinitperiod},
+           given={Salvatore},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{99c803278605460ced64f94bef00a11e}
+      \strng{fullhash}{9fa269cb9ddbbfa0adf6333ed69dbb32}
+      \strng{bibnamehash}{99c803278605460ced64f94bef00a11e}
+      \strng{authorbibnamehash}{99c803278605460ced64f94bef00a11e}
+      \strng{authornamehash}{99c803278605460ced64f94bef00a11e}
+      \strng{authorfullhash}{9fa269cb9ddbbfa0adf6333ed69dbb32}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eventtitle}{4th International Conference on Automation, Control Engineering and Computer Science (ACECS-2017)}
+      \field{title}{Implementation of a low cost SDR-based Spectrum Sensing prototype using USRP and Raspberry Pi Board}
+      \field{year}{2017}
     \endentry
     \entry{pap_WiPi}{inproceedings}{}
       \name{author}{2}{}{%
@@ -202,6 +453,75 @@
       \field{volume}{8. Wireless Networks: Protocols, Security, and Services Papers}
       \field{year}{2018}
     \endentry
+    \entry{pap_PiSimulinkEducation}{article}{}
+      \name{author}{3}{}{%
+        {{hash=45aa3eff72c9f6b2b282bcba2b59f95c}{%
+           family={Pasolini},
+           familyi={P\bibinitperiod},
+           given={Gianni},
+           giveni={G\bibinitperiod}}}%
+        {{hash=e7588aedbe01ab7958835311f54a2d39}{%
+           family={Bazzi},
+           familyi={B\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=39d1dd5b3a8b683dc7ae5e0a06f32085}{%
+           family={Zabini},
+           familyi={Z\bibinitperiod},
+           given={Flavio},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers ({IEEE})}%
+      }
+      \strng{namehash}{3a90ccab663bdd23607b551cda16ad8f}
+      \strng{fullhash}{3a90ccab663bdd23607b551cda16ad8f}
+      \strng{bibnamehash}{3a90ccab663bdd23607b551cda16ad8f}
+      \strng{authorbibnamehash}{3a90ccab663bdd23607b551cda16ad8f}
+      \strng{authornamehash}{3a90ccab663bdd23607b551cda16ad8f}
+      \strng{authorfullhash}{3a90ccab663bdd23607b551cda16ad8f}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Signal Processing Magazine}
+      \field{number}{4}
+      \field{title}{A Raspberry Pi-Based Platform for Signal Processing Education [{SP} Education]}
+      \field{volume}{34}
+      \field{year}{2017}
+      \field{pages}{151\bibrangedash 158}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/msp.2017.2693500
+      \endverb
+    \endentry
+    \entry{web_SimulinkDR}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2d2b0d998977e6379aad61f1b56ac3c1}{%
+           family={MathWorks},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d2b0d998977e6379aad61f1b56ac3c1}
+      \strng{fullhash}{2d2b0d998977e6379aad61f1b56ac3c1}
+      \strng{bibnamehash}{2d2b0d998977e6379aad61f1b56ac3c1}
+      \strng{authorbibnamehash}{2d2b0d998977e6379aad61f1b56ac3c1}
+      \strng{authornamehash}{2d2b0d998977e6379aad61f1b56ac3c1}
+      \strng{authorfullhash}{2d2b0d998977e6379aad61f1b56ac3c1}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed 03-02-2018]}
+      \field{title}{Simulink defined radio}
+      \field{year}{2015}
+      \verb{urlraw}
+      \verb http://www.simulinkdefinedradio.com/
+      \endverb
+      \verb{url}
+      \verb http://www.simulinkdefinedradio.com/
+      \endverb
+    \endentry
     \entry{lib_Raspbian}{misc}{}
       \name{author}{1}{}{%
         {{hash=cfc124424a21c596c14a4cb50ebc8d89}{%
@@ -220,7 +540,7 @@
       \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 04-09-2017]}
       \field{title}{Raspbian}
       \field{year}{2018}
       \verb{urlraw}
@@ -250,7 +570,7 @@
       \field{labeltitlesource}{title}
       \field{day}{2}
       \field{month}{1}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 09-10-2017]}
       \field{title}{Headless Raspberry Pi Setup}
       \field{year}{2017}
       \field{dateera}{ce}
@@ -281,7 +601,7 @@
       \field{labeltitlesource}{title}
       \field{day}{8}
       \field{month}{6}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 11-09-2017]}
       \field{title}{PuTTY: a free SSH and Telnet client}
       \field{year}{2017}
       \field{dateera}{ce}
@@ -308,7 +628,7 @@
       \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 16-09-2017]}
       \field{title}{Download VNC Viewer}
       \field{year}{2018}
       \verb{urlraw}
@@ -337,13 +657,13 @@
       \strng{authorbibnamehash}{fed06ae90751af4aff6034baa6f409c9}
       \strng{authornamehash}{fed06ae90751af4aff6034baa6f409c9}
       \strng{authorfullhash}{fed06ae90751af4aff6034baa6f409c9}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{23}
       \field{month}{11}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 30-10-2017]}
       \field{subtitle}{VPNC}
       \field{title}{System Administration Utilities}
       \field{year}{2016}
@@ -369,13 +689,13 @@
       \strng{authorbibnamehash}{463212a1f7a42889ccd3612c33bc5cbe}
       \strng{authornamehash}{463212a1f7a42889ccd3612c33bc5cbe}
       \strng{authorfullhash}{463212a1f7a42889ccd3612c33bc5cbe}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 16-10-2017]}
       \field{title}{Welcome to Paramiko!}
-      \field{year}{2018}
+      \field{year}{2017}
       \verb{urlraw}
       \verb http://www.paramiko.org/
       \endverb
@@ -397,11 +717,11 @@
       \strng{authorbibnamehash}{ac8f9f6d402eb41cc08675c881fbc576}
       \strng{authornamehash}{ac8f9f6d402eb41cc08675c881fbc576}
       \strng{authorfullhash}{ac8f9f6d402eb41cc08675c881fbc576}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 27-01-2018]}
       \field{title}{NumPy}
       \field{year}{2017}
       \verb{urlraw}
@@ -425,11 +745,11 @@
       \strng{authorbibnamehash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
       \strng{authornamehash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
       \strng{authorfullhash}{240f1fe5a2809a00b6c57f8a2f59ccfe}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 24-03-2018]}
       \field{subtitle}{Python library for reading and writing image data}
       \field{title}{imageio}
       \field{year}{2014}
@@ -438,6 +758,34 @@
       \endverb
       \verb{url}
       \verb https://imageio.github.io/
+      \endverb
+    \endentry
+    \entry{lib_matplotlib}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=bc57b71efffac3ad3657d4c0de3d16b9}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={Matplotlib\bibnamedelima Development},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{bc57b71efffac3ad3657d4c0de3d16b9}
+      \strng{fullhash}{bc57b71efffac3ad3657d4c0de3d16b9}
+      \strng{bibnamehash}{bc57b71efffac3ad3657d4c0de3d16b9}
+      \strng{authorbibnamehash}{bc57b71efffac3ad3657d4c0de3d16b9}
+      \strng{authornamehash}{bc57b71efffac3ad3657d4c0de3d16b9}
+      \strng{authorfullhash}{bc57b71efffac3ad3657d4c0de3d16b9}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online: Accessed 02-04-2018]}
+      \field{title}{Matplotlib}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://matplotlib.org/
+      \endverb
+      \verb{url}
+      \verb https://matplotlib.org/
       \endverb
     \endentry
     \entry{lib_pigpio}{misc}{}
@@ -458,7 +806,7 @@
       \field{labeltitlesource}{title}
       \field{day}{5}
       \field{month}{4}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 04-12-2017]}
       \field{title}{The pigpio library}
       \field{year}{2018}
       \field{dateera}{ce}
@@ -487,7 +835,7 @@
       \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 04-02-2018]}
       \field{title}{Git}
       \verb{urlraw}
       \verb https://git-scm.com/
@@ -516,7 +864,7 @@
       \field{labeltitlesource}{title}
       \field{day}{30}
       \field{month}{10}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 05-09-2017]}
       \field{title}{RPi.GPIO 0.6.3}
       \field{year}{2016}
       \field{dateera}{ce}
@@ -525,6 +873,35 @@
       \endverb
       \verb{url}
       \verb https://pypi.org/project/RPi.GPIO/
+      \endverb
+    \endentry
+    \entry{web_GPIOPins}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7c1f90bd9bdc70cc059640a7a6209389}{%
+           family={Matt},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{7c1f90bd9bdc70cc059640a7a6209389}
+      \strng{fullhash}{7c1f90bd9bdc70cc059640a7a6209389}
+      \strng{bibnamehash}{7c1f90bd9bdc70cc059640a7a6209389}
+      \strng{authorbibnamehash}{7c1f90bd9bdc70cc059640a7a6209389}
+      \strng{authornamehash}{7c1f90bd9bdc70cc059640a7a6209389}
+      \strng{authorfullhash}{7c1f90bd9bdc70cc059640a7a6209389}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{9}
+      \field{month}{6}
+      \field{note}{[Online: Accessed 09-02-2018]}
+      \field{title}{Simple Guide to the Raspberry Pi GPIO Header and Pins}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
+      \endverb
+      \verb{url}
+      \verb https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
       \endverb
     \endentry
     \entry{web_ParamikoSSH}{misc}{}
@@ -541,13 +918,13 @@
       \strng{authorbibnamehash}{1f032ee53cb3eb2a3a8d014a0b59ee9f}
       \strng{authornamehash}{1f032ee53cb3eb2a3a8d014a0b59ee9f}
       \strng{authorfullhash}{1f032ee53cb3eb2a3a8d014a0b59ee9f}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{22}
       \field{month}{10}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 02-10-2017]}
       \field{title}{Using paramiko to send SSH commands}
       \field{year}{2012}
       \field{dateera}{ce}
@@ -572,13 +949,13 @@
       \strng{authorbibnamehash}{817fe06b4a6398605a966f57b954d618}
       \strng{authornamehash}{817fe06b4a6398605a966f57b954d618}
       \strng{authorfullhash}{817fe06b4a6398605a966f57b954d618}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{19}
       \field{month}{1}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 04-02-2018]}
       \field{title}{RPi Low-Level Peripherals}
       \field{year}{2017}
       \field{dateera}{ce}
@@ -603,13 +980,13 @@
       \strng{authorbibnamehash}{91a5f59705235ca27d945e711f7b1ccb}
       \strng{authornamehash}{91a5f59705235ca27d945e711f7b1ccb}
       \strng{authorfullhash}{91a5f59705235ca27d945e711f7b1ccb}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{11}
       \field{month}{1}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 09-11-2017]}
       \field{title}{What are the Electrical Specifications of GPIO pins?}
       \field{year}{2017}
       \field{dateera}{ce}
@@ -634,11 +1011,11 @@
       \strng{authorbibnamehash}{d975504859cedbbd020768292ed2f749}
       \strng{authornamehash}{d975504859cedbbd020768292ed2f749}
       \strng{authorfullhash}{d975504859cedbbd020768292ed2f749}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 04-04-2018]}
       \field{title}{GPIO Electrical Specifications}
       \verb{urlraw}
       \verb http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications
@@ -661,13 +1038,13 @@
       \strng{authorbibnamehash}{ae8e2a209fd5f7a7272eb24053c33a2a}
       \strng{authornamehash}{ae8e2a209fd5f7a7272eb24053c33a2a}
       \strng{authorfullhash}{ae8e2a209fd5f7a7272eb24053c33a2a}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{2}
       \field{month}{8}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 27-11-2017]}
       \field{subtitle}{Errata}
       \field{title}{GPIO Pads Control}
       \field{year}{2012}
@@ -695,7 +1072,7 @@
       \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 12-09-2017]}
       \field{title}{ARDUINO UNO REV3}
       \field{year}{2017}
       \verb{urlraw}
@@ -723,7 +1100,7 @@
       \field{labeltitlesource}{title}
       \field{day}{10}
       \field{month}{8}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 18-09-2017]}
       \field{title}{Accurate timing for real time control}
       \field{year}{2013}
       \field{dateera}{ce}
@@ -750,7 +1127,7 @@
       \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 02-10-2018]}
       \field{title}{Raspberry Pi as an Oscilloscope @ 10 MSPS}
       \field{year}{2014}
       \verb{urlraw}
@@ -777,8 +1154,8 @@
       \strng{authorbibnamehash}{9b5b4a2a69fdc01d7e7aa618f93ac51f}
       \strng{authornamehash}{9b5b4a2a69fdc01d7e7aa618f93ac51f}
       \strng{authorfullhash}{9b5b4a2a69fdc01d7e7aa618f93ac51f}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{19}
@@ -808,13 +1185,13 @@
       \strng{authorbibnamehash}{7d5c0f532039fcf6f79ef75add357fe3}
       \strng{authornamehash}{7d5c0f532039fcf6f79ef75add357fe3}
       \strng{authorfullhash}{7d5c0f532039fcf6f79ef75add357fe3}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{15}
       \field{month}{2}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 13-10-2017]}
       \field{title}{Benchmarking Raspberry Pi GPIO Speed}
       \field{year}{2015}
       \field{dateera}{ce}
@@ -837,13 +1214,13 @@
       \strng{authorbibnamehash}{6f003d73c4417ee25564e9a5c6ad755e}
       \strng{authornamehash}{6f003d73c4417ee25564e9a5c6ad755e}
       \strng{authorfullhash}{6f003d73c4417ee25564e9a5c6ad755e}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{20}
       \field{month}{3}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 03-24-2018]}
       \field{subtitle}{gpioHardwareClock}
       \field{title}{pigpio C Interface}
       \field{year}{2018}
@@ -869,11 +1246,11 @@
       \strng{authorbibnamehash}{ea2e0355b8efca3ca2b807b457a736e7}
       \strng{authornamehash}{ea2e0355b8efca3ca2b807b457a736e7}
       \strng{authorfullhash}{ea2e0355b8efca3ca2b807b457a736e7}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{sortinit}{4}
+      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{[Online: Accessed ...]}
+      \field{note}{[Online: Accessed 14-11-2017]}
       \field{title}{CommPy: Digital Communication with Python}
       \field{version}{0.3.0.}
       \field{year}{2015}
@@ -885,10 +1262,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{web_GNURadio:http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/}
-  \missing{web_GNUonRPi:http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/}
-  \missing{web_PortableSR}
-  \missing{web_SDRTB_SubSamplingReceiver}
 \endrefsection
 \endinput
 

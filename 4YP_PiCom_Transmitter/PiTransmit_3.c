@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
             return 3;
         }
 	}
-	// Clock full period in micro-seconds minus 2us (explained in TRANSMIT DATA)
+	// Clock full period in micro-seconds minus 1us (explained in TRANSMIT DATA)
 	const int symbol_time = (1000000 / symbol_freq) - 1;
 	printf("Frequency (baud rate): %i Hz\n", symbol_freq);
 	
@@ -105,6 +105,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	printf("TRANSMIT DATA\n");
+    gpioWrite(CLK_PIN,1);
 	uint32_t t0 = gpioTick();
 	for(int i=0; i<num_of_masks; i++) {
 		gpioWrite_Bits_0_31_Clear(transmit_data_mask_inv[i]);
@@ -120,7 +121,7 @@ int main(int argc, char *argv[]) {
          * _WR_ going low clears the converter and _WR_ high starts the conversion
          * _BUSY_ goes high when conversion is complete, and is used as Rx clock pin
          *
-         * A 2us pulse is definitely long enough for both converters to use as a trigger (100ns at least)
+         * A 1us pulse is definitely long enough for both converters to use as a trigger (100ns at least)
          * It's also short enough that at max frequency (100kHz) this is still a fraction of total time*/
 
         // gpioWrite(CLK_PIN, 0); is now integrated with the Clear mask

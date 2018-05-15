@@ -4,7 +4,7 @@
   author = {Embedded Linux Wiki},
   title  = {RPi Low-Level Peripherals},
   date   = {2017-01-19},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 04-02-2018]},
   url    = {https://elinux.org/RPi_Low-level_peripherals},
 }
 
@@ -12,7 +12,7 @@
   author = {Raspberry Pi Stack Exchange},
   title  = {What are the Electrical Specifications of GPIO pins?},
   date   = {2017-01-11},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 09-11-2017]},
   url    = {https://raspberrypi.stackexchange.com/questions/60218/what-are-the-electrical-specifications-of-gpio-pins/60219#60219},
 }
 
@@ -20,14 +20,14 @@
   author = {Mackenzie, James},
   title  = {Headless Raspberry Pi Setup},
   date   = {2017-01-02},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 09-10-2017]},
   url    = {https://hackernoon.com/raspberry-pi-headless-install-462ccabd75d0},
 }
 
 @Misc{web_MosaicSpecs,
   author = {Mosaic Industries},
   title  = {GPIO Electrical Specifications},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 04-04-2018]},
   url    = {http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications},
 }
 
@@ -36,7 +36,7 @@
   title    = {GPIO Pads Control},
   date     = {2012-08-02},
   subtitle = {Errata},
-  note     = {[Online: Accessed ...]},
+  note     = {[Online: Accessed 27-11-2017]},
   url      = {https://www.scribd.com/doc/101830961/GPIO-Pads-Control2},
 }
 
@@ -45,15 +45,15 @@
   title    = {System Administration Utilities},
   date     = {2016-11-23},
   subtitle = {VPNC},
-  note     = {[Online: Accessed ...]},
+  note     = {[Online: Accessed 30-10-2017]},
   url      = {https://manpages.debian.org/testing/vpnc/vpnc.8.en.html},
 }
 
 @Misc{lib_Paramiko,
   author = {Jeff Forcier},
   title  = {Welcome to Paramiko!},
-  year   = {2018},
-  note   = {[Online: Accessed ...]},
+  year   = {2017},
+  note   = {[Online: Accessed 16-10-2017]},
   url    = {http://www.paramiko.org/},
 }
 
@@ -61,7 +61,7 @@
   author = {NumPy Developers},
   title  = {NumPy},
   year   = {2017},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 27-01-2018]},
   url    = {http://www.numpy.org/},
 }
 
@@ -70,7 +70,7 @@
   title    = {imageio},
   year     = {2014},
   subtitle = {Python library for reading and writing image data},
-  note     = {[Online: Accessed ...]},
+  note     = {[Online: Accessed 24-03-2018]},
   url      = {https://imageio.github.io/},
 }
 
@@ -78,14 +78,14 @@
   author = {joan2937},
   title  = {The pigpio library},
   date   = {2018-04-05},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 04-12-2017]},
   url    = {http://abyz.me.uk/rpi/pigpio/index.html},
 }
 
 @Misc{lib_Git,
   author = {Scott Chacon},
   title  = {Git},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 04-02-2018]},
   url    = {https://git-scm.com/},
 }
 
@@ -93,7 +93,7 @@
   author = {Raspberry Pi Foundation},
   title  = {Raspbian},
   year   = {2018},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 04-09-2017]},
   url    = {https://www.raspberrypi.org/downloads/raspbian/},
 }
 
@@ -101,7 +101,7 @@
   author = {RealVNC},
   title  = {Download VNC Viewer},
   year   = {2018},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 16-09-2017]},
   url    = {https://www.realvnc.com/en/connect/download/viewer/},
 }
 
@@ -109,7 +109,7 @@
   author = {Simon Tatham},
   title  = {PuTTY: a free SSH and Telnet client},
   date   = {2017-06-08},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 11-09-2017]},
   url    = {https://www.chiark.greenend.org.uk/~sgtatham/putty/},
 }
 
@@ -117,7 +117,7 @@
   author = {Python Software Foundation},
   title  = {RPi.GPIO 0.6.3},
   date   = {2016-10-30},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 05-09-2017]},
   url    = {https://pypi.org/project/RPi.GPIO/},
 }
 
@@ -126,7 +126,7 @@
   title    = {pigpio C Interface},
   date     = {2018-03-20},
   subtitle = {gpioHardwareClock},
-  note     = {[Online: Accessed ...]},
+  note     = {[Online: Accessed 03-24-2018]},
   url      = {http://abyz.me.uk/rpi/pigpio/cif.html#gpioHardwareClock},
 }
 
@@ -134,7 +134,7 @@
   author = {Sebastian Dahlgren},
   title  = {Using paramiko to send SSH commands},
   date   = {2012-10-22},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 02-10-2017]},
   url    = {http://sebastiandahlgren.se/2012/10/11/using-paramiko-to-send-ssh-commands/},
 }
 
@@ -142,7 +142,7 @@
   author = {Mihir Patkar},
   title  = {9 Things You Wanted to Know About Raspberry Pi},
   date   = {2016-08-12},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 20-04-2018]},
   url    = {https://www.makeuseof.com/tag/9-things-wanted-know-raspberry-pi/},
 }
 
@@ -173,7 +173,7 @@
   author = {petzval},
   title  = {Accurate timing for real time control},
   date   = {2013-08-10},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 18-09-2017]},
   url    = {https://www.raspberrypi.org/forums/viewtopic.php?t=52393},
 }
 
@@ -181,7 +181,7 @@
   author = {digibird1},
   title  = {Raspberry Pi as an Oscilloscope @ 10 MSPS},
   year   = {2014},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 02-10-2018]},
   url    = {https://digibird1.wordpress.com/raspberry-pi-as-an-oscilloscope-10-msps/},
 }
 
@@ -189,7 +189,7 @@
   author = {Joonas Pihlajamaa},
   title  = {Benchmarking Raspberry Pi GPIO Speed},
   date   = {2015-02-15},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 13-10-2017]},
   url    = {https://digibird1.wordpress.com/raspberry-pi-as-an-oscilloscope-10-msps/},
 }
 
@@ -197,7 +197,7 @@
   author = {Arduino},
   title  = {ARDUINO UNO REV3},
   year   = {2017},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 12-09-2017]},
   url    = {https://store.arduino.cc/arduino-uno-rev3},
 }
 
@@ -213,22 +213,25 @@
 @InProceedings{pap_Mitola,
   author    = {J. Mitola},
   title     = {Software radios-survey, critical evaluation and future directions},
-  booktitle = {[Proceedings] {NTC}-92: National Telesystems Conference},
+  booktitle = {{NTC}-92: National Telesystems Conference},
+  year      = {1992},
   publisher = {{IEEE}},
   doi       = {10.1109/ntc.1992.267870},
 }
 
-@Misc{web_NationalInstruments,
+@Misc{web_NatIn,
   author = {National Instruments},
   title  = {Software Defined Radio},
   year   = {2017},
-  note   = {[Online: Accessed ...]},
+  note   = {[Online: Accessed 27-04-2018]},
   url    = {http://www.ni.com/en-gb/innovations/wireless/software-defined-radio.html},
 }
 
-@Article{pap_WARP_light,
-  author = {Qiao, Yijun and Haas, Harald and Knightly, Edward},
-  title  = {A Software-defined Visible Light Communications System with WARP},
+@InProceedings{pap_WARP_light,
+  author    = {Qiao, Yijun and Haas, Harald and Knightly, Edward},
+  title     = {A Software-defined Visible Light Communications System with WARP},
+  booktitle = {1st ACM Workshop on Visible Light Communication Systems},
+  year      = {2014},
 }
 
 @Misc{lib_CommPy,
@@ -236,7 +239,7 @@
   title   = {CommPy: Digital Communication with Python},
   year    = {2015},
   version = {0.3.0.},
-  note    = {[Online: Accessed ...]},
+  note    = {[Online: Accessed 14-11-2017]},
   url     = {https://github.com/veeresht/CommPy},
 }
 
@@ -275,6 +278,57 @@
   title      = {Implementation of a low cost SDR-based Spectrum Sensing prototype using USRP and Raspberry Pi Board},
   year       = {2017},
   eventtitle = {4th International Conference on Automation, Control Engineering and Computer Science (ACECS-2017)},
+}
+
+@Article{pap_PiSimulinkEducation,
+  author    = {Gianni Pasolini and Alessandro Bazzi and Flavio Zabini},
+  title     = {A Raspberry Pi-Based Platform for Signal Processing Education [{SP} Education]},
+  journal   = {{IEEE} Signal Processing Magazine},
+  year      = {2017},
+  volume    = {34},
+  number    = {4},
+  pages     = {151--158},
+  doi       = {10.1109/msp.2017.2693500},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+}
+
+@Misc{web_SimulinkDR,
+  author = {MathWorks},
+  title  = {Simulink defined radio},
+  year   = {2015},
+  note   = {[Online: Accessed 03-02-2018]},
+  url    = {http://www.simulinkdefinedradio.com/},
+}
+
+@Misc{web_GNUonRPi,
+  author = {Gareth Hayes},
+  title  = {GNU Radio and rtl sdr on Raspberry Pi},
+  date   = {2014-07-14},
+  note   = {[Online: Accessed 12-01-2018]},
+  url    = {http://garethhayes.net/gnu-radio-rtl_sdr-raspberry-pi/},
+}
+
+@Misc{web_GNURadio,
+  author = {GNU Radio},
+  title  = {GNU Radio},
+  note   = {[Online: Accessed 12-01-2018]},
+  url    = {https://gnuradio.org/},
+}
+
+@Misc{lib_matplotlib,
+  author = {Matplotlib Development Team},
+  title  = {Matplotlib},
+  year   = {2018},
+  note   = {[Online: Accessed 02-04-2018]},
+  url    = {https://matplotlib.org/},
+}
+
+@Misc{web_GPIOPins,
+  author = {Matt},
+  title  = {Simple Guide to the Raspberry Pi GPIO Header and Pins},
+  date   = {2012-06-09},
+  note   = {[Online: Accessed 09-02-2018]},
+  url    = {https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
