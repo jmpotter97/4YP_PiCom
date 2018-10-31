@@ -1,0 +1,18 @@
+********** RECEIVER LOG FILE **********
+TRANSMISSION TYPE: 4PAM
+Receiving data
+
+... C RECEIVER LOGS ...
+
+... SETUP
+... RECEIVE DATA
+... Receive Memory Allocated
+... Watchdog timeout on clock pin
+... WRITE TO FILE
+
+Return code: [0] Data transmission complete!
+Decoding masks...
+Attenuation = 0.2980392156862745
+End zeros: 42474 out of 65536
+Completed Receiver code!
+***************************************
