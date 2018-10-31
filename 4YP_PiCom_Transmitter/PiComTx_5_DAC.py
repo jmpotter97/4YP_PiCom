@@ -27,10 +27,10 @@ transmitted signal
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
-SYMB_RATE = 1000                       # Symbol rate (Hz)
-OOK_TRANS_FREQ = 100000
+SYMB_RATE = 10                         # Symbol rate (Hz)
+OOK_TRANS_FREQ = 1000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "4PAM"
+TRANSMISSION_TYPE = "OOK"
 SIZE = 0
 
 if len(argv) > 1:
@@ -135,6 +135,14 @@ def Fetch_Receiver_Logs():
 
 '''---------------------------   On-Off Keying   ---------------------------'''
 def Get_Dummy_OOK_Data():
+    '''data = np.unpackbits(np.loadtxt('OOK_DATA_INPUT_firstattempt.txt'))
+    for i in data:
+        i = int(i)'''
+    data = []
+    for i in range(1000):
+        data.append(0)
+        data.append(1)
+    return data
     '''
     print("No transition")
     arr = ([1,0]*8)*1000
@@ -145,15 +153,19 @@ def Get_Dummy_OOK_Data():
     print("Full transition")
     arr = ([1, 0]*4+[0, 1]*4)*1000
     '''
-
+'''
     arr = [0]
-    for i in range(1,11):
-        for j in range(i):
-            arr.append(1)
-        arr.append(0)
-    arr *= 10000
+#    for i in range(1,11):
+#        for j in range(i):
+#            arr.append(1)
+#        arr.append(0)
+    for i in range (1,11):
+            arr.append(0)
+            arr.append(0)
 
-    return arr
+    arr *= 10000
+'''
+    
 
 def Get_Binary_Image():
     ''' TO BE ADDED '''
@@ -208,10 +220,15 @@ def Get_Step_Bytes():
     # SYMB_RATE = 4 - 4PAM (27 is 0b00011011 ie a ramp)
     pam4_once = np.ones(1, dtype='uint8')*27
     pam4 = np.ones(25, dtype='uint8')*27
+    pam4 = np.tile(pam4,1000)
 
     return pam4
-    
 
+def Get_4PAM_Step_Bytes():
+    once = np.array([0,1,2,3],dtype='uint8')
+    multiple = np.tile(once, 10000) 
+    return multiple
+                
 
 def Get_Image_Bytes(path):
     # PIL modes - RGB, L (greyscale)
@@ -503,8 +520,9 @@ def main():
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
         
-        #input_stream = Get_Step_Bytes()
-        input_stream = Get_Image_Bytes('cat2_bw.jpg')
+        input_stream = Get_Step_Bytes()
+        #input_stream = Get_Image_Bytes('cat2_bw.jpg')
+        #input_stream = Get_4PAM_Step_Bytes()
         print("Input stream length (bytes): {}".format(input_stream.size))
 
         print("Converting data to masks...")
