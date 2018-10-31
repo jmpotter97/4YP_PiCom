@@ -33,9 +33,12 @@
 % Include pdf pages
 \usepackage{pdfpages}
 % Appendices
-\usepackage{appendix}
+\usepackage[titletoc,title]{appendix}
 % Tables
 \usepackage{tabu}
+% Indent first paragraphs
+\usepackage{indentfirst}
+\usepackage{leading}
 
 % Quote code with highlighting
 \usepackage{listings}
@@ -116,9 +119,10 @@
 \usepackage{wrapfig}
 % Number the subsubsections
 \setcounter{secnumdepth}{3}
+
 % To do Package (use [disable] to turn off without removing todos)
-\usepackage[colorinlistoftodos]{todonotes}
-%\usepackage[disable]{todonotes}
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[disable]{todonotes}
 
 % Diagram drawing package -- NOT SURE IF I'LL USE
 \usepackage{tikz}
@@ -161,13 +165,15 @@ Trinity Term, 2018\\
 \end{abstract}
 
 % Generate the contents page(s).
-\thispagestyle{empty}
+\pagenumbering{Roman}
 \tableofcontents
 
 \listoftodos
 
 % Introduction and Literature Review Chapter.
 \chapter{Introduction}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \graphicspath{{./Sections/Images/}}
 \subfile{./Sections/Intro.tex}
 
@@ -190,19 +196,20 @@ Trinity Term, 2018\\
 
 % Print the bibliography and add it to the table of contents.
 \clearpage
+\leading{17pt}
 \printbibliography[heading=bibintoc]
-\todo[inline,color=green!40]{Format for web pages should be:}
-Creator’s surname, creator’s first name. Title. Date of
-publication. Name of Institution associated with site. View date. <http://address/filename>.\\
 
 % Include pages from the Risk Assessments
-\appendix
-\addappheadtotoc
+\clearpage
+\pagenumbering{alph}
+\begin{appendices}
 \graphicspath{{./Sections/PDFs/}}
+\addappheadtotoc
 
 
 \includepdf[pages=1, pagecommand=\chapter{Risk Assessments}\section{General Risk Assessment}, offset=0 -4cm]{4YPGeneralRiskAssessment.pdf}
-\includepdf[pages=2-]{4YPGeneralRiskAssessment.pdf}
+\includepdf[pages=2-, pagecommand={}]{4YPGeneralRiskAssessment.pdf}
 \includepdf[pages=1, pagecommand=\section{Computer Risk Assessment}, offset=0 -1cm]{4YPComputerRiskAssessment.pdf}
+\end{appendices}
 
 \end{document}

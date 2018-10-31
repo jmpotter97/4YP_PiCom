@@ -45,7 +45,7 @@ void readPins(int gpio, int level, uint tick) {
 		    extern uint32_t pin_state;
             pin_state = 4294967295;
             // 4294967295 is (2^32 - 1) all pins = 1
-            printf("Mask size completely received!\n");
+            printf("Mask size completely received!\nNumber of masks received: %i\n",mask_size);
         }
     } else if(level == 2) {
         gpioSetAlertFunc(CLK_PIN, 0);
@@ -56,7 +56,7 @@ void readPins(int gpio, int level, uint tick) {
 		}*/
 		extern uint32_t pin_state;
         pin_state = 4294967295;
-        printf("Watchdog timeout on clock pin\n");
+        printf("Watchdog timeout on clock pin!\nNumber of masks received: %i",count);
     }
 }
 
@@ -93,6 +93,7 @@ int main(int argc, char *argv[]) {
         gpioTerminate();
         return 3;
     }
+    printf("Expected number of masks: %i",mask_size);
     
     for(int i=0;i<8;i++) {
         // It will work without this (setting ADC pins) but good practice
