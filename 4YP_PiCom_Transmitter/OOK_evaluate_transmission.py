@@ -13,11 +13,11 @@ from time import sleep
 
 '''---------------------------   On-Off Keying   ---------------------------'''
 
-def Get_OOK_Data():
+def Get_OOK_Data(length):
     #data = np.random.randint(2, size=10000)
 
     data = []
-    for i in range(10000):
+    for i in range(length):
         i = int(np.random.randint(2, size=1))
         data.append(i)
       
@@ -121,25 +121,26 @@ def main():
     # Data stored as bits in Python lists
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
-    OOK_input_stream = Get_OOK_Data()
-    transmission_frequencies = [1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000]
+    transmission_frequencies = [1000,1000000,1000000000,10000000000]
+    lengths = [100,200,400,500,700,1000]
     global DATA_PATH
-    DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/OOK_DATA_INPUT_{}.txt"
-    DATA_PATH = DATA_PATH.format("falling_edge")
-    with open(DATA_PATH,'w') as f:
-        f.write("".join(str(i) for i in OOK_input_stream))
-    for frequency in transmission_frequencies:
-        receiver_started = Ssh_Start_Receiver(len(OOK_input_stream))
-        if receiver_started:
-            print("About to transmit at {} Hz...".format(frequency))
-            # Four seconds enough time to start receiver but not timeout
-            sleep(4)
-            Transmit_Binary_Data(OOK_input_stream,frequency)
-            print("Waiting for reciever to process {} Hz data".format(frequency))
-            sleep(100)
-        else:
-            print("Receiver never started")
-        print("\n Finishing transmitting at {} Hz".format(frequency))
+    for length in lengths:
+        for frequency in transmission_frequencies:
+            DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/OOK_DATA_INPUT_{}_{}Hz.txt".format(length,frequency)
+            OOK_input_stream = Get_OOK_Data(length)
+            with open(DATA_PATH,'w') as f:
+                f.write("".join(str(i) for i in OOK_input_stream))
+            receiver_started = Ssh_Start_Receiver(len(OOK_input_stream))
+            if receiver_started:
+                print("About to transmit at {} Hz...".format(frequency))
+                # Four seconds enough time to start receiver but not timeout
+                sleep(4)
+                Transmit_Binary_Data(OOK_input_stream,frequency)
+                print("Waiting for reciever to process {} Hz data".format(frequency))
+                sleep(50)
+            else:
+                print("Receiver never started")
+            print("\n Finishing transmitting at {} Hz".format(frequency))
     print("\nFinishing program")
 
 
