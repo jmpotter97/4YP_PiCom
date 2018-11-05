@@ -122,11 +122,10 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     OOK_input_stream = Get_OOK_Data()
-    transmission_frequencies = [100]
-    #transmission_frequencies = [1000,2000,5000,10000,20000,50000,100000,500000,10000000]
+    transmission_frequencies = [1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000]
     global DATA_PATH
     DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/OOK_DATA_INPUT_{}.txt"
-    DATA_PATH = DATA_PATH.format("100Hz")
+    DATA_PATH = DATA_PATH.format("falling_edge")
     with open(DATA_PATH,'w') as f:
         f.write("".join(str(i) for i in OOK_input_stream))
     for frequency in transmission_frequencies:
@@ -136,8 +135,8 @@ def main():
             # Four seconds enough time to start receiver but not timeout
             sleep(4)
             Transmit_Binary_Data(OOK_input_stream,frequency)
-            #print("Waiting for reciever to process {} Hz data".format(frequency))
-            #sleep(100)
+            print("Waiting for reciever to process {} Hz data".format(frequency))
+            sleep(100)
         else:
             print("Receiver never started")
         print("\n Finishing transmitting at {} Hz".format(frequency))
