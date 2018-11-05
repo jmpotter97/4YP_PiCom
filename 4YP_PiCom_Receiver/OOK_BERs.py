@@ -25,22 +25,34 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
 
 
 
-transmission_frequencies = [1,10,100,1000,10000,100000,1000000,10000000]
+transmission_frequencies = [1000,1000000,1000000000,10000000000]
+lengths = [100,200,400,500,700]
 
-orig = list(open('OOK_DATA_INPUT_falling_edge.txt', 'r').read())
+#orig = list(open('OOK_DATA_INPUT_falling_edge.txt', 'r').read())
 
 
-numchannel = len(transmission_frequencies)
+numchannel = len(lengths)
 
-# init rx lists
-rx_lists = []
-for i in range(numchannel):
-    #ci = list(open('OOK_DATA_INPUT_100Hz.txt', 'r').read()) 
-    ci = list(open("OOK_FALLING_" + str(transmission_frequencies[i]) + "kHz.txt", 'r').read())
-    rx_lists.append(ci)
-    print("Length: {}".format(len(ci)))
+for frequency in transmission_frequencies:
+    # init rx lists
+    rx_lists = []
+    for i in range(numchannel):
+        orig = list(open('OOK_DATA_INPUT_{}_{}Hz.txt'.format(lengths[i],frequency), 'r').read())
+        #ci = list(open('OOK_DATA_INPUT_100Hz.txt', 'r').read()) 
+        ci = list(open("OUTPUT_OOK_" + str(lengths[i]) + "_" + str(frequency) + "Hz" + ".txt", 'r').read())
+        #rx_lists.append(ci)
+        print("Length: {}".format(len(ci)))
+        print("Frequency: {}".format(frequency))
+        err = 0
+        for i, orig_data in enumerate(orig):
+            if i < len(ci):
+                if not bool(orig_data) == bool(ci[i]):
+                    err += 1
+            else: err += 1
+        print("Percentage error: {}".format((err/len(orig))*100))
 
 # init errors
+'''
 errs = []
 for i in range(numchannel):
     errs.append(0)
@@ -65,5 +77,5 @@ print(sync_error_position)
 
 #plot_frequency_response(percentage_BERs, transmission_frequencies)
   
-
+'''
 
