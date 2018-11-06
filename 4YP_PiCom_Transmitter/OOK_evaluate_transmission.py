@@ -24,7 +24,8 @@ def Get_OOK_Data(length):
     return data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
-    import RPi.GPIO as GPIO    
+    import RPi.GPIO as GPIO
+    overclock = 1
     try:
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM);
@@ -33,14 +34,16 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
-        half_clock = 1 / (2 * OOK_TRANS_FREQ)       
+        half_clock_clock = 1 / ((2 * OOK_TRANS_FREQ)*overclock) #overclock - 4 clock cycles per bit       
+        half_clock_data = 1 / (2 * OOK_TRANS_FREQ)
         print("Transmitting data")
         for b in data_list:
             GPIO.output(DATA_PIN, b)
-            GPIO.output(CLK_PIN, GPIO.HIGH)            
-            sleep(half_clock)
-            GPIO.output(CLK_PIN, GPIO.LOW)
-            sleep(half_clock)
+            for i in range(overclock):
+                GPIO.output(CLK_PIN, GPIO.HIGH)            
+                sleep(half_clock_clock)
+                GPIO.output(CLK_PIN, GPIO.LOW)
+                sleep(half_clock_clock)
         GPIO.output(DATA_PIN, GPIO.LOW)
         print("Data transmission complete!")        
     except KeyboardInterrupt:
@@ -121,8 +124,8 @@ def main():
     # Data stored as bits in Python lists
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
-    transmission_frequencies = [1000,1000000,1000000000,10000000000]
-    lengths = [100,200,400,500,700,1000]
+    transmission_frequencies = [100000000,1000000000,10000000000]
+    lengths = [10000]
     global DATA_PATH
     for length in lengths:
         for frequency in transmission_frequencies:
