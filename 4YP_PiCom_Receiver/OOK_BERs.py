@@ -25,8 +25,8 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
 
 
 
-transmission_frequencies = [1000,1000000,1000000000,10000000000]
-lengths = [100,200,400,500,700]
+transmission_frequencies = [100]
+lengths = [1000]
 
 #orig = list(open('OOK_DATA_INPUT_falling_edge.txt', 'r').read())
 

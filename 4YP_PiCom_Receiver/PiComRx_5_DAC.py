@@ -50,7 +50,8 @@ def pause(string = ""):
 '''---------------------------   On-Off Keying   ---------------------------'''
 def Receive_Binary_Data(out, LOGS):
     import RPi.GPIO as GPIO
-
+    overclocking = 1
+    
     try:
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM)
@@ -60,12 +61,16 @@ def Receive_Binary_Data(out, LOGS):
         GPIO.setup(DATA_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         still_receiving = True
-
+        
         if GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=10000) is not None:
             out.append(GPIO.input(DATA_PIN))
+            count = 0
             while still_receiving:
                 if GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000) is not None:
-                       out.append(GPIO.input(DATA_PIN))
+                       count += 1
+                       if count == overclocking:
+                           count = 0
+                           out.append(GPIO.input(DATA_PIN))
                 else:
                     still_receiving = False
         else:
