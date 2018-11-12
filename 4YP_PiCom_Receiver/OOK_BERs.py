@@ -22,24 +22,29 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
     fig.show()
 '''
 
-
-
-
 transmission_frequencies = [100]
 lengths = [1000]
-
-#orig = list(open('OOK_DATA_INPUT_falling_edge.txt', 'r').read())
-
-
 numchannel = len(lengths)
+
+def Remove_Padding(data):
+    unpadded = data[50:]
+    i = 0
+    while i < 50:
+        while int(unpadded[-1]) == 0:
+            del unpadded[-1]
+        i += 1
+    return unpadded
 
 for frequency in transmission_frequencies:
     # init rx lists
     rx_lists = []
     for i in range(numchannel):
-        orig = list(open('OOK_DATA_INPUT_{}_{}Hz.txt'.format(lengths[i],frequency), 'r').read())
+        orig_padded = list(open('OOK_DATA_INPUT_{}_{}Hz.txt'.format(lengths[i],frequency), 'r').read())
+        orig = Remove_Padding(orig_padded)
         #ci = list(open('OOK_DATA_INPUT_100Hz.txt', 'r').read()) 
-        ci = list(open("OUTPUT_OOK_" + str(lengths[i]) + "_" + str(frequency) + "Hz" + ".txt", 'r').read())
+        ci_padded = list(open("OUTPUT_OOK_" + str(lengths[i]) + "_" + str(frequency) + "Hz" + ".txt", 'r').read())
+        print("Padded Length: {}".format(len(ci_padded)))
+        ci = Remove_Padding(ci_padded)
         #rx_lists.append(ci)
         print("Length: {}".format(len(ci)))
         print("Frequency: {}".format(frequency))
