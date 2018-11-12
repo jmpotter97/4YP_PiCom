@@ -12,16 +12,22 @@ import paramiko
 from time import sleep
 
 '''---------------------------   On-Off Keying   ---------------------------'''
+def Add_Padding(unpadded_data):
+    data = []
+    for i in range(50):
+        data.append(0)
+    for i in unpadded_data:
+        data.append(i)
+    for i in range(50):
+        data.append(0)
+    return data
 
 def Get_OOK_Data(length):
-    #data = np.random.randint(2, size=10000)
-
-    data = []
+    unpadded_data = []
     for i in range(length):
         i = int(np.random.randint(2, size=1))
-        data.append(i)
-      
-    return data
+        unpadded_data.append(i)      
+    return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
     import RPi.GPIO as GPIO
@@ -130,7 +136,9 @@ def main():
     for length in lengths:
         for frequency in transmission_frequencies:
             DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/OOK_DATA_INPUT_{}_{}Hz.txt".format(length,frequency)
-            OOK_input_stream = Get_OOK_Data(length)
+            data = Get_OOK_Data(length)
+            OOK_input_stream = Add_Padding(data)
+            length = len(OOK_input_stream)
             with open(DATA_PATH,'w') as f:
                 f.write("".join(str(i) for i in OOK_input_stream))
             receiver_started = Ssh_Start_Receiver(len(OOK_input_stream))
@@ -139,8 +147,8 @@ def main():
                 # Four seconds enough time to start receiver but not timeout
                 sleep(4)
                 Transmit_Binary_Data(OOK_input_stream,frequency)
-                print("Waiting for reciever to process {} Hz data".format(frequency))
-                sleep(50)
+                #print("Waiting for reciever to process {} Hz data".format(frequency))
+                #sleep(50)
             else:
                 print("Receiver never started")
             print("\n Finishing transmitting at {} Hz".format(frequency))
