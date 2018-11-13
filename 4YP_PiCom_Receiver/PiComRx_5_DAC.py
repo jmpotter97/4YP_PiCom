@@ -62,17 +62,18 @@ def Receive_Binary_Data(out, LOGS):
         GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         still_receiving = True
         
-        if GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=10000) is not None:
+        if GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000) is not None:
             out.append(GPIO.input(DATA_PIN))
             count = 0
-            while still_receiving:
-                if GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000) is not None:
-                       count += 1
-                       if count == overclocking:
-                           count = 0
-                           out.append(GPIO.input(DATA_PIN))
-                else:
-                    still_receiving = False
+            #while still_receiving:
+            while GPIO.wait_for_edge(DATA_PIN, GPIO.FALLING, timeout=1000) is not None:
+                if GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000) is not None:
+                    count += 1
+                    if count == overclocking:
+                        count = 0
+                        out.append(GPIO.input(DATA_PIN))
+                #else:
+                    #still_receiving = False
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
