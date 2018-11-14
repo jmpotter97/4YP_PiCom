@@ -48,6 +48,13 @@ def pause(string = ""):
 
 
 '''---------------------------   On-Off Keying   ---------------------------'''
+def Average(values):
+    total = 0
+    for value in values:
+        total = total + value
+    total = total/len(values)
+    return total
+
 def Receive_Binary_Data(out, LOGS, mask_size):
     import RPi.GPIO as GPIO
     overclocking = 1
@@ -65,8 +72,9 @@ def Receive_Binary_Data(out, LOGS, mask_size):
         length_counter = 0
         GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000)
         out.append(GPIO.input(DATA_PIN))
-        while still_receiving:          
-            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+        while still_receiving:
+            GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
+            value = GPIO.input(DATA_PIN)
             length_counter += 1
             if length_counter == mask_size:
                 still_receiving = False
@@ -74,7 +82,7 @@ def Receive_Binary_Data(out, LOGS, mask_size):
                 count += 1
                 if count == overclocking:
                     count = 0
-                    out.append(GPIO.input(DATA_PIN))
+                    out.append(value)
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:

@@ -22,9 +22,9 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
     fig.show()
 '''
 
-numberofresults = 2
+numberofresults = 8
 transmission_frequencies = [100]
-lengths = [100]#,1000,10000]
+lengths = [100,1000,10000]
 numchannel = len(lengths)
 
 def Remove_Padding(data):
@@ -49,7 +49,6 @@ for length in lengths:
         ci_padded = list(open("O{}_{}.txt".format(j,length), 'r').read())
         ci = Remove_Padding(ci_padded)
         print(len(ci_padded))
-        print(ci)
         print("Length: {}".format(len(ci)))
         err = 0
         for i, orig_data in enumerate(orig):
