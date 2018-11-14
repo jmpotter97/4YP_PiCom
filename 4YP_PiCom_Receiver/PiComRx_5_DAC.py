@@ -48,7 +48,7 @@ def pause(string = ""):
 
 
 '''---------------------------   On-Off Keying   ---------------------------'''
-def Receive_Binary_Data(out, LOGS):
+def Receive_Binary_Data(out, LOGS, mask_size):
     import RPi.GPIO as GPIO
     overclocking = 1
     
@@ -61,19 +61,20 @@ def Receive_Binary_Data(out, LOGS):
         GPIO.setup(DATA_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         still_receiving = True
-        
-        if GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000) is not None:
-            out.append(GPIO.input(DATA_PIN))
-            count = 0
-            #while still_receiving:
-            while GPIO.wait_for_edge(DATA_PIN, GPIO.FALLING, timeout=1000) is not None:
-                if GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000) is not None:
-                    count += 1
-                    if count == overclocking:
-                        count = 0
-                        out.append(GPIO.input(DATA_PIN))
-                #else:
-                    #still_receiving = False
+        count = 0
+        length_counter = 0
+        GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000)
+        out.append(GPIO.input(DATA_PIN))
+        while still_receiving:          
+            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+            length_counter += 1
+            if length_counter == mask_size:
+                still_receiving = False
+            else:
+                count += 1
+                if count == overclocking:
+                    count = 0
+                    out.append(GPIO.input(DATA_PIN))
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
@@ -296,7 +297,7 @@ def main():
 
         if TRANSMISSION_TYPE == "OOK":
             output = []
-            Receive_Binary_Data(output, LOGS)
+            Receive_Binary_Data(output, LOGS, mask_size)
 
             # TODO: Decode_Error_Correction(output)
             
