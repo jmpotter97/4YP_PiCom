@@ -1,0 +1,25 @@
+\documentclass[../main.tex]{subfiles}
+	% CONCLUSION
+\begin{document}
+
+The project has been successful in designing and building a test bed with the ability to effectively communicate using a number of software-defined modulation schemes - the Rapsberry Pi is capable of being the sole computational and communications base of a communications platform.
+This test bed is also significantly less expensive than any of the investigated solutions.
+The communications testing suggested that there were significant problems with the Bit Error Rate achieved in communications, and it is suspected that the closely interacting wires forming separate channels to the ADCs and DACs may have become capacitively coupled at high frequencies, causing most of these problems.
+There were also complications with some parts which limited the capability of the project to be extended, and these complications were dealt with as efficiently as possible.
+The next step would be verifying that the carrier modulation was implemented in a successful manner, as the communications testing focused on baseband modulation.
+However, the testing showed that there is still a lot that can be done to improve the test bed at baseband frequencies first.\\
+
+For future versions of the test bed, a few of the components used would likely be replaced if better ones could be found.
+If, for example, the DAC were replaced with one which provided the correct outputs, OFDM could be implemented with fairly few modifications to the code discussed in Section \ref{sec_Advanced Modulation Schemes}.
+The pulse generator would also ideally be replaced with a more robust quadrature sine generator.
+There was also significant interference at high frequencies, likely due to the exposed wires in the prototyping setup.
+Using a breakout board directly from the GPIO pins to a board or using shielded wiring could help reduce this problem.
+A major challenge for the test bed was the fact that the Raspberry Pi, although powerful, is not a real time device.
+Using a dedicated real-time similarly priced microcontroller connected between each Raspberry Pi and its corresponding DAC and ADC would make the transmission more reliable and independent of the computation, also allowing for the use of GNU Radio on the Raspberry Pi, which is a very powerful tool.
+This would not significantly increase the price, but would provide a more effective use of resources based on the strengths of the Raspberry Pi as compared to a fully real time device.
+Such a microcontroller would need to be used in conjunction with Raspberry Pis, however, as they are much more powerful.
+
+\todo[inline]{Make sure each figure is referenced explicitly in text and has a title, maks sure section references have the title where ambiguous otherwise}
+\todo[inline,color=green!40]{check for any stray apostrophes}
+
+\end{document}

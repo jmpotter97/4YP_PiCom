@@ -1,0 +1,8 @@
+********** RECEIVER LOG FILE **********
+TRANSMISSION TYPE: OOK
+Cleaning up GPIOs
+Size of data: 656745
+Expected size: 660000
+
+Completed Receiver code!
+***************************************

@@ -1,0 +1,114 @@
+\documentclass[../main.tex]{subfiles}
+	% INTRODUCTION
+\begin{document}
+
+The idea of a software radio is attributed to Dr. Joseph Mitola III in the early 1990s, referring to\\radios which could be reconfigured by changing the software, allowing for changes to communications protocols without altering the underlying hardware \cite{pap_Mitola}.
+The ideal software radio would consist of a computer connected to a Digital-Analogue Converter (DAC) connected to an antenna as a transmitter, and an antenna connected to an Analogue-Digital Converter (ADC) connected to a computer as a receiver.
+An ideal software radio is not realisable with the current converter technology, but with a few dedicated hardware components implementing the radio frequency (RF) front end, it is possible to develop a radio communication system which can implement a variety of alternative modulation schemes with little to no modification to the hardware, simply by changing how the software operates.
+This is the idea of a 'software-defined radio'.\\
+
+'Software-defined radio' (SDR) test beds have become more popular as the technology becomes more accessible and cost-efficient.
+These are test beds used to test the usefulness and effectiveness of various coding and modulation schemes for wireless communication.
+Digital communication systems in the modern era are constantly evolving as researchers formulate new, more efficient methods of transmitting data and approaching channel capacity.
+These schemes are developed theoretically, but they eventually need to be tested in order to prove their utility; being able to physically test this with software instead of custom hardware is a significant advantage.
+There are a number of available ‘software-defined radio’ test beds or boards to construct them, however most of these can be very expensive.
+Although these test beds supply advanced tool kits, the basic functionality is all that is required to successfully test new communication schemes.
+The goal of this project is to develop a low-cost software-defined radio test bed using a Raspberry Pi to encode and transmit data, and another to receive and decode it.
+This uses the Raspberry Pis themselves, as well as a small number of external components to provide functionality that the Pis alone cannot.
+Once this test bed is constructed and analysed, the next step is to characterise the performance of the test bed.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Motivation}
+
+The Raspberry Pi is a low-cost computer board which runs on a Linux distribution.
+It has a number of software-programmable General Purpose Input/Output (GPIO) pins which can be used to interface with external devices.
+This combination of computational power and versatility has  caught the attention of a wide range of engineers and hobbyists \cite{web_AboutPi}.
+The Raspberry Pi provides an easily accessible and inexpensive way of developing an alternative SDR test bed (see Section \ref{sec_Lit Review}).
+This would make such test beds significantly more available, such that one might be built by anyone wanting to physically test their ideas.\\
+
+Modern test beds often consist of radio transmitters and receivers wired together with adjustable attenuation between them.
+This allows for the testing of these radio systems in close proximity, while simulating different distances between them \cite{pap_MilitaryRadioTB}.
+The aim of this project is to develop a basic wired digital communications test bed between two Raspberry Pis, with one as the transmitter and the other as the receiver.
+This will serve as a proof of concept for the development of low-budget software-defined radio test beds, and it is developed with costing in mind.
+The next stage is to attempt to characterise the performance of the test bed.
+This entails measuring the Raspberry Pi and other components used, as well as describing test bed in terms of its success at achieving the communications goals.
+This includes testing its reliability for different modulation and coding schemes, and identifying key characteristics such as noise and bandwidth limitations.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Literature Review} \label{sec_Lit Review}
+
+There are a number of software radios and SDR test beds which have been developed in recent years.
+A large number of them make use of one or more of the Ettus Universal Software Radio Peripherals (USRP), including the National Instruments Communications Kit which contains two such devices and is often used as an educational tool.
+These USRPs are powerful tools, however the software defined radio peripherals range in price from $\mathsterling$880 to $\mathsterling$3,510.
+The reconfigurable SDR peripherals for rapid prototyping are even more expensive, with prices starting around $\mathsterling$5,000 \cite{web_NatIn}.
+Some free, open source software which provides a number of communications libraries and tools, and is used by a number of projects, is GNU Radio \cite{web_GNURadio}.
+While this is an excellent option for a number of test beds, it does require a lot of processing power and memory, which earlier models of the Raspberry Pi were not able to handle, but the Model 3+ which is used is capable of running it.
+However, this would significantly impact the ability of the Raspberry Pi to transmit or receive signals at the same time.
+This is unlike USRP-based test beds where the Peripheral handles the load of transmitting/receiving and the computer separately manages the data conversion load of GNU Radio.
+There have also been problems with compiling GNU Radio on Raspberry Pis, but this can be solved \cite{web_GNUonRPi}.
+Because of the drawbacks, and the significant code base which would take time to master, the decision to develop independent software was made.
+GNU Radio could possibly be included in an alternative iteration of this project's test bed.\\
+
+In 2008 a group at the University of Notre Dame developed a portable software radio using only commercial off-the-shelf components, an Ettus USRP and GNU Radio \cite{web_PortableSR}.
+It weighed 7 pounds and was the first portable software radio of its kind to their knowledge.
+A single device made up of these components cost \$3,700 (about $\mathsterling$1,900 at the time) and constituted a large development for the flexibility of radio systems.
+In 2014, Ku et al. developed the first SDR test bed for the testing of a RF sub-sampling receiver using a USRP and GNU Radio  \cite{web_SDRTB_SubSamplingReceiver}.
+This receiver sampled a \SI{4}{\giga\hertz} signal at \SI{100}{MS\per\second} with almost zero bit error and shows that radio systems are starting to approach the capabilities of the ideal software defined radio.\\
+
+There are also projects which use a large number of USRPs to simulate multiple interacting nodes in a radio communications network.
+One of these is the DIWINE project, investigating wireless communication through a dense relay/node cluster.
+Its final White Paper describes the use of six Ettus USRPs in a testing setup, with two source, two relay and two destination nodes used to simulate a Smart Meter Network \cite{pap_DIWINEpaper4}.
+Another similar USRP-GNU Radio project described a distributed software defined radio test bed for localisation and tracking of an emitter in real time \cite{pap_SDRTB_Localisation}.
+This used a complex combination of GPS synchronisation and Kalman filtering to track the target node (USRP and computer) based on readings from a number of distributed USRP-based sensors. 
+An alternative to the Ettus USRP is the WARP (Wireless Open-Access Research Platform) Board developed at Rice University.
+It includes two programmable RF interfaces and a number of peripherals.
+A demonstration using WARP Boards for a software-defined visible light communications system was presented by Qiao et al. \cite{pap_WARP_light}.
+This system was used to demonstrate optical Orthogonal Frequency Division Multiplexing (OFDM) using a WARP Board connected to an LED as the transmitter and another connected to a photo-detector as the receiver.
+The WARP v3 kit, which contains the WARP v3 Board, power supply and SD card, costs \$4,900 for academic customers or \$6,900 for other customers (about $\mathsterling$3,600 and $\mathsterling$5,000 respectively).\\
+
+The problem with these solutions is that they are all prohibitively expensive, so financial limitations may impede many researchers' ability to access SDR test beds.
+As a result, particularly in the last two years, a number of groups have looked to the Raspberry Pi as a low-cost alternative to develop these test beds.
+The first examples of this are not designed using the Raspberry Pi as the main component of the test bed, but as a low cost "cognitive engine" to interface with USRPs.
+El Barrak et al. implemented this idea for an SDR-based spectrum sensing prototype, using a Raspberry Pi 3 for the computation running GNU Radio \cite{pap_PiSDRTB_Spectrum}.
+This was then connected to a USRP which performed the spectrum sensing operation.
+This prototype was used to develop the idea of more effectively utilising the frequency spectrum available with "cognitive radio", sensing which frequencies are in use and dynamically using spectrum portions opportunistically as they become available.
+Another project - WiPi - which directly confronts the high cost of wireless test beds, approached this problem by designing a costly test bed and making it remotely accessible \cite{pap_WiPi}.
+As the paper states, "Implementation on real devices is the optimal approach to capture the conditions in real scenarios." and this is why there is such a demand for the ability to use these test beds.
+This remote test bed is achieved with a number of Raspberry Pis each connected to a USRP, and these all connected to a central server which researchers can access, using the test bed to validate their results.
+Pasolini et al. proposed "A Raspberry Pi-Based Platform for Signal Processing Education" \cite{pap_PiSimulinkEducation}.
+This platform inverts the concept of the previous Raspberry Pi test beds, and does the computation on a standard computer, using the Raspberry Pi as the transmitter.
+The communications part of the platform is computed using a free Simulink package provided by MathWorks, "Simulink defined radio" so there is no need to have programming  experience to use it \cite{web_SimulinkDR}.
+The output is generated through a USB audio card with an audio bandwidth of \SI{48,000}{SPS} (samples per second), allowing for signals "within the interval \textit{[0, 24]kHz}."
+This demonstrates the capabilities of the Raspberry Pi not as a computer but instead as a radio transceiver.\\
+
+%\begin{quotation}
+%	You will also need to lay out the basic communication-related tasks that you will focus on.
+%	I.e., explain the need to develop this test bed for investigating modulation and coding schemes.
+%	The degree of detail you give here is a matter of preference and flow.\\
+%	
+%	x(t) = a(t) cos( t) + b(t)sin( t)\\
+%	i(t) = 2x(t)cos( t) = \\
+%	q(t) = 2x(t)sin(t) = \\
+%	Quadrature carrier modulation
+%\end{quotation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Contributions}
+
+The body of this report is structured into three main chapters.
+Chapter \ref{sec_RPi}, "The Raspberry Pi and the Test Bed" describes how the Raspberry Pi is set up for its operation in the test bed and the components of its physical architecture, as well as investigating the code which was developed to test various modulation schemes.
+Chapter \ref{sec_Electro Testing}, "Electronic Testing" is aimed at characterising the Raspberry Pi electrically and computationally to understand its capabilities and limitations.
+It also characterises the physical external components used.
+Chapter \ref{sec_Comms Testing}, "Communications Testing" runs through tests for different modulation and coding schemes at different frequencies in order to characterise the test bed in a communications context, as well as to discover its limits.\\
+
+The project combines the two aspects of extant Pi-based SDR test beds and utilises the full power of the Raspberry Pi as both the centre of computation and as the communications interface through the GPIO pins.
+It also provides a suitable architecture for the external hardware of the test bed using low-cost commercially available off-the-shelf components.
+This architecture is analysed and the concerns dealt with, such that it may be extended or improved by anyone wanting to investigate further possibilities.
+The retail price of the test bed (excluding tax) is $\mathsterling$165, which is very affordable compared to any of the test beds discussed.
+The performance of the test bed is moderate given the low budget, and a number of reasons for its downfalls are highlighted such that they may be addressed at a later stage.
+Finally, future directions of this test bed are discussed in the conclusion identifying where improvements could be made to get the most out of future implementations.
+
+\end{document}  
