@@ -22,12 +22,12 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
     fig.show()
 '''
 
+numberofresults = 10
 transmission_frequencies = [100]
 lengths = [1000]
 numchannel = len(lengths)
 
 def Remove_Padding(data):
-<<<<<<< HEAD
     unpadded = data[50:]
     i = 0
     while i < 50:
@@ -35,39 +35,31 @@ def Remove_Padding(data):
             del unpadded[-1]
         i += 1
     return unpadded
-=======
-    j = 0
-    while int(data[0]) == 1 and j < 49:
-        data = data[1:]
-        j += 1
-    data = data[1:]
-    while int(data[-1]) == 0:
-        del data[-1]
-    del data[-1]
-    return data
->>>>>>> 30b8933148605b6fe5e9ed7ae9e7bc4ae306f5ed
 
 for frequency in transmission_frequencies:
     # init rx lists
+    errs = []
     rx_lists = []
-    for i in range(numchannel):
-        orig_padded = list(open('OOK_DATA_INPUT_{}_{}Hz.txt'.format(lengths[i],frequency), 'r').read())
-        orig = Remove_Padding(orig_padded)
-        #ci = list(open('OOK_DATA_INPUT_100Hz.txt', 'r').read()) 
-        ci_padded = list(open("OUTPUT_OOK_" + str(lengths[i]) + "_" + str(frequency) + "Hz" + ".txt", 'r').read())
-        print("Padded Length: {}".format(len(ci_padded)))
-        ci = Remove_Padding(ci_padded)
-        #rx_lists.append(ci)
-        print("Length: {}".format(len(ci)))
-        print("Frequency: {}".format(frequency))
-        err = 0
-        for i, orig_data in enumerate(orig):
-            if i < len(ci):
-                if not bool(orig_data) == bool(ci[i]):
-                    err += 1
-            else: err += 1
-        print("Percentage error: {}".format((err/len(orig))*100))
-
+    j = 1
+    while j < numberofresults+1:
+        for i in range(numchannel):
+            orig_padded = list(open('I{}.txt'.format(j), 'r').read())
+            orig = Remove_Padding(orig_padded) 
+            ci_padded = list(open("O{}.txt".format(j), 'r').read())
+            #print("Padded Length: {}".format(len(ci_padded)))
+            ci = Remove_Padding(ci_padded)
+            #rx_lists.append(ci)
+            #print("Length: {}".format(len(ci)))
+            #print("Frequency: {}".format(frequency))
+            err = 0
+            for i, orig_data in enumerate(orig):
+                if i < len(ci):
+                    if not bool(orig_data) == bool(ci[i]):
+                        err += 1
+                else: err += 1
+            errs.append(err)
+            print("Percentage error: {}".format((err/len(orig))*100))
+        j += 1
 # init errors
 '''
 errs = []
