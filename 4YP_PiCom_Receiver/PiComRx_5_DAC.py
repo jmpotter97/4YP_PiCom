@@ -48,6 +48,9 @@ def pause(string = ""):
 
 
 '''---------------------------   On-Off Keying   ---------------------------'''
+<<<<<<< HEAD
+def Receive_Binary_Data(out, LOGS):
+=======
 def Average(values):
     total = 0
     for value in values:
@@ -56,6 +59,7 @@ def Average(values):
     return total
 
 def Receive_Binary_Data(out, LOGS, mask_size):
+>>>>>>> 30b8933148605b6fe5e9ed7ae9e7bc4ae306f5ed
     import RPi.GPIO as GPIO
     overclocking = 1
     
@@ -68,6 +72,21 @@ def Receive_Binary_Data(out, LOGS, mask_size):
         GPIO.setup(DATA_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         still_receiving = True
+<<<<<<< HEAD
+        
+        if GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000) is not None:
+            out.append(GPIO.input(DATA_PIN))
+            count = 0
+            #while still_receiving:
+            while GPIO.wait_for_edge(DATA_PIN, GPIO.FALLING, timeout=1000) is not None:
+                if GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000) is not None:
+                    count += 1
+                    if count == overclocking:
+                        count = 0
+                        out.append(GPIO.input(DATA_PIN))
+                #else:
+                    #still_receiving = False
+=======
         count = 0
         length_counter = 0
         GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000)
@@ -83,6 +102,7 @@ def Receive_Binary_Data(out, LOGS, mask_size):
                 if count == overclocking:
                     count = 0
                     out.append(value)
+>>>>>>> 30b8933148605b6fe5e9ed7ae9e7bc4ae306f5ed
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
@@ -305,7 +325,11 @@ def main():
 
         if TRANSMISSION_TYPE == "OOK":
             output = []
+<<<<<<< HEAD
+            Receive_Binary_Data(output, LOGS)
+=======
             Receive_Binary_Data(output, LOGS, mask_size)
+>>>>>>> 30b8933148605b6fe5e9ed7ae9e7bc4ae306f5ed
 
             # TODO: Decode_Error_Correction(output)
             
