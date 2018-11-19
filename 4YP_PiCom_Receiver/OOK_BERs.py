@@ -27,15 +27,6 @@ lengths = [1000]
 numchannel = len(lengths)
 
 def Remove_Padding(data):
-<<<<<<< HEAD
-    unpadded = data[50:]
-    i = 0
-    while i < 50:
-        while int(unpadded[-1]) == 0:
-            del unpadded[-1]
-        i += 1
-    return unpadded
-=======
     j = 0
     while int(data[0]) == 1 and j < 49:
         data = data[1:]
@@ -45,7 +36,6 @@ def Remove_Padding(data):
         del data[-1]
     del data[-1]
     return data
->>>>>>> 30b8933148605b6fe5e9ed7ae9e7bc4ae306f5ed
 
 for frequency in transmission_frequencies:
     # init rx lists
