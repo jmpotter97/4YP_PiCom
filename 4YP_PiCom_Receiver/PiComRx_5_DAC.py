@@ -52,12 +52,13 @@ def Average(values):
     total = 0
     for value in values:
         total = total + value
-    total = total/len(values)
+    total = (total+1)/(len(values)+1)
+    total = int(round(total))
     return total
 
 def Receive_Binary_Data(out, LOGS, mask_size):
     import RPi.GPIO as GPIO
-    overclocking = 1
+    overclocking = 10
     
     try:
         # Use BCM numbering standard
@@ -73,16 +74,20 @@ def Receive_Binary_Data(out, LOGS, mask_size):
         GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000)
         out.append(GPIO.input(DATA_PIN))
         while still_receiving:
-            GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
-            value = GPIO.input(DATA_PIN)
+            #GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
+            #value = GPIO.input(DATA_PIN)
+            values = []
             length_counter += 1
-            if length_counter == mask_size:
+            if length_counter == mask_size*overclocking:
                 still_receiving = False
             else:
+                GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
+                values.append(GPIO.input(DATA_PIN))
                 count += 1
                 if count == overclocking:
                     count = 0
-                    out.append(value)
+                    out.append(Average(values))
+                    values = []
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
