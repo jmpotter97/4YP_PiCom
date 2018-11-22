@@ -27,16 +27,16 @@ def Add_Padding(unpadded_data):
 
 def Get_OOK_Data(length):
     unpadded_data = []
-    for i in range(int(length)):
+    for i in range(int(length/2)):
         value = int(np.random.randint(2, size=1))
-        unpadded_data.append(value)
-        #unpadded_data.append(int(1))
-        #unpadded_data.append(int(0))
+        #unpadded_data.append(value)
+        unpadded_data.append(int(1))
+        unpadded_data.append(int(0))
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
     import RPi.GPIO as GPIO
-    overclocking = 1
+    overclocking = 10
     try:
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM);
@@ -49,17 +49,22 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         #half_clock_data = 1 / (2 * OOK_TRANS_FREQ)
         print("Transmitting data")
 
-        #counter = overclocking
+        counter = 0
 
         for b in data_list:
-            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
-            GPIO.output(DATA_PIN, b)
+            #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+            #GPIO.output(DATA_PIN, b)
 
-            #counter += 1
-            #if counter == overclocking:
-                #counter = 0
-                #GPIO.output(DATA_PIN, b)
+            while counter < overclocking:
+                #overclocking
+                GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+                if counter == overclocking - 1:
+                    counter = 0 
+                    GPIO.output(DATA_PIN, b)
+                    break
+                counter += 1
 
+            #pi clock
             #for i in range(overclocking):
              #   GPIO.output(CLK_PIN, GPIO.HIGH)            
               #  sleep(half_clock_clock)
@@ -146,7 +151,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [100]
-    lengths = [100,100,100,100,100,100,100,100,100,100,200,200,200,200,200,500,500,500,500,500,1000,1000,1000,1000,1000,1000,10000,10000]
+    lengths = [100,100,100,100,100,100,100,100,100,100,200,200,200,200,200,500,500,500,500,500,1000,1000,1000,1000,1000,10000,10000,100000,1000000]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
