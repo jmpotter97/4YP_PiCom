@@ -146,7 +146,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [100]
-    lengths = [100,100,100,100,100,100,100,100,100,100,200,200,200,200,200,200,300,400,500]
+    lengths = [100,100,100,100,100,100,100,100,100,100,200,200,200,200,200,500,500,500,500,500,1000,1000,1000,1000,1000,1000,10000,10000]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
@@ -164,8 +164,7 @@ def main():
                 # Four seconds enough time to start receiver but not timeout
                 sleep(4)
                 Transmit_Binary_Data(OOK_input_stream,frequency)
-                print("Waiting for reciever to process {} Hz data".format(frequency))
-                sleep(50)
+                sleep(1) #make sure receiver will log result
             else:
                 print("Receiver never started")
             print("\n Finishing transmitting at {} Hz".format(frequency))               
