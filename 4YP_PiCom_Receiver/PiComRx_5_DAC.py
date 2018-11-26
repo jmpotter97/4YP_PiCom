@@ -58,7 +58,7 @@ def Average(values):
 
 def Receive_Binary_Data(out, LOGS, mask_size):
     import RPi.GPIO as GPIO
-    overclocking = 10
+    overclocking = 1
     
     try:
         # Use BCM numbering standard
