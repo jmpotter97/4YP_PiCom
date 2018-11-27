@@ -22,7 +22,7 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
     fig.show()
 '''
 
-numberofresults = 6
+numberofresults = 17
 transmission_frequencies = [100]
 lengths = [100]
 #numchannel = len(lengths)
