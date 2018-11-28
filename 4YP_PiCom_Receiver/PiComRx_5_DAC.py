@@ -71,23 +71,29 @@ def Receive_Binary_Data(out, LOGS, mask_size):
         still_receiving = True
         count = 0
         length_counter = 0
-        GPIO.wait_for_edge(DATA_PIN, GPIO.RISING, timeout=10000)
+        GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=10000)
         out.append(GPIO.input(DATA_PIN))
         while still_receiving:
+            if GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000) is not None:
+                out.append(GPIO.input(DATA_PIN))
+            else:
+                still_receiving = false
             #GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
             #value = GPIO.input(DATA_PIN)
-            values = []
-            length_counter += 1
-            if length_counter == mask_size*overclocking:
-                still_receiving = False
-            else:
-                GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
-                values.append(GPIO.input(DATA_PIN))
-                count += 1
+            #values = []
+            #length_counter += 1
+            #if length_counter == mask_size*overclocking:# or GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000) is None:
+            #    still_receiving = False
+            #else:
+            #    GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
+                #values.append(GPIO.input(DATA_PIN))
+            #    out.append(GPIO.input(DATA_PIN))
+                '''count += 1
                 if count == overclocking:
                     count = 0
                     out.append(Average(values))
                     values = []
+                    '''
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
