@@ -23,13 +23,15 @@ achieved by using the "GROUND" of the multipliers (which are fully differential)
 as Vmax/2 using a voltage divider. This means the sine and cos will be inverted
 for the values 0 and 1 in the same way they would be for -3 and -1 and the
 transmitted signal
+
+J. Potter based on code by C. Eadie
 '''
 
 DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 10                         # Symbol rate (Hz)
 OOK_TRANS_FREQ = 1000
-TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM"] #, "OFDM"] to be added
+TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM","basic_FSK","FSK"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "OOK"
 SIZE = 0
 
@@ -187,13 +189,23 @@ def Transmit_Binary_Data(data_list):
         half_clock = 1 / (2 * OOK_TRANS_FREQ)
         
         print("Transmitting data")
-        for b in data_list:
-            GPIO.output(DATA_PIN, b)
-            GPIO.output(CLK_PIN, GPIO.HIGH)            
-            sleep(half_clock)
-            GPIO.output(CLK_PIN, GPIO.LOW)
-            sleep(half_clock)
-        GPIO.output(DATA_PIN, GPIO.LOW)
+
+        if TRANSMISSION_TYPE == "FSK":
+            for b in data_list:
+                GPIO.output(DATA_PIN, b)
+                GPIO.output(CLK_PIN, GPIO.HIGH)            
+                sleep(half_clock*(b+1))
+                GPIO.output(CLK_PIN, GPIO.LOW)
+                sleep(half_clock*(b+1))
+            GPIO.output(DATA_PIN, GPIO.LOW)
+        else:
+            for b in data_list:
+                GPIO.output(DATA_PIN, b)
+                GPIO.output(CLK_PIN, GPIO.HIGH)            
+                sleep(half_clock)
+                GPIO.output(CLK_PIN, GPIO.LOW)
+                sleep(half_clock)
+            GPIO.output(DATA_PIN, GPIO.LOW)
         print("Data transmission complete!")
         
     except KeyboardInterrupt:
@@ -516,6 +528,28 @@ def main():
         else:
             print("Receiver never started")
         
+    elif TRANSMISSION_TYPE == "basic_FSK":
+        data = Get_Dummy_OOK_Data()
+        input_stream = []
+        for bit in data:
+            if bit == 1:
+                input_stream.append(1)
+                input_stream.append(0)
+            else:
+                input_stream.append(1)
+                input_stream.append(1)
+                input_stream.append(0)
+                input_stream.append(0)
+        receiver_started = Ssh_Start_Receiver(len(input_stream))
+        if receiver_started:
+            print("About to transmit...")
+            # Four seconds enough time to start receiver but not timeout
+            sleep(4)
+            Transmit_Binary_Data(input_stream)
+            # TODO: Fetch_Receiver_Logs()
+        else:
+            print("Receiver never started")
+
     else:
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code
