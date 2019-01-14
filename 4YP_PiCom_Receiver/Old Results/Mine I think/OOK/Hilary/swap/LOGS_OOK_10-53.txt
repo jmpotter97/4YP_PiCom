@@ -1,0 +1,11 @@
+********** RECEIVER LOG FILE **********
+TRANSMISSION TYPE: OOK
+
+Exiting program on unexpected error
+Error is: name 'false' is not defined
+Cleaning up GPIOs
+Size of data: 1095
+Expected size: 1100
+
+Completed Receiver code!
+***************************************
