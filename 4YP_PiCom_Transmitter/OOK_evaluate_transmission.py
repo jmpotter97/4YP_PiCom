@@ -86,9 +86,9 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
 
 def Ssh_Start_Receiver(mask_length):
     print("Starting Receiver")    
-    host = "raspberrypi2.local"
+    host = "raspberrypi1.local"
     uname = "pi"
-    pword = "rasPass2"
+    pword = "rasPass1"
     TRANSMISSION_TYPE = "OOK"
     # Update command for new file name
     command = "sudo python3 " + \
@@ -119,9 +119,9 @@ def Ssh_Start_Receiver(mask_length):
 
 def Fetch_Receiver_Logs():
     print("\nFetching LOGS from receiver...")    
-    host = "raspberrypi2.local"
+    host = "raspberrypi1.local"
     uname = "pi"
-    pword = "rasPass2"
+    pword = "rasPass1"
     # Print LOGS to output
     command = "cat /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
     try:
@@ -153,7 +153,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [10000,10000,10000,10000,10000,10000]#,100000,100000,1000000]
+    lengths = [100,100,100,100,100,100,100,100,100,100,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,10000,10000,10000,10000,10000,10000]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
