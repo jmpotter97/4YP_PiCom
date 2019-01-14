@@ -86,9 +86,9 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
 
 def Ssh_Start_Receiver(mask_length):
     print("Starting Receiver")    
-    host = "raspberrypi1.local"
+    host = "raspberrypi2.local"
     uname = "pi"
-    pword = "rasPass1"
+    pword = "rasPass2"
     TRANSMISSION_TYPE = "OOK"
     # Update command for new file name
     command = "sudo python3 " + \
@@ -119,9 +119,9 @@ def Ssh_Start_Receiver(mask_length):
 
 def Fetch_Receiver_Logs():
     print("\nFetching LOGS from receiver...")    
-    host = "raspberrypi1.local"
+    host = "raspberrypi2.local"
     uname = "pi"
-    pword = "rasPass1"
+    pword = "rasPass2"
     # Print LOGS to output
     command = "cat /home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/LOGS.txt"
     try:

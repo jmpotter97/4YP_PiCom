@@ -30,13 +30,16 @@ def Get_OOK_Data(length):
     for i in range(int(length/2)):
         value = int(np.random.randint(2, size=1))
         #unpadded_data.append(value)
+        unpadded_data.append(int(0))
+        unpadded_data.append(int(0))
+        unpadded_data.append(int(1))
         unpadded_data.append(int(1))
         unpadded_data.append(int(0))
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
     import RPi.GPIO as GPIO
-    overclocking = 10
+    overclocking = 1
     try:
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM);
@@ -44,32 +47,32 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         DATA_PIN = 21
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)#initial=GPIO.LOW)
-        #half_clock_clock = 1 / ((2 * OOK_TRANS_FREQ)*overclocking) #overclock - number of clock cycles per bit       
-        #half_clock_data = 1 / (2 * OOK_TRANS_FREQ)
+        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)#initial=GPIO.LOW)
+        half_clock_clock = 1 / ((2 * OOK_TRANS_FREQ)*overclocking) #overclock - number of clock cycles per bit       
+        half_clock_data = 1 / (2 * OOK_TRANS_FREQ)
         print("Transmitting data")
 
         counter = 0
 
         for b in data_list:
             #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
-            #GPIO.output(DATA_PIN, b)
+            GPIO.output(DATA_PIN, b)
 
-            while counter < overclocking:
+            '''while counter < overclocking:
                 #overclocking
                 GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
                 if counter == overclocking - 1:
                     counter = 0 
                     GPIO.output(DATA_PIN, b)
                     break
-                counter += 1
+                counter += i'''
 
             #pi clock
-            #for i in range(overclocking):
-             #   GPIO.output(CLK_PIN, GPIO.HIGH)            
-              #  sleep(half_clock_clock)
-               # GPIO.output(CLK_PIN, GPIO.LOW)
-                #sleep(half_clock_clock)
+            for i in range(overclocking):
+                GPIO.output(CLK_PIN, GPIO.HIGH)            
+                sleep(half_clock_clock)
+                GPIO.output(CLK_PIN, GPIO.LOW)
+                sleep(half_clock_clock)
         GPIO.output(DATA_PIN, GPIO.LOW)
         print("Data transmission complete!")        
     except KeyboardInterrupt:
@@ -192,8 +195,8 @@ def main():
     # Data stored as bits in Python lists
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
-    transmission_frequencies = [100]
-    lengths = [100,100,100,100,100,100,100,100,100,100,200,200,200,200,200,500,500,500,500,500,1000,1000,1000,1000,1000,10000,10000,100000,1000000]
+    transmission_frequencies = [1300]
+    lengths = [10000]
     encoding = "NRZ" #from [NRZ, NRZI, RZI, Manchester]
     global DATA_PATH
     counter = 1
