@@ -197,7 +197,7 @@ def main():
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
     lengths = [10000]
-    encoding = "NRZ" #from [NRZ, NRZI, RZI, Manchester]
+    encoding = "NRZI" #from [NRZ, NRZI, RZI, Manchester]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
