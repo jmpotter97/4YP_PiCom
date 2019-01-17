@@ -3,8 +3,8 @@ Decode different encodings and analyse BERs.
 J. Potter
 '''
 
-numberofresults = 40
-encoding = "Manchester" #from [NRZ, NRZI, RZI, Manchester]
+numberofresults = 50
+encoding = "NRZI" #from [NRZ, NRZI, RZI, Manchester]
 
 def Remove_Padding(data):
     j = 0
