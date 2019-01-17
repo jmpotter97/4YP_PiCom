@@ -31,7 +31,7 @@ DATA_PATH = "data_masks.bin"
 DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 10                         # Symbol rate (Hz)
 OOK_TRANS_FREQ = 1000
-TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM","basic_FSK","FSK"] #, "OFDM"] to be added
+TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM","basic_FSK","FSK","4PSK"] #, "OFDM"] to be added
 TRANSMISSION_TYPE = "OOK"
 SIZE = 0
 
@@ -174,7 +174,7 @@ def Get_Binary_Image():
         
 
 
-def Transmit_Binary_Data(data_list):
+def Transmit_Binary_Data(data_list, TRANSMISSION_TYPE):
     import RPi.GPIO as GPIO
     
     try:
@@ -295,8 +295,8 @@ def Convert_To_Data_Mask(data_list):
         # 4 SYMB/byte --> 0, 1, 2, 3
         mapping_table = {(0,0) : 0,
                          (0,1) : 1,
-                         (1,0) : 2,
-                         (1,1) : 3}
+                         (1,1) : 2,
+                         (1,0) : 3}
         def Mapping(bits):
             return np.array([mapping_table[tuple(b)] for b in bits])
 
@@ -523,7 +523,7 @@ def main():
             print("About to transmit...")
             # Four seconds enough time to start receiver but not timeout
             sleep(4)
-            Transmit_Binary_Data(input_stream)
+            Transmit_Binary_Data(input_stream, TRANSMISSION_TYPE)
             # TODO: Fetch_Receiver_Logs()
         else:
             print("Receiver never started")
@@ -545,11 +545,11 @@ def main():
             print("About to transmit...")
             # Four seconds enough time to start receiver but not timeout
             sleep(4)
-            Transmit_Binary_Data(input_stream)
+            Transmit_Binary_Data(input_stream,TRANSMISSION_TYPE)
             # TODO: Fetch_Receiver_Logs()
         else:
             print("Receiver never started")
-
+    
     else:
         # Data stored as bytes/masks in NumPy arrays
         # Transmitted using compiled C code

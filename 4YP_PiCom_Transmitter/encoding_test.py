@@ -40,7 +40,67 @@ def Manchester(data):
             output.append(0)
     return output
 
+def decode_NRZI(result):
+    data = []
+    if result[0] == 0:
+        data.append(1)
+        previous_result = 0
+    else:
+        data.append(0)
+        previous_result = 1
+    for bit in result[1:]:
+        if previous_result == 0:
+            if bit == 0:
+                data.append(0)
+                previous_result = 0
+            else:
+                data.append(1)
+                previous_result = 1
+        else: 
+            if bit == 0:
+                data.append(1)
+                previous_result = 0
+            else:
+                data.append(0)
+                previous_result = 1
+    return(data)
+
+def decode_RZI(result):
+    data = []
+    for bit in result[::2]:
+        if bit == 0:
+            data.append(1)
+        else:
+            data.append(0)
+    return(data)
+
+def decode_Manchester(result):
+    data = []
+    for bit in result[::2]:
+        if bit == 0:
+            data.append(0)
+        else:
+            data.append(1)
+    return(data)
+
+
+
 data = [1,1,1,1,0,0,1,1,0,0,1,1,1,1]
-print(NRZI(data))
-print(RZI(data))
-print(Manchester(data))
+print(data)
+
+'''
+x = NRZI(data)
+print(x)
+y = decode_NRZI(x)
+print(y)
+'''
+'''
+x = RZI(data)
+print(x)
+y = decode_RZI(x)
+print(y)
+'''
+x = Manchester(data)
+print(x)
+y = decode_Manchester(x)
+print(y)

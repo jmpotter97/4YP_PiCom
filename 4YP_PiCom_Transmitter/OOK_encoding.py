@@ -199,11 +199,13 @@ def main():
     lengths = [10000]
     encoding = "NRZI" #from [NRZ, NRZI, RZI, Manchester]
     global DATA_PATH
+    global ENCODED_DATA_PATH
     counter = 1
     howmanytimesperlength = 0
     for length in lengths:
         for frequency in transmission_frequencies:
             DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/I{}.txt".format(counter)
+            ENCODED_DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/I_ENCODED{}.txt".format(counter)
             data = Get_OOK_Data(length)
             OOK_input_stream = Add_Padding(data)
             encoded_stream = []
@@ -220,6 +222,8 @@ def main():
                 break
             length = len(encoded_stream)
             with open(DATA_PATH,'w') as f:
+                f.write("".join(str(i) for i in OOK_input_stream))
+            with open(ENCODED_DATA_PATH,'w') as f:
                 f.write("".join(str(i) for i in encoded_stream))
             receiver_started = Ssh_Start_Receiver(length)
             if receiver_started:
