@@ -27,14 +27,9 @@ def Add_Padding(unpadded_data):
 
 def Get_OOK_Data(length):
     unpadded_data = []
-    for i in range(int(length/2)):
+    for i in range(int(length)):
         value = int(np.random.randint(2, size=1))
-        #unpadded_data.append(value)
-        unpadded_data.append(int(0))
-        unpadded_data.append(int(0))
-        unpadded_data.append(int(1))
-        unpadded_data.append(int(1))
-        unpadded_data.append(int(0))
+        unpadded_data.append(value)
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
@@ -196,8 +191,8 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [10000]
-    encoding = "NRZI" #from [NRZ, NRZI, RZI, Manchester]
+    lengths = [300,300,300,300,300,300,300,300,300,300,400,400,400,400,400,400,400,400,400,400,600,600,600,600,600,700,700,700,700,700,800,800,800,800,800,900,900,900,900,900]
+    encoding = "Manchester" #from [NRZ, NRZI, RZI, Manchester]
     global DATA_PATH
     global ENCODED_DATA_PATH
     counter = 1
@@ -206,8 +201,7 @@ def main():
         for frequency in transmission_frequencies:
             DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/I{}.txt".format(counter)
             ENCODED_DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/I_ENCODED{}.txt".format(counter)
-            data = Get_OOK_Data(length)
-            OOK_input_stream = Add_Padding(data)
+            OOK_input_stream = Get_OOK_Data(length)
             encoded_stream = []
             if encoding == "NRZ":
                 encoded_stream = OOK_input_stream
@@ -220,6 +214,7 @@ def main():
             else:
                 print('Error: encoding is not of recognised type.')
                 break
+            encoded_stream = Add_Padding(encoded_stream)
             length = len(encoded_stream)
             with open(DATA_PATH,'w') as f:
                 f.write("".join(str(i) for i in OOK_input_stream))
