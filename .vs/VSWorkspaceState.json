@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\4YP_PiCom_Receiver",
     "\\4YP_PiCom_Transmitter"
   ],
-  "SelectedNode": "\\4YP_PiCom_Transmitter\\PiComTx_4_Clocked.py",
+  "SelectedNode": "\\4YP_PiCom_Receiver\\encoded_stats.py",
   "PreviewInSolutionExplorer": false
 }

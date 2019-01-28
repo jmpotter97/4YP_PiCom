@@ -366,7 +366,7 @@ def Convert_To_Data_Mask(data_list):
         OLD METHOD
         symb = np.zeros((2*data_list.size, 2), dtype=np.uint32)
         # Each value pair (indexed 0 to 15) gives I, Q for that
-        # 4-bit value (grey coded)
+        # 4-bit value (gray coded)
         qam_const = np.array([[2,2],[3,2],[2,3],[3,3],\
                               [2,1],[2,0],[3,1],[3,0],\
                               [1,2],[1,3],[0,2],[0,3],\
@@ -447,7 +447,7 @@ def Check_Input_Masks(input_vals, mask, mask_inv):
     '''
     Use this with RPiSim.GPIO in Windows to make sure mask for each number
     is what you expect in terms of the pins it changes - don't do for too
-    many itterations just to check values
+    many iterations just to check values
     '''
     print("Starting MASK test")
     from RPiSim.GPIO import GPIO
