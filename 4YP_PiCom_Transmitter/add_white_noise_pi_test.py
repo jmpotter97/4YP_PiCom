@@ -8,6 +8,8 @@ This noise value is of 8 bit length to be fed into the DAC and added to the sign
 following the DAC.
 '''
 import numpy as np
+import paramiko
+from time import sleep
 
 '''---------------------------   Noise Generation   -------------------------------'''
 DAC_PINS_1 = [10, 9, 11, 5, 6, 13, 19, 26]
