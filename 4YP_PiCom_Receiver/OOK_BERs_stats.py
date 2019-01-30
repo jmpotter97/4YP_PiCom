@@ -46,9 +46,9 @@ for length in lengths:
     while j < numberofresults+1:
         for i in range(len(lengths)):
             orig_padded = list(open('I{}.txt'.format(j), 'r').read())
-            orig = Remove_Padding(orig_padded) 
+            orig = orig_padded#Remove_Padding(orig_padded) 
             ci_padded = list(open("O{}.txt".format(j), 'r').read())
-            ci = Remove_Padding(ci_padded)
+            ci = ci_padded#Remove_Padding(ci_padded)
             print("ci length before cut: {}".format(len(ci_padded)))
             ci = ci[:len(orig)]
             print("Original length: {}".format(len(orig)))
@@ -62,6 +62,11 @@ for length in lengths:
             errs.append(err)
             print("Percentage error: {}".format((err/len(orig))*100))
         j += 1
+        total_BERs = 0
+        for error in errs:
+            total_BERs = total_BERs + error
+        average_BER = total_BERs/len(errs)
+        print('Average BER: {}'.format(average_BER))
 # init errors
 '''
 errs = []

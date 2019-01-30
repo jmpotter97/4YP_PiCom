@@ -71,7 +71,7 @@ def Receive_Binary_Data(out, LOGS, mask_size):
         still_receiving = True
         count = 0
         length_counter = 0
-        GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=10000)
+        GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=10000)
         out.append(GPIO.input(DATA_PIN))
         while still_receiving:
             if GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000) is not None:
