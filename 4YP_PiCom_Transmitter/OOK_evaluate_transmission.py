@@ -67,11 +67,11 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
             #pi clock
             #GPIO.output(DATA_PIN, b)
             for i in range(overclocking):
-                GPIO.output(CLK_PIN, GPIO.HIGH)            
-                sleep(half_clock_clock)
                 GPIO.output(DATA_PIN, b)
-                GPIO.output(CLK_PIN, GPIO.LOW)
                 sleep(half_clock_clock)
+                GPIO.output(CLK_PIN, GPIO.HIGH)                           
+                sleep(half_clock_clock)
+                GPIO.output(CLK_PIN, GPIO.LOW)
         GPIO.output(DATA_PIN, GPIO.LOW)
         print("Data transmission complete!")        
     except KeyboardInterrupt:
@@ -153,7 +153,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [10000]
+    lengths = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
@@ -161,7 +161,8 @@ def main():
         for frequency in transmission_frequencies:
             DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/I{}.txt".format(counter)
             data = Get_OOK_Data(length)
-            OOK_input_stream = Add_Padding(data)
+            #OOK_input_stream = Add_Padding(data)
+            OOK_input_stream = data
             length = len(OOK_input_stream)
             with open(DATA_PATH,'w') as f:
                 f.write("".join(str(i) for i in OOK_input_stream))
