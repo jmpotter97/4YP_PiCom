@@ -22,7 +22,7 @@ def plot_frequency_response(percentage_BERs, transmission_frequencies):
     fig.show()
 '''
 
-numberofresults = 26
+numberofresults = 10
 transmission_frequencies = [100]
 lengths = [100]
 #numchannel = len(lengths)
@@ -62,11 +62,11 @@ for length in lengths:
             errs.append(err)
             print("Percentage error: {}".format((err/len(orig))*100))
         j += 1
-        total_BERs = 0
-        for error in errs:
-            total_BERs = total_BERs + error
-        average_BER = total_BERs/len(errs)
-        print('Average BER: {}'.format(average_BER))
+    total_BERs = 0
+    for error in errs:
+        total_BERs = total_BERs + error
+    average_BER = total_BERs/len(errs)
+    print('Average BER: {}'.format(average_BER))
 # init errors
 '''
 errs = []
