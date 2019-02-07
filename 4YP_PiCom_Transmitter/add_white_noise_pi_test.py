@@ -75,6 +75,7 @@ def Transmit_Binary_Data(data_list,noise,OOK_TRANS_FREQ):
         print("Transmitting data")
 
         counter = 0
+        
 
         for b in data_list:
             #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
@@ -96,7 +97,7 @@ def Transmit_Binary_Data(data_list,noise,OOK_TRANS_FREQ):
                 sleep(half_clock_clock)
                 GPIO.output(DATA_PIN, b)
                 this_noise = noise[b]
-                for j,pin in enumerate(DATA_PINS_1):
+                for j,pin in enumerate(DAC_PINS_1):
                     GPIO.output(pin, this_noise[j])
                 GPIO.output(CLK_PIN, GPIO.LOW)
                 sleep(half_clock_clock)
@@ -181,7 +182,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [100]
+    lengths = [100000]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
