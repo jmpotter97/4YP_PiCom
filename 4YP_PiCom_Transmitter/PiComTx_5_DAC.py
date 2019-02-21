@@ -32,7 +32,7 @@ DATA_INV_PATH = "data_masks_inv.bin"
 SYMB_RATE = 10                         # Symbol rate (Hz)
 OOK_TRANS_FREQ = 1000
 TRANSMISSION_TYPES = ["OOK","256PAM", "4PAM", "16QAM","basic_FSK","FSK","4PSK"] #, "OFDM"] to be added
-TRANSMISSION_TYPE = "OOK"
+TRANSMISSION_TYPE = "4PAM"
 SIZE = 0
 
 if len(argv) > 1:

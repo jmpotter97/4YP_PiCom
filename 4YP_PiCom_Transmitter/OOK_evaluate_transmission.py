@@ -41,7 +41,7 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM);
         CLK_PIN = 20
-        DATA_PIN = 21
+        DATA_PIN = 10
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)#pull_up_down=GPIO.PUD_DOWN,
@@ -153,7 +153,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [100,100,100,100,100,100,100,100,100,100]#,100,100,100,100,100,100,100,100,100,100]#,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]
+    lengths = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]#,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]
     global DATA_PATH
     counter = 1
     howmanytimesperlength = 0
