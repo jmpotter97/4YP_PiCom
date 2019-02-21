@@ -64,7 +64,7 @@ def Receive_Binary_Data(out, LOGS, mask_size):
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM)
         CLK_PIN = 20
-        DATA_PIN = 21
+        DATA_PIN = 10
         # Setup input and clock pins as IN-puts with pull-down (PUD_DOWN) resistor
         GPIO.setup(DATA_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
