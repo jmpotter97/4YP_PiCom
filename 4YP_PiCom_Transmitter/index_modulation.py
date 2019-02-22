@@ -78,8 +78,8 @@ def Get_OOK_Data(length):
     for i in range(int(length)):
         value = int(np.random.randint(2, size=1))
         unpadded_data.append(value)
-        #unpadded_data.append(int(1))
         #unpadded_data.append(int(0))
+        #unpadded_data.append(int(1))
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
@@ -89,7 +89,7 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         # Use BCM numbering standard
         GPIO.setmode(GPIO.BCM);
         CLK_PIN = 20
-        DATA_PIN = 21
+        DATA_PIN = 10
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)#pull_up_down=GPIO.PUD_DOWN,
@@ -199,7 +199,7 @@ def Fetch_Receiver_Logs():
 def main():
     # Data stored as bits in Python lists
     # Transmitted using RPi.GPIO Python library      
-    TRANSMISSION_TYPE = "PPM"
+    TRANSMISSION_TYPE = "IM"
     transmission_frequencies = [1300]
     lengths = [10000]
     global DATA_PATH
@@ -211,7 +211,7 @@ def main():
             if TRANSMISSION_TYPE == "PPM":
                 OOK_input_stream = Pulse_Position_Modulator(data,2)
             elif TRANSMISSION_TYPE == "IM":
-                OOK_input_stream = Index_Modulator(data,2,4)
+                OOK_input_stream = Index_Modulator(data,3,7)
             else:
                 OOK_input_stream = data
             length = len(OOK_input_stream)
