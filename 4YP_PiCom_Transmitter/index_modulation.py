@@ -41,13 +41,15 @@ def generate_all_combs(slots,pulses):
 
 def Index_Modulator(bitstream,pulses,slots):
     output = []
-    bits_to_encode = power_two(nCr(slots,pulses))
+    bits_to_encode = 2
+    #bits_to_encode = power_two(nCr(slots,pulses))
     number_of_values = 2**bits_to_encode
+    combs_to_use = [(1,3),(1,4),(2,4),(0,2)]
     all_combs = list(combinations(range(slots),pulses))
-    combs_to_use = all_combs[:number_of_values]
-    if (number_of_values > len(all_combs)) | (bits_to_encode < 1):
-        print('Error: slot/pulse combination will not encode.')
-        exit()
+    #combs_to_use = all_combs[:number_of_values]
+    #if (number_of_values > len(all_combs)) | (bits_to_encode < 1):
+    #    print('Error: slot/pulse combination will not encode.')
+    #    exit()
     while len(bitstream) > 0:
         binary_string = ""
         for item in bitstream[:bits_to_encode]:
@@ -200,7 +202,11 @@ def main():
     # Data stored as bits in Python lists
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "IM"
-    transmission_frequencies = [1300]
+    orig_freq = 1000
+    T = 1/orig_freq
+    bigT = 10*T
+    thisT = bigT/5
+    transmission_frequencies = [1/thisT]
     lengths = [10000]
     global DATA_PATH
     counter = 1
@@ -211,7 +217,7 @@ def main():
             if TRANSMISSION_TYPE == "PPM":
                 OOK_input_stream = Pulse_Position_Modulator(data,2)
             elif TRANSMISSION_TYPE == "IM":
-                OOK_input_stream = Index_Modulator(data,3,7)
+                OOK_input_stream = Index_Modulator(data,2,5)
             else:
                 OOK_input_stream = data
             length = len(OOK_input_stream)
