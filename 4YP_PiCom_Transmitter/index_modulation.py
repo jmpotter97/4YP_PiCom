@@ -41,10 +41,10 @@ def generate_all_combs(slots,pulses):
 
 def Index_Modulator(bitstream,pulses,slots):
     output = []
-    bits_to_encode = 2
+    bits_to_encode = 4
     #bits_to_encode = power_two(nCr(slots,pulses))
     number_of_values = 2**bits_to_encode
-    combs_to_use = [(1,3),(1,4),(2,4),(0,2)]
+    combs_to_use = [(0,1,2),(1,2,3),(2,3,4),(3,4,5),(0,1,5),(1,2,5),(2,3,5),(0,2,3),(0,3,4),(0,4,5),(0,2,5),(0,3,5),(0,1,3),(0,1,4),(1,4,5),(2,4,5)]
     all_combs = list(combinations(range(slots),pulses))
     #combs_to_use = all_combs[:number_of_values]
     #if (number_of_values > len(all_combs)) | (bits_to_encode < 1):
@@ -205,7 +205,7 @@ def main():
     orig_freq = 1000
     T = 1/orig_freq
     bigT = 10*T
-    thisT = bigT/5
+    thisT = bigT/6
     transmission_frequencies = [1/thisT]
     lengths = [10000]
     global DATA_PATH
@@ -217,7 +217,7 @@ def main():
             if TRANSMISSION_TYPE == "PPM":
                 OOK_input_stream = Pulse_Position_Modulator(data,2)
             elif TRANSMISSION_TYPE == "IM":
-                OOK_input_stream = Index_Modulator(data,2,5)
+                OOK_input_stream = Index_Modulator(data,3,6)
             else:
                 OOK_input_stream = data
             length = len(OOK_input_stream)
