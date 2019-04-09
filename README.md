@@ -8,4 +8,4 @@ The data manipulation is done in Python, and the actual control of the GPIO Pins
 
 The project can be implemented by running the command "git clone https://github.com/jmpotter97/4YP_PiCom.git" to download all of the relevant files on each of two Raspberry Pis, and then setting up the hardware and naming the Raspberry Pis (or altering the code) as directed in the report (also in the git folder). The final reports can be found in the 'Reports' folder.
 
-# J. Potter, based on work by C. Eadie
+J. Potter, based on work by C. Eadie
