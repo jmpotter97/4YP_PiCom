@@ -1,7 +1,9 @@
 '''
-Testing encoding scheme code.
 J. Potter
+
+Testing line coding scheme code is outputting correctly.
 '''
+
 def NRZI(data):
     output = []
     previous_output = 0;

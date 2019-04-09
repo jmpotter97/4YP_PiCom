@@ -1,5 +1,5 @@
 '''
-A function to practice the implementation of advanced modulation schemes, such as Pulse Position Modulation (PPM) and Index Modulultion (IM).
+A function to implement advanced modulation schemes, such as Pulse Position Modulation (PPM) and Index Modulultion (IM).
 
 J.Potter
 '''
@@ -41,15 +41,13 @@ def generate_all_combs(slots,pulses):
 
 def Index_Modulator(bitstream,pulses,slots):
     output = []
-    bits_to_encode = 4
-    #bits_to_encode = power_two(nCr(slots,pulses))
+    bits_to_encode = power_two(nCr(slots,pulses))
     number_of_values = 2**bits_to_encode
-    combs_to_use = [(0,1,2),(1,2,3),(2,3,4),(3,4,5),(0,1,5),(1,2,5),(2,3,5),(0,2,3),(0,3,4),(0,4,5),(0,2,5),(0,3,5),(0,1,3),(0,1,4),(1,4,5),(2,4,5)]
     all_combs = list(combinations(range(slots),pulses))
-    #combs_to_use = all_combs[:number_of_values]
-    #if (number_of_values > len(all_combs)) | (bits_to_encode < 1):
-    #    print('Error: slot/pulse combination will not encode.')
-    #    exit()
+    combs_to_use = all_combs[:number_of_values]
+    if (number_of_values > len(all_combs)) | (bits_to_encode < 1):
+        print('Error: slot/pulse combination will not encode data.')
+        exit()
     while len(bitstream) > 0:
         binary_string = ""
         for item in bitstream[:bits_to_encode]:
@@ -80,8 +78,6 @@ def Get_OOK_Data(length):
     for i in range(int(length)):
         value = int(np.random.randint(2, size=1))
         unpadded_data.append(value)
-        #unpadded_data.append(int(0))
-        #unpadded_data.append(int(1))
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
@@ -94,7 +90,7 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         DATA_PIN = 10
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)#pull_up_down=GPIO.PUD_DOWN,
+        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
         half_clock_clock = 1 / ((2 * OOK_TRANS_FREQ)*overclocking) #overclock - number of clock cycles per bit       
         half_clock_data = 1 / (2 * OOK_TRANS_FREQ)
         print("Transmitting data")
@@ -102,11 +98,14 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         counter = 0
 
         for b in data_list:
-            #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
-            #GPIO.output(DATA_PIN, b)
+            #FOR EXTERNAL CLOCK
+            '''
+            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+            GPIO.output(DATA_PIN, b)
+            '''
+            #FOR OVERCLOCKING
             '''
             while counter < overclocking:
-                #overclocking
                 GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
                 if counter == overclocking - 1:
                     counter = 0 
@@ -114,8 +113,7 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
                     break
                 counter += 1
             '''
-            #pi clock
-            #GPIO.output(DATA_PIN, b)
+            #FOR PI CLOCK
             for i in range(overclocking):
                 GPIO.output(DATA_PIN, b)
                 sleep(half_clock_clock)
@@ -229,7 +227,8 @@ def main():
                 # Four seconds enough time to start receiver but not timeout
                 sleep(4)
                 Transmit_Binary_Data(OOK_input_stream,frequency)
-                sleep(5) #make sure receiver will log result
+                # Wait to ensure receiver will log result
+                sleep(2)
             else:
                 print("Receiver never started")
             print("\n Finishing transmitting at {} Hz".format(frequency))               

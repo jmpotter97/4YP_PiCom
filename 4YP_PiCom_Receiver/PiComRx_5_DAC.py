@@ -78,22 +78,24 @@ def Receive_Binary_Data(out, LOGS, mask_size):
                 out.append(GPIO.input(DATA_PIN))
             else:
                 still_receiving = false
-            #GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
-            #value = GPIO.input(DATA_PIN)
-            #values = []
-            #length_counter += 1
-            #if length_counter == mask_size*overclocking:# or GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000) is None:
-            #    still_receiving = False
-            #else:
-            #    GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
-                #values.append(GPIO.input(DATA_PIN))
-            #    out.append(GPIO.input(DATA_PIN))
-                '''count += 1
+            #FOR OVERCLOCKING
+            '''
+            GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
+            value = GPIO.input(DATA_PIN)
+            values = []
+            length_counter += 1
+            if length_counter == mask_size*overclocking:# or GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000) is None:
+                still_receiving = False
+            else:
+                GPIO.wait_for_edge(CLK_PIN, GPIO.FALLING, timeout=1000)
+                values.append(GPIO.input(DATA_PIN))
+                out.append(GPIO.input(DATA_PIN))
+                count += 1
                 if count == overclocking:
                     count = 0
                     out.append(Average(values))
                     values = []
-                    '''
+            '''
         else:
             LOGS.append("Receiver timeout waiting for signal to start\n")
     except KeyboardInterrupt:
@@ -110,7 +112,6 @@ def Receive_Data(size, LOGS):
     LOGS.append("Receiving data\n")
     C_receive_command = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Receiver/PiReceive"
     receiver = run(["sudo", C_receive_command, str(size)], stdout=PIPE, stderr=PIPE)
-
     LOGS.append("\n... C RECEIVER LOGS ...\n\n")
     for line in receiver.stdout.decode('utf-8').split('\n'):
         if line != "":
@@ -119,14 +120,12 @@ def Receive_Data(size, LOGS):
         if line != "":
             LOGS.append("... ERR... {}\n".format(line))
     return_code = receiver.returncode
-		
     return_options = { 0 : "Data transmission complete!\n",
 		       1 : "Data receive failed! General error\n",
 		       2 : "GPIO INIT FAIL\n",
                        3 : "\n--- PiReceive ---\nUsage: sudo ./PiReceive mask_size \n",
                        4 : "Memory to receive data was not allocated!",
                        5 : "Invalid Mask Size (Zero or not a number)"}
-
     if return_code in return_options:
         LOGS.append("\nReturn code: [{}] {}".format(return_code,return_options[return_code]))
         if not return_code:
@@ -136,7 +135,6 @@ def Receive_Data(size, LOGS):
     else:
         LOGS.append("Invalid return code: [{}]".format(return_code))
         return np.empty(0)
-
 
 def Decode_Masks(masks, LOGS):
     LOGS.append("Decoding masks...\n")
@@ -149,8 +147,6 @@ def Decode_Masks(masks, LOGS):
             TO REGAIN EACH SYMBOL VALUE
     OUT  - CHANGE EACH SET OF SYMBOL/LEVELS INTO OUTPUT BYTES
     '''
-
-    
     if TRANSMISSION_TYPE == "256PAM":
         # This can't be adjusted for errors in the DAC so can only really be
         # tested if pins connected directly without the DAC and ADC between
@@ -163,7 +159,6 @@ def Decode_Masks(masks, LOGS):
                     val |= (1<<(7-j))
             out[i] = val
         return out
-
     elif TRANSMISSION_TYPE == "4PAM":
         # Will use maximum likelihood reconstruction and account for attenuation
         out = np.zeros(masks.size//4, dtype='uint8')
@@ -238,8 +233,7 @@ def Decode_Masks(masks, LOGS):
             elif 1.5*85 < re < 2.5*85:
                 dac[i] = 2
             else:
-                dac[i] = 3
-                
+                dac[i] = 3              
             if im < 0.5*85:
                 dac[i] += 0j
             elif 0.5*85 < im < 1.5*85:
@@ -248,7 +242,6 @@ def Decode_Masks(masks, LOGS):
                 dac[i] += 2j
             else:
                 dac[i] += 3j
-
         mapping_table = {
             (0,0,0,0) : 0+0j,
             (0,0,0,1) : 0+1j,
@@ -267,21 +260,17 @@ def Decode_Masks(masks, LOGS):
             (1,1,1,0) : 2+3j,
             (1,1,1,1) : 2+2j
             }
-        demap_table = { v : k for k, v in mapping_table.items() }
-        
+        demap_table = { v : k for k, v in mapping_table.items() }       
         def DeMapping(symbs):
-            return np.array([demap_table[s] for s in symbs])
-        
+            return np.array([demap_table[s] for s in symbs])       
         output_bits = DeMapping(dac)
         out = np.packbits(output_bits)
         return out
     else:
         LOGS.append("Transmission type not implemented yet!")
 
-
 def Decode_Error_Correction(out, LOGS):
     ''' TO BE ADDED '''
-
 
 def EndZeros(array):
     i = 0
@@ -307,20 +296,14 @@ def Save_As_Image(out, path, LOGS):
     else:
         io.imwrite(path, out[:256*256].reshape(256,256))
 
-
 '''--------------------------------   Main   --------------------------------'''
 def main():
-    #pause("Start")
     if len(argv) > 1:
         mask_size = int(argv[1])
-
         if TRANSMISSION_TYPE == "OOK":
             output = []
-
             Receive_Binary_Data(output, LOGS, mask_size)
-
-            # TODO: Decode_Error_Correction(output)
-            
+            # TODO: Decode_Error_Correction(output)       
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
             global OUT_PATH
             OUT_PATH = OUT_PATH.format("_"+datetime.datetime.now().strftime("%H-%M-%S"))
@@ -329,8 +312,7 @@ def main():
         else:
             output_masks = Receive_Data(mask_size, LOGS)
             # For testing data_masks.bin file already received or created
-            #output_masks = np.fromfile(DATA_PATH, dtype='uint32')
-            
+            #output_masks = np.fromfile(DATA_PATH, dtype='uint32')          
             if output_masks.size != 0:
                 output = Decode_Masks(output_masks, LOGS)
                 '''with open(OUT_PATH,'w') as f:
@@ -343,7 +325,6 @@ def main():
     else:
         LOGS.append("Mask size command line variable not correctly used\n")
         LOGS.append("\n------- PiComRx_5_DAC.py -------\nMask size not provided\n\nUsage: sudo python3 PiComRx_5_DAC mask_size [transmission_type]\n")
-
 
 # Try necessary to save LOGS if error occurs in code,
 # won't slow down C part of receiver

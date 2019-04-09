@@ -53,8 +53,6 @@ def Get_OOK_Data(length):
     for i in range(int(length)):
         value = int(np.random.randint(2, size=1))
         unpadded_data.append(value)
-        #unpadded_data.append(int(1))
-        #unpadded_data.append(int(0))
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,noise,OOK_TRANS_FREQ):
@@ -67,7 +65,7 @@ def Transmit_Binary_Data(data_list,noise,OOK_TRANS_FREQ):
         DATA_PIN = 21
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)#pull_up_down=GPIO.PUD_DOWN,
+        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
         for pin in DAC_PINS_1:
             GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
         half_clock_clock = 1 / ((2 * OOK_TRANS_FREQ)*overclocking) #overclock - number of clock cycles per bit       
@@ -78,11 +76,14 @@ def Transmit_Binary_Data(data_list,noise,OOK_TRANS_FREQ):
         
 
         for b in data_list:
-            #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
-            #GPIO.output(DATA_PIN, b)
+            #FOR EXTERNAL CLOCK
+            '''
+            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+            GPIO.output(DATA_PIN, b)
+            '''
+            #FOR OVERCLOCKING
             '''
             while counter < overclocking:
-                #overclocking
                 GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
                 if counter == overclocking - 1:
                     counter = 0 
@@ -90,8 +91,7 @@ def Transmit_Binary_Data(data_list,noise,OOK_TRANS_FREQ):
                     break
                 counter += 1
             '''
-            #pi clock
-            #GPIO.output(DATA_PIN, b)
+            #FOR PI CLOCK
             for i in range(overclocking):
                 GPIO.output(CLK_PIN, GPIO.HIGH)            
                 sleep(half_clock_clock)
@@ -201,7 +201,8 @@ def main():
                 # Four seconds enough time to start receiver but not timeout
                 sleep(4)
                 Transmit_Binary_Data(OOK_input_stream,noise,frequency)
-                sleep(10) #make sure receiver will log result
+                # Wait for receiver to log input correctly
+                sleep(2)
             else:
                 print("Receiver never started")
             print("\n Finishing transmitting at {} Hz".format(frequency))               

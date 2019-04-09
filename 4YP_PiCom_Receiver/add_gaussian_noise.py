@@ -8,7 +8,7 @@ using RPi.GPIO and python arrays instead of a C executable (pigpio) and NumPy ar
 
 
 Want this function to come into effect before data received at pin is interpreted as 'high' or 'low'
-in out.append(GPIO.input(DATA_PIN)) line???
+in out.append(GPIO.input(DATA_PIN)) line
 becomes out.append(GPIO.input(DATA_PIN) + numpy.random.normal(mu, sigma, None))
 
 Do we add one value as is one sample, or should I create an oscillating wave function of certain freq to go on top of values?

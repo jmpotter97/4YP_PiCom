@@ -1,14 +1,12 @@
 '''
-J. Potter based on code by C. Eadie
+J. Potter
 
 A function to evaluate the frequency/BER characteristics of the OOK set-up after reading in the input sequence and output
-
 '''
 
+#Plot Results
 '''
 import matplotlib.pyplot as plt
-
-
 
 def plot_frequency_response(percentage_BERs, transmission_frequencies):
     x = transmission_frequencies
@@ -57,32 +55,4 @@ for frequency in transmission_frequencies:
                     err += 1
             else: err += 1
         print("Percentage error: {}".format((err/len(orig))*100))
-
-# init errors
-'''
-errs = []
-for i in range(numchannel):
-    errs.append(0)
-
-check_first_sync = []
-sync_error_position = []
-
-for j, rx_list in enumerate(rx_lists):
-    for i, orig_data in enumerate(orig):
-        if i < len(rx_list):
-            if not bool(orig_data) == bool(rx_list[i]):
-                errs[j] += 1
-        else: errs[j] += 1
-
-percentage_BERs = []
-for i, BER in enumerate(errs):
-    #print("Bit Error {} = {}\n".format(str(transmission_frequencies[i])+"kHz",BER))
-    percentage_BER = (BER/len(orig))*100
-    print("Percentage Bit Error {} = {}\n".format(str(transmission_frequencies[i])+"kHz",percentage_BER))
-    percentage_BERs.append(percentage_BER)
-print(sync_error_position)
-
-#plot_frequency_response(percentage_BERs, transmission_frequencies)
-  
-'''
 

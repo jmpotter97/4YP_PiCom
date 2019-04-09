@@ -1,3 +1,7 @@
+'''
+A function to compare the outputs of the receiver in terms of bit error rate.
+'''
+
 import imageio as io
 import numpy as np
 

@@ -50,19 +50,23 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         counter = 0
 
         for b in data_list:
-            #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+            #FOR EXTERNAL CLOCK
+            '''
+            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
             GPIO.output(DATA_PIN, b)
-
-            '''while counter < overclocking:
+            '''
+            #FOR OVERCLOCKING
+            '''
+            while counter < overclocking:
                 #overclocking
                 GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
                 if counter == overclocking - 1:
                     counter = 0 
                     GPIO.output(DATA_PIN, b)
                     break
-                counter += i'''
-
-            #pi clock
+                counter += i
+                '''
+            #FOR PI CLOCK
             for i in range(overclocking):
                 GPIO.output(CLK_PIN, GPIO.HIGH)            
                 sleep(half_clock_clock)
@@ -191,7 +195,7 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [10000000]#,1000,1000,1000,1000,2000,2000,2000,2000,2000,3000,3000,3000,3000,3000,4000,4000,4000,4000,4000,5000,5000,5000,5000,5000,6000,6000,6000,6000,6000,7000,7000,7000,7000,7000,8000,8000,8000,8000,8000,9000,9000,9000,9000,9000,10000,10000,10000,10000,10000]
+    lengths = [100]
     encoding = "Manchester" #from [NRZ, NRZI, RZI, Manchester]
     global DATA_PATH
     global ENCODED_DATA_PATH
@@ -226,7 +230,8 @@ def main():
                 # Four seconds enough time to start receiver but not timeout
                 sleep(4)
                 Transmit_Binary_Data(encoded_stream,frequency)
-                sleep(1) #make sure receiver will log result
+                # Wait for receiver to log result
+                sleep(2) 
             else:
                 print("Receiver never started")
             print("\n Finishing transmitting at {} Hz".format(frequency))               

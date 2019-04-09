@@ -1,5 +1,5 @@
 '''
-Decode different encodings and analyse BERs.
+A function to decode different line codings and analyse BERs of outputs of receiver.
 J. Potter
 '''
 
@@ -63,8 +63,7 @@ def decode_Manchester(result):
 j = 1
 while j < numberofresults+1:
     orig_padded = list(open('I{}.txt'.format(j), 'r').read())
-    #orig = Remove_Padding(orig_padded) 
-    orig = orig_padded
+    orig = Remove_Padding(orig_padded) 
     orig_encoded_padded = list(open('I_ENCODED{}.txt'.format(j), 'r').read())
     orig_encoded = Remove_Padding(orig_encoded_padded) 
     result_encoded_padded = list(open("O{}.txt".format(j), 'r').read())

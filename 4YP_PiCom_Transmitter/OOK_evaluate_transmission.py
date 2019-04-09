@@ -30,8 +30,6 @@ def Get_OOK_Data(length):
     for i in range(int(length)):
         value = int(np.random.randint(2, size=1))
         unpadded_data.append(value)
-        #unpadded_data.append(int(1))
-        #unpadded_data.append(int(0))
     return unpadded_data
 
 def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
@@ -44,7 +42,7 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         DATA_PIN = 10
         # Set BCM pin 4 as an output
         GPIO.setup(DATA_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)#pull_up_down=GPIO.PUD_DOWN,
+        GPIO.setup(CLK_PIN, GPIO.OUT, initial=GPIO.LOW)
         half_clock_clock = 1 / ((2 * OOK_TRANS_FREQ)*overclocking) #overclock - number of clock cycles per bit       
         half_clock_data = 1 / (2 * OOK_TRANS_FREQ)
         print("Transmitting data")
@@ -52,11 +50,14 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
         counter = 0
 
         for b in data_list:
-            #GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
-            #GPIO.output(DATA_PIN, b)
+            #FOR EXTERNAL CLOCK
+            '''
+            GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
+            GPIO.output(DATA_PIN, b)
+            '''
+            #FOR OVERCLOCKING
             '''
             while counter < overclocking:
-                #overclocking
                 GPIO.wait_for_edge(CLK_PIN, GPIO.RISING, timeout=1000)
                 if counter == overclocking - 1:
                     counter = 0 
@@ -64,8 +65,7 @@ def Transmit_Binary_Data(data_list,OOK_TRANS_FREQ):
                     break
                 counter += 1
             '''
-            #pi clock
-            #GPIO.output(DATA_PIN, b)
+            #FOR PI CLOCK
             for i in range(overclocking):
                 GPIO.output(DATA_PIN, b)
                 sleep(half_clock_clock)
@@ -153,15 +153,14 @@ def main():
     # Transmitted using RPi.GPIO Python library      
     TRANSMISSION_TYPE = "OOK"
     transmission_frequencies = [1300]
-    lengths = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]#,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]
+    lengths = [100]
     global DATA_PATH
     counter = 1
-    howmanytimesperlength = 0
     for length in lengths:
         for frequency in transmission_frequencies:
             DATA_PATH = "/home/pi/Documents/4YP_PiCom/4YP_PiCom_Transmitter/I{}.txt".format(counter)
             data = Get_OOK_Data(length)
-            #OOK_input_stream = Add_Padding(data)
+            OOK_input_stream = Add_Padding(data)
             OOK_input_stream = data
             length = len(OOK_input_stream)
             with open(DATA_PATH,'w') as f:
@@ -172,7 +171,8 @@ def main():
                 # Four seconds enough time to start receiver but not timeout
                 sleep(4)
                 Transmit_Binary_Data(OOK_input_stream,frequency)
-                sleep(5) #make sure receiver will log result
+                # Wait for receiver to log result
+                sleep(2) 
             else:
                 print("Receiver never started")
             print("\n Finishing transmitting at {} Hz".format(frequency))               
