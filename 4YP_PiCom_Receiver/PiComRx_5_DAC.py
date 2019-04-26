@@ -298,11 +298,14 @@ def Save_As_Image(out, path, LOGS):
 
 '''--------------------------------   Main   --------------------------------'''
 def main():
+    expected_length = 100;
     if len(argv) > 1:
         mask_size = int(argv[1])
         if TRANSMISSION_TYPE == "OOK":
             output = []
             Receive_Binary_Data(output, LOGS, mask_size)
+            if len(output) != expected_length:
+                print("Incorrect transmission. Retransmit.")
             # TODO: Decode_Error_Correction(output)       
             LOGS.append("Size of data: {}\nExpected size: {}\n".format(len(output), mask_size))
             global OUT_PATH

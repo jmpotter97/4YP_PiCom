@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\4YP_PiCom_Receiver"
   ],
-  "SelectedNode": "\\4YP_PiCom_Receiver",
+  "SelectedNode": "\\4YP_PiCom_Receiver\\PiComRx_5_DAC.py",
   "PreviewInSolutionExplorer": false
 }
